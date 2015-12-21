@@ -1,0 +1,86 @@
+{
+  "name": "live-server",
+  "version": "0.9.0",
+  "description": "simple development http server with live reload capability",
+  "keywords": [
+    "front-end",
+    "development",
+    "tool",
+    "server",
+    "http",
+    "cli"
+  ],
+  "author": {
+    "name": "Tapio Vierros"
+  },
+  "dependencies": {
+    "colors": "latest",
+    "connect": "2.x.x",
+    "event-stream": "latest",
+    "faye-websocket": "0.9.x",
+    "object-assign": "^2.0.0",
+    "opn": "latest",
+    "send": "latest",
+    "watchr": "2.3.x"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "supertest": "1.0.1"
+  },
+  "scripts": {
+    "test": "mocha test",
+    "lint": "jshint *.js; eslint *.js"
+  },
+  "bin": {
+    "live-server": "./live-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tapio/live-server.git"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "preferGlobal": true,
+  "license": "MIT",
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "quotes": 0,
+      "curly": 0,
+      "strict": 0,
+      "no-process-exit": 0,
+      "eqeqeq": 1,
+      "no-unused-vars": 1,
+      "no-shadow": 1
+    }
+  },
+  "gitHead": "5da7536b0002be55b29a5cfa64047714273a6529",
+  "bugs": {
+    "url": "https://github.com/tapio/live-server/issues"
+  },
+  "_id": "live-server@0.9.0",
+  "_shasum": "a85d972cf69d3244355b9d5aefe8ff2af0127d7f",
+  "_from": "live-server@",
+  "_npmVersion": "1.4.21",
+  "_npmUser": {
+    "name": "tapio",
+    "email": "tapiovierros@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "tapio",
+      "email": "tapiovierros@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "a85d972cf69d3244355b9d5aefe8ff2af0127d7f",
+    "tarball": "http://registry.npmjs.org/live-server/-/live-server-0.9.0.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/live-server/-/live-server-0.9.0.tgz",
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/tapio/live-server"
+}
