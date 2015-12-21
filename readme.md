@@ -15,10 +15,8 @@ npm install
 node server.js
 ```
 
-## Sketches
-<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/day.png" width="450">
+## Sketch
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png" width="450">
-<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/fall.png" width="450">
 
 ## Todo
 - add tree svgs
