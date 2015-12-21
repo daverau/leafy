@@ -16,4 +16,11 @@ node server.js
 - add start/end game states
 - explore timers for speed boost
 - kill player on world bound exit
-- using vue.js or something similar for less update code
+- explore vue.js for less update code
+- flexbox vertical centering (it's still kinda cryptic)
+- bigger world
+- finish drawing dynamic trees (cool experiment with vue here for tree types with sliders on properties)
+- doorways w/collision
+- leaf powerups
+- player inventory
+- finish owl drawing
