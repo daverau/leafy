@@ -3,7 +3,7 @@
 <head> 
 <meta charset="UTF-8" />
 <title>Leafy</title>
-<script type="text/javascript" src="js/phaser.min.js"></script>
+<script type="text/javascript" src="lib/phaser.min.js"></script>
 <style type="text/css">
 body {
   margin: 1em;
@@ -23,7 +23,8 @@ body {
   <script type="text/javascript" src="js/update.js"></script>
   <script type="text/javascript" src="js/render.js"></script>
 	<script type="text/javascript">
-    var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
+    var game = new Phaser.Game(800, 600, Phaser.WebGL, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
+
   </script>
 
 </body>
