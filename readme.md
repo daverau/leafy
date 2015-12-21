@@ -16,7 +16,7 @@ node server.js
 ```
 
 ## Sketch
-<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png" width="450">
+<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
 - add tree svgs
