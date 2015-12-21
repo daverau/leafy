@@ -21,7 +21,9 @@ body {
   <script type="text/javascript" src="create.js"></script>
   <script type="text/javascript" src="update.js"></script>
   <script type="text/javascript" src="render.js"></script>
-	<script type="text/javascript" src="game.js"></script>
+	<script type="text/javascript">
+    var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
+  </script>
 
 </body>
 </html>
