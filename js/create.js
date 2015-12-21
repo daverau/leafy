@@ -47,7 +47,7 @@ function create() {
 	game.trees = game.add.group();
 	game.trees.enableBody = true;
 	// Test generate some random trees
-	for (x = 0; x < 10; x++) {
+	for (x = 0; x < (vars.worldSize * .01); x++) {
 		genTree();
 	}
 

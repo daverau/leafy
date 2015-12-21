@@ -1,7 +1,16 @@
 // # Preload
 function preload() {
 
-  game.load.spritesheet('leafy', 'assets/leafy.png', 128, 128);
+  // # Retina/high-dpi scaling
+  // https://tristandunn.com/2014/01/24/rendering-svg-on-canvas/
+  var canvas  = document.querySelector("canvas");
+  var context = canvas.getContext("2d");
+  canvas.style.width  = canvas.width + "px";
+  canvas.style.height = canvas.height + "px";
+  canvas.width  *= vars.ratio;
+  canvas.height *= vars.ratio;
+
+  game.load.spritesheet('leafy', 'assets/walkcycle4x.png', 256, 256);
   game.load.image('ground', 'assets/ground.png');
   
   // just using the color for now...

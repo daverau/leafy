@@ -91,6 +91,6 @@ function passTree(leafy, tree) {
   //tree.kill();
   //tree.tint = '0xcccccc'
   tree.alpha = .1;
-  vars.playerSpeed += 5;
+  vars.playerSpeed += (vars.playerSpeed * .01);
   //tree.alpha = Math.random()*.9+.1;
 }
