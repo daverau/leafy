@@ -6,7 +6,7 @@ function create() {
 //game.physics.arcade.gravity.y = 300;
 
   // # Player (Leafy) setup
-  game.leafy = game.add.sprite( 3500 / 2 , 10, 'leafy');
+  game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
   //walk = game.leafy.animations.add('walk');
   //game.leafy.animations.play('walk', 15, true);
   game.leafy.scale.setTo(.5);
@@ -18,7 +18,7 @@ function create() {
   game.leafy.animations.add('jump', [1], 0, true);
 
   //ground
-  game.ground = game.add.tileSprite(0 , game.height-60, 3500, 60, 'tree');
+  game.ground = game.add.tileSprite(0 , game.height-60, vars.worldSize, 60, 'tree');
 
 	//enable physics on the player and ground
   game.physics.arcade.enable(game.leafy);
@@ -52,7 +52,7 @@ function create() {
 	}
 
   // [todo] update bounds with global variable
-  game.world.setBounds(0, 0, 3500, game.height);
+  game.world.setBounds(0, 0, vars.worldSize, game.height);
 
   // input
   cursors = game.input.keyboard.createCursorKeys();

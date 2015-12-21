@@ -51,7 +51,7 @@ function genTree() {
 
 
   // draw temp trees
-  var x = game.rnd.integerInRange(0, 3500);
+  var x = game.rnd.integerInRange(0, vars.worldSize);
   //var t = game.trees.create(x, game.height-this.height, 'tree' + Math.floor(Math.random()*6+1));
   var t = game.trees.create(x, game.height-(tree.height * 2), 'tree');
   t.scale.setTo(.5);
