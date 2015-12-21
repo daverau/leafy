@@ -1,4 +1,4 @@
 // # Variables and setup
-// how should I organize this better, under a single global?
-// var facing;
-var playerSpeed = 150;
+var vars = {};
+vars.playerSpeed = 150;
+vars.worldSize = 35000;
