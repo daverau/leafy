@@ -2,7 +2,12 @@
 
 Rough sketch for my first game.
 
-## Install & Run:
+### Controls
+1. Left/Right arrow keys to move
+2. Up to jump
+3. Nothing else, pretty boring so far.
+
+## Install
 ```
 git clone git@github.com:daverau/leafy.git
 cd leafy
@@ -11,7 +16,9 @@ node server.js
 ```
 
 ## Sketches
-
+<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/day.png" width="450">
+<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png" width="450">
+<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/fall.png" width="450">
 
 ## Todo
 - add tree svgs
