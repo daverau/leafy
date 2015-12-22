@@ -1,6 +1,9 @@
 // # Create
 function create() {
 
+//game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+//game.scale.setUserScale(0.5, 0.5);
+
   // # World gen
   game.stage.backgroundColor = 0xF4F4F4;
 	game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -48,6 +51,6 @@ function create() {
 
   // input
   cursors = game.input.keyboard.createCursorKeys();
-  jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+  jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 }
