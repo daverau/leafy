@@ -12,13 +12,13 @@ function update() {
 
     if (game.facing != 'left') {
       game.facing = 'left';
-      game.leafy.scale.x = -.5; //flipped
+      game.leafy.scale.x = -1; //flipped
     }
   } else if (cursors.right.isDown) {
     game.leafy.body.velocity.x = vars.playerSpeed;
 
     if (game.facing != 'right') {
-      game.leafy.scale.x = .5; //game.facing default direction
+      game.leafy.scale.x = 1; //default direction
       game.facing = 'right';
     }
   } else if (game.facing != 'idle') {
@@ -43,4 +43,13 @@ function update() {
       game.leafy.body.velocity.y = -400;
   }
 
+}
+
+
+function passTree(leafy, tree) {
+  //tree.kill();
+  //tree.tint = '0xcccccc'
+  //tree.alpha = .1;
+  //vars.playerSpeed += (vars.playerSpeed * .01);
+  //tree.alpha = Math.random()*.9+.1;
 }

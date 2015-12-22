@@ -52,13 +52,14 @@ function genTree() {
 
   // draw temp trees
   var x = game.rnd.integerInRange(0, vars.worldSize);
-  //var t = game.trees.create(x, game.height-this.height, 'tree' + Math.floor(Math.random()*6+1));
-  var t = game.trees.create(x, game.height-(tree.height * 2), 'tree');
-  t.scale.setTo(.5);
-  t.alpha = .5;
-  t.height = tree.height * 2;
-  t.width = tree.width * 2;
-  //t.body.velocity.x = 0;
+  var t = game.trees.create(x, game.height-this.height, 'tree' + Math.floor(Math.random()*10+1));
+  t.z = -100;
+
+  //var t = game.trees.create(x, game.height-(tree.height * 2), 'tree');
+  //t.scale.setTo(.5);
+  //t.alpha = .5;
+  //t.height = tree.height * 2;
+  //t.width = tree.width * 2;
 
 }
 
@@ -86,11 +87,3 @@ function tweenTint(obj, startColor, endColor, time) {
     colorTween.start();
 }
 
-
-function passTree(leafy, tree) {
-  //tree.kill();
-  //tree.tint = '0xcccccc'
-  tree.alpha = .1;
-  vars.playerSpeed += (vars.playerSpeed * .01);
-  //tree.alpha = Math.random()*.9+.1;
-}
