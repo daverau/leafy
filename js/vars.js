@@ -3,3 +3,4 @@ var vars = {};
 vars.ratio = window.devicePixelRatio || 1;
 vars.playerSpeed = 150 * vars.ratio;
 vars.worldSize = 135000;
+
