@@ -4,7 +4,6 @@ function update() {
   game.physics.arcade.collide(game.leafy, game.ground);
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
 
-
   game.leafy.body.velocity.x = 0;
 
   if (cursors.left.isDown) {
@@ -42,9 +41,20 @@ function update() {
       game.leafy.animations.play('jump');
       game.leafy.body.velocity.y = -400;
   }
+  
+  // respawn
+  if (!game.leafy.alive) {
+    restart();
+  }
+
 
 }
 
+function restart() {
+  console.log('restart');
+  //game.leafy.resetPosition();
+  game.leafy.alive=true;
+}
 
 function passTree(leafy, tree) {
   //tree.kill();

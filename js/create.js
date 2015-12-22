@@ -43,9 +43,10 @@ function create() {
   // # Camera follows player
   game.camera.follow(game.leafy);
 
-  // [todo] out of bounds kill should respawn
+  // [question] none of these seem to work, but I expect them to trigger kill()... whassup?
+  game.leafy.checkWorldBounds = true;
   game.leafy.outOfBoundsKill = true;
-  //game.leafy.body.collideWorldBounds=true;
+  // game.leafy.events.onOutOfBounds.add(killPlayer, this);
 
 
 
