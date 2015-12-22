@@ -23,8 +23,10 @@ node server.js
 - add tree pngs
 - expand world size
 - kill player on world bound exit
+- add UI text for distance
 
 ## Todo
+- weighted randomization for more interesting tree distribution
 - start/end game states
 - sound effects
 - doorway sprite with collide event
@@ -38,4 +40,4 @@ node server.js
 - plant & grow trees with timers
 - night time timer triggers moon and darker colors
 - draw dynamic trees (cool vue.js experiment with sliders)
-- add UI text for distance
+- play with trees in front with `game.world.bringToTop(this.sprite)`
