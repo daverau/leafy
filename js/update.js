@@ -41,15 +41,22 @@ function update() {
       game.leafy.animations.play('jump');
       game.leafy.body.velocity.y = -400;
   }
-  
+
   // respawn
   if (!game.leafy.alive) {
     restart();
   }
 
-  // ui
+  // # ui
   // [todo] rework with vue and DOM cause CSS is awesome
   //game.distanceText.text = Math.abs( Math.round( ( (vars.worldSize/2) - game.leafy.x ) / vars.ratio ) );
+  if (cursors.down.isDown) {
+    game.distanceText.text = Math.abs( Math.round( ( game.leafy.x ) / vars.ratio ) );
+    game.distanceText.alpha = .2;
+  } else {
+    game.distanceText.alpha = 0;
+  }
+  
 
 }
 

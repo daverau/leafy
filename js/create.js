@@ -49,10 +49,10 @@ function create() {
  
   // ui
   /*
+  */
   game.distanceText = game.add.text( game.width/2, 20, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
   game.distanceText.fixedToCamera = true;
-  game.distanceText.alpha = .2;
-  */
+  game.distanceText.alpha = 0;
 
 
   // input
