@@ -19,8 +19,6 @@ node server.js
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
-- add tree svgs
-- expand world size
 - wire up sound effects
 - add start/end game states
 - explore timers for speed boost
@@ -28,6 +26,11 @@ node server.js
 - flexbox vertical centering (it's still kinda cryptic)
 - finish drawing dynamic trees (cool experiment with vue here for tree types with sliders on properties)
 - add doorway sprite with collide event
+
+# Done recently...
+- add tree svgs
+- expand world size
+- retina work started
 
 ## Someday
 - explore vue.js for less update code
