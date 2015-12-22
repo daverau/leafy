@@ -31,23 +31,28 @@ function create() {
   game.leafy.animations.add('jump', [1], 0, true);
   game.leafy.anchor.setTo(.5, 1); //flip at middle point
 
-  // [todo adjust box hit size
+  // trigger kill on world leave
+  game.leafy.checkWorldBounds = true;
+  game.leafy.outOfBoundsKill = true;
+
+  // [todo] adjust box hit size to compensate for whitespace in sprite (-14px)
   //game.leafy.body.setSize(20, 32, 5, -6);
   
+  // # Camera follows player
+  game.camera.follow(game.leafy);
+
   //ground
   game.ground = game.add.tileSprite(0 , game.height-60, vars.worldSize, 60, 'tree');
   game.physics.arcade.enable(game.ground);
 	game.ground.body.immovable = true;
 	game.ground.body.allowGravity = false;
  
-  // # Camera follows player
-  game.camera.follow(game.leafy);
-
-  // [question] none of these seem to work, but I expect them to trigger kill()... whassup?
-  game.leafy.checkWorldBounds = true;
-  game.leafy.outOfBoundsKill = true;
-  // game.leafy.events.onOutOfBounds.add(killPlayer, this);
-
+  // ui
+  /*
+  game.distanceText = game.add.text( game.width/2, 20, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+  game.distanceText.fixedToCamera = true;
+  game.distanceText.alpha = .2;
+  */
 
 
   // input

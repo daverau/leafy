@@ -47,6 +47,9 @@ function update() {
     restart();
   }
 
+  // ui
+  // [todo] rework with vue and DOM cause CSS is awesome
+  //game.distanceText.text = Math.abs( Math.round( ( (vars.worldSize/2) - game.leafy.x ) / vars.ratio ) );
 
 }
 
