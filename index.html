@@ -12,6 +12,10 @@ body {
 	display: flex;
 	justify-content: center;
 }
+canvas {
+  width: 800px;
+  height: 600px;
+}
 </style>
 </head>
 <body>
@@ -23,7 +27,7 @@ body {
   <script type="text/javascript" src="js/update.js"></script>
   <script type="text/javascript" src="js/render.js"></script>
 	<script type="text/javascript">
-    var game = new Phaser.Game(800, 600, Phaser.WebGL, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
+    var game = new Phaser.Game( (800*window.devicePixelRatio), (600*window.devicePixelRatio), Phaser.CANVAS, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
 
   </script>
 
