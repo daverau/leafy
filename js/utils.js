@@ -1,6 +1,6 @@
 // # Utilities
 
-// ## Generate trees based on some parameters
+// # Generate trees based on some parameters
 function genTree() {
 
 	var tree = {};
@@ -50,10 +50,18 @@ function genTree() {
   // return tree;
 
 
-  // draw temp trees
+  // # Draw trees
+  // get tree count based on world size
   var x = game.rnd.integerInRange(0, vars.worldSize);
-  var t = game.trees.create(x, game.height-this.height, 'tree' + Math.floor(Math.random()*10+1));
-  t.z = -100;
+  //
+  var treeimg = 'tree' + Math.floor(Math.random()*5+1);
+  // 
+  if ( Math.abs(x) < (vars.worldSize*.3) ) {
+    treeimg = 'tree' + Math.floor(Math.random()*10+1);
+  }
+  var t = game.trees.create(x, 0, treeimg);
+  t.y = game.world.height - (t.height + 58);
+  //t.z = -100;
 
   //var t = game.trees.create(x, game.height-(tree.height * 2), 'tree');
   //t.scale.setTo(.5);
@@ -64,9 +72,9 @@ function genTree() {
 }
 
 
-// tween colors
+// # tween colors
 // http://www.html5gamedevs.com/topic/7162-tweening-a-tint/?p=42712
-// tweenTint(sprite, 0xff0000, 0x0000ff, 2000); // tween the tint of sprite from red to blue over 2 seconds (2000ms)
+// tweenTint(sprite, 0xff0000, 0x0000ff, 2000);
 function tweenTint(obj, startColor, endColor, time) {
     // create an object to tween with our step value at 0
     var colorBlend = {step: 0};
