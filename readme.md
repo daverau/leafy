@@ -22,19 +22,20 @@ node server.js
 - retina issues mostly resolved
 - add tree pngs
 - expand world size
+- kill player on world bound exit
 
 ## Todo
-- add start/end game states
-- kill player on world bound exit
-- wire up sound effects
-- add doorway sprite with collide event
+- start/end game states
+- sound effects
+- doorway sprite with collide event
 - finish owl drawing and implement
 - draw inside of tree
 - explore timers for speed boost
-- leaf powerups
+- add leaf power-ups
 - draw lady bug
 - change leaf colors
-- inventory
-- plant & grow trees
-- night time
-- draw dynamic trees (cool experiment with vue.js here for tree types with sliders on properties)
+- add player inventory collisions
+- plant & grow trees with timers
+- night time timer triggers moon and darker colors
+- draw dynamic trees (cool vue.js experiment with sliders)
+- add UI text for distance
