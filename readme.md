@@ -4,7 +4,7 @@ Rough sketch for my first game.
 
 ### Controls
 1. Left/Right arrow keys to move
-2. Up to jump
+2. Spacebar to jump
 3. Nothing else, pretty boring so far.
 
 ## Install
@@ -19,18 +19,20 @@ node server.js
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
-- wire up sound effects
 - add start/end game states
-- explore timers for speed boost
+- wire up sound effects
 - kill player on world bound exit
+
+- explore timers for speed boost
 - flexbox vertical centering (it's still kinda cryptic)
 - finish drawing dynamic trees (cool experiment with vue here for tree types with sliders on properties)
 - add doorway sprite with collide event
+- dynamic width so canvas fills wide desktop screens (calc+js?)
 
 # Done recently...
-- add tree svgs
+- retina issues mostly resolved
+- add tree pngs
 - expand world size
-- retina work started
 
 ## Someday
 - explore vue.js for less update code
