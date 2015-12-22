@@ -1,5 +1,5 @@
 // # Variables and setup
 var vars = {};
-vars.playerSpeed = 150;
-vars.worldSize = 35000;
 vars.ratio = window.devicePixelRatio || 1;
+vars.playerSpeed = 150 * vars.ratio;
+vars.worldSize = 135000;
