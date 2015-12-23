@@ -1,15 +1,18 @@
 // # Create
 function create() {
 
-//game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-//game.scale.setUserScale(0.5, 0.5);
-
   // # World gen
   game.stage.backgroundColor = 0xF4F4F4;
 	game.physics.startSystem(Phaser.Physics.ARCADE);
   //game.physics.arcade.gravity.y = 300;
   game.world.setBounds(0, 0, vars.worldSize, game.height);
-  //game.world.anchor(.5, .5);
+  
+  // [todo/question] how to properly anchor world so 0,0 is center?
+  //game.world.anchor.setTo(.5, .5);
+
+  // [todo] explore scale manager for retina woes
+  //game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+  //game.scale.setUserScale(0.5, 0.5);
 
   // # Trees
   game.trees = game.add.group();
@@ -24,7 +27,6 @@ function create() {
   game.physics.arcade.enable(game.leafy);
   game.leafy.body.gravity.y = 1000;
   game.leafy.body.maxVelocity.y = 500;
-  //game.leafy.scale.setTo(.5);
 
   //animations for walkcycle
   game.leafy.animations.add('turn', [7], 0, true);
