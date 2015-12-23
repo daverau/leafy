@@ -24,11 +24,11 @@ node server.js
 - expand world size
 - kill player on world bound exit
 - add UI text for distance
+- weighted randomization for more interesting tree distribution (needs more refinement)
 
 ## Todo
-- weighted randomization for more interesting tree distribution
 - start/end game states
-- sound effects
+- sound!
 - doorway sprite with collide event
 - implement owl
 - draw inside of tree
@@ -36,7 +36,7 @@ node server.js
 - add leaf power-ups
 - draw lady bug
 - change leaf colors
-- add player inventory collisions
+- add player inventory
 - plant & grow trees with timers
 - night time timer triggers moon and darker colors
 - draw dynamic trees (cool vue.js experiment with sliders)
