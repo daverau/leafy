@@ -4,10 +4,11 @@
 function genTree() {
 
 	var tree = {};
+  var pxrange;
 
 	// ## Generate
   // height
-	var heightMin = 32;
+	var heightMin = 8;
 	var heightMax = 300;
   tree.height = Math.floor(Math.random()*heightMax+heightMin);
 
@@ -45,13 +46,6 @@ function genTree() {
   // attach branches
   // attach leaves
 
-  // ## dynamic drawn "trees" as rectangles
-  //var t = game.trees.create(x, game.height-(tree.height * 2), 'tree');
-  //t.scale.setTo(.5);
-  //t.alpha = .5;
-  //t.height = tree.height * 2;
-  //t.width = tree.width * 2;
-
   // ## We've got a tree
   // console.log( tree );
   // return tree;
@@ -59,20 +53,33 @@ function genTree() {
   // get random x value for tree
   var x = game.rnd.integerInRange(0, vars.worldSize);
 
-  // full random spectrum
-  // var treeimg = 'tree' + Math.floor(Math.random()*10+1);
-  
   // ## group trees by world depth
-  if ( Math.abs(x) < (vars.worldSize*.8) ) {
-    treeimg = 'tree' + Math.floor(Math.random()*4+1);
+
+  // smaller trees
+  var treeimg = 'tree' + Math.floor(Math.random()*6+1);
+  
+  // middle full range
+  pxrange = ((game.world.width/2) * .8);
+  if ( (x < pxrange) || (x > game.world.width - pxrange) ) {
+    treeimg = 'tree' + Math.floor(Math.random()*8+1);
   }
-  if ( Math.abs(x) < (vars.worldSize*.3) ) {
+
+  // middle full range
+  pxrange = ((game.world.width/2) * .4);
+  if ( (x < pxrange) || (x > game.world.width - pxrange) ) {
     treeimg = 'tree' + Math.floor(Math.random()*10+1);
+  }
+
+  // ends just large trees
+  pxrange = ((game.world.width/2) * .1);
+  if ( (x < pxrange) || (x > game.world.width - pxrange) ) {
+    treeimg = 'tree' + Math.floor(Math.random()*1+9);
   }
 
   // draw
   var t = game.trees.create(x, 0, treeimg);
   t.y = game.world.height - (t.height + 58); // magic number based on ~ground.height
+  t.alpha = .9;
 
   // ## front trees
   // [todo/question] why no workie?
@@ -83,6 +90,13 @@ function genTree() {
   // if (rand == 2) {
   //   game.world.bringToTop(t);
   // }
+
+  // ## dynamic drawn "trees" as rectangles
+  // var t = game.trees.create(x, game.height-(tree.height), 'tree');
+  // t.scale.setTo(.5);
+  // t.alpha = .5;
+  // t.height = tree.height;
+  // t.width = tree.width;
 
 }
 
