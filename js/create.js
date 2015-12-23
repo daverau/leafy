@@ -9,6 +9,7 @@ function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE);
   //game.physics.arcade.gravity.y = 300;
   game.world.setBounds(0, 0, vars.worldSize, game.height);
+  //game.world.anchor(.5, .5);
 
   // # Trees
   game.trees = game.add.group();
