@@ -12,8 +12,8 @@ body {
   text-align: center;
 }
 canvas {
-  width: 800px;
-  height: 600px;
+  width: 300px;
+  height: 300px;
   margin: 1em auto;
 }
 </style>
@@ -27,7 +27,7 @@ canvas {
 
 
 <script type="text/javascript">
-var game = new Phaser.Game( (800*window.devicePixelRatio), (600*window.devicePixelRatio), Phaser.CANVAS, 'owl-game', { preload: preload, create: create, update: update, render: render } );
+var game = new Phaser.Game( (300*window.devicePixelRatio), (300*window.devicePixelRatio), Phaser.CANVAS, 'owl-game', { preload: preload, create: create, update: update, render: render } );
 
 function preload() {
   game.load.spritesheet('owl', 'assets/sprite-owl.png', 256, 256);
@@ -36,15 +36,21 @@ function preload() {
 function create() {
   cursors = game.input.keyboard.createCursorKeys();
   game.stage.backgroundColor = 0xF4F4F4;
-  game.owl = game.add.sprite( game.width / 2, game.height / 2, 'owl');
-  game.owl.animations.add('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 10, true);
-  //game.owl.scale.setTo(.5);
+  game.owl = game.add.sprite(0,0,'owl');
+  
+  // center
+  game.owl.anchor.setTo(.5,.5);
+  game.owl.x=game.width/2;
+  game.owl.y=game.height/2;
 
+  // sprinkle in animations
+  game.owl.animations.add('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 10, true);
   game.owl.animations.add('sit', [0], 0, false);
   game.owl.animations.add('blink', [0,1,2,0], 10, false);
   game.owl.animations.add('look', [0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0], 10, false);
   game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
 
+  // trigger
   game.owl.animations.play('blink');
   //game.owl.animations.play('look');
   //game.owl.animations.play('flap');
