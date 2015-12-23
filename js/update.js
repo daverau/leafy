@@ -44,7 +44,7 @@ function update() {
 
   // respawn
   if (!game.leafy.alive) {
-    restart();
+    respawn();
   }
 
   // # ui
@@ -60,10 +60,16 @@ function update() {
 
 }
 
-function restart() {
-  console.log('restart');
-  //game.leafy.resetPosition();
-  game.leafy.alive=true;
+function respawn() {
+  console.log('respawn');
+  // # player reset
+  game.leafy.x=vars.worldSize/2;
+  game.leafy.y=10;
+  game.leafy.body.velocity.x = 0;
+  game.leafy.body.velocity.y = 0;
+  vars.playerSpeed = 150 * vars.ratio;
+  // # unkill
+  game.leafy.revive();
 }
 
 function passTree(leafy, tree) {
