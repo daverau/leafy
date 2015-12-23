@@ -30,7 +30,7 @@ node server.js
 - start/end game states
 - sound effects
 - doorway sprite with collide event
-- finish owl drawing and implement
+- implement owl
 - draw inside of tree
 - explore timers for speed boost
 - add leaf power-ups
