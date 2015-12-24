@@ -36,8 +36,8 @@ function create() {
   // ## Owl
   game.owl = game.add.sprite(0,0, 'owl');
   game.owl.anchor.setTo(.5,0);
-  game.owl.x= game.stump.x - 100;
-  game.owl.y= game.stump.y - 115;
+  game.owl.x= (vars.worldSize / 2) + (game.width/2) + game.owl.width;
+  game.owl.y= game.world.centerY;
   game.owl.scale.setTo(.5, .5);
   // animations
   game.owl.animations.add('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 10, true);
@@ -45,6 +45,9 @@ function create() {
   game.owl.animations.add('blink', [0,1,2,0], 10, false);
   game.owl.animations.add('look', [0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0], 10, false);
   game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
+  // go
+  game.owl.animations.play('flap');
+  game.add.tween(game.owl).to( { x: (game.stump.x - 55), y: (game.stump.y - 90) }, 1000, Phaser.Easing.Out, true);
 
   // ## Player (Leafy)
   game.leafy = game.add.sprite( vars.worldSize / 2 , 0, 'leafy');
