@@ -32,6 +32,7 @@ function update() {
     game.facing = 'idle';
   }
 
+
   // walk when moving left or right (correctly continues playing)
   if (cursors.left.isDown || cursors.right.isDown && (game.leafy.body.onFloor() || game.leafy.body.touching.down)) {
     game.leafy.animations.play('walk');
