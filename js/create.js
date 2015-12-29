@@ -1,6 +1,12 @@
 // # Create
 function create() {
 
+  // # setup
+  game.input.maxPointers = 1;
+  //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+  game.time.advancedTiming = true;
+
+
   // # World gen
   game.stage.backgroundColor = 0xF4F4F4;
   game.world.setBounds(0, 0, vars.worldSize, game.height);
@@ -34,25 +40,23 @@ function create() {
   }
 
   // ## Owl
-  game.owl = game.add.sprite(0,0, 'owl');
+  game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
   game.owl.anchor.setTo(.5,0);
-  game.owl.x= (vars.worldSize / 2) + (game.width/2) + game.owl.width;
-  game.owl.y= game.world.centerY;
   game.owl.scale.setTo(.5, .5);
   // animations
   game.owl.animations.add('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 10, true);
-  game.owl.animations.add('sit', [0], 0, false);
+  game.owl.animations.add('sit', [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 10, true);
   game.owl.animations.add('blink', [0,1,2,0], 10, false);
   game.owl.animations.add('look', [0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0], 10, false);
   game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
   // go
-  game.owl.animations.play('flap');
-  game.add.tween(game.owl).to( { x: (game.stump.x - 55), y: (game.stump.y - 90) }, 1000, Phaser.Easing.Out, true);
+  game.owl.animations.play('sit');
+  //game.add.tween(game.owl).to( { x: (game.stump.x - 55), y: (game.stump.y - 90) }, 3000, Phaser.Easing.Sinusoidal.Out, true);
 
   // ## Player (Leafy)
-  game.leafy = game.add.sprite( vars.worldSize / 2 , 0, 'leafy');
+  game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
   game.leafy.anchor.setTo(.5,0);
-  game.leafy.y=game.height - (game.leafy.height + 30);
+  //game.leafy.y=game.height - (game.leafy.height + 30);
   game.physics.arcade.enable(game.leafy);
   game.leafy.body.gravity.y = 1000;
   game.leafy.body.maxVelocity.y = 500;
@@ -78,9 +82,13 @@ function create() {
  
 
   // # UI
-  game.distanceText = game.add.text( game.width/2, 20, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+  game.distanceText = game.add.text( game.width-100, 20, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
   game.distanceText.fixedToCamera = true;
-  game.distanceText.alpha = 0;
+  game.distanceText.alpha = .3;
+
+  game.fps = game.add.text( game.width-100, 44, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+  game.fps.fixedToCamera = true;
+  game.fps.alpha = .1;
 
 
   // # Input

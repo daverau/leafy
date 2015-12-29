@@ -1,11 +1,12 @@
 # Leafy: a phaser.io game experiment
 
-My first game.
+Leafy is a game about growing and exploring. You start in the middle of a field where you can go left or right.
 
 ### Controls
 1. Left/Right arrow keys to move
 2. Spacebar to jump
-3. Nothing else, uneventful so far.
+3. Collect leaves to plant new trees
+4. "enter key" plants trees
 
 ## Install
 ```

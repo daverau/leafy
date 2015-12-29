@@ -50,14 +50,10 @@ function update() {
 
   // # ui
   // [todo] rework with vue and DOM cause CSS is awesome
-  //game.distanceText.text = Math.abs( Math.round( ( (vars.worldSize/2) - game.leafy.x ) / vars.ratio ) );
-  if (cursors.down.isDown) {
-    game.distanceText.text = Math.abs( Math.round( ( game.leafy.x ) / vars.ratio ) );
-    game.distanceText.alpha = .2;
-  } else {
-    game.distanceText.alpha = 0;
-  }
-  
+  game.distanceText.text = Math.round( ( Math.abs( Math.round( ( (vars.worldSize/2) - game.leafy.x ) / vars.ratio ) ) ) / 45 ) + " steps";
+  //game.distanceText.text = Math.abs( Math.round( ( game.leafy.x ) / vars.ratio ) );
+  game.fps.setText(game.time.fps + "fps");
+
 
 }
 
