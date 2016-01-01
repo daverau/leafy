@@ -70,7 +70,7 @@ function create() {
   game.leafy.outOfBoundsKill = true;
   // hitbox
   // [todo] adjust box hit size to compensate for whitespace in sprite (-14px)
-  //game.leafy.body.setSize(20, 32, 5, -6);
+  game.leafy.body.setSize(50, 110, 0, -13);
   // camera follow
   game.camera.follow(game.leafy);
 
@@ -83,7 +83,7 @@ function create() {
   // # blue leaves to collect
   game.blueleaves = game.add.group();
   game.blueleaves.enableBody = true;
-  for (var i = 0; i < 250; i++) {
+  for (var i = 0; i < 25; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
     var blueleaf = game.blueleaves.create(x, game.height-160, 'blueleaf');
     blueleaf.body.gravity.y = 300;
@@ -101,9 +101,8 @@ function create() {
   game.fps.fixedToCamera = true;
   game.fps.alpha = .1;
 
-  game.blueLeafText = game.add.text( game.width-100, 64, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+  game.blueLeafText = game.add.text( game.width-100, 68, '-', { font: (32*vars.ratio)+"px Arial", fill: '#B1F1D9' });
   game.blueLeafText.fixedToCamera = true;
-  game.blueLeafText.alpha = .1;
 
 
   // # Input

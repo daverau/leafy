@@ -10,7 +10,7 @@ function preload() {
 
   // leaf assets
   game.load.image('blueleaf', 'assets/blueleaf.png');
-  game.load.audio('ding', 'assets/ouch.wav');
+  game.load.audio('ding', 'assets/wispy.wav');
 
   // will replace with code-generated trees at some point...
   game.load.image('treestump', 'assets/treestump.png');

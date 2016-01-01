@@ -10,7 +10,6 @@ function update() {
   game.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
 
 
-
   game.leafy.body.velocity.x = 0;
 
   if (cursors.left.isDown) {

@@ -25,16 +25,16 @@ node server.js
 - expand world size
 - kill player on world bound exit
 - add UI text for distance
-- weighted randomization for more interesting tree distribution (needs more refinement)
+- weighted randomization for more interesting tree distribution (needs more refinement, perhaps with less overlap)
+- add leaf pick-ups with sound and simple counter
 
 ## Todo
 - start/end game states
 - sound!
 - doorway sprite with collide event
-- implement owl
+- owl flys away on first collide
 - draw inside of tree
 - explore timers for speed boost
-- add leaf power-ups
 - draw lady bug
 - change leaf colors
 - add player inventory
