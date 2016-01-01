@@ -1,8 +1,18 @@
 // # Variables and setup
 var vars = {};
-vars.ratio = window.devicePixelRatio || 1;
-vars.playerSpeed = 150 * vars.ratio;
-vars.worldSize = 50000;
-vars.jumpHeight = -800
 
+// setup
+vars.ratio = window.devicePixelRatio || 1;
+
+// world
+vars.worldSize = 50000;
+
+// player
+vars.playerSpeed = 150 * vars.ratio;
+vars.jumpHeight = -800;
+
+// pickups
+vars.blueLeafTotal = 250;
+
+// owl
 vars.owlFlying = false;
