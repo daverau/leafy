@@ -5,7 +5,7 @@ function create() {
   game.input.maxPointers = 1;
   //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
   game.time.advancedTiming = true;
-
+  game.blueLeafCount=0;
 
   // # World gen
   game.stage.backgroundColor = 0xF4F4F4;
@@ -80,6 +80,17 @@ function create() {
 	game.ground.body.immovable = true;
 	game.ground.body.allowGravity = false;
  
+  // # blue leaves to collect
+  game.blueleaves = game.add.group();
+  game.blueleaves.enableBody = true;
+  for (var i = 0; i < 250; i++) {
+    var x = game.rnd.integerInRange(0, vars.worldSize);
+    var blueleaf = game.blueleaves.create(x, game.height-160, 'blueleaf');
+    blueleaf.body.gravity.y = 300;
+    blueleaf.body.bounce.y = 0.7 + Math.random() * 0.2;
+  }
+  game.sfxding = game.add.audio('ding');
+
 
   // # UI
   game.distanceText = game.add.text( game.width-100, 20, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
@@ -89,6 +100,10 @@ function create() {
   game.fps = game.add.text( game.width-100, 44, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
   game.fps.fixedToCamera = true;
   game.fps.alpha = .1;
+
+  game.blueLeafText = game.add.text( game.width-100, 64, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+  game.blueLeafText.fixedToCamera = true;
+  game.blueLeafText.alpha = .1;
 
 
   // # Input

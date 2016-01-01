@@ -8,6 +8,10 @@ function preload() {
   // just using the color for now...
   game.load.image('tree', 'assets/tree.png');
 
+  // leaf assets
+  game.load.image('blueleaf', 'assets/blueleaf.png');
+  game.load.audio('ding', 'assets/ouch.wav');
+
   // will replace with code-generated trees at some point...
   game.load.image('treestump', 'assets/treestump.png');
   game.load.image('tree1', 'assets/tree1.png');

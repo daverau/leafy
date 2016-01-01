@@ -1,8 +1,15 @@
 // # Update
 function update() {
 
+  // collide with ground
   game.physics.arcade.collide(game.leafy, game.ground);
+  game.physics.arcade.collide(game.blueleaves, game.ground);
+
+  // collide with player
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
+  game.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
+
+
 
   game.leafy.body.velocity.x = 0;
 
@@ -67,6 +74,13 @@ function respawn() {
   vars.playerSpeed = 150 * vars.ratio;
   // # unkill
   game.leafy.revive();
+}
+
+function passBlueleaf(leafy, leaf) {
+  leaf.kill();
+  game.blueLeafCount += 1;
+  game.blueLeafText.text = game.blueLeafCount;
+  game.sfxding.play();
 }
 
 function passTree(leafy, tree) {
