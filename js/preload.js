@@ -4,6 +4,7 @@ function preload() {
   game.load.spritesheet('leafy', 'assets/leafy.png', 128, 128);
   game.load.spritesheet('owl', 'assets/sprite-owl.png', 256, 256);
   game.load.image('ground', 'assets/ground.png');
+  game.load.image('bgnight', 'assets/bg-night.png');
   
   // just using the color for now...
   game.load.image('tree', 'assets/tree.png');

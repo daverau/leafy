@@ -92,8 +92,9 @@ function passOwl() {
 }
 function owlFlyaway() {
   console.log('flying');
-  game.owl.animations.play('fly');
-  game.add.tween(game.owl).to( { x: game.owl.x - 1000, y: game.owl.y - 1000 }, 3000, null, true);
+  game.owl.animations.play('flap');
+  //game.sfxding.play();
+  game.add.tween(game.owl).to( { x: game.stump.x - 1000, y: game.stump.y - 1000 }, 3000, null, true);
 }
 
 function passBlueleaf(leafy, leaf) {
