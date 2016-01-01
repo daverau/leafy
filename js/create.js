@@ -31,6 +31,7 @@ function create() {
   game.stump.anchor.setTo(.5,0);
   game.stump.x= (vars.worldSize / 2) + (game.width/3);
   game.stump.y=game.height - (game.stump.height + 30);
+  game.stump.enableBody = true;
 
   // ## Trees
   game.trees = game.add.group();
@@ -51,7 +52,8 @@ function create() {
   game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
   // go
   game.owl.animations.play('sit');
-  //game.add.tween(game.owl).to( { x: (game.stump.x - 55), y: (game.stump.y - 90) }, 3000, Phaser.Easing.Sinusoidal.Out, true);
+  game.physics.arcade.enable(game.owl);
+  game.owl.enableBody = true;
 
   // ## Player (Leafy)
   game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
@@ -80,8 +82,9 @@ function create() {
 	game.ground.body.immovable = true;
 	game.ground.body.allowGravity = false;
  
-  // # blue leaves to collect
+  // ## blue leaves to collect
   game.blueleaves = game.add.group();
+  game.physics.arcade.enable(game.stump);
   game.blueleaves.enableBody = true;
   for (var i = 0; i < 25; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);

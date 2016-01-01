@@ -8,8 +8,10 @@ function update() {
   // collide with player
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
   game.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
+  game.physics.arcade.overlap(game.leafy, game.owl, passOwl, null, this);
+  game.physics.arcade.overlap(game.leafy, game.stump, passStump, null, this);
 
-
+  // leafy jump grounding
   game.leafy.body.velocity.x = 0;
 
   if (cursors.left.isDown) {
@@ -46,7 +48,7 @@ function update() {
 
   if (jumpButton.isDown && (game.leafy.body.onFloor() || game.leafy.body.touching.down)) {
       game.leafy.animations.play('jump');
-      game.leafy.body.velocity.y = -400;
+      game.leafy.body.velocity.y = vars.jumpHeight;
   }
 
   // respawn
@@ -75,6 +77,25 @@ function respawn() {
   game.leafy.revive();
 }
 
+function passStump() {
+  //console.log('Stump says hi!');
+}
+
+function passOwl() {
+  // console.log('Owl says hi!');
+  // owl should fly away if you don't have enough blue leaves yet...
+  if (game.blueLeafCount < 10 && !vars.owlFlying) {
+    console.log('go fly');
+    vars.owlFlying = true;
+    owlFlyaway();
+  }
+}
+function owlFlyaway() {
+  console.log('flying');
+  game.owl.animations.play('fly');
+  game.add.tween(game.owl).to( { x: game.owl.x - 1000, y: game.owl.y - 1000 }, 3000, null, true);
+}
+
 function passBlueleaf(leafy, leaf) {
   leaf.kill();
   game.blueLeafCount += 1;
@@ -83,6 +104,7 @@ function passBlueleaf(leafy, leaf) {
 }
 
 function passTree(leafy, tree) {
+  //console.log('Tree says hi!');
   //tree.kill();
   //tree.tint = '0xcccccc'
   //tree.alpha = .1;
