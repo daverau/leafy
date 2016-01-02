@@ -40,7 +40,7 @@ function create() {
 
   // # Owl
   game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
-  game.physics.arcade.enable(game.owl);
+  //game.physics.arcade.enable(game.owl);
   game.owl.scale.setTo(.5, .5);
   game.sfxhoot = game.add.audio('hoot');
   // animations

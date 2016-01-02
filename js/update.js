@@ -13,8 +13,11 @@ function update() {
   // collide with player
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
   game.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
-  game.physics.arcade.overlap(game.leafy, game.owl, passOwl, null, this);
   game.physics.arcade.overlap(game.leafy, game.stump, passStump, null, this);
+  // owl
+  if (checkOverlap(game.leafy, game.owl)) {
+    passOwl();
+  }
 
   // leafy jump grounding
   game.leafy.body.velocity.x = 0;
@@ -99,8 +102,8 @@ function passOwl(leafy, owl) {
 function owlFlyaway(leafy, owl) {
   console.log('flying');
   game.sfxhoot.play();
-  owl.animations.play('flap');
-  game.add.tween(owl).to( { x: (game.stump.x - 1000), y: (game.stump.y - 1000) }, 3000, null, true); // [bug] fix this broken tween caused by physics body...
+  game.owl.animations.play('flap');
+  game.add.tween(game.owl).to( { x: (game.stump.x - 1000), y: (game.stump.y - 1000) }, 3000, null, true); // [bug] fix this broken tween caused by physics body...
 }
 
 function passBlueleaf(leafy, leaf) {
