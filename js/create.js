@@ -17,9 +17,12 @@ function create() {
   //game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
   //game.scale.setUserScale(0.5, 0.5);
   
-  // # Background img
+  // # Background images
   game.bgnight = game.add.sprite(0,0, 'bgnight');
   game.bgnight.fixedToCamera = true;
+
+  // bg noise
+  game.sfxbgnoise = game.add.audio('bgnoise');
 
   // # Stump (owl start location)
   game.stump = game.add.sprite(0,0, 'treestump');
@@ -38,8 +41,8 @@ function create() {
   // # Owl
   game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
   game.physics.arcade.enable(game.owl);
-  game.owl.enableBody = true;
   game.owl.scale.setTo(.5, .5);
+  game.sfxhoot = game.add.audio('hoot');
   // animations
   game.owl.animations.add('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 10, true);
   game.owl.animations.add('sit', [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 10, true);
@@ -75,14 +78,25 @@ function create() {
   game.blueleaves = game.add.group();
   game.physics.arcade.enable(game.stump);
   game.blueleaves.enableBody = true;
+  game.sfxding = game.add.audio('ding');
   // generate leaves
   for (var i = 0; i < vars.blueLeafTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
     var blueleaf = game.blueleaves.create(x, game.height-160, 'blueleaf');
     blueleaf.body.gravity.y = 300;
     blueleaf.body.bounce.y = 0.7 + Math.random() * 0.2;
+    
+    // pickup animation
+    blueleaf.tween = game.add.tween(blueleaf)
+      .to({
+        alpha: 0,
+        y: 80,
+        x: blueleaf.x+(game.width/1.8)
+      }, 1000, Phaser.Easing.Cubic.Out);
+    blueleaf.tween.onComplete.add(function(leaf, tween) {
+      leaf.kill();
+    });
   }
-  game.sfxding = game.add.audio('ding');
 
   // # UI
   // distance

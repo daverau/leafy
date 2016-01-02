@@ -2,16 +2,20 @@
 function preload() {
 
   game.load.spritesheet('leafy', 'assets/leafy.png', 128, 128);
-  game.load.spritesheet('owl', 'assets/sprite-owl.png', 256, 256);
   game.load.image('ground', 'assets/ground.png');
   game.load.image('bgnight', 'assets/bg-night.png');
   
   // just using the color for now...
   game.load.image('tree', 'assets/tree.png');
 
-  // leaf assets
+  // blue leaf pickup assets
   game.load.image('blueleaf', 'assets/blueleaf.png');
-  game.load.audio('ding', 'assets/ouch.wav');
+  game.load.audio('ding', 'assets/pickup.wav');
+
+  // owl
+  game.load.spritesheet('owl', 'assets/sprite-owl.png', 256, 256);
+  game.load.audio('hoot', 'assets/hoot.wav');
+  game.load.audio('bgnoise', 'assets/bgnoise.wav');
 
   // will replace with code-generated trees at some point...
   game.load.image('treestump', 'assets/treestump.png');

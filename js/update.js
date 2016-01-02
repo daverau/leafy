@@ -1,6 +1,11 @@
 // # Update
 function update() {
 
+  // bg noise
+  if(!game.sfxbgnoise.isPlaying){
+    game.sfxbgnoise.play();
+  }
+
   // collide with ground
   game.physics.arcade.collide(game.leafy, game.ground);
   game.physics.arcade.collide(game.blueleaves, game.ground);
@@ -62,8 +67,9 @@ function update() {
   //game.distanceText.text = Math.abs( Math.round( ( game.leafy.x ) / vars.ratio ) );
   game.fps.setText(game.time.fps + "fps");
 
-
 }
+
+
 
 function respawn() {
   console.log('respawn');
@@ -81,30 +87,39 @@ function passStump() {
   //console.log('Stump says hi!');
 }
 
-function passOwl() {
+function passOwl(leafy, owl) {
   // console.log('Owl says hi!');
   // owl should fly away if you don't have enough blue leaves yet...
-  if (game.blueLeafCount < 10 && !vars.owlFlying) {
+  if (!vars.owlFlying) {
     console.log('go fly');
     vars.owlFlying = true;
-    owlFlyaway();
+    owlFlyaway(leafy, owl);
   }
 }
-function owlFlyaway() {
+function owlFlyaway(leafy, owl) {
   console.log('flying');
-  game.owl.animations.play('flap');
-  //game.sfxding.play();
-  game.add.tween(game.owl).to( { x: game.stump.x - 1000, y: game.stump.y - 1000 }, 3000, null, true);
+  game.sfxhoot.play();
+  owl.animations.play('flap');
+  game.add.tween(owl).to( { x: (game.stump.x - 1000), y: (game.stump.y - 1000) }, 3000, null, true); // [bug] fix this broken tween caused by physics body...
 }
 
 function passBlueleaf(leafy, leaf) {
-  leaf.kill();
-  game.blueLeafCount += 1;
-  game.blueLeafText.text = game.blueLeafCount;
-  game.sfxding.play();
+  if (!game.passingBlueLeaf) {
+    console.log('pass blue leaf');
+    game.passingBlueLeaf=true;
+    game.blueLeafCount += 1;
+    game.sfxding.play();
+    game.blueLeafText.text = game.blueLeafCount;
+    leaf.tween.start();
+  }
+  leaf.tween.onComplete.add(function(leaf, tween) {
+    leaf.kill();
+    game.passingBlueLeaf=false;
+  });
+  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
 }
 
-function passTree(leafy, tree) {
+function passTree() {
   //console.log('Tree says hi!');
   //tree.kill();
   //tree.tint = '0xcccccc'
