@@ -126,10 +126,8 @@ function tweenTint(obj, startColor, endColor, time) {
 
 // [question] this should be in phaser, right?
 function checkOverlap(spriteA, spriteB) {
+  var boundsA = spriteA.getBounds();
+  var boundsB = spriteB.getBounds();
 
-    var boundsA = spriteA.getBounds();
-    var boundsB = spriteB.getBounds();
-
-    return Phaser.Rectangle.intersects(boundsA, boundsB);
-
+  return Phaser.Rectangle.intersects(boundsA, boundsB);
 }

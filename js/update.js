@@ -13,7 +13,7 @@ function update() {
   // collide with player
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
   game.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
-  game.physics.arcade.overlap(game.leafy, game.stump, passStump, null, this);
+  //game.physics.arcade.overlap(game.leafy, game.stump, passStump, null, this);
   // owl
   if (checkOverlap(game.leafy, game.owl)) {
     passOwl();
@@ -103,22 +103,20 @@ function owlFlyaway(leafy, owl) {
   console.log('flying');
   game.sfxhoot.play();
   game.owl.animations.play('flap');
-  game.add.tween(game.owl).to( { x: (game.stump.x - 1000), y: (game.stump.y - 1000) }, 3000, null, true); // [bug] fix this broken tween caused by physics body...
+  var randomx = (Math.random()*2000+1);
+  randomx *= Math.floor(Math.random()*2) == 1 ? 1 : -1;
+  game.add.tween(game.owl).to( { x: (game.stump.x + randomx ), y: (game.stump.y - 1500) }, 3000, null, true); // [todo] move out once I build new interactions for later play
 }
 
 function passBlueleaf(leafy, leaf) {
-  if (!game.passingBlueLeaf) {
+  if (!leaf.pickedup) {
     console.log('pass blue leaf');
-    game.passingBlueLeaf=true;
+    leaf.pickedup=true;
     game.blueLeafCount += 1;
     game.sfxding.play();
     game.blueLeafText.text = game.blueLeafCount;
     leaf.tween.start();
   }
-  leaf.tween.onComplete.add(function(leaf, tween) {
-    leaf.kill();
-    game.passingBlueLeaf=false;
-  });
   //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
 }
 

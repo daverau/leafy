@@ -83,16 +83,17 @@ function create() {
   for (var i = 0; i < vars.blueLeafTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
     var blueleaf = game.blueleaves.create(x, game.height-160, 'blueleaf');
+    blueleaf.enableBody = true;
     blueleaf.body.gravity.y = 300;
     blueleaf.body.bounce.y = 0.7 + Math.random() * 0.2;
-    
     // pickup animation
     blueleaf.tween = game.add.tween(blueleaf)
       .to({
         alpha: 0,
-        y: 80,
-        x: blueleaf.x+(game.width/1.8)
       }, 1000, Phaser.Easing.Cubic.Out);
+    blueleaf.tween.onStart.add(function(leaf, tween) {
+      leaf.body.velocity.y = 1000;
+    });
     blueleaf.tween.onComplete.add(function(leaf, tween) {
       leaf.kill();
     });
