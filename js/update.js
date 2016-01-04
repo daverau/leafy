@@ -120,8 +120,12 @@ function passBlueleaf(leafy, leaf) {
   //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
 }
 
-function passTree() {
-  //console.log('Tree says hi!');
+function passTree(leaf, tree) {
+  if (!tree.walkedPassed) {
+    console.log(tree.key+ ' says hi!');
+    tree.walkedPassed = true;
+  }
+  //console.log(this);
   //tree.kill();
   //tree.tint = '0xcccccc'
   //tree.alpha = .1;
