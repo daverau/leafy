@@ -27,18 +27,18 @@ node server.js
 - add UI text for distance
 - weighted randomization for more interesting tree distribution (needs more refinement, perhaps with less overlap)
 - add leaf pick-ups with sound and simple counter
+- owl flys away on first collide
+- quick trees in front with a second loop and tree.group
 
 ## Todo
 - start/end game states
-- sound!
+- plant & grow trees with timers
 - doorway sprite with collide event
-- owl flys away on first collide
+- owl should come back after time
+- moon with subtle movement
+- music
 - draw inside of tree
-- explore timers for speed boost
 - draw lady bug
+- code dynamic trees (cool vue.js experiment with sliders)
 - change leaf colors
 - add player inventory
-- plant & grow trees with timers
-- night time timer triggers moon and darker colors
-- draw dynamic trees (cool vue.js experiment with sliders)
-- play with trees in front with `game.world.bringToTop(this.sprite)`
