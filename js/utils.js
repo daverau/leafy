@@ -81,6 +81,8 @@ function genTree() {
   t.y = game.world.height - (t.height + 58); // magic number based on ~ground.height
   t.alpha = .9;
 
+  t.walkedPassed = false;
+
   // ## front trees
   // [todo/question] why no workie?
   // t.z = 1000;
