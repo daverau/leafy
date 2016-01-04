@@ -1,7 +1,10 @@
 // # Utilities
 
 // # Generate trees based on some parameters
-function genTree() {
+function genTree(group) {
+
+  // default tree group
+  if (!group) group = game.trees;
 
 	var tree = {};
   var pxrange;
@@ -77,7 +80,7 @@ function genTree() {
   }
 
   // draw
-  var t = game.trees.create(x, 0, treeimg);
+  var t = group.create(x, 0, treeimg);
   t.y = game.world.height - (t.height + 58); // magic number based on ~ground.height
   t.alpha = .9;
 

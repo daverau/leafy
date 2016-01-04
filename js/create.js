@@ -99,6 +99,13 @@ function create() {
     });
   }
 
+  // # Foreground Trees
+  game.foretrees = game.add.group();
+  game.foretrees.enableBody = true;
+  for (x = 0; x < (vars.worldSize * .005); x++) {
+    genTree(game.foretrees);
+  }
+
   // # UI
   // distance
   game.distanceText = game.add.text( game.width-100, 20, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
