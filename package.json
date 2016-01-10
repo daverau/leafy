@@ -1,5 +1,6 @@
 {
   "name": "leafy-dev-env",
+  "private": true,
   "dependencies": {
     "live-server": "0.9.0"
   }
