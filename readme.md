@@ -13,7 +13,7 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 git clone git@github.com:daverau/leafy.git
 cd leafy
 npm install
-node server.js
+npm start
 ```
 
 ## Sketch

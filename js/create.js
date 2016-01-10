@@ -24,6 +24,14 @@ function create() {
   game.bgnight = game.add.sprite(0,0, 'bgnight');
   game.bgnight.fixedToCamera = true;
 
+  // [todo] bg gradient
+  // bmd = game.make.bitmapData(1000, 1000);
+  // bmd.addToWorld();
+  // var grd = bmd.context.createLinearGradient(110.000, 0.000, 190.000, 300.000);
+  // // Add colors
+  // grd.addColorStop(0.000, 'rgba(128, 175, 190, 1.000)');
+  // grd.addColorStop(1.000, 'rgba(38, 27, 40, 1.000)');
+
 
   // # Stump (owl start location)
   game.stump = game.add.sprite(0,0, 'treestump');
@@ -43,16 +51,13 @@ function create() {
 
   // # Owl
   game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
-  //game.physics.arcade.enable(game.owl);
   game.owl.scale.setTo(.5, .5);
   game.sfxhoot = game.add.audio('hoot');
   // animations
-  game.owl.animations.add('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 10, true);
   game.owl.animations.add('sit', [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 10, true);
   game.owl.animations.add('blink', [0,1,2,0], 10, false);
   game.owl.animations.add('look', [0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0], 10, false);
   game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
-  // set animation frame
   game.owl.animations.play('sit');
 
 
