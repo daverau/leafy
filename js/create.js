@@ -1,28 +1,29 @@
 // # Create
 function create() {
 
+  // # Scale for high dpi screens
+  // [todo] explore for non-retina woes
+  //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+  //game.scaleMode = Phaser.ScaleManager.USER_SCALE;
+  //game.scale.setUserScale(0.5, 0.5);
+
+
   // # Setup
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.time.advancedTiming = true; // [todo] need this?
   game.blueLeafCount=0; // track how many blue leaves player has
   game.input.maxPointers = 1; // for mobile
 
+
   // # World gen
   //game.stage.backgroundColor = 0xF4F4F4;
   game.world.setBounds(0, 0, vars.worldSize, game.height);
 
-  // # Scale for high dpi screens
-  // [todo] explore for retina woes
-  //game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-  //game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-  //game.scale.setUserScale(0.5, 0.5);
-  
+
   // # Background images
   game.bgnight = game.add.sprite(0,0, 'bgnight');
   game.bgnight.fixedToCamera = true;
 
-  // bg noise
-  game.sfxbgnoise = game.add.audio('bgnoise');
 
   // # Stump (owl start location)
   game.stump = game.add.sprite(0,0, 'treestump');
@@ -31,12 +32,14 @@ function create() {
   game.stump.y = game.height - (game.stump.height + 30);
   game.stump.enableBody = true;
 
+
   // # Trees
   game.trees = game.add.group();
   game.trees.enableBody = true;
   for (x = 0; x < (vars.worldSize * .01); x++) {
     genTree();
   }
+
 
   // # Owl
   game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
@@ -51,6 +54,7 @@ function create() {
   game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
   // set animation frame
   game.owl.animations.play('sit');
+
 
   // # Player (Leafy)
   game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
@@ -68,12 +72,22 @@ function create() {
   game.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
   game.leafy.animations.add('jump', [1], 0, true);
 
+
+  // # Foreground Trees
+  game.foretrees = game.add.group();
+  game.foretrees.enableBody = true;
+  for (x = 0; x < (vars.worldSize * .002); x++) {
+    genTree(game.foretrees);
+  }
+
+
   // # Ground
   game.ground = game.add.tileSprite(0 , game.height-60, vars.worldSize, 60, 'tree');
   game.physics.arcade.enable(game.ground);
-	game.ground.body.immovable = true;
-	game.ground.body.allowGravity = false;
+  game.ground.body.immovable = true;
+  game.ground.body.allowGravity = false;
  
+
   // # Leaves to collect
   game.blueleaves = game.add.group();
   game.physics.arcade.enable(game.stump);
@@ -100,27 +114,21 @@ function create() {
   }
 
 
-  // # Foreground Trees
-  game.foretrees = game.add.group();
-  game.foretrees.enableBody = true;
-  for (x = 0; x < (vars.worldSize * .005); x++) {
-    genTree(game.foretrees);
-  }
-
-
   // # Rain
   game.emitter = game.add.emitter(game.width/2, 0, 500);
   game.emitter.fixedToCamera = true;
   game.emitter.width = game.width*1.5;
   //game.emitter.makeParticles('blueleaf');
   game.emitter.makeParticles('tree');
-  game.emitter.minParticleScale = .25;
-  game.emitter.maxParticleScale = 1;
-  game.emitter.setYSpeed(300, 700);
+  game.emitter.minParticleScale = .1;
+  game.emitter.maxParticleScale = .7;
+  game.emitter.setYSpeed(500, 700);
   game.emitter.setXSpeed(-5, 5);
   game.emitter.minRotation = 0;
-  game.emitter.maxRotation = 90;
+  game.emitter.maxRotation = 0;
   game.emitter.start(false, 2400, 5, 0);
+  // bg noise
+  game.sfxbgnoise = game.add.audio('bgnoise');
 
 
   // # UI
