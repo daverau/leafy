@@ -59,7 +59,7 @@ function genTree(group) {
   // ## group trees by world depth
 
   // smaller trees
-  var treeimg = 'tree' + Math.floor(Math.random()*6+1);
+  var treeimg = 'tree' + Math.floor(Math.random()*4+1);
   
   // middle full range
   pxrange = ((game.world.width/2) * .8);
