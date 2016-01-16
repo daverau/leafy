@@ -13,6 +13,3 @@ vars.jumpHeight = -800;
 
 // pickups
 vars.blueLeafTotal = 250;
-
-// owl
-vars.owlFlying = false;
