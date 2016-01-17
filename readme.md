@@ -5,8 +5,8 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 ### Controls
 1. Left/Right arrow keys to move
 2. Spacebar to jump
-3. Collect leaves to plant new trees
-4. "enter key" plants trees
+3. Collect the blue leaves
+4. Press enter key to plants trees
 
 ## Install
 ```
@@ -30,10 +30,17 @@ npm start
 - owl flys away on first collide
 - quick trees in front with a second loop and tree.group
 - owl comes back after time
+- draw add bee enemy
+- crude plant trees working
 
-## Todo
+## Todo (fixed scope!)
+- add flower pickups
+- bees drop honey
+- add bear
+- bear opens door
+
 - start/end game states
-- plant & grow trees with timers
+- grow trees with timers
 - doorway sprite with collide event
 - moon with subtle movement
 - music

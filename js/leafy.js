@@ -48,8 +48,7 @@ function playerMove(leafy) {
 
 
 function plantTree(leafy) {
-  if (!leafy.planting && game.time.now > vars.plantDelay) {
-    //leafy.planting = true;
+  if (game.time.now > vars.plantDelay) {
     console.log('plant tree');
 
     // ## dynamic drawn "trees" as rectangles
