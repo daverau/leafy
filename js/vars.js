@@ -13,3 +13,6 @@ vars.jumpHeight = -800;
 
 // pickups
 vars.blueLeafTotal = 250;
+
+// bee speed
+vars.beeSpeed = 370;

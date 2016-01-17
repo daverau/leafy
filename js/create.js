@@ -61,18 +61,28 @@ function create() {
   game.owl.animations.play('sit');
 
 
-  // # Bee
-  game.bee = game.add.sprite( game.stump.x - 255, game.stump.y - 290, 'bee');
-  game.bee.scale.setTo(.5, .5);
-  // animations
-  game.bee.animations.add('sit', [0], 1, false);
-  game.bee.animations.add('fly', [0,1,2,3,4], 30, true);
-  game.bee.animations.play('fly');
-  game.bee.fly = game.add.tween(game.bee).to( { x: (game.bee.x - 600) }, 4000, null, true);
-    game.bee.fly.onComplete.add(function(bee, tween) {
-      //leaf.kill();
-      game.bee.fly.start();
-    });
+  // # Bees
+  var bee = new Enemy(game, game.stump.x - 555, game.stump.y + 50, 1, vars.beeSpeed);
+  game.add.existing(bee);
+  // bee = new Enemy(game, game.stump.x - 155, game.stump.y - 290, -1, vars.beeSpeed);
+  // game.add.existing(bee);
+  // bee = new Enemy(game, game.stump.x - 255, game.stump.y - 490, 1, vars.beeSpeed);
+  // game.add.existing(bee)
+  // bee = new Enemy(game, game.stump.x - 355, game.stump.y - 690, -1, vars.beeSpeed);
+  // game.add.existing(bee)
+
+
+  // game.bee = game.add.sprite( game.stump.x - 255, game.stump.y - 290, 'bee');
+  // game.bee.scale.setTo(.5, .5);
+  // // animations
+  // game.bee.animations.add('sit', [0], 1, false);
+  // game.bee.animations.add('fly', [0,1,2,3,4], 30, true);
+  // game.bee.animations.play('fly');
+  // game.bee.fly = game.add.tween(game.bee).to( { x: (game.bee.x - 600) }, 4000, null, true);
+  //   game.bee.fly.onComplete.add(function(bee, tween) {
+  //     //leaf.kill();
+  //     game.bee.fly.start();
+  //   });
 
 
   // # Player (Leafy)
