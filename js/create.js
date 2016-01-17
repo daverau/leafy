@@ -64,16 +64,18 @@ function create() {
   // # Bees (enemy)
   game.bees = game.add.group();
   game.sfxbuzz = game.add.audio('buzz');
-  game.bees.enableBody = true;
+  //game.bees.enableBody = true;
   for (x = 0; x < (vars.worldSize * .00013); x++) {
     var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
     game.bees.add(bee);
     console.log('bee created at x:'+bee.x);
   }
+  game.bees.add( new Enemy(game, game.stump.x - 2000, game.stump.y + 150, 1, vars.beeSpeed) );
 
 
   // # Player (Leafy)
   game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
+  game.leafy.honeyCount = 0;
   game.leafy.anchor.setTo(.5,0);
   game.physics.arcade.enable(game.leafy);
   game.leafy.body.gravity.y = 1000;
@@ -83,6 +85,9 @@ function create() {
   game.leafy.outOfBoundsKill = true;
   game.leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
   game.camera.follow(game.leafy);
+  game.leafy.playerSpeed = 150 * vars.ratio;
+  game.leafy.jumpHeight = -800;
+  game.leafy.alive = true;
   // animations
   game.leafy.animations.add('turn', [7], 0, true);
   game.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
@@ -163,6 +168,7 @@ function create() {
   // # Input
   cursors = game.input.keyboard.createCursorKeys();
   jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+  plantButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
   // [todo] add mobile/touch inputs
 
 }

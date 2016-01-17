@@ -30,46 +30,11 @@ function update() {
   // leafy jump grounding
   game.leafy.body.velocity.x = 0;
 
-  if (cursors.left.isDown) {
-    game.leafy.body.velocity.x = (vars.playerSpeed * -1); // [todo] speed boost variable
-
-    if (game.facing != 'left') {
-      game.facing = 'left';
-      game.leafy.scale.x = -1; //flipped
-    }
-  } else if (cursors.right.isDown) {
-    game.leafy.body.velocity.x = vars.playerSpeed;
-
-    if (game.facing != 'right') {
-      game.leafy.scale.x = 1; //default direction
-      game.facing = 'right';
-    }
-  } else if (game.facing != 'idle') {
-    game.leafy.animations.play('turn');
-
-    if (game.facing == 'left') {
-      game.leafy.frame = 0;
-    } else {
-      game.leafy.frame = 5;
-    }
-
-    game.facing = 'idle';
-  }
-
-
-  // walk when moving left or right (correctly continues playing)
-  if (cursors.left.isDown || cursors.right.isDown && (game.leafy.body.onFloor() || game.leafy.body.touching.down)) {
-    game.leafy.animations.play('walk');
-  }
-
-  if (jumpButton.isDown && (game.leafy.body.onFloor() || game.leafy.body.touching.down)) {
-      game.leafy.animations.play('jump');
-      game.leafy.body.velocity.y = vars.jumpHeight;
-  }
-
   // respawn
   if (!game.leafy.alive) {
-    respawn();
+    respawn(game.leafy);
+  } else {
+    playerMove(game.leafy);
   }
 
   // # ui
@@ -82,17 +47,6 @@ function update() {
 
 
 
-function respawn() {
-  //console.log('respawn');
-  // # player reset
-  game.leafy.x=vars.worldSize/2;
-  game.leafy.y=10;
-  game.leafy.body.velocity.x = 0;
-  game.leafy.body.velocity.y = 0;
-  vars.playerSpeed = 150 * vars.ratio;
-  // # unkill
-  game.leafy.revive();
-}
 
 function passStump() {
   //console.log('Stump says hi!');
@@ -149,19 +103,6 @@ function stopOwl() {
   game.owl.flying = false;
 }
 
-function passBee(leafy, bee) {
-  if (!bee.pickedup) {
-    //console.log('pass blue leaf');
-    bee.pickedup=true;
-    //game.blueLeafCount += 1;
-    game.sfxbuzz.play();
-    //game.blueLeafText.text = game.blueLeafCount;
-    bee.tween.start();
-    //bee.kill();
-  }
-  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
-}
-
 function passBlueleaf(leafy, leaf) {
   if (!leaf.pickedup) {
     //console.log('pass blue leaf');
@@ -179,10 +120,7 @@ function passTree(leaf, tree) {
     //console.log(tree.key+ ' says hi!');
     tree.walkedPassed = true;
   }
-  //console.log(this);
-  //tree.kill();
   //tree.tint = '0xcccccc'
-  //tree.alpha = .1;
   //vars.playerSpeed += (vars.playerSpeed * .01);
   //tree.alpha = Math.random()*.9+.1;
 }
@@ -206,3 +144,11 @@ function passTree(leaf, tree) {
 //       block.body.velocity.x = 400;
 //   }
 // }
+
+// [question] this should be in phaser, right?
+function checkOverlap(spriteA, spriteB) {
+  var boundsA = spriteA.getBounds();
+  var boundsB = spriteB.getBounds();
+
+  return Phaser.Rectangle.intersects(boundsA, boundsB);
+}
