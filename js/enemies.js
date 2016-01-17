@@ -1,6 +1,7 @@
 // Enemies
 
 Enemy = function (game, x, y, direction, speed) {
+  //x = x || game.rnd.integerInRange(0, vars.worldSize);
   Phaser.Sprite.call(this, game, x, y, "bee");
   this.anchor.setTo(0.5,1);
   this.scale.setTo(0.5);
