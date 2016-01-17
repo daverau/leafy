@@ -13,7 +13,7 @@ Enemy = function (game, x, y, direction, speed) {
   this.animations.play('fly');
   this.startX = x;
 };
-  
+
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);
 Enemy.prototype.constructor = Enemy;
 
@@ -23,7 +23,7 @@ Enemy.prototype.update = function() {
 };
 
 function moveEnemy(enemy){
-  if (enemy.xSpeed<0 && ((enemy.startX - enemy.body.position.x) > 600) || enemy.xSpeed>0 && ((enemy.startX - enemy.body.position.x) < -600)) {
+  if (enemy.xSpeed<0 && ((enemy.startX - enemy.body.position.x) > 400) || enemy.xSpeed>0 && ((enemy.startX - enemy.body.position.x) < -400)) {
     enemy.xSpeed*=-1;
     enemy.scale.x*=-1;
   }
