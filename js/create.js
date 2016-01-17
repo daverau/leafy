@@ -61,6 +61,20 @@ function create() {
   game.owl.animations.play('sit');
 
 
+  // # Bee
+  game.bee = game.add.sprite( game.stump.x - 255, game.stump.y - 290, 'bee');
+  game.bee.scale.setTo(.5, .5);
+  // animations
+  game.bee.animations.add('sit', [0], 1, false);
+  game.bee.animations.add('fly', [0,1,2,3,4], 30, true);
+  game.bee.animations.play('fly');
+  game.bee.fly = game.add.tween(game.bee).to( { x: (game.bee.x - 600) }, 4000, null, true);
+    game.bee.fly.onComplete.add(function(bee, tween) {
+      //leaf.kill();
+      game.bee.fly.start();
+    });
+
+
   // # Player (Leafy)
   game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
   game.leafy.anchor.setTo(.5,0);

@@ -29,12 +29,12 @@ npm start
 - add leaf pick-ups with sound and simple counter
 - owl flys away on first collide
 - quick trees in front with a second loop and tree.group
+- owl comes back after time
 
 ## Todo
 - start/end game states
 - plant & grow trees with timers
 - doorway sprite with collide event
-- owl should come back after time
 - moon with subtle movement
 - music
 - draw inside of tree
