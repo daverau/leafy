@@ -62,14 +62,13 @@ function create() {
 
 
   // # Bees (enemy)
-  var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
-  game.add.existing(bee);
-  bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
-  game.add.existing(bee);
-  bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
-  game.add.existing(bee);
-  bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
-  game.add.existing(bee);
+  game.bees = game.add.group();
+  game.bees.enableBody = true;
+  for (x = 0; x < (vars.worldSize * .00013); x++) {
+    var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
+    game.bees.add(bee);
+    console.log('bee created');
+  }
 
 
   // # Player (Leafy)
