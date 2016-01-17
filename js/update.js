@@ -9,11 +9,11 @@ function update() {
   // collide with ground
   game.physics.arcade.collide(game.leafy, game.ground);
   game.physics.arcade.collide(game.blueleaves, game.ground);
-  //game.physics.arcade.collide(game.emitter, game.ground);
 
   // collide with player
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
   game.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
+  game.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
   //game.physics.arcade.overlap(game.leafy, game.emitter, passRain, null, this);
 
   // owl
@@ -149,6 +149,19 @@ function stopOwl() {
   game.owl.flying = false;
 }
 
+function passBee(leafy, bee) {
+  if (!bee.pickedup) {
+    //console.log('pass blue leaf');
+    bee.pickedup=true;
+    //game.blueLeafCount += 1;
+    game.sfxbuzz.play();
+    //game.blueLeafText.text = game.blueLeafCount;
+    bee.tween.start();
+    //bee.kill();
+  }
+  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
+}
+
 function passBlueleaf(leafy, leaf) {
   if (!leaf.pickedup) {
     //console.log('pass blue leaf');
@@ -173,3 +186,23 @@ function passTree(leaf, tree) {
   //vars.playerSpeed += (vars.playerSpeed * .01);
   //tree.alpha = Math.random()*.9+.1;
 }
+
+
+// # Plant trees
+
+// if (shootButton.isDown) {
+//   fire();
+// }
+
+// var fireRate = 10;
+// var shootTimer = game.time.now + fireRate;
+
+// function fire() {
+//   if (game.time.now > shootTimer) {
+//       shootTimer = game.time.now + fireRate;
+//       block = blocks.create(player.x + 50, player.y, 'block');
+//       block.body.immovable = true;
+//       block.body.collideWorldBounds = true;
+//       block.body.velocity.x = 400;
+//   }
+// }

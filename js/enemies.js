@@ -12,6 +12,11 @@ Enemy = function (game, x, y, direction, speed) {
   this.animations.add('fly', [0,1,2,3,4], 30, true);
   this.animations.play('fly');
   this.startX = x;
+
+  this.tween = game.add.tween(this).to({
+    alpha: 0,
+  }, 1000, Phaser.Easing.Cubic.Out);
+
 };
 
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);

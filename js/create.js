@@ -63,11 +63,12 @@ function create() {
 
   // # Bees (enemy)
   game.bees = game.add.group();
+  game.sfxbuzz = game.add.audio('buzz');
   game.bees.enableBody = true;
   for (x = 0; x < (vars.worldSize * .00013); x++) {
     var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
     game.bees.add(bee);
-    console.log('bee created');
+    console.log('bee created at x:'+bee.x);
   }
 
 

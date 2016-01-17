@@ -19,6 +19,7 @@ function preload() {
 
   // bee
   game.load.spritesheet('bee', 'assets/sprite-bee.png', 256, 256);
+  game.load.audio('buzz', 'assets/bee.wav');
 
   // will replace with code-generated trees at some point...
   game.load.image('treestump', 'assets/treestump.png');
