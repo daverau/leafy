@@ -12,6 +12,9 @@ function preload() {
   game.load.image('blueleaf', 'assets/blueleaf.png');
   game.load.audio('ding', 'assets/pickup.wav');
 
+  // flower
+  game.load.image('flower', 'assets/flower.png');
+
   // owl
   game.load.spritesheet('owl', 'assets/sprite-owl.png', 256, 256);
   game.load.audio('hoot', 'assets/hoot.wav');

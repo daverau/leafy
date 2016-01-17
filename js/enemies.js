@@ -37,15 +37,17 @@ function moveEnemy(enemy){
 
 // called by update leafy,bee group overlap check
 function passBee(leafy, bee) {
-  if (leafy.honeyCount < 1) {
+  if (leafy.flowers < 1 && !bee.pickedup) {
     game.sfxbuzz.play();
-  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
     leafy.kill();
   } else {
     if (!bee.pickedup) {
       bee.pickedup=true;
+      game.sfxbuzz._sound.playbackRate.value = Math.random()*1.2+.9;
       game.sfxbuzz.play();
-      bee.tween.start();
+      //bee.tween.start();
+      leafy.flowers -= 1;
+      bee.body.position.y -= 200;
       //bee.kill();
     }
   }

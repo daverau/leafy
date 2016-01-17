@@ -105,7 +105,6 @@ function passBlueleaf(leafy, leaf) {
     leaf.pickedup=true;
     game.blueLeafCount += 1;
     game.sfxding.play();
-    game.blueLeafText.text = game.blueLeafCount;
     leaf.tween.start();
   }
   //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
@@ -113,8 +112,8 @@ function passBlueleaf(leafy, leaf) {
 
 function passTree(leaf, tree) {
   if (!tree.walkedPassed) {
-    console.log(tree.key+ ' says hi!');
-    console.log(tree);
+    //console.log(tree.key+ ' says hi!');
+    //console.log(tree);
     tree.walkedPassed = true;
   }
   //tree.tint = '0xcccccc'

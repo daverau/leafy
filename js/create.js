@@ -78,6 +78,7 @@ function create() {
   // # Player (Leafy)
   game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
   game.leafy.honeyCount = 0;
+  game.leafy.flowers = 0;
   game.leafy.anchor.setTo(.5,0);
   game.physics.arcade.enable(game.leafy);
   game.leafy.body.gravity.y = 1000;
@@ -140,6 +141,17 @@ function create() {
     });
   }
 
+  // # Flowers (another pick-up type)
+  game.flowers = game.add.group();
+  game.flowers.enableBody = true;
+  //game.sfxbuzz = game.add.audio('buzz');
+  for (x = 0; x < (vars.worldSize * .00013); x++) {
+    var flower = new Flower(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 210);
+    game.flowers.add(flower);
+    console.log('flower created at x:'+flower.x);
+  }
+  game.flowers.add( new Flower(game, game.stump.x - 200, game.stump.y + 210) );
+
 
   // # Rain
   game.emitter = game.add.emitter(game.width/2, 0, 500);
@@ -168,8 +180,11 @@ function create() {
   game.fps.fixedToCamera = true;
   game.fps.alpha = .1;
   // leaves
-  game.blueLeafText = game.add.text( game.width-100, 68, '-', { font: (32*vars.ratio)+"px Arial", fill: '#B1F1D9' });
+  game.blueLeafText = game.add.text( game.width-100, 68, '-', { font: (11*vars.ratio)+"px Arial", fill: '#B1F1D9' });
   game.blueLeafText.fixedToCamera = true;
+  // flowers
+  game.flowersText = game.add.text( game.width-100, 128, '-', { font: (11*vars.ratio)+"px Arial", fill: '#F5A623' });
+  game.flowersText.fixedToCamera = true;
 
   // # Input
   cursors = game.input.keyboard.createCursorKeys();
