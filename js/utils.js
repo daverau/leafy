@@ -86,16 +86,6 @@ function genTree(group) {
 
   t.walkedPassed = false;
 
-  // ## front trees
-  // [todo/question] why no workie?
-  // t.z = 1000;
-  // game.world.bringToTop(t);
-  // var randPool = ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','2'];
-  // var rand = randPool[Math.floor(Math.random()*randPool.length)];
-  // if (rand == 2) {
-  //   game.world.bringToTop(t);
-  // }
-
   // ## dynamic drawn "trees" as rectangles
   // var t = game.trees.create(x, game.height-(tree.height), 'tree');
   // t.scale.setTo(.5);

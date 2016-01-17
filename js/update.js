@@ -83,7 +83,7 @@ function update() {
 
 
 function respawn() {
-  console.log('respawn');
+  //console.log('respawn');
   // # player reset
   game.leafy.x=vars.worldSize/2;
   game.leafy.y=10;
@@ -99,8 +99,9 @@ function passStump() {
 }
 
 function passRain(leafy, leaf) {
+  console.log('rain');
   if (!leaf.played) {
-    console.log('drop');
+    //console.log('drop');
     leaf.played=true;
     game.blueLeafCount += 1;
     game.sfxding.play();
@@ -122,13 +123,13 @@ function passOwl(leafy, owl) {
   // console.log('Owl says hi!');
   // owl should fly away if you don't have enough blue leaves yet...
   if (!game.owl.flying) {
-    console.log('go fly');
+    //console.log('go fly');
     game.owl.flying = true;
     owlFlyaway(leafy, owl);
   }
 }
 function owlFlyaway(leafy, owl) {
-  console.log('flying');
+  //console.log('flying');
   game.sfxhoot.play();
   game.owl.animations.play('flap');
   var randomx = (Math.random()*2000+1); // magic number
@@ -150,7 +151,7 @@ function stopOwl() {
 
 function passBlueleaf(leafy, leaf) {
   if (!leaf.pickedup) {
-    console.log('pass blue leaf');
+    //console.log('pass blue leaf');
     leaf.pickedup=true;
     game.blueLeafCount += 1;
     game.sfxding.play();
@@ -162,7 +163,7 @@ function passBlueleaf(leafy, leaf) {
 
 function passTree(leaf, tree) {
   if (!tree.walkedPassed) {
-    console.log(tree.key+ ' says hi!');
+    //console.log(tree.key+ ' says hi!');
     tree.walkedPassed = true;
   }
   //console.log(this);
