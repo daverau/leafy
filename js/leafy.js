@@ -48,8 +48,8 @@ function playerMove(leafy) {
 
 
 function plantTree(leafy) {
-  if (!leafy.planting) {
-    leafy.planting = true;
+  if (!leafy.planting && game.time.now > vars.plantDelay) {
+    //leafy.planting = true;
     console.log('plant tree');
 
     // ## dynamic drawn "trees" as rectangles
@@ -64,6 +64,18 @@ function plantTree(leafy) {
 
     console.log('w:'+t.width);
     console.log('h:'+t.height);
+
+    vars.plantDelay = game.time.now + 400;
+
+    // if (keyboard.isDown(Phaser.Keyboard.F) && game.time.now > shootTimer) {
+    //   block = blocks.create(player.x + 50, player.y, 'block');
+    //   block.body.velocity.x = 200;
+    //   block.body.minVelocity.x = 50;
+    //   block.body.gravity.y = 10;
+    //   block.body.immovable = true;
+    //   block.body.collideWorldBounds = true;
+    // }
+
 
     //block = game.playerTrees.create(leafy.x, 0, 'tree9');
     //block.y = game.world.height - (block.height + 58); // magic number based on ~ground.height
