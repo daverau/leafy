@@ -33,6 +33,9 @@ function create() {
   // grd.addColorStop(1.000, 'rgba(38, 27, 40, 1.000)');
 
 
+  // Moon
+  drawMoon();
+
   // # Stump (owl start location)
   game.stump = game.add.sprite(0,0, 'treestump');
   game.stump.anchor.setTo(.5,0);
@@ -64,13 +67,12 @@ function create() {
   // # Bees (enemy)
   game.bees = game.add.group();
   game.sfxbuzz = game.add.audio('buzz');
-  //game.bees.enableBody = true;
   for (x = 0; x < (vars.worldSize * .00013); x++) {
-    var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 150, 1, vars.beeSpeed);
+    var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 190, 1, vars.beeSpeed);
     game.bees.add(bee);
     console.log('bee created at x:'+bee.x);
   }
-  game.bees.add( new Enemy(game, game.stump.x - 2000, game.stump.y + 150, 1, vars.beeSpeed) );
+  game.bees.add( new Enemy(game, game.stump.x - 2000, game.stump.y + 190, 1, vars.beeSpeed) );
 
 
   // # Player (Leafy)
@@ -94,6 +96,10 @@ function create() {
   game.leafy.animations.add('jump', [1], 0, true);
 
 
+  // # Player-planted Trees
+  game.playerTrees = game.add.group();
+
+
   // # Foreground Trees
   game.foretrees = game.add.group();
   game.foretrees.enableBody = true;
@@ -109,7 +115,7 @@ function create() {
   game.ground.body.allowGravity = false;
  
 
-  // # Leaves to collect
+  // # Blue leaves to collect
   game.blueleaves = game.add.group();
   game.physics.arcade.enable(game.stump);
   game.blueleaves.enableBody = true;
@@ -169,6 +175,5 @@ function create() {
   cursors = game.input.keyboard.createCursorKeys();
   jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   plantButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-  // [todo] add mobile/touch inputs
 
 }

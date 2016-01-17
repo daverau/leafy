@@ -83,7 +83,6 @@ function genTree(group) {
   var t = group.create(x, 0, treeimg);
   t.y = game.world.height - (t.height + 58); // magic number based on ~ground.height
   t.alpha = .9;
-
   t.walkedPassed = false;
 
   // ## dynamic drawn "trees" as rectangles
@@ -96,26 +95,42 @@ function genTree(group) {
 }
 
 
-// # tween colors
-// http://www.html5gamedevs.com/topic/7162-tweening-a-tint/?p=42712
-// tweenTint(sprite, 0xff0000, 0x0000ff, 2000);
-function tweenTint(obj, startColor, endColor, time) {
-    // create an object to tween with our step value at 0
-    var colorBlend = {step: 0};
+function randTree() {
+  var tree = {};
+  var pxrange;
 
-    // create the tween on this object and tween its step property to 100
-    var colorTween = game.add.tween(colorBlend).to({step: 100}, time);
-    
-    // run the interpolateColor function every time the tween updates, feeding it the
-    // updated value of our tween each time, and set the result as our tint
-    colorTween.onUpdateCallback(function() {
-      obj.tint = Phaser.Color.interpolateColor(startColor, endColor, 100, colorBlend.step);   
-    });
-    
-    // set the object to the start color straight away
-    obj.tint = startColor;    
-    
-    // start the tween
-    colorTween.start();
+  // ## Generate
+  // height
+  var heightMin = 8;
+  var heightMax = 300;
+  tree.height = Math.floor(Math.random()*heightMax+heightMin);
+
+  // width
+  var widthMin = 4;
+  var widthMax = 120;
+  tree.width = Math.floor(Math.random()*widthMax+widthMin);
+
+  // number of branches
+  var branchesMin = 0;
+  var branchesMax = 5;
+  tree.branches = Math.floor(Math.random()*branchesMax+branchesMin);
+
+  // number of leaves
+  var leavesMin = 0;
+  var leavesMax = (tree.branches * 3) + 3;
+  tree.leaves = Math.floor(Math.random()*leavesMax+leavesMin);
+
+  // leaf color
+  var colorLeaf = ['green', 'yellow', 'red'];
+  tree.colorLeaf = colorLeaf[Math.floor(Math.random()*colorLeaf.length)];
+
+  // branch color
+  var colorBranch = ['brown','grey'];
+  tree.colorBranch = colorBranch[Math.floor(Math.random()*colorBranch.length)];
+
+  // smaller trees
+  tree.img = 'tree' + Math.floor(Math.random()*9+1);
+
+  return tree;
+
 }
-

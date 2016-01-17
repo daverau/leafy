@@ -51,15 +51,31 @@ function plantTree(leafy) {
   if (!leafy.planting) {
     leafy.planting = true;
     console.log('plant tree');
-  }
-  // var bomb, bomb_name, bomb_position, bomb_properties;
-  // // get the first dead bomb from the pool
-  // bomb_name = this.name + "_bomb_" + this.game_state.groups.bombs.countLiving();
-  // bomb_position = new Phaser.Point(this.x, this.y);
-  // bomb_properties = {"texture": "bomb_spritesheet", "group": "bombs", bomb_radius: 3};
-  // bomb = Bomberman.create_prefab_from_pool(this.game_state.groups.bombs, Bomberman.Bomb.prototype.constructor, this.game_state, bomb_name, bomb_position, bomb_properties);
-}
 
+    // ## dynamic drawn "trees" as rectangles
+    var r = randTree();
+    var t = game.playerTrees.create(leafy.x, game.height-(r.height+58), 'tree');
+    t.scale.setTo(.5);
+    t.alpha = .9;
+    t.height = r.height;
+    t.width = r.width;
+    t.evolve = r.img;
+    t.walkedPassed = false;
+
+    console.log('w:'+t.width);
+    console.log('h:'+t.height);
+
+    //block = game.playerTrees.create(leafy.x, 0, 'tree9');
+    //block.y = game.world.height - (block.height + 58); // magic number based on ~ground.height
+    
+    //block.alpha = .9;
+
+    //block.body.immovable = true;
+    //block.body.collideWorldBounds = true;
+    //block.body.velocity.x = 400;
+
+  }
+}
 
 function respawn(leafy) {
   //console.log('respawn');
@@ -69,4 +85,28 @@ function respawn(leafy) {
   leafy.body.velocity.y = 0;
   leafy.playerSpeed = 150 * vars.ratio;
   leafy.revive();
+}
+
+
+function passBlueleaf(leafy, leaf) {
+  if (!leaf.pickedup) {
+    //console.log('pass blue leaf');
+    leaf.pickedup=true;
+    game.blueLeafCount += 1;
+    game.sfxding.play();
+    game.blueLeafText.text = game.blueLeafCount;
+    leaf.tween.start();
+  }
+  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
+}
+
+function passTree(leaf, tree) {
+  if (!tree.walkedPassed) {
+    console.log(tree.key+ ' says hi!');
+    console.log(tree);
+    tree.walkedPassed = true;
+  }
+  //tree.tint = '0xcccccc'
+  //vars.playerSpeed += (vars.playerSpeed * .01);
+  //tree.alpha = Math.random()*.9+.1;
 }

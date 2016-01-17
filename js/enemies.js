@@ -38,6 +38,8 @@ function moveEnemy(enemy){
 // called by update leafy,bee group overlap check
 function passBee(leafy, bee) {
   if (leafy.honeyCount < 1) {
+    game.sfxbuzz.play();
+  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
     leafy.kill();
   } else {
     if (!bee.pickedup) {

@@ -5,10 +5,11 @@ var vars = {};
 vars.ratio = window.devicePixelRatio || 1;
 
 // world
-vars.worldSize = 150000;
+vars.worldSize = 50000;
 
 // pickups
 vars.blueLeafTotal = 250;
+vars.plantDelay = 1000;
 
 // bee speed
 vars.beeSpeed = 370;
