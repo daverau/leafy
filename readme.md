@@ -32,20 +32,23 @@ npm start
 - owl comes back after time
 - draw add bee enemy
 - crude plant trees working
+- add flower pickups
+- add gaps to require jumping
+- add player inventory
+- moon
+- jump on trees you plant
 
 ## Todo (fixed scope!)
-- add flower pickups
 - bees drop honey
-- add bear
-- bear opens door
-
-- start/end game states
-- grow trees with timers
+- draw bear
 - doorway sprite with collide event
-- moon with subtle movement
-- music
+- bear near doorway
 - draw inside of tree
 - draw lady bug
+- start/end game states
+- music
+- blue leaf jump boost
 - code dynamic trees (cool vue.js experiment with sliders)
 - change leaf colors
-- add player inventory
+- background image for effect
+- grow trees with timers (why?)
