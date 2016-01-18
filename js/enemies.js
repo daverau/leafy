@@ -18,13 +18,14 @@ Enemy = function (game, x, y, direction, speed) {
   }, 1000, Phaser.Easing.Cubic.Out);
   this.hittween = game.add.tween(this).to({
     //alpha: .5,
-    y: (this.y - 200)
+    //y: (this.y - 200)
   }, 1000, Phaser.Easing.Cubic.Out);
   this.hittween.onStart.add(function(enemy, tween) {
     enemy.animations.play('flyhappy');
+    enemy.body.velocity.y = -200;
   });
   this.hittween.onComplete.add(function(enemy, tween) {
-    enemy.body.moves = true;
+    enemy.body.velocity.y = 0;
   });
 };
 
@@ -65,11 +66,8 @@ function passBee(leafy, bee) {
       bee.pickedup=true;
       game.sfxbuzz._sound.playbackRate.value = Math.random()*1.2+.9;
       game.sfxbuzz.play();
-      bee.body.moves = false;
       bee.hittween.start();
       leafy.flowers -= 1;
-      //bee.kill();
     }
   }
-  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
 }

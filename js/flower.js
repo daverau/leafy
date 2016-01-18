@@ -6,10 +6,16 @@ Flower = function (game, x, y) {
   this.scale.setTo(0.5);
   this.pickedup = false;
   // animations
-  this.tween = game.add.tween(this).to({
+  this.pickuptween = game.add.tween(this).to({
     alpha: 0,
   }, 1000, Phaser.Easing.Cubic.Out);
-  // [todo] add onComplete kill
+  this.pickuptween.onStart.add(function(flower, tween) {
+    flower.body.velocity.y = -1000;
+  });
+  this.pickuptween.onComplete.add(function(flower, tween) {
+    flower.kill();
+  });
+
 };
 Flower.prototype = Object.create(Phaser.Sprite.prototype);
 Flower.prototype.constructor = Flower;
@@ -18,8 +24,8 @@ Flower.prototype.update = function() {
 function passFlower(leafy, flower) {
   if (!flower.pickedup) {
     game.leafy.flowers += 1;
-    flower.pickedup=true;
+    flower.pickedup = true;
     game.sfxbuzz.play();
-    flower.tween.start();
+    flower.pickuptween.start();
   }
 }
