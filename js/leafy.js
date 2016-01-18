@@ -1,16 +1,18 @@
 // Leafy setup
 function playerMove(leafy) {
 
-  if (cursors.left.isDown) {
+  if (cursors.left.isDown || (game.input.pointer1.x < vars.worldSize/2 && game.input.pointer1.isDown) ) {
 
+    leafy.animations.play('walk');
     leafy.body.velocity.x = (leafy.playerSpeed * -1); // [todo] speed boost variable
     if (leafy.facing != 'left') {
       leafy.facing = 'left';
       leafy.scale.x = -1; //flipped
     }
 
-  } else if (cursors.right.isDown) {
+  } else if (cursors.right.isDown || (game.input.pointer1.x > vars.worldSize/2 && game.input.pointer1.isDown) ) {
 
+    leafy.animations.play('walk');
     leafy.body.velocity.x = leafy.playerSpeed;
     if (leafy.facing != 'right') {
       leafy.scale.x = 1; //default direction

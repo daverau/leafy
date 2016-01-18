@@ -13,7 +13,16 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.time.advancedTiming = true; // [todo] need this?
   game.blueLeafCount=0; // track how many blue leaves player has
-  game.input.maxPointers = 1; // for mobile
+
+
+// mobile input
+  //game.input.maxPointers = 2; // for mobile
+game.input.addPointer();
+game.input.addPointer();
+//game.input.multiInputOverride = Phaser.Input.TOUCH_OVERRIDES_MOUSE;
+var pointer1 = game.input.pointer1;
+var pointer2 = game.input.pointer2;
+
 
 
   // # World gen
