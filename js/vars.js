@@ -8,7 +8,7 @@ vars.ratio = window.devicePixelRatio || 1;
 vars.worldSize = 50000;
 
 // pickups
-vars.blueLeafTotal = 250;
+vars.blueLeafTotal = 60;
 vars.plantDelay = 1000;
 
 // bee speed
