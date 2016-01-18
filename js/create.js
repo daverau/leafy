@@ -9,6 +9,7 @@ function create() {
 
 
   // # Setup
+  game.stage.smoothed = false;
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.time.advancedTiming = true; // [todo] need this?
   game.blueLeafCount=0; // track how many blue leaves player has
@@ -64,13 +65,18 @@ function create() {
   game.owl.animations.play('sit');
 
 
+  // # Player-planted Trees
+  game.playerTrees = game.add.group();
+
+
   // # Bees (enemy)
   game.bees = game.add.group();
   game.sfxbuzz = game.add.audio('buzz');
-  for (x = 0; x < (vars.worldSize * .00013); x++) {
+  var beeCount = vars.worldSize * .00013;
+  for (x=0; x<beeCount; x++) {
+    //console.log('bee created at x:'+bee.x);
     var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 190, 1, vars.beeSpeed);
     game.bees.add(bee);
-    console.log('bee created at x:'+bee.x);
   }
   game.bees.add( new Enemy(game, game.stump.x - 2000, game.stump.y + 190, 1, vars.beeSpeed) );
 
@@ -97,10 +103,6 @@ function create() {
   game.leafy.animations.add('jump', [1], 0, true);
 
 
-  // # Player-planted Trees
-  game.playerTrees = game.add.group();
-
-
   // # Foreground Trees
   game.foretrees = game.add.group();
   game.foretrees.enableBody = true;
@@ -110,31 +112,50 @@ function create() {
 
 
   // # Ground
-  game.ground = game.add.tileSprite(0 , game.height-60, vars.worldSize, 60, 'tree');
+  //game.ground = game.add.tileSprite(0 , game.height-60, vars.worldSize, 60, 'tree');
+  game.ground = game.add.tileSprite(0 , game.height-60, 2000, 60, 'tree');
   game.physics.arcade.enable(game.ground);
   game.ground.body.immovable = true;
   game.ground.body.allowGravity = false;
  
 
+  // # Gaps
+  //var gapCount = vars.worldSize * .001;
+
+  game.physics.startSystem(Phaser.Physics.ARCADE);
+  //game.physics.arcade.enable(sprite);
+
+  game.gaps = game.add.physicsGroup();
+  game.physics.arcade.enable(game.gaps);
+
+  game.gaps.enableBody = true;
+  //game.gaps.body.moves = false;
+  //game.gaps.body.immovable = true;
+
+  
+  var gapCount = vars.worldSize * .01;
+  console.log('gaps: '+gapCount);
+  for (x=0; x<gapCount; x++) {
+    var gap = new Gap();
+    game.gaps.add(gap);
+  }
+
   // # Blue leaves to collect
   game.blueleaves = game.add.group();
-  game.physics.arcade.enable(game.stump);
+  //game.physics.arcade.enable(game.stump);
   game.blueleaves.enableBody = true;
   game.sfxding = game.add.audio('ding');
   // generate leaves
   for (var i = 0; i < vars.blueLeafTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
-    var blueleaf = game.blueleaves.create(x, game.height-160, 'blueleaf');
-    blueleaf.enableBody = true;
-    blueleaf.body.gravity.y = 300;
-    blueleaf.body.bounce.y = 0.7 + Math.random() * 0.2;
+    var blueleaf = game.blueleaves.create(x, game.height-84, 'blueleaf');
     // pickup animation
     blueleaf.tween = game.add.tween(blueleaf)
       .to({
         alpha: 0,
       }, 1000, Phaser.Easing.Cubic.Out);
     blueleaf.tween.onStart.add(function(leaf, tween) {
-      leaf.body.velocity.y = 1000;
+      leaf.body.velocity.y = -1000;
     });
     blueleaf.tween.onComplete.add(function(leaf, tween) {
       leaf.kill();
@@ -171,22 +192,28 @@ function create() {
 
 
   // # UI
-  // distance
-  game.distanceText = game.add.text( game.width-100, 20, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
-  game.distanceText.fixedToCamera = true;
-  game.distanceText.alpha = .3;
-  // fps
-  game.fps = game.add.text( game.width-100, 44, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
-  game.fps.fixedToCamera = true;
-  game.fps.alpha = .1;
   // leaves
-  game.blueLeafText = game.add.text( game.width-100, 68, '-', { font: (11*vars.ratio)+"px Arial", fill: '#B1F1D9' });
+  game.blueLeafIcon = game.blueleaves.create(game.width-100, 50, 'blueleaf');
+  game.blueLeafIcon.fixedToCamera = true;
+  game.blueLeafText = game.add.text( game.width-50, 50, '-', { font: (11*vars.ratio)+"px Arial", fill: '#B1F1D9' });
   game.blueLeafText.fixedToCamera = true;
   // flowers
-  game.flowersText = game.add.text( game.width-100, 128, '-', { font: (11*vars.ratio)+"px Arial", fill: '#F5A623' });
+  game.flowersIcon = game.blueleaves.create(game.width-210, 30, 'flower');
+  game.flowersIcon.scale.setTo(.50);
+  game.flowersIcon.fixedToCamera = true;
+  game.flowersText = game.add.text( game.width-160, 50, '-', { font: (11*vars.ratio)+"px Arial", fill: '#F5A623' });
   game.flowersText.fixedToCamera = true;
+  // distance
+  game.distanceText = game.add.text( game.width-100, game.height-40, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+  game.distanceText.fixedToCamera = true;
+  game.distanceText.alpha = .2;
+  // fps
+  game.fps = game.add.text( game.width-220, game.height-40, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+  game.fps.fixedToCamera = true;
+  game.fps.alpha = .1;
 
-  // # Input
+
+  // # Inputs
   cursors = game.input.keyboard.createCursorKeys();
   jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
   plantButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);

@@ -8,12 +8,16 @@ function update() {
 
   // collisions
   game.physics.arcade.collide(game.leafy, game.ground);
-  game.physics.arcade.collide(game.blueleaves, game.ground);
+  //game.physics.arcade.collide(game.blueleaves, game.ground);
+  game.physics.arcade.collide(game.leafy, game.gaps);
+  //game.physics.arcade.collide(game.blueleaves, game.gaps);
+
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
   game.physics.arcade.overlap(game.leafy, game.playerTrees, passTree, null, this);
   game.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
   game.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
   game.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
+  //game.physics.arcade.overlap(game.leafy, game.gaps, hitGap, null, this);
   if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
   //if (checkOverlap(game.leafy, game.flowers)) { passFlower(game.leafy, game.flowers); }
 

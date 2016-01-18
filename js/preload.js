@@ -1,10 +1,11 @@
 // # Preload
 function preload() {
 
-  game.load.spritesheet('leafy', 'assets/leafy.png', 128, 128);
+  game.load.spritesheet('leafy', 'assets/leafy-v2.png', 128, 128);
   game.load.image('ground', 'assets/ground.png');
   game.load.image('bgnight', 'assets/bg-night.png');
-  
+  game.load.image('gap', 'assets/gap.png');
+
   // just using the color for now...
   game.load.image('tree', 'assets/tree.png');
 
