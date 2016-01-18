@@ -101,7 +101,7 @@ function passBlueleaf(leafy, leaf) {
   if (!leaf.pickedup) {
     //console.log('pass blue leaf');
     leaf.pickedup=true;
-    game.blueLeafCount += 1;
+    game.leafy.blueLeafCount += 1;
     game.sfxding.play();
     leaf.tween.start();
     console.log('jump height: '+ leafy.jumpHeight );

@@ -12,17 +12,15 @@ function create() {
   game.stage.smoothed = false;
   game.physics.startSystem(Phaser.Physics.ARCADE);
   game.time.advancedTiming = true; // [todo] need this?
-  game.blueLeafCount=0; // track how many blue leaves player has
 
 
-// mobile input
+  // # [testing] Mobile input
   //game.input.maxPointers = 2; // for mobile
-game.input.addPointer();
-game.input.addPointer();
-//game.input.multiInputOverride = Phaser.Input.TOUCH_OVERRIDES_MOUSE;
-var pointer1 = game.input.pointer1;
-var pointer2 = game.input.pointer2;
-
+  game.input.addPointer();
+  game.input.addPointer();
+  //game.input.multiInputOverride = Phaser.Input.TOUCH_OVERRIDES_MOUSE;
+  var pointer1 = game.input.pointer1;
+  var pointer2 = game.input.pointer2;
 
 
   // # World gen
@@ -64,7 +62,7 @@ var pointer2 = game.input.pointer2;
 
   // # Owl
   game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
-  game.owl.scale.setTo(.5, .5);
+  //game.owl.scale.setTo(.5, .5);
   game.sfxhoot = game.add.audio('hoot');
   // animations
   game.owl.animations.add('sit', [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 10, true);
@@ -92,6 +90,7 @@ var pointer2 = game.input.pointer2;
 
   // # Player (Leafy)
   game.leafy = game.add.sprite( vars.worldSize / 2 , 10, 'leafy');
+  game.leafy.blueLeafCount=0;
   game.leafy.honeyCount = 0;
   game.leafy.flowers = 0;
   game.leafy.anchor.setTo(.5,0);

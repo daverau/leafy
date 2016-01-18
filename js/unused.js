@@ -14,9 +14,9 @@ function passRain(leafy, leaf) {
   if (!leaf.played) {
     //console.log('drop');
     leaf.played=true;
-    game.blueLeafCount += 1;
+    game.leafy.blueLeafCount += 1;
     game.sfxding.play();
-    game.blueLeafText.text = game.blueLeafCount;
+    game.blueLeafText.text = game.leafy.blueLeafCount;
 
     // [todo] match tween y value from blueLeaf pickup function
     leaf.tween = game.add.tween(leaf)

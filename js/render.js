@@ -10,7 +10,7 @@ function render() {
 
   //game.debug.body(game.bees);
 
-      game.debug.pointer(game.input.mousePointer);
-    game.debug.pointer(game.input.pointer1);
+  //game.debug.pointer(game.input.mousePointer);
+  //game.debug.pointer(game.input.pointer1);
 
 }

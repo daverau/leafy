@@ -37,7 +37,7 @@ function update() {
   game.distanceText.text = Math.round( ( Math.abs( Math.round( ( (vars.worldSize/2) - game.leafy.x ) / vars.ratio ) ) ) / 45 ) + " steps";
   game.fps.setText(game.time.fps + "fps");
   game.flowersText.setText(game.leafy.flowers);
-  game.blueLeafText.setText(game.blueLeafCount);
+  game.blueLeafText.setText(game.leafy.blueLeafCount);
 
 }
 
