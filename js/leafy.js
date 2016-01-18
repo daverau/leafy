@@ -41,6 +41,7 @@ function playerMove(leafy) {
   // player jump
   if (jumpButton.isDown && (leafy.body.onFloor() || leafy.body.touching.down)) {
       leafy.animations.play('jump');
+      console.log('jump: '+leafy.jumpHeight);
       leafy.body.velocity.y = leafy.jumpHeight;
   }
 
@@ -101,6 +102,9 @@ function passBlueleaf(leafy, leaf) {
     game.blueLeafCount += 1;
     game.sfxding.play();
     leaf.tween.start();
+    console.log('jump height: '+ leafy.jumpHeight );
+    //leafy.jumpHeight += leafy.jumpHeight*.1;
+    leafy.body.gravity.y -= 20;
   }
   //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
 }

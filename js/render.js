@@ -8,4 +8,5 @@ function render() {
   //game.debug.body(game.owl);
   //game.debug.body(game.stump);
 
+  //game.debug.body(game.bees);
 }

@@ -37,6 +37,7 @@ npm start
 - add player inventory
 - moon
 - jump on trees you plant
+- blue leaf jump boost (reduces gravity on leafy)
 
 ## Todo
 - bees drop honey
@@ -46,7 +47,6 @@ npm start
 - draw inside of tree
 - start/end game states
 - music
-- blue leaf jump boost
 - background image for effect
 - refine gaps
 - move flowers, blueleaves and trees from gaps
