@@ -19,7 +19,7 @@ npm start
 ## Sketch
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
-## Done recently...
+## Done
 - retina issues mostly resolved
 - add tree pngs
 - expand world size
@@ -38,7 +38,7 @@ npm start
 - moon
 - jump on trees you plant
 
-## Todo (fixed scope!)
+## Todo
 - bees drop honey
 - draw bear
 - doorway sprite with collide event
@@ -48,8 +48,14 @@ npm start
 - music
 - blue leaf jump boost
 - background image for effect
+- refine gaps
+- move flowers, blueleaves and trees from gaps
+- add touch controls
+- wrap in phonegap
+- submit to iOS app store
 
-## Nice to explore
+## Someday
+- non-retina fixes?
 - code dynamic trees (cool vue.js experiment with sliders)
 - change leaf colors
 - grow trees with timers (why?)
