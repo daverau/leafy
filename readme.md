@@ -44,11 +44,12 @@ npm start
 - doorway sprite with collide event
 - bear near doorway
 - draw inside of tree
-- draw lady bug
 - start/end game states
 - music
 - blue leaf jump boost
+- background image for effect
+
+## Nice to explore
 - code dynamic trees (cool vue.js experiment with sliders)
 - change leaf colors
-- background image for effect
 - grow trees with timers (why?)
