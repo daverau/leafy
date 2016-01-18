@@ -11,6 +11,7 @@ function update() {
   //game.physics.arcade.collide(game.blueleaves, game.ground);
   game.physics.arcade.collide(game.leafy, game.gaps);
   //game.physics.arcade.collide(game.blueleaves, game.gaps);
+  game.physics.arcade.collide(game.leafy, game.playerTrees);
 
   game.physics.arcade.overlap(game.leafy, game.trees, passTree, null, this);
   game.physics.arcade.overlap(game.leafy, game.playerTrees, passTree, null, this);

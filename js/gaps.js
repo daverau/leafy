@@ -1,13 +1,14 @@
 // Gaps
 
 // factory pattern
-Gap = function () {
-  var x = game.rnd.integerInRange(0, vars.worldSize);
-  var y = game.height;
+Gap = function (x,y,width,img) {
+  x = x || game.rnd.integerInRange(0, vars.worldSize);
+  y = y || game.height;
+  img = img || "tree";
 
-  Phaser.Sprite.call(this, game, x, y, "tree");
+  Phaser.Sprite.call(this, game, x, y, img);
   game.physics.arcade.enable(this);
-  this.width = 200;
+  this.width = width || 200;
   this.height = game.ground.height+1;
   this.anchor.setTo(1,1);
 

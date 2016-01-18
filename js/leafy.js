@@ -61,10 +61,19 @@ function plantTree(leafy) {
     t.evolve = r.img;
     t.walkedPassed = false;
 
+    game.physics.arcade.enable(t);
+    t.enableBody = true;
+    t.body.moves = false;
+    t.body.immovable = true;
+
     console.log('w:'+t.width);
     console.log('h:'+t.height);
 
     vars.plantDelay = game.time.now + 400;
+
+
+    //var gap = new Gap();
+    //game.gaps.add(gap);
 
     //block = game.playerTrees.create(leafy.x, 0, 'tree9');
     //block.y = game.world.height - (block.height + 58); // magic number based on ~ground.height
