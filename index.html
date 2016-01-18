@@ -8,20 +8,27 @@
 <style type="text/css">
 body {
   margin: 0;
-  background: #F4F4F4;
-  background: #eee;
-  background: #000;
-	display: flex;
-	justify-content: center;
+  background: #111;
 }
 canvas {
   width: 800px;
   height: 600px;
 }
+/* Vertical centering. Oh, CSS... */
+html, body, .wrap {
+  height: 100%;
+}
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
 </head>
 <body>
-
+  
+  <div class="wrap" id="leafy-game"></div>
+  
   <script type="text/javascript" src="js/vars.js"></script>
   <script type="text/javascript" src="js/gaps.js"></script>
   <script type="text/javascript" src="js/trees.js"></script>
@@ -37,6 +44,5 @@ canvas {
 	<script type="text/javascript">
     var game = new Phaser.Game( (800*window.devicePixelRatio), (600*window.devicePixelRatio), Phaser.CANVAS, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
   </script>
-
 </body>
 </html>
