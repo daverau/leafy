@@ -75,7 +75,7 @@ function create() {
   var beeCount = vars.worldSize * .00013;
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);
-    var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 190, 1, vars.beeSpeed);
+    var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.stump.y + 190, game.rnd.integerInRange(1, 200), vars.beeSpeed);
     game.bees.add(bee);
   }
   game.bees.add( new Enemy(game, game.stump.x - 2000, game.stump.y + 190, 1, vars.beeSpeed) );
