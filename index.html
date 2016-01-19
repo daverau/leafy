@@ -3,22 +3,51 @@
 <head> 
 <meta charset="UTF-8" />
 <title>Leafy</title>
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+
+<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
+<meta name="format-detection" content="telephone=no">
+<meta name="HandheldFriendly" content="true" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="Phaser App">
+<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+
 <script type="text/javascript" src="lib/phaser.js"></script>
+
 <style type="text/css">
 body {
-  margin: 0;
+  margin: 0px 0px 1px 0px; /* [phaser template] the extra 1px allows the iOS inner/outer check to work */
   background: #111;
 }
 canvas {
+  width: 1024px;
+  height: 768px;
+}
+#orientation {
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  background-image: url(../images/orientation.jpg); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(0, 0, 0);
+  z-index: 999;
+  display: none;
 }
 </style>
 </head>
 <body>
   
-  <div class="wrap" id="leafy-game"></div>
+  <div class="wrap">
+    
+    <div id="game"></div>
+    <div id="orientation"></div>
+
+  </div>
   
   <script type="text/javascript" src="js/vars.js"></script>
   <script type="text/javascript" src="js/gaps.js"></script>
@@ -28,12 +57,31 @@ canvas {
   <script type="text/javascript" src="js/owl.js"></script>
   <script type="text/javascript" src="js/leafy.js"></script>
   <script type="text/javascript" src="js/enemies.js"></script>
+<!--
   <script type="text/javascript" src="js/preload.js"></script>
   <script type="text/javascript" src="js/create.js"></script>
   <script type="text/javascript" src="js/update.js"></script>
   <script type="text/javascript" src="js/render.js"></script>
+-->
+  <script src="js/Boot.js"></script>
+  <script src="js/Preloader.js"></script>
+  <script src="js/MainMenu.js"></script>
+  <script src="js/Game.js"></script>
+
 	<script type="text/javascript">
-    var game = new Phaser.Game( '100%', '100%', Phaser.CANVAS, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
+    //var game = new Phaser.Game( '100%', '100%', Phaser.CANVAS, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
+
+    var game = new Phaser.Game(1024*window.devicePixelRatio, 768*window.devicePixelRatio, Phaser.CANVAS, 'game');
+
+    //  Add the States your game has.
+    //  You don't have to do this in the html, it could be done in your Boot state too, but for simplicity I'll keep it here.
+    game.state.add('Boot', BasicGame.Boot);
+    game.state.add('Preloader', BasicGame.Preloader);
+    game.state.add('MainMenu', BasicGame.MainMenu);
+    game.state.add('Game', BasicGame.Game);
+
+    //  Now start the Boot state.
+    game.state.start('Boot');
   </script>
 </body>
 </html>
