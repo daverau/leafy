@@ -1,0 +1,57 @@
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+  -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+  background:#E4E4E4;
+  background:#111;
+  height:100%;
+  margin: 0px 0px 1px 0px; /* the extra 1px allows the iOS inner/outer check to work */
+  padding:0px;
+  font: 11px verdana;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#orientation {
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/orientation.jpg); 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(0, 0, 0);
+  z-index: 999;
+  display: none;
+}
+
+#debug {
+  display: none;
+  padding: 10px;
+  background: #fff;
+  color: red;
+  margin: 0;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 200px;
+}
+
+#refresh {
+  display: block;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
