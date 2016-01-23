@@ -1,50 +1,59 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-<meta charset="UTF-8" />
-<title>Leafy</title>
-<script type="text/javascript" src="lib/phaser2.0.1.js"></script>
-<script type="text/javascript" src="lib/vue.js"></script>
-<style type="text/css">
-body {
-  margin: 0;
-  background: #111;
-}
-canvas {
-  width: 800px;
-  height: 600px;
-  border: 15px solid rgba(255,255,255,.1);
-  border-radius: 15px;
-}
-/* Vertical centering. Oh, CSS... */
-html, body, .wrap {
-  height: 100%;
-}
-.wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Phaser App">
+  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi, minimal-ui" />
+
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Leafy</title>
 </head>
 <body>
-  
-  <div class="wrap" id="leafy-game"></div>
-  
-  <script type="text/javascript" src="js/vars.js"></script>
-  <script type="text/javascript" src="js/gaps.js"></script>
-  <script type="text/javascript" src="js/trees.js"></script>
-  <script type="text/javascript" src="js/moon.js"></script>
-  <script type="text/javascript" src="js/flower.js"></script>
-  <script type="text/javascript" src="js/owl.js"></script>
-  <script type="text/javascript" src="js/leafy.js"></script>
-  <script type="text/javascript" src="js/enemies.js"></script>
-  <script type="text/javascript" src="js/preload.js"></script>
-  <script type="text/javascript" src="js/create.js"></script>
-  <script type="text/javascript" src="js/update.js"></script>
-  <script type="text/javascript" src="js/render.js"></script>
-	<script type="text/javascript">
-    var game = new Phaser.Game( (800*window.devicePixelRatio), (600*window.devicePixelRatio), Phaser.CANVAS, 'leafy-game', { preload: preload, create: create, update: update, render: render } );
+
+  <a href="index.html" id="refresh"></a>
+  <div id="debug">debug...<span id="log"></span></div>
+  <div id="game"></div>
+  <div id="orientation"></div>
+
+  <script type="text/javascript">
+    if (!navigator.userAgent.toLowerCase().match('rau')) {
+        document.write("<script src='cordova.js'><\/script>");
+    }
   </script>
+
+  <script src="js/index.js"></script>
+  <script src="lib/phaser2.0.4.js"></script>
+  <script src="js/Boot.js"></script>
+  <script src="js/Preloader.js"></script>
+  <script src="js/vars.js"></script>
+  <script src="js/gaps.js"></script>
+  <script src="js/trees.js"></script>
+  <script src="js/moon.js"></script>
+  <script src="js/flower.js"></script>
+  <script src="js/owl.js"></script>
+  <script src="js/leafy.js"></script>
+  <script src="js/enemies.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/MainMenu.js"></script>
+  <script src="js/Game.js"></script>
+  <script type="text/javascript">
+  var game = {};
+  app.initialize();
+
+  // testing only
+  var is_chrome = navigator.userAgent.toLowerCase().indexOf('rau') > -1;
+  if (typeof cordova != undefined && is_chrome) {
+    app.onDeviceReady();
+  }
+  </script>
+
 </body>
 </html>

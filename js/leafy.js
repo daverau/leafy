@@ -1,16 +1,50 @@
 // Leafy setup
+function genLeafy() {
+  game.leafy = game.add.sprite( 50 , -100, 'leafy');
+  game.leafy.anchor.setTo(.5, 1); //flip at middle point
+  game.leafy.playerSpeed = 150 * vars.ratio;
+  game.leafy.jumpHeight = -800;
+  game.leafy.alive = true;
+
+  game.camera.follow(game.leafy);
+  //game.camera.bounds.setTo(null,null);
+  //game.camera.focusOnXY(game.leafy.position.x, 0);
+
+  game.leafy.blueLeafCount=0;
+  game.leafy.honeyCount = 0;
+  game.leafy.flowers = 8;  
+
+  game.physics.arcade.enable(game.leafy);
+  game.leafy.body.gravity.y = 1000;
+  game.leafy.body.maxVelocity.y = 500;
+  game.leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
+  game.leafy.enableBody = true;
+
+  game.leafy.checkWorldBounds = true;
+  game.leafy.outOfBoundsKill = true;
+
+  // animations
+  game.leafy.animations.add('turn', [7], 0, true);
+  game.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
+  game.leafy.animations.add('jump', [1], 0, true);
+}
+
 function playerMove(leafy) {
 
-  if (cursors.left.isDown) {
+  // CSS canvas scaling for retina causes pointer alignment to be off by the device ratio, so we multiply that as an offset:
+  // game.input.pointer1.x*window.devicePixelRatio
+  if (cursors.left.isDown || ((game.input.pointer1.x*window.devicePixelRatio) < game.width/2 && game.input.pointer1.isDown) ) {
 
+    leafy.animations.play('walk');
     leafy.body.velocity.x = (leafy.playerSpeed * -1); // [todo] speed boost variable
     if (leafy.facing != 'left') {
       leafy.facing = 'left';
       leafy.scale.x = -1; //flipped
     }
 
-  } else if (cursors.right.isDown) {
+  } else if (cursors.right.isDown || ((game.input.pointer1.x*window.devicePixelRatio) > game.width/2 && game.input.pointer1.isDown) ) {
 
+    leafy.animations.play('walk');
     leafy.body.velocity.x = leafy.playerSpeed;
     if (leafy.facing != 'right') {
       leafy.scale.x = 1; //default direction
@@ -33,89 +67,23 @@ function playerMove(leafy) {
     leafy.animations.play('walk');
   }
 
-  // walk when moving left or right (correctly continues playing)
-  if (plantButton.isDown) {
-    plantTree(leafy);
-  }
-
   // player jump
-  if (jumpButton.isDown && (leafy.body.onFloor() || leafy.body.touching.down)) {
+  // (this.swipe.isDown && (this.swipe.positionDown.y > this.swipe.position.y))
+  if ( (cursors.up.isDown || jumpButton.isDown || ((game.input.pointer1.y*window.devicePixelRatio) < game.height/2 && game.input.pointer1.isDown) || (game.input.pointer2.isDown)) && (leafy.body.onFloor() || leafy.body.touching.down) ) {
       leafy.animations.play('jump');
-      console.log('jump: '+leafy.jumpHeight);
+      //console.log('jump: '+leafy.jumpHeight);
       leafy.body.velocity.y = leafy.jumpHeight;
   }
 
 }
 
 
-function plantTree(leafy) {
-  if (game.time.now > vars.plantDelay) {
-    console.log('plant tree');
-
-    // ## dynamic drawn "trees" as rectangles
-    var r = randTree();
-    var t = game.playerTrees.create(leafy.x, game.height-(r.height+58), 'tree');
-    t.scale.setTo(.5);
-    t.alpha = .9;
-    t.height = r.height;
-    t.width = r.width;
-    t.evolve = r.img;
-    t.walkedPassed = false;
-
-    game.physics.arcade.enable(t);
-    t.enableBody = true;
-    t.body.moves = false;
-    t.body.immovable = true;
-
-    console.log('w:'+t.width);
-    console.log('h:'+t.height);
-
-    vars.plantDelay = game.time.now + 400;
-
-
-    //var gap = new Gap();
-    //game.gaps.add(gap);
-
-    //block = game.playerTrees.create(leafy.x, 0, 'tree9');
-    //block.y = game.world.height - (block.height + 58); // magic number based on ~ground.height
-    
-    //block.body.immovable = true;
-
-  }
-}
-
 function respawn(leafy) {
   //console.log('respawn');
-  leafy.body.position.x = vars.worldSize/2;
+  leafy.body.position.x = 50;
   leafy.body.position.y = -100;
   leafy.body.velocity.x = 0;
   leafy.body.velocity.y = 0;
   leafy.playerSpeed = 150 * vars.ratio;
   leafy.revive();
-}
-
-
-function passBlueleaf(leafy, leaf) {
-  if (!leaf.pickedup) {
-    //console.log('pass blue leaf');
-    leaf.pickedup=true;
-    game.blueLeafCount += 1;
-    game.sfxding.play();
-    leaf.tween.start();
-    console.log('jump height: '+ leafy.jumpHeight );
-    //leafy.jumpHeight += leafy.jumpHeight*.1;
-    leafy.body.gravity.y -= 20;
-  }
-  //game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
-}
-
-function passTree(leaf, tree) {
-  if (!tree.walkedPassed) {
-    //console.log(tree.key+ ' says hi!');
-    //console.log(tree);
-    tree.walkedPassed = true;
-  }
-  //tree.tint = '0xcccccc'
-  //vars.playerSpeed += (vars.playerSpeed * .01);
-  //tree.alpha = Math.random()*.9+.1;
 }

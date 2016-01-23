@@ -1,3 +1,14 @@
+function genOwl() {
+  game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
+  game.owl.scale.setTo(.5, .5);
+  game.sfxhoot = game.add.audio('hoot');
+  // animations
+  game.owl.animations.add('sit', [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 10, true);
+  game.owl.animations.add('blink', [0,1,2,0], 10, false);
+  game.owl.animations.add('look', [0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0], 10, false);
+  game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
+  game.owl.animations.play('sit');
+}
 
 function passOwl(leafy, owl) {
   // console.log('Owl says hi!');

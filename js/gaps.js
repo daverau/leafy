@@ -1,33 +1,46 @@
 // Gaps
 
-// factory pattern
-Gap = function (x,y,width,img) {
-  x = x || game.rnd.integerInRange(0, vars.worldSize);
-  y = y || game.height;
-  img = img || "tree";
+function createGaps() {
+  var gapCount = game.gaps.children.length;
+  console.log('gaps: '+gapCount);
+  for (var i=0; i<gapCount; i++) {
+    //console.log('--GAP:'+(i+1)+'--');
 
-  Phaser.Sprite.call(this, game, x, y, img);
-  game.physics.arcade.enable(this);
-  this.width = width || 200;
-  this.height = game.ground.height+1;
-  this.anchor.setTo(1,1);
+    // find max x value
+    var maxGapX = 0;
+    game.gaps.forEach(function(gap) {
+      maxGapX = Math.max(gap.x+gap.width,maxGapX);    
+    });
+    var gapw = Math.floor(Math.random() * 230) + 100;
+    var nextX = maxGapX + gapw;
 
-  this.body.moves = false;
-  this.body.immovable = true;
+    // first should be 0
+    if (i === 0) {
+      nextX = 0;
+    }
 
-  // animations
-  // this.animations.add('fly', [0,1,2,3,4], 30, true);
-  // this.animations.play('fly');
-  // this.tween = game.add.tween(this).to({
-  //   alpha: 0,
-  // }, 1000, Phaser.Easing.Cubic.Out);
-};
-Gap.prototype = Object.create(Phaser.Sprite.prototype);
-Gap.prototype.constructor = Gap;
+    // get from pool
+    var gap = game.gaps.getFirstDead();
+    //gap.score = gapw;
 
-function hitGap(leafy, gap) {
-  if (leafy.alive) {
-    game.sfxbuzz.play();
-    leafy.kill();
+    // randomize width
+    // [todo] weighted
+    var w = Math.floor(Math.random() * 400) + 50;
+
+    // apply gap
+    gap.reset(nextX, game.height-90);
+    gap.width = w;
+    gap.height = vars.gapHeight;
+
+    //console.log('width: '+w);
+    //console.log('x: '+nextX);
+    //console.log('gap: '+gapw);
   }
+}
+
+function resetGaps() {
+  game.gaps.forEach(function(gap) {
+    gap.kill();
+    gap.x=0;
+  });
 }
