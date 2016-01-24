@@ -1,3 +1,4 @@
+// # Owl
 function genOwl() {
   game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
   game.owl.scale.setTo(0.5, 0.5);
@@ -10,6 +11,7 @@ function genOwl() {
   game.owl.animations.play('sit');
 }
 
+// # Leafy and owl collide
 function passOwl(leafy, owl) {
   // console.log('Owl says hi!');
   // owl should fly away if you don't have enough blue leaves yet...

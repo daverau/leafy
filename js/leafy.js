@@ -7,7 +7,6 @@ function genLeafy() {
   game.leafy.alive = true;
 
   game.camera.follow(game.leafy);
-  //game.camera.bounds.setTo(null,null);
   //game.camera.focusOnXY(game.leafy.position.x, 0);
 
   game.leafy.blueLeafCount=0;
@@ -33,7 +32,7 @@ function playerMove(leafy) {
 
   // CSS canvas scaling for retina causes pointer alignment to be off by the device ratio, so we multiply that as an offset:
   // game.input.pointer1.x*window.devicePixelRatio
-  if (cursors.left.isDown || ((game.input.pointer1.x*window.devicePixelRatio) < game.width/2 && game.input.pointer1.isDown) ) {
+  if (game.cursors.left.isDown || ((game.input.pointer1.x*window.devicePixelRatio) < game.width/2 && game.input.pointer1.isDown) ) {
 
     leafy.animations.play('walk');
     leafy.body.velocity.x = (leafy.playerSpeed * -1); // [todo] speed boost variable
@@ -42,7 +41,7 @@ function playerMove(leafy) {
       leafy.scale.x = -1; //flipped
     }
 
-  } else if (cursors.right.isDown || ((game.input.pointer1.x*window.devicePixelRatio) > game.width/2 && game.input.pointer1.isDown) ) {
+  } else if (game.cursors.right.isDown || ((game.input.pointer1.x*window.devicePixelRatio) > game.width/2 && game.input.pointer1.isDown) ) {
 
     leafy.animations.play('walk');
     leafy.body.velocity.x = leafy.playerSpeed;
@@ -63,13 +62,13 @@ function playerMove(leafy) {
   }
 
   // walk when moving left or right (correctly continues playing)
-  if (cursors.left.isDown || cursors.right.isDown && (leafy.body.onFloor() || leafy.body.touching.down)) {
+  if (game.cursors.left.isDown || game.cursors.right.isDown && (leafy.body.onFloor() || leafy.body.touching.down)) {
     leafy.animations.play('walk');
   }
 
   // player jump
-  // (this.swipe.isDown && (this.swipe.positionDown.y > this.swipe.position.y))
-  if ( (cursors.up.isDown || jumpButton.isDown || ((game.input.pointer1.y*window.devicePixelRatio) < game.height/2 && game.input.pointer1.isDown) || (game.input.pointer2.isDown)) && (leafy.body.onFloor() || leafy.body.touching.down) ) {
+  // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
+  if ( (game.cursors.up.isDown || game.jumpButton.isDown || ((game.input.pointer1.y*window.devicePixelRatio) < game.height/2 && game.input.pointer1.isDown) || (game.input.pointer2.isDown)) && (leafy.body.onFloor() || leafy.body.touching.down) ) {
       leafy.animations.play('jump');
       //console.log('jump: '+leafy.jumpHeight);
       leafy.body.velocity.y = leafy.jumpHeight;

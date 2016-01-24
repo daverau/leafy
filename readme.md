@@ -6,15 +6,7 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 1. Left/Right arrow keys to move
 2. Spacebar to jump
 3. Collect the blue leaves
-4. Press enter key to plants trees
-
-## Install
-```
-git clone git@github.com:daverau/leafy.git
-cd leafy
-npm install
-npm start
-```
+4. Avoid the bees until you have flowers
 
 ## Sketch
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
@@ -31,13 +23,18 @@ npm start
 - quick trees in front with a second loop and tree.group
 - owl comes back after time
 - draw add bee enemy
-- crude plant trees working
+- crude plant trees working (removed)
 - add flower pickups
 - add gaps to require jumping
 - add player inventory
-- moon
-- jump on trees you plant
-- blue leaf jump boost (reduces gravity on leafy)
+- moon and rain
+- jump on trees you plant (removed)
+- blue leaf jump boost (removed)
+- add game structure for start/end states
+- add touch controls
+- wrap in phonegap
+- submit to iOS app store (testflight beta)
+- refine gaps (only a dozen vs 500 before)
 
 ## Todo
 - bees drop honey
@@ -45,17 +42,8 @@ npm start
 - doorway sprite with collide event
 - bear near doorway
 - draw inside of tree
-- start/end game states
+- design start/end screens
 - music
 - background image for effect
-- refine gaps
 - move flowers, blueleaves and trees from gaps
-- add touch controls
-- wrap in phonegap
-- submit to iOS app store
-
-## Someday
-- non-retina fixes?
-- code dynamic trees (cool vue.js experiment with sliders)
-- change leaf colors
-- grow trees with timers (why?)
+- rework wrapping/camera follow

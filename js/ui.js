@@ -15,12 +15,6 @@ function genUI() {
   game.flowersText = game.add.text( game.width-160, 50, '-', { font: (11*vars.ratio)+"px Arial", fill: '#F5A623' });
   game.flowersText.fixedToCamera = true;
 
-
-  // distance
-  // game.distanceText = game.add.text( game.width-100, game.height-40, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
-  // game.distanceText.fixedToCamera = true;
-  // game.distanceText.alpha = .2;
-
   // fps
   game.fps = game.add.text( game.width-220, game.height-50, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
   game.fps.fixedToCamera = true;

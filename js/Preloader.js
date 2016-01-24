@@ -17,14 +17,12 @@ BasicGame.Preloader.prototype = {
 		this.load.setPreloadSprite(this.preloadBar);
 
 		// load everything else...
-		//this.load.image('titlepage', 'img/title.png');
 		this.load.image('playButton', 'img/startbutton.png');
-		//this.load.audio('titleMusic', ['audio/bgnoise_01.wav']);
 		
 		this.load.spritesheet('leafy', 'img/leafy-v2.png', 128, 128);
-		//this.load.image('ground', 'img/ground.png');
 		this.load.image('bgnight', 'img/bg-night.png');
 		this.load.image('gap', 'img/gap.png');
+		this.load.audio('bgnoise', 'audio/bgnoise.wav');
 
 		// just using the color for now...
 		this.load.image('tree', 'img/tree.png');
@@ -39,7 +37,6 @@ BasicGame.Preloader.prototype = {
 		// owl
 		this.load.spritesheet('owl', 'img/sprite-owl.png', 256, 256);
 		this.load.audio('hoot', 'audio/hoot.wav');
-		this.load.audio('bgnoise', 'audio/bgnoise.wav');
 
 		// bee
 		this.load.spritesheet('bee', 'img/sprite-bee.png', 256, 256);
@@ -69,12 +66,6 @@ BasicGame.Preloader.prototype = {
 
 	update: function () {
 
-		//	You don't actually need to do this, but I find it gives a much smoother game experience.
-		//	Basically it will wait for our audio file to be decoded before proceeding to the MainMenu.
-		//	You can jump right into the menu if you want and still play the music, but you'll have a few
-		//	seconds of delay while the mp3 decodes - so if you need your music to be in-sync with your menu
-		//	it's best to wait for it to decode here first, then carry on.
-		
 		//	If you don't have any music in your game then put the game.state.start line into the create function and delete
 		//	the update function completely.
 		

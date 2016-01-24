@@ -28,6 +28,11 @@ function createGaps() {
     gap.width = w;
     gap.height = vars.gapHeight;
 
+    // removed these since we're doing our own checks
+    // but keeping around if we want later
+    //game.gaps.setAll('checkWorldBounds', true);
+    //game.gaps.setAll('outOfBoundsKill', true);
+
     //console.log('width: '+w);
     //console.log('x: '+nextX);
     //console.log('gap: '+gapw);

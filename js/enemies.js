@@ -1,13 +1,14 @@
 // Enemies
+
+// # Bees
 function genBees() {
   game.bees = game.add.group();
   var beeCount = Math.ceil(vars.worldSize * 0.003);
-  //var beeCount = 5;
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
-   //console.log('bee created at x:'+bee.x);
-   var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.height-90, game.rnd.integerInRange(1, 200), vars.beeSpeed);
-   game.bees.add(bee);
+    //console.log('bee created at x:'+bee.x);
+    var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.height-90, game.rnd.integerInRange(1, 200), vars.beeSpeed);
+    game.bees.add(bee);
   }
 }
 
@@ -44,19 +45,31 @@ Enemy.prototype.update = function() {
 };
 // Enemy move left and right loop
 function moveEnemy(enemy){
-  // ## Straightforward enemy movement loop
-  // if (enemy.xSpeed<0 && ((enemy.startX - enemy.body.position.x) > 400) || enemy.xSpeed>0 && ((enemy.startX - enemy.body.position.x) < -400)) {
-  //   enemy.xSpeed*=-1;
-  //   enemy.scale.x*=-1;
-  // }
 
-  // ## Change speed on direction (more interesting)
-  if (enemy.xSpeed<0 && ((enemy.startX - enemy.body.position.x) > 400)) {
-    enemy.xSpeed = vars.beeSpeed * 0.6;
-    enemy.scale.x*=-1;
-  } else if (enemy.xSpeed>0 && ((enemy.startX - enemy.body.position.x) < -400)) {
-    enemy.xSpeed = vars.beeSpeed * -2;
-    enemy.scale.x*=-1;
+  if (enemy.pickedup) {
+
+    // slow down faster bees
+    if (enemy.xSpeed > vars.beeSpeed) {
+      enemy.xSpeed = vars.beeSpeed * 0.6;
+    }
+
+    // Straightforward enemy movement
+    if (enemy.xSpeed<0 && ((enemy.startX - enemy.body.position.x) > 400) || enemy.xSpeed>0 && ((enemy.startX - enemy.body.position.x) < -400)) {
+      enemy.xSpeed *= -1;
+      enemy.scale.x *= -1;
+    }
+
+  } else {
+
+    // Change speed on direction for interesting movement
+    if (enemy.xSpeed<0 && ((enemy.startX - enemy.body.position.x) > 400)) {
+      enemy.xSpeed = vars.beeSpeed * 0.6;
+      enemy.scale.x *= -1;
+    } else if (enemy.xSpeed>0 && ((enemy.startX - enemy.body.position.x) < -400)) {
+      enemy.xSpeed = vars.beeSpeed * -2;
+      enemy.scale.x *= -1;
+    }
+
   }
 }
 
@@ -67,8 +80,7 @@ function passBee(leafy, bee) {
     leafy.kill();
   } else {
     if (!bee.pickedup) {
-      bee.pickedup=true;
-      //game.sfxbuzz._sound.playbackRate.value = Math.random()*1.2+.9;
+      bee.pickedup = true;
       bee.animations.play('flyhappy');
       game.sfxbuzz.play();
       bee.hittween.start();
