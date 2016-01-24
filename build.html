@@ -19,40 +19,14 @@
 <body>
 
   <a href="index.html" id="refresh"></a>
-  <div id="debug">debug...<span id="log"></span></div>
   <div id="game"></div>
   <div id="orientation"></div>
 
-  <script type="text/javascript">
-    if (!navigator.userAgent.toLowerCase().match('rau')) {
-        document.write("<script src='cordova.js'><\/script>");
-    }
-  </script>
-
-  <script src="js/index.js"></script>
-  <script src="lib/phaser2.0.4.js"></script>
-  <script src="js/vars.js"></script>
-  <script src="js/Boot.js"></script>
-  <script src="js/Preloader.js"></script>
-  <script src="js/gaps.js"></script>
-  <script src="js/trees.js"></script>
-  <script src="js/moon.js"></script>
-  <script src="js/flower.js"></script>
-  <script src="js/owl.js"></script>
-  <script src="js/leafy.js"></script>
-  <script src="js/enemies.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/MainMenu.js"></script>
-  <script src="js/Game.js"></script>
+  <script src="cordova.js"></script>
+  <script src="leafy.min.js"></script>
   <script type="text/javascript">
   var game = {};
   app.initialize();
-
-  // testing only
-  var is_chrome = navigator.userAgent.toLowerCase().indexOf('rau') > -1;
-  if (typeof cordova != undefined && is_chrome) {
-    app.onDeviceReady();
-  }
   </script>
 
 </body>
