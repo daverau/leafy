@@ -1,10 +1,11 @@
 // Gaps
 
-function createGaps() {
+function placeGaps() {
+
   var gapCount = game.gaps.children.length;
   console.log('gaps: '+gapCount);
+
   for (var i=0; i<gapCount; i++) {
-    //console.log('--GAP:'+(i+1)+'--');
 
     var maxGapX = getLastGapX();
     var gapw = Math.floor(Math.random() * 230) + 100;
@@ -33,9 +34,10 @@ function createGaps() {
     //game.gaps.setAll('checkWorldBounds', true);
     //game.gaps.setAll('outOfBoundsKill', true);
 
-    //console.log('width: '+w);
-    //console.log('x: '+nextX);
-    //console.log('gap: '+gapw);
+    console.log('--GAP:'+(i+1)+'--');
+    console.log('width: '+w);
+    console.log('x: '+nextX);
+    console.log('gap: '+gapw);
   }
 }
 
@@ -53,4 +55,10 @@ function resetGaps() {
     gap.kill();
     gap.x=0;
   });
+}
+
+function shiftGap(index) {
+  var index = index || 0;
+  game.gaps[index].kill();
+  game.gaps[index].x = 0;
 }

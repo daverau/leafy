@@ -55,7 +55,7 @@ BasicGame.Game.prototype = {
     game.gaps.createMultiple(5, 'tree', false);
     game.gaps.setAll('body.immovable', true);
     resetGaps();
-    createGaps();
+    placeGaps();
 
 
     // # Rain
@@ -113,7 +113,7 @@ BasicGame.Game.prototype = {
 
         // rearrange gap.x positions
         resetGaps();
-        createGaps();
+        placeGaps();
 
         // [todo] rearrange instead of redraw
         game.trees.destroy();
