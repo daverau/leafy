@@ -14,10 +14,10 @@ function drawMoon() {
 function genRain() {
   game.emitter = game.add.emitter(game.width/2, 0, 500);
   game.emitter.fixedToCamera = true;
-  game.emitter.width = game.width*1.5;
+  game.emitter.width = game.width * 1.5;
   game.emitter.makeParticles('tree');
-  game.emitter.minParticleScale = .1;
-  game.emitter.maxParticleScale = .7;
+  game.emitter.minParticleScale = 0.1;
+  game.emitter.maxParticleScale = 0.7;
   game.emitter.setYSpeed(500, 700);
   game.emitter.setXSpeed(-5, 5);
   game.emitter.minRotation = 0;

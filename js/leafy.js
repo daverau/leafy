@@ -1,7 +1,7 @@
 // Leafy setup
 function genLeafy() {
   game.leafy = game.add.sprite( 50 , -100, 'leafy');
-  game.leafy.anchor.setTo(.5, 1); //flip at middle point
+  game.leafy.anchor.setTo(0.5, 1); //flip at middle point
   game.leafy.playerSpeed = 150 * vars.ratio;
   game.leafy.jumpHeight = -800;
   game.leafy.alive = true;

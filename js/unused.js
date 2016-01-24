@@ -7,8 +7,8 @@ function plantTree(leafy) {
     // ## dynamic drawn "trees" as rectangles
     var r = randTree();
     var t = game.playerTrees.create(leafy.x, game.height-(r.height+58), 'tree');
-    t.scale.setTo(.5);
-    t.alpha = .9;
+    t.scale.setTo(0.5);
+    t.alpha = 0.9;
     t.height = r.height;
     t.width = r.width;
     t.evolve = r.img;
@@ -57,7 +57,6 @@ function addOneGap(x) {
   console.log('gap at x: '+x);
 }
 function addRowOfGaps() {
-  var gapCount = vars.worldSize * .01;
   var gapCount = game.gaps.children.length;
   console.log('gaps: '+gapCount);
 
@@ -84,8 +83,7 @@ function killChildren(grp) {
 // v1 gap objects to collide with
 // add gap objects
 function genGaps() {  
-  var gapCount = vars.worldSize * .01;
-  var gapCount = 10;
+  var gapCount = vars.worldSize * 0.01; // about 500 for the 50k world size
   console.log('gaps: '+gapCount);
   for (x=0; x<gapCount; x++) {
    var gap = new Gap();
@@ -182,7 +180,7 @@ function genGround() {
 }
 
 // random sound playbackrate
-game.sfxding._sound.playbackRate.value = Math.random()*1.2+.9;
+game.sfxding._sound.playbackRate.value = Math.random() * 1.2 + 0.9;
 
 
 // rain

@@ -6,11 +6,7 @@ function createGaps() {
   for (var i=0; i<gapCount; i++) {
     //console.log('--GAP:'+(i+1)+'--');
 
-    // find max x value
-    var maxGapX = 0;
-    game.gaps.forEach(function(gap) {
-      maxGapX = Math.max(gap.x+gap.width,maxGapX);    
-    });
+    var maxGapX = getLastGapX();
     var gapw = Math.floor(Math.random() * 230) + 100;
     var nextX = maxGapX + gapw;
 
@@ -36,6 +32,15 @@ function createGaps() {
     //console.log('x: '+nextX);
     //console.log('gap: '+gapw);
   }
+}
+
+function getLastGapX() {
+  // find max x value
+  var maxGapX = 0;
+  game.gaps.forEach(function(gap) {
+    maxGapX = Math.max(gap.x+gap.width,maxGapX);    
+  });
+  return maxGapX;
 }
 
 function resetGaps() {

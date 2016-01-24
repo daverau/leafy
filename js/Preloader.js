@@ -78,7 +78,7 @@ BasicGame.Preloader.prototype = {
 		//	If you don't have any music in your game then put the game.state.start line into the create function and delete
 		//	the update function completely.
 		
-		if (this.cache.isSoundDecoded('bgnoise') && this.ready == false)
+		if (this.cache.isSoundDecoded('bgnoise') && this.ready === false)
 		{
 			this.ready = true;
 			this.state.start('MainMenu');

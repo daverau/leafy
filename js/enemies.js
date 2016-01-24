@@ -1,8 +1,8 @@
 // Enemies
 function genBees() {
   game.bees = game.add.group();
-  var beeCount = Math.ceil(vars.worldSize * .003);
-  var beeCount = 5;
+  var beeCount = Math.ceil(vars.worldSize * 0.003);
+  //var beeCount = 5;
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
    //console.log('bee created at x:'+bee.x);
@@ -52,7 +52,7 @@ function moveEnemy(enemy){
 
   // ## Change speed on direction (more interesting)
   if (enemy.xSpeed<0 && ((enemy.startX - enemy.body.position.x) > 400)) {
-    enemy.xSpeed = vars.beeSpeed * .6;
+    enemy.xSpeed = vars.beeSpeed * 0.6;
     enemy.scale.x*=-1;
   } else if (enemy.xSpeed>0 && ((enemy.startX - enemy.body.position.x) < -400)) {
     enemy.xSpeed = vars.beeSpeed * -2;

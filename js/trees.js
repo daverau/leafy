@@ -2,7 +2,7 @@
 function genTrees() {
 game.trees = game.add.group();
   //game.trees.enableBody = true;
-  var tcount = vars.worldSize * .015;
+  var tcount = vars.worldSize * 0.015;
   console.log('trees: '+tcount);
   for (x=0; x<tcount; x++) {
    genTree();
@@ -12,7 +12,7 @@ game.trees = game.add.group();
 function genForetrees() {
 game.foretrees = game.add.group();
   //game.foretrees.enableBody = true;
-  var ftrees = vars.worldSize * .007;
+  var ftrees = vars.worldSize * 0.007;
   console.log('ftrees: '+ftrees);
   for (x=0; x<ftrees; x++) {
    genTree(game.foretrees);
@@ -21,7 +21,7 @@ game.foretrees = game.add.group();
 
 function genStump() {
   game.stump = game.add.sprite(0,0, 'treestump');
-  game.stump.anchor.setTo(.5,0);
+  game.stump.anchor.setTo(0.5,0);
   game.stump.x = (vars.worldSize / 2) + (game.width/3);
   game.stump.y = game.height - (game.stump.height + vars.gapHeight);
   game.stump.enableBody = true;
@@ -45,19 +45,19 @@ function genTree(group) {
   // ## group trees by world depth
 
   // middle full range
-  pxrange = ((game.world.width/2) * .8);
+  pxrange = ((game.world.width/2) * 0.8);
   if ( (x < pxrange) || (x > game.world.width - pxrange) ) {
     treeimg = 'tree' + Math.floor(Math.random()*8+1);
   }
 
   // middle full range
-  pxrange = ((game.world.width/2) * .4);
+  pxrange = ((game.world.width/2) * 0.4);
   if ( (x < pxrange) || (x > game.world.width - pxrange) ) {
     treeimg = 'tree' + Math.floor(Math.random()*10+1);
   }
 
   // ends just large trees
-  pxrange = ((game.world.width/2) * .1);
+  pxrange = ((game.world.width/2) * 0.1);
   if ( (x < pxrange) || (x > game.world.width - pxrange) ) {
     treeimg = 'tree' + Math.floor(Math.random()*1+9);
   }
@@ -65,6 +65,6 @@ function genTree(group) {
   // draw
   var t = group.create(x, 0, treeimg);
   t.y = game.world.height - (t.height + (vars.gapHeight-2)); // magic number based on ~ground.height
-  t.alpha = .9;
+  t.alpha = 0.9;
 
 }

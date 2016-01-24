@@ -40,7 +40,7 @@ function passBlueleaf(leafy, leaf) {
     leaf.pickedup=true;
     game.leafy.blueLeafCount += 1;
     game.sfxding.play();
-    game.sfxding._sound.playbackRate.value = .6;
+    game.sfxding._sound.playbackRate.value = 0.6;
     leaf.tween.start();
   }
 }
@@ -50,7 +50,7 @@ function passBlueleaf(leafy, leaf) {
 function genFlowers() {
   game.flowers = game.add.group();
   game.flowers.enableBody = true;
-  var fcount = Math.ceil(vars.worldSize * .005);
+  var fcount = Math.ceil(vars.worldSize * 0.005);
   console.log('flowers: '+fcount);
   for (x=0; x<fcount; x++) {
    var flower = new Flower(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.gapHeight);
@@ -84,7 +84,7 @@ function passFlower(leafy, flower) {
     game.leafy.flowers += 1;
     flower.pickedup = true;
     game.sfxding.play();
-    game.sfxding._sound.playbackRate.value = .3;
+    game.sfxding._sound.playbackRate.value = 0.3;
     flower.tween.start();
   }
 }
