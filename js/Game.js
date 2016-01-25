@@ -100,6 +100,8 @@ BasicGame.Game.prototype = {
 
     if (!game.leafy.alive) {
       respawn(game.leafy);
+      //this.state.start('Retry');
+
     } else {
       playerMove(game.leafy);
 

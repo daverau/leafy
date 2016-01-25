@@ -79,7 +79,7 @@ function playerMove(leafy) {
 
   // kill on world fallout
   // using this since I couldn't get this version of phaser to obey outofboundskill
-  if (game.leafy.body.y > game.height ) {
+  if (game.leafy.body.y > (game.height * 1.5) ) {
     //console.log( 'kill leafy' );
     game.leafy.kill();
   }

@@ -5,7 +5,7 @@ function genBlueleaves() {
   
   // generate leaves
   // var blueLeafTotal = vars.worldSize * .01;
-  var blueLeafTotal = 20;
+  var blueLeafTotal = 3;
   console.log('blue leaves: '+blueLeafTotal);
   
   for (var i=0; i<blueLeafTotal; i++) {
@@ -29,6 +29,7 @@ Blueleaf = function (game, x, y) {
 Blueleaf.prototype = Object.create(Phaser.Sprite.prototype);
 Blueleaf.prototype.constructor = Blueleaf;
 Blueleaf.prototype.update = function() {
+  resetMove(this);
 };
 
 function passBlueleaf(leafy, leaf) {
@@ -53,7 +54,7 @@ function genFlowers() {
   game.flowers = game.add.group();
   game.flowers.enableBody = true;
   //var fcount = Math.ceil(vars.worldSize * 0.005);
-  var fcount = 8;
+  var fcount = 2;
   console.log('flowers: '+fcount);
   for (x=0; x<fcount; x++) {
    var flower = new Flower(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.platformHeight);
@@ -80,6 +81,8 @@ Flower = function (game, x, y) {
 Flower.prototype = Object.create(Phaser.Sprite.prototype);
 Flower.prototype.constructor = Flower;
 Flower.prototype.update = function() {
+  // [question] how to refactor this?
+  resetMove(this);
 };
 
 function passFlower(leafy, flower) {

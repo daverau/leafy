@@ -13,6 +13,7 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Done
+- refactor objects for reposition vs destroy&recreate
 - rework wrapping/camera follow `game.camera.bounds.setTo(null,null);` and `game.camera.bounds.height = game.height;` did the trick
 - earn points for gap jumps
 - refactor gap generation (increase mobile framerate from ~12fps to ~40fps)
@@ -43,10 +44,8 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 - add tree pngs
 - retina issues mostly resolved using `* vars.ratio`
 
-- refactor objects for reposition vs destroy&recreate
-- move flowers, blueleaves and trees from gaps
-
 ## Todo
+- move flowers, blueleaves and trees from gaps
 - fall off screen to gameover/score/highscore/restart
 - doorway and sister leaf endgame
 - design start/end screens

@@ -4,7 +4,7 @@
 function genBees() {
   game.bees = game.add.group();
   //var beeCount = Math.ceil(vars.worldSize * 0.003);
-  var beeCount = 2;
+  var beeCount = 3;
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);
@@ -43,7 +43,23 @@ Enemy.prototype.constructor = Enemy;
 Enemy.prototype.update = function() {
   this.body.velocity.x = this.xSpeed;
   moveEnemy(this);
+  resetBee(this);
 };
+
+
+function resetBee(item) {
+  if ( (game.leafy.x - item.x) > game.width * 1 ) {
+    item.animations.play('fly');
+    item.alpha = 1;
+    item.y = game.height-90;
+    item.pickedup = false;
+    item.y = game.height - vars.platformHeight;
+    item.x = game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+  }
+}
+
+
+
 // Enemy move left and right loop
 function moveEnemy(enemy){
 

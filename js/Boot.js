@@ -50,3 +50,11 @@ function checkOverlap(spriteA, spriteB) {
   var boundsB = spriteB.getBounds();
   return Phaser.Rectangle.intersects(boundsA, boundsB);
 }
+function resetMove(item) {
+  if ( (game.leafy.x - item.x) > game.width * 1 ) {
+    item.alpha = 1;
+    item.pickedup = false;
+    item.y = game.height - vars.platformHeight;
+    item.x = game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+  }
+}
