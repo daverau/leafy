@@ -14,7 +14,7 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 
 ## Done
 - GA basic (event tracking)[https://github.com/danwilson/google-analytics-plugin]
-- refactor objects for reposition vs destroy&recreate
+- refactor objects for reposition vs destroy&recreate (better fps ~40-52)
 - rework wrapping/camera follow `game.camera.bounds.setTo(null,null);` and `game.camera.bounds.height = game.height;` did the trick
 - earn points for gap jumps
 - refactor gap generation (increase mobile framerate from ~12fps to ~40fps)
