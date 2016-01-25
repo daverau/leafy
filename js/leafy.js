@@ -5,9 +5,10 @@ function genLeafy() {
   game.leafy.playerSpeed = 150 * vars.ratio;
   game.leafy.jumpHeight = -800;
   game.leafy.alive = true;
+  game.leafy.score = 0;
 
   game.camera.follow(game.leafy);
-  //game.camera.focusOnXY(game.leafy.position.x, 0);
+  //game.camera.focusOnXY(game.leafy.body.x, 0);
 
   game.leafy.blueLeafCount=0;
   game.leafy.honeyCount = 0;
@@ -19,8 +20,8 @@ function genLeafy() {
   game.leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
   game.leafy.enableBody = true;
 
-  game.leafy.checkWorldBounds = true;
-  game.leafy.outOfBoundsKill = true;
+  // game.leafy.checkWorldBounds = true;
+  // game.leafy.outOfBoundsKill = true;
 
   // player score
   game.leafyText = game.add.text( game.leafy.x, game.leafy.y, '+200', { font: (16*vars.ratio)+"px Arial", fill: '#F5A623' });
@@ -28,7 +29,7 @@ function genLeafy() {
     alpha: 0,
     y: (game.leafyText.y - 40)
   }, 3000, Phaser.Easing.Cubic.Out);
-
+  game.leafyText.anchor.set(0.5)
 
   // animations
   game.leafy.animations.add('turn', [7], 0, true);
@@ -36,10 +37,10 @@ function genLeafy() {
   game.leafy.animations.add('jump', [1], 0, true);
 }
 
+
 function playerMove(leafy) {
 
-  // CSS canvas scaling for retina causes pointer alignment to be off by the device ratio, so we multiply that as an offset:
-  // game.input.pointer1.x*window.devicePixelRatio
+  // move left
   if (game.cursors.left.isDown || ((game.input.pointer1.x*window.devicePixelRatio) < game.width/2 && game.input.pointer1.isDown) ) {
 
     leafy.animations.play('walk');
@@ -49,6 +50,7 @@ function playerMove(leafy) {
       leafy.scale.x = -1; //flipped
     }
 
+  // moveright
   } else if (game.cursors.right.isDown || ((game.input.pointer1.x*window.devicePixelRatio) > game.width/2 && game.input.pointer1.isDown) ) {
 
     leafy.animations.play('walk');
@@ -58,6 +60,7 @@ function playerMove(leafy) {
       leafy.facing = 'right';
     }
 
+  // idle
   } else if (leafy.facing != 'idle') {
     
     leafy.animations.play('turn');
@@ -69,12 +72,20 @@ function playerMove(leafy) {
     leafy.facing = 'idle';
   }
 
-  // walk when moving left or right (correctly continues playing)
+  // walk animation
   if (game.cursors.left.isDown || game.cursors.right.isDown && (leafy.body.onFloor() || leafy.body.touching.down)) {
     leafy.animations.play('walk');
   }
 
+  // kill on world fallout
+  // using this since I couldn't get this version of phaser to obey outofboundskill
+  if (game.leafy.body.y > game.height ) {
+    //console.log( 'kill leafy' );
+    game.leafy.kill();
+  }
+
   // player jump
+  // [todo] clean this unreadable && || mess up!
   // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
   if ( (game.cursors.up.isDown || game.jumpButton.isDown || ((game.input.pointer1.y*window.devicePixelRatio) < game.height/2 && game.input.pointer1.isDown) || (game.input.pointer2.isDown)) && (leafy.body.onFloor() || leafy.body.touching.down) ) {
       leafy.animations.play('jump');
@@ -85,25 +96,6 @@ function playerMove(leafy) {
 
 }
 
-
-function gapTouch(leafy, gap) {
-  if (!gap.touched) {
-    console.log('gap touch');
-    gap.touched = true;
-    //console.log((gap.score*vars.ratio)/45+' points');
-    console.log(gap.score);
-    game.leafyText.setText( gap.score +'in');
-    //game.leafyText.setText( Math.ceil((gap.score*vars.ratio)/45) +' steps');
-
-    // set jump score so it follows Leafy around
-    game.leafyText.alpha = 1;
-    game.leafyText.x = ((game.leafy.x/2) * vars.ratio) - game.leafyText.width;
-    game.leafyText.y = (game.leafy.y/2 - 100) * vars.ratio;
-
-    game.leafyText.tween.delay(500).start();
-    gap.alpha = .5;
-  }
-}
 
 function respawn(leafy) {
   //console.log('respawn');

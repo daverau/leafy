@@ -19,9 +19,12 @@ BasicGame.Game.prototype = {
 
 
     // # World gen
+    console.log('world size: ' + vars.worldSize);
     this.world.setBounds(0, 0, vars.worldSize, game.height);
     // [todo] explore null boundless world
-    //game.camera.bounds.setTo(null,null);
+    game.camera.bounds.setTo(null,null);
+    //game.camera.bounds.width = null;
+    game.camera.bounds.height = game.height;
     game.wraps = 0; // world wrapping
     game.wrapping = true; // prevent initial wrap
 
@@ -52,7 +55,7 @@ BasicGame.Game.prototype = {
     // # Gaps
     game.gaps = game.add.group();
     game.gaps.enableBody = true;
-    game.gaps.createMultiple(5, 'tree', false);
+    game.gaps.createMultiple(8, 'tree', false);
     game.gaps.setAll('body.immovable', true);
     resetGaps();
     placeGaps();
@@ -107,6 +110,8 @@ BasicGame.Game.prototype = {
       // world wrap/rearrange gaps based on player position in world
       // [todo] break out into world function for wrapping/
       if(!game.wrapping && (game.leafy.x < vars.worldSize) ) {
+
+        console.log('---World wrap---');
         
         game.wraps++;
         game.wrapping = true;
@@ -116,18 +121,18 @@ BasicGame.Game.prototype = {
         placeGaps();
 
         // [todo] rearrange instead of redraw
-        game.trees.destroy();
-        game.bees.destroy();
-        game.blueleaves.destroy();
-        game.flowers.destroy();
+        // game.trees.destroy();
+        // game.bees.destroy();
+        // game.blueleaves.destroy();
+        // game.flowers.destroy();
 
-        genTrees();
-        genBees();
-        genBlueleaves();
-        genFlowers();
+        // genTrees();
+        // genBees();
+        // genBlueleaves();
+        // genFlowers();
 
-        this.world.bringToTop(game.leafy);
-        this.world.bringToTop(game.ui);
+        // this.world.bringToTop(game.leafy);
+        // this.world.bringToTop(game.ui);
 
       } else if (game.leafy.x >= vars.worldSize) {
         game.wrapping = false;
@@ -135,7 +140,7 @@ BasicGame.Game.prototype = {
 
       // # World wrap
       // wrap(sprite, padding, useBounds, horizontal, vertical)
-      this.world.wrap(game.leafy, 0, false, true, false);
+      //this.world.wrap(game.leafy, 0, false, true, false);
 
     }
 

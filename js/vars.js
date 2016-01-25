@@ -10,7 +10,7 @@ vars.ratio = window.devicePixelRatio || 1;
 // world
 // many game variables are based on this number
 // trees, bees, and blue leaves, oh, hey!
-vars.worldSize = window.innerWidth*3;
+vars.worldSize = window.innerWidth*2;
 
 // gaps
 vars.gapHeight = 90;
