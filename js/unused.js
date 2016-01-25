@@ -1,3 +1,44 @@
+// # World wrap
+// wrap(sprite, padding, useBounds, horizontal, vertical)
+// was useful at first, but leafy is a limitless world, so i'll roll the dice with float point numbers, how big can i go before problems arise?
+this.world.wrap(game.leafy, 0, false, true, false);
+
+    game.wraps = 0; // world wrapping
+    game.wrapping = true; // prevent initial wrap
+
+// world wrap/rearrange gaps based on player position in world
+if(!game.wrapping && (game.leafy.x < vars.worldSize) ) {
+
+  console.log('---World wrap---');
+  
+  game.wraps++;
+  game.wrapping = true;
+
+  // rearrange gap.x positions
+  resetGaps();
+  placeGaps();
+
+  // [todo] rearrange instead of redraw
+  // game.trees.destroy();
+  // game.bees.destroy();
+  // game.blueleaves.destroy();
+  // game.flowers.destroy();
+
+  // genTrees();
+  // genBees();
+  // genBlueleaves();
+  // genFlowers();
+
+  // this.world.bringToTop(game.leafy);
+  // this.world.bringToTop(game.ui);
+
+} else if (game.leafy.x >= vars.worldSize) {
+  game.wrapping = false;
+}
+
+
+
+
 // plant trees
 // create():
 function plantTree(leafy) {

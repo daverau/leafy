@@ -1,9 +1,8 @@
 // Gaps
 
 function placeGaps() {
-
   var gapCount = game.gaps.children.length;
-  console.log('pillars: '+gapCount);
+  console.log('placeGaps: '+gapCount);
 
   for (var i=0; i<gapCount; i++) {
 
@@ -36,10 +35,10 @@ function placeGaps() {
       //game.gaps.setAll('checkWorldBounds', true);
       //game.gaps.setAll('outOfBoundsKill', true);
 
-      // console.log('+++ pillar '+(i+1));
-      // console.log('width: '+w);
+      console.log('+++ pillar '+(i+1));
+      console.log('width: '+w);
+      console.log('gap: '+gapw);
       // console.log('x: '+nextX);
-      // console.log('gap width: '+gapw);
       // console.log('last pillar x: '+maxGapX);
     } else {
       //console.log('no dead gaps, move around first...');
@@ -48,6 +47,7 @@ function placeGaps() {
 }
 
 function getLastGapX() {
+  console.log('getLastGapX');
   // find max x value
   var maxGapX = 0;
   game.gaps.forEach(function(gap) {
@@ -57,6 +57,7 @@ function getLastGapX() {
 }
 
 function resetGaps() {
+  console.log('resetGaps');
   game.gaps.forEach(function(gap, index, array) {
   //game.gaps.forEach(function(gap, index, array) {
     // [question] why are index & array null?
@@ -68,9 +69,9 @@ function resetGaps() {
 }
 
 function moveFarGaps() {
+  console.log('moveFarGaps');
   game.gaps.forEach(function(gap, index, array) {
     if ( (game.leafy.x - (gap.x + gap.width)) > game.width * 1.5 ) {
-      console.log('killed a far away gap');
       gap.kill();
       gap.x = 0;
       gap.alpha = 1;
@@ -79,6 +80,7 @@ function moveFarGaps() {
 }
 
 function shiftGap(index) {
+  console.log('shiftGap');
   var index = index || 0;
   game.gaps[index].kill();
   game.gaps[index].alpha = 1;
@@ -96,7 +98,7 @@ function gapTouch(leafy, gap) {
 
     // set jump score so it follows Leafy around
     game.leafyText.alpha = 1;
-    game.leafyText.x = ((game.leafy.x/2) * vars.ratio) - game.leafyText.width;
+    game.leafyText.x = ((game.leafy.x/2) * vars.ratio);
     game.leafyText.y = (game.leafy.y/2 - 100) * vars.ratio;
 
     game.leafyText.tween.delay(500).start();

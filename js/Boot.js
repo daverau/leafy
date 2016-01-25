@@ -42,3 +42,11 @@ BasicGame.Boot.prototype = {
   }
 
 };
+
+// Utilities, to be moved once I have more here...
+// # Basic overlap check without physics, useful for owl check, etc
+function checkOverlap(spriteA, spriteB) {
+  var boundsA = spriteA.getBounds();
+  var boundsB = spriteB.getBounds();
+  return Phaser.Rectangle.intersects(boundsA, boundsB);
+}

@@ -19,11 +19,6 @@ function genUI() {
   game.fps = game.add.text( game.width-220, game.height-50, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
   game.fps.fixedToCamera = true;
   game.fps.alpha = 0.2;
-
-  // wraps
-  game.wrapsText = game.add.text( game.width-100, game.height-50, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
-  game.wrapsText.fixedToCamera = true;
-  game.wrapsText.alpha = 0.2;
 }
 
 

@@ -21,12 +21,8 @@ BasicGame.Game.prototype = {
     // # World gen
     console.log('world size: ' + vars.worldSize);
     this.world.setBounds(0, 0, vars.worldSize, game.height);
-    // [todo] explore null boundless world
     game.camera.bounds.setTo(null,null);
-    //game.camera.bounds.width = null;
     game.camera.bounds.height = game.height;
-    game.wraps = 0; // world wrapping
-    game.wrapping = true; // prevent initial wrap
 
 
     // # Background images
@@ -96,7 +92,6 @@ BasicGame.Game.prototype = {
     game.flowersText.setText(game.leafy.flowers);
     game.blueLeafText.setText(game.leafy.blueLeafCount);
     game.fps.setText(game.time.fps + "fps");
-    game.wrapsText.setText(game.wraps + " wraps");
 
 
     // # Leafy movement and Respawn
@@ -106,41 +101,6 @@ BasicGame.Game.prototype = {
       respawn(game.leafy);
     } else {
       playerMove(game.leafy);
-
-      // world wrap/rearrange gaps based on player position in world
-      // [todo] break out into world function for wrapping/
-      if(!game.wrapping && (game.leafy.x < vars.worldSize) ) {
-
-        console.log('---World wrap---');
-        
-        game.wraps++;
-        game.wrapping = true;
-
-        // rearrange gap.x positions
-        resetGaps();
-        placeGaps();
-
-        // [todo] rearrange instead of redraw
-        // game.trees.destroy();
-        // game.bees.destroy();
-        // game.blueleaves.destroy();
-        // game.flowers.destroy();
-
-        // genTrees();
-        // genBees();
-        // genBlueleaves();
-        // genFlowers();
-
-        // this.world.bringToTop(game.leafy);
-        // this.world.bringToTop(game.ui);
-
-      } else if (game.leafy.x >= vars.worldSize) {
-        game.wrapping = false;
-      }
-
-      // # World wrap
-      // wrap(sprite, padding, useBounds, horizontal, vertical)
-      //this.world.wrap(game.leafy, 0, false, true, false);
 
     }
 
@@ -152,7 +112,6 @@ BasicGame.Game.prototype = {
     // Here you should destroy anything you no longer need.
     // Stop music, delete sprites, purge caches, free resources, all that good stuff.
 
-    // Then let's go back to the main menu.
     this.state.start('MainMenu');
 
   },
@@ -165,11 +124,3 @@ BasicGame.Game.prototype = {
   }
 
 };
-
-// Utility
-function checkOverlap(spriteA, spriteB) {
-  var boundsA = spriteA.getBounds();
-  var boundsB = spriteB.getBounds();
-
-  return Phaser.Rectangle.intersects(boundsA, boundsB);
-}
