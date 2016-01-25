@@ -25,7 +25,7 @@ function genStump() {
   game.stump = game.add.sprite(0,0, 'treestump');
   game.stump.anchor.setTo(0.5,0);
   game.stump.x = (vars.worldSize / 2) + (game.width/3);
-  game.stump.y = game.height - (game.stump.height + vars.gapHeight);
+  game.stump.y = game.height - (game.stump.height + vars.platformHeight);
   game.stump.enableBody = true;
 }
 
@@ -63,7 +63,7 @@ function genTree(group) {
 
   // ## draw
   var t = group.create(x, 0, treeimg);
-  t.y = game.world.height - (t.height + (vars.gapHeight-2));
+  t.y = game.world.height - (t.height + (vars.platformHeight-2));
   t.alpha = 0.9;
 
 }

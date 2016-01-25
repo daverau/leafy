@@ -9,7 +9,7 @@ function genBlueleaves() {
   console.log('blue leaves: '+blueLeafTotal);
   
   for (var i=0; i<blueLeafTotal; i++) {
-    var leaf = new Blueleaf(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.gapHeight);
+    var leaf = new Blueleaf(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.platformHeight);
     game.blueleaves.add(leaf);
   }
 }
@@ -56,7 +56,7 @@ function genFlowers() {
   var fcount = 8;
   console.log('flowers: '+fcount);
   for (x=0; x<fcount; x++) {
-   var flower = new Flower(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.gapHeight);
+   var flower = new Flower(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.platformHeight);
    game.flowers.add(flower);
    //console.log('flower created at x:'+flower.x);
   }

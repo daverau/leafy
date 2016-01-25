@@ -6,7 +6,7 @@ this.world.wrap(game.leafy, 0, false, true, false);
     game.wraps = 0; // world wrapping
     game.wrapping = true; // prevent initial wrap
 
-// world wrap/rearrange gaps based on player position in world
+// world wrap/rearrange platforms based on player position in world
 if(!game.wrapping && (game.leafy.x < vars.worldSize) ) {
 
   console.log('---World wrap---');
@@ -14,9 +14,9 @@ if(!game.wrapping && (game.leafy.x < vars.worldSize) ) {
   game.wraps++;
   game.wrapping = true;
 
-  // rearrange gap.x positions
-  resetGaps();
-  placeGaps();
+  // rearrange platform.x positions
+  resetPlatforms();
+  placePlatforms();
 
   // [todo] rearrange instead of redraw
   // game.trees.destroy();
@@ -88,26 +88,26 @@ function passTree(leaf, tree) {
 
 
 
-// v2 gap code
-function addOneGap(x) {
-  var gap = game.gaps.getFirstDead();
+// v2 platform code
+function addOnePlatform(x) {
+  var platform = game.platforms.getFirstDead();
   var w = Math.floor(Math.random() * 300) + 90;
-  gap.reset(x, game.height-90);
-  gap.width = w;
-  gap.height = vars.gapHeight;
-  console.log('gap at x: '+x);
+  platform.reset(x, game.height-90);
+  platform.width = w;
+  platform.height = vars.platformHeight;
+  console.log('platform at x: '+x);
 }
-function addRowOfGaps() {
-  var gapCount = game.gaps.children.length;
-  console.log('gaps: '+gapCount);
+function addRowOfPlatforms() {
+  var platformCount = game.platforms.children.length;
+  console.log('platforms: '+platformCount);
 
-  killChildren(game.gaps);
+  killChildren(game.platforms);
 
   var hole = Math.floor(Math.random() * 5) + 1;
-  for (var i=0; i<gapCount; i++) {
+  for (var i=0; i<platformCount; i++) {
     console.log('----'+i+'----');
     if (i != hole && i != hole + 1) {
-      addOneGap(i * 200 + 10);
+      addOnePlatform(i * 200 + 10);
     }
   }
 }
@@ -121,18 +121,18 @@ function killChildren(grp) {
 
 
 
-// v1 gap objects to collide with
-// add gap objects
-function genGaps() {  
-  var gapCount = vars.worldSize * 0.01; // about 500 for the 50k world size
-  console.log('gaps: '+gapCount);
-  for (x=0; x<gapCount; x++) {
-   var gap = new Gap();
-   game.gaps.add(gap);
+// v1 platform/gap objects to collide with
+// add "gap" objects
+function genPlatforms() {  
+  var platformCount = vars.worldSize * 0.01; // about 500 for the 50k world size
+  console.log('platforms: '+platformCount);
+  for (x=0; x<platformCount; x++) {
+   var platform = new Platform();
+   game.platforms.add(platform);
   }
 }
 // factory pattern
-Gap = function (x,y,width,img) {
+Platform = function (x,y,width,img) {
   x = x || game.rnd.integerInRange(0, vars.worldSize);
   y = y || game.height;
   img = img || "tree";
@@ -141,7 +141,7 @@ Gap = function (x,y,width,img) {
   game.physics.arcade.enable(this);
   this.width = width || 300;
   //this.height = game.ground.height+1;
-  this.height = vars.gapHeight;
+  this.height = vars.platformHeight;
   this.anchor.setTo(1,1);
 
   this.body.moves = false;
@@ -154,17 +154,17 @@ Gap = function (x,y,width,img) {
   //   alpha: 0,
   // }, 1000, Phaser.Easing.Cubic.Out);
 };
-Gap.prototype = Object.create(Phaser.Sprite.prototype);
-Gap.prototype.constructor = Gap;
-function hitGap(leafy, gap) {
+Platform.prototype = Object.create(Phaser.Sprite.prototype);
+Platform.prototype.constructor = Platform;
+function hitPlatform(leafy, platform) {
   if (leafy.alive) {
     game.sfxbuzz.play();
     leafy.kill();
   }
 }
 // update():
-// might reuse this again instead of actual gaps
-//game.physics.arcade.overlap(game.leafy, game.gaps, hitGap, null, this);
+// might reuse this again instead of actual platforms
+//game.physics.arcade.overlap(game.leafy, game.platforms, hitPlatform, null, this);
 
 
 

@@ -21,7 +21,7 @@ BasicGame.Preloader.prototype = {
 		
 		this.load.spritesheet('leafy', 'img/leafy-v2.png', 128, 128);
 		this.load.image('bgnight', 'img/bg-night.png');
-		this.load.image('gap', 'img/gap.png');
+		this.load.image('platform', 'img/platform.png');
 		this.load.audio('bgnoise', 'audio/bgnoise.wav');
 
 		// just using the color for now...

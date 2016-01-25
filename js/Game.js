@@ -48,13 +48,13 @@ BasicGame.Game.prototype = {
     genFlowers();
 
 
-    // # Gaps
-    game.gaps = game.add.group();
-    game.gaps.enableBody = true;
-    game.gaps.createMultiple(8, 'tree', false);
-    game.gaps.setAll('body.immovable', true);
-    resetGaps();
-    placeGaps();
+    // # Platforms
+    game.platforms = game.add.group();
+    game.platforms.enableBody = true;
+    game.platforms.createMultiple(vars.platforms, 'tree', false);
+    game.platforms.setAll('body.immovable', true);
+    resetPlatforms();
+    placePlatforms();
 
 
     // # Rain
@@ -77,7 +77,7 @@ BasicGame.Game.prototype = {
 
 
     // # Collisions
-    this.physics.arcade.collide(game.leafy, game.gaps, gapTouch, null, this);      
+    this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
     this.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);

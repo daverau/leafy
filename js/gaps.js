@@ -1,14 +1,14 @@
-// Gaps
+// Platforms
 
-function placeGaps() {
-  var gapCount = game.gaps.children.length;
-  console.log('placeGaps: '+gapCount);
+function placePlatforms() {
+  var platformCount = game.platforms.children.length;
+  console.log('fn: placePlatforms(): '+platformCount);
 
-  for (var i=0; i<gapCount; i++) {
+  for (var i=0; i<platformCount; i++) {
 
-    var maxGapX = getLastGapX();
-    var gapw = Math.floor(Math.random() * 230) + 100;
-    var nextX = maxGapX + gapw ;
+    var maxPlatformX = getLastPlatformX();
+    var platformw = Math.floor(Math.random() * 230) + 100;
+    var nextX = maxPlatformX + platformw ;
 
     // first pillar should be at x:0
     if (i === 0) {
@@ -16,85 +16,84 @@ function placeGaps() {
     }
 
     // get from pool
-    var gap = game.gaps.getFirstDead();
-    if (gap) {
-      gap.score = gapw;
-      gap.touched = false;
+    var platform = game.platforms.getFirstDead();
+    if (platform) {
+      platform.score = platformw;
+      platform.touched = false;
 
       // randomize width
       // [todo] weighted
       var w = Math.floor(Math.random() * 400) + 150;
 
-      // apply gap
-      gap.reset(nextX, game.height-90);
-      gap.width = w;
-      gap.height = vars.gapHeight;
+      // apply platform
+      platform.reset(nextX, game.height-90);
+      platform.width = w;
+      platform.height = vars.platformHeight;
 
       // removed these since we're doing our own checks
       // but keeping around if we want later
-      //game.gaps.setAll('checkWorldBounds', true);
-      //game.gaps.setAll('outOfBoundsKill', true);
+      //game.platforms.setAll('checkWorldBounds', true);
+      //game.platforms.setAll('outOfBoundsKill', true);
 
-      console.log('+++ pillar '+(i+1));
-      console.log('width: '+w);
-      console.log('gap: '+gapw);
+      console.log('---platform'+i+1+'---');
+      console.log(w+'w ('+platformw+')');
       // console.log('x: '+nextX);
-      // console.log('last pillar x: '+maxGapX);
+      // console.log('last pillar x: '+maxPlatformX);
     } else {
-      //console.log('no dead gaps, move around first...');
+      //console.log('no dead platforms, move around first...');
     }
   }
 }
 
-function getLastGapX() {
-  console.log('getLastGapX');
+function getLastPlatformX() {
+  console.log('fn: getLastPlatformX()');
   // find max x value
-  var maxGapX = 0;
-  game.gaps.forEach(function(gap) {
-    maxGapX = Math.max(gap.x+gap.width,maxGapX);    
+  var maxPlatformX = 0;
+  game.platforms.forEach(function(platform) {
+    maxPlatformX = Math.max(platform.x+platform.width,maxPlatformX);    
   });
-  return maxGapX;
+  return maxPlatformX;
 }
 
-function resetGaps() {
-  console.log('resetGaps');
-  game.gaps.forEach(function(gap, index, array) {
-  //game.gaps.forEach(function(gap, index, array) {
+function resetPlatforms() {
+  console.log('fn() resetPlatforms');
+  game.platforms.forEach(function(platform, index, array) {
+  //game.platforms.forEach(function(platform, index, array) {
     // [question] why are index & array null?
-    // should be able to shiftGap(index)
-    gap.kill();
-    gap.x = 0;
-    gap.alpha = 1;
+    // should be able to shiftPlatform(index)
+    platform.kill();
+    platform.x = 0;
+    platform.alpha = 1;
   });
 }
 
-function moveFarGaps() {
-  console.log('moveFarGaps');
-  game.gaps.forEach(function(gap, index, array) {
-    if ( (game.leafy.x - (gap.x + gap.width)) > game.width * 1.5 ) {
-      gap.kill();
-      gap.x = 0;
-      gap.alpha = 1;
+function moveFarPlatforms() {
+  console.log('fn() moveFarPlatforms');
+  game.platforms.forEach(function(platform, index, array) {
+    if ( (game.leafy.x - (platform.x + platform.width)) > game.width * 1.5 ) {
+      platform.kill();
+      platform.x = 0;
+      platform.alpha = 1;
     }
   });
 }
 
-function shiftGap(index) {
-  console.log('shiftGap');
+function shiftPlatform(index) {
+  console.log('fn() shiftPlatform');
   var index = index || 0;
-  game.gaps[index].kill();
-  game.gaps[index].alpha = 1;
-  game.gaps[index].x = 0;
+  game.platforms[index].kill();
+  game.platforms[index].alpha = 1;
+  game.platforms[index].x = 0;
 }
 
 
-// # Leafy collide with gap
-function gapTouch(leafy, gap) {
-  if (!gap.touched) {
-    console.log('gap touch');
-    gap.touched = true;
-    game.leafy.score += gap.score;
-    game.leafyText.setText( gap.score +'in');
+// # Leafy collide with platform
+function platformTouch(leafy, platform) {
+  if (!platform.touched) {
+    console.log('fn() platform touch');
+    platform.touched = true;
+    game.leafy.score += platform.score;
+    game.leafyText.setText( platform.score +'in');
 
     // set jump score so it follows Leafy around
     game.leafyText.alpha = 1;
@@ -103,12 +102,12 @@ function gapTouch(leafy, gap) {
 
     game.leafyText.tween.delay(500).start();
     
-    // [todo] animate gap
-    gap.alpha = .5;
+    // [todo] animate platform
+    platform.alpha = .5;
 
-    // shuffle gaps if possible
-    moveFarGaps();
-    placeGaps();
+    // shuffle platforms if possible
+    moveFarPlatforms();
+    placePlatforms();
   }
 }
 
