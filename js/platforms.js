@@ -108,6 +108,8 @@ function platformTouch(leafy, platform) {
     // shuffle platforms if possible
     moveFarPlatforms();
     placePlatforms();
+
+    moveFarTrees();
   }
 }
 

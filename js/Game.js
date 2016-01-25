@@ -38,15 +38,16 @@ BasicGame.Game.prototype = {
 
     // # Draw game objects
     drawMoon();
-    genStump();
+  genStump();
     genTrees();
-    genOwl();
+  genOwl();
     genBees();
     genLeafy();
-    //genForetrees();
-    genBlueleaves();
-    genFlowers();
+      genBlueleaves();
+      genFlowers();
 
+    //genForetrees();
+    
 
     // # Platforms
     game.platforms = game.add.group();

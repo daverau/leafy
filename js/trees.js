@@ -1,4 +1,77 @@
-// # Utilities
+// # Trees
+
+function moveFarTrees() {
+  console.log('fn() moveFarTrees');
+  game.trees.forEach(function(tree) {
+    if ( (game.leafy.x - tree.x) > game.width * 1 ) {
+      //tree.tint = Math.random() * 0xffffff;
+      tree.x = game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+      console.log('move tree: '+tree.x);
+    }
+  });
+}
+
+// new functions for platform trees
+function platformTrees(x1, x2) {
+  console.log('fn(): platformTrees');
+  var tcount = Math.ceil( (x1 + x2) * 0.015);
+  console.log('trees: '+tcount);
+  for (x=0; x<tcount; x++) {
+    placeTree(game.trees, x1, x2 );
+  }
+}
+function placeTree(group, x1, x2) {
+  console.log('fn(): placeTree');
+  // get from pool
+  var tree = game.trees.getFirstDead();
+  if (tree) {
+    tree.passed = false;
+
+    var width = x1 + x2;
+
+    // ## group trees by world depth
+    // middle full range
+    if ( width > 50 ) {
+      treeimg = 'tree' + Math.floor(Math.random()*5+1);
+    }
+    // middle full range
+    if ( width > 250 ) {
+      treeimg = 'tree' + Math.floor(Math.random()*8+1);
+    }
+    // ends just large trees
+    if ( width > 550 ) {
+      treeimg = 'tree' + Math.floor(Math.random()*1+8);
+    }
+
+    // ## draw
+    tree.x = Math.floor(Math.random() * x2) + x1;
+
+
+
+    // randomize width
+    // [todo] weighted
+    var w = Math.floor(Math.random() * 400) + 150;
+
+    // apply platform
+    platform.reset(nextX, game.height-90);
+    platform.width = w;
+    platform.height = vars.platformHeight;
+
+    // removed these since we're doing our own checks
+    // but keeping around if we want later
+    //game.platforms.setAll('checkWorldBounds', true);
+    //game.platforms.setAll('outOfBoundsKill', true);
+
+    console.log('---platform'+i+1+'---');
+    console.log(w+'w ('+platformw+')');
+    // console.log('x: '+nextX);
+    // console.log('last pillar x: '+maxPlatformX);
+  } else {
+    //console.log('no dead platforms, move around first...');
+  }
+}
+
+
 function genTrees() {
   var tcount = Math.ceil(vars.worldSize * 0.015);
   console.log('trees: '+tcount);
