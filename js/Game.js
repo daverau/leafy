@@ -78,7 +78,7 @@ BasicGame.Game.prototype = {
 
 
     // # Collisions
-    this.physics.arcade.collide(game.leafy, game.gaps);      
+    this.physics.arcade.collide(game.leafy, game.gaps, gapTouch, null, this);      
     this.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);

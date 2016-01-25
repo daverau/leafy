@@ -3,13 +3,13 @@
 function placeGaps() {
 
   var gapCount = game.gaps.children.length;
-  console.log('gaps: '+gapCount);
+  console.log('pillars: '+gapCount);
 
   for (var i=0; i<gapCount; i++) {
 
     var maxGapX = getLastGapX();
     var gapw = Math.floor(Math.random() * 230) + 100;
-    var nextX = maxGapX + gapw;
+    var nextX = maxGapX + gapw ;
 
     // first should be 0
     if (i === 0) {
@@ -18,7 +18,8 @@ function placeGaps() {
 
     // get from pool
     var gap = game.gaps.getFirstDead();
-    //gap.score = gapw;
+    gap.score = gapw;
+    gap.touched = false;
 
     // randomize width
     // [todo] weighted
@@ -34,10 +35,11 @@ function placeGaps() {
     //game.gaps.setAll('checkWorldBounds', true);
     //game.gaps.setAll('outOfBoundsKill', true);
 
-    console.log('--GAP:'+(i+1)+'--');
+    console.log('--pillar:'+(i+1)+'--');
     console.log('width: '+w);
     console.log('x: '+nextX);
-    console.log('gap: '+gapw);
+    console.log('gap width: '+gapw);
+    console.log('last pillar x: '+maxGapX);
   }
 }
 
@@ -51,14 +53,18 @@ function getLastGapX() {
 }
 
 function resetGaps() {
-  game.gaps.forEach(function(gap) {
+  game.gaps.forEach(function(gap, index, array) {
+    // [question] why are index & array null?
+    // should be able to shiftGap(index)
     gap.kill();
-    gap.x=0;
+    gap.x = 0;
+    gap.alpha = 1;
   });
 }
 
 function shiftGap(index) {
   var index = index || 0;
   game.gaps[index].kill();
+  game.gaps[index].alpha = 1;
   game.gaps[index].x = 0;
 }

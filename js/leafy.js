@@ -22,6 +22,14 @@ function genLeafy() {
   game.leafy.checkWorldBounds = true;
   game.leafy.outOfBoundsKill = true;
 
+  // player score
+  game.leafyText = game.add.text( game.leafy.x, game.leafy.y, '+200', { font: (16*vars.ratio)+"px Arial", fill: '#F5A623' });
+  game.leafyText.tween = game.add.tween(game.leafyText).to({
+    alpha: 0,
+    y: (game.leafyText.y - 40)
+  }, 3000, Phaser.Easing.Cubic.Out);
+
+
   // animations
   game.leafy.animations.add('turn', [7], 0, true);
   game.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
@@ -72,10 +80,30 @@ function playerMove(leafy) {
       leafy.animations.play('jump');
       //console.log('jump: '+leafy.jumpHeight);
       leafy.body.velocity.y = leafy.jumpHeight;
+
   }
 
 }
 
+
+function gapTouch(leafy, gap) {
+  if (!gap.touched) {
+    console.log('gap touch');
+    gap.touched = true;
+    //console.log((gap.score*vars.ratio)/45+' points');
+    console.log(gap.score);
+    game.leafyText.setText( gap.score +'in');
+    //game.leafyText.setText( Math.ceil((gap.score*vars.ratio)/45) +' steps');
+
+    // set jump score so it follows Leafy around
+    game.leafyText.alpha = 1;
+    game.leafyText.x = ((game.leafy.x/2) * vars.ratio) - game.leafyText.width;
+    game.leafyText.y = (game.leafy.y/2 - 100) * vars.ratio;
+
+    game.leafyText.tween.delay(500).start();
+    gap.alpha = .5;
+  }
+}
 
 function respawn(leafy) {
   //console.log('respawn');
