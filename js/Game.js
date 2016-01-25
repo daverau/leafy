@@ -24,6 +24,10 @@ BasicGame.Game.prototype = {
     game.camera.bounds.setTo(null,null);
     game.camera.bounds.height = game.height;
 
+    game.camera.deathTween = game.add.tween(game.camera).to({
+      y: 2000
+    }, 3000, Phaser.Easing.Cubic.Out);
+
 
     // # Background images
     game.bgnight = game.add.sprite(0,0, 'bgnight');
@@ -99,13 +103,24 @@ BasicGame.Game.prototype = {
     game.leafy.body.velocity.x = 0;
 
     if (!game.leafy.alive) {
-      respawn(game.leafy);
+      //respawn(game.leafy);
       //this.state.start('Retry');
 
     } else {
       playerMove(game.leafy);
 
     }
+
+
+  if (game.leafy.body.y > (game.height * 2) ) {
+    //console.log( 'kill leafy' );
+    //game.leafy.kill();
+        this.state.start('MainMenu');
+
+  }
+
+
+
 
   },
 

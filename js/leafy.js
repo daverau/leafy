@@ -20,6 +20,11 @@ function genLeafy() {
   game.leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
   game.leafy.enableBody = true;
 
+  game.leafy.deathTween = game.add.tween(game.leafy).to({
+    alpha: 0,
+    angle: 30
+  }, 1500, Phaser.Easing.Cubic.Out);
+
   // game.leafy.checkWorldBounds = true;
   // game.leafy.outOfBoundsKill = true;
 
@@ -79,9 +84,17 @@ function playerMove(leafy) {
 
   // kill on world fallout
   // using this since I couldn't get this version of phaser to obey outofboundskill
-  if (game.leafy.body.y > (game.height * 1.5) ) {
-    //console.log( 'kill leafy' );
-    game.leafy.kill();
+
+  if (game.leafy.body.y > (game.height - 150) ) {
+    game.leafy.alive = false;
+    console.log('died');
+    game.camera.bounds.height = game.height*2;
+
+    game.leafy.deathTween.start();
+    game.moon.deathTween.start();
+    game.ui.deathTween.start();
+
+
   }
 
   // player jump

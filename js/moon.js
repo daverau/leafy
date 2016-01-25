@@ -13,6 +13,11 @@ function drawMoon() {
   game.moon.anchor.setTo(0.5);
   game.moon.fixedToCamera = true;
 
+  game.moon.deathTween = game.add.tween(game.moon).to({
+    alpha: 0,
+    y: 0
+  }, 500, Phaser.Easing.Cubic.Out);
+
 }
 
 // # Rain particle emitter

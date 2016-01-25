@@ -45,8 +45,8 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 - retina issues mostly resolved using `* vars.ratio`
 
 ## Todo
-- move flowers, blueleaves and trees from gaps
 - fall off screen to gameover/score/highscore/restart
+- move flowers, blueleaves and trees from gaps
 - doorway and sister leaf endgame
 - design start/end screens
 - music
