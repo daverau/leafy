@@ -1,6 +1,6 @@
 // # Utilities
 function genTrees() {
-  var tcount = vars.worldSize * 0.015;
+  var tcount = Math.ceil(vars.worldSize * 0.015);
   console.log('trees: '+tcount);
 
   game.trees = game.add.group();
@@ -11,7 +11,7 @@ function genTrees() {
 }
 
 function genForetrees() {
-  var ftrees = vars.worldSize * 0.007;
+  var ftrees = Math.ceil(vars.worldSize * 0.007);
   console.log('ftrees: '+ftrees);
   game.foretrees = game.add.group();
   for (x=0; x<ftrees; x++) {

@@ -24,9 +24,6 @@ Blueleaf = function (game, x, y) {
     alpha: 0,
     y: (this.y - 400),
   }, 1000, Phaser.Easing.Cubic.Out);
-  // this.tween.onComplete.add(function() {
-  //   this.kill();
-  // });
 };
 
 Blueleaf.prototype = Object.create(Phaser.Sprite.prototype);
@@ -40,6 +37,11 @@ function passBlueleaf(leafy, leaf) {
     leaf.pickedup=true;
     game.leafy.blueLeafCount += 1;
     game.sfxding.play();
+    // [todo] play test this value
+    //console.log(leafy.body.gravity.y);
+    if (leafy.body.gravity.y > 300) {
+      leafy.body.gravity.y -= 20;
+    }
     game.sfxding._sound.playbackRate.value = 0.6;
     leaf.tween.start();
   }
@@ -50,7 +52,8 @@ function passBlueleaf(leafy, leaf) {
 function genFlowers() {
   game.flowers = game.add.group();
   game.flowers.enableBody = true;
-  var fcount = Math.ceil(vars.worldSize * 0.005);
+  //var fcount = Math.ceil(vars.worldSize * 0.005);
+  var fcount = 8;
   console.log('flowers: '+fcount);
   for (x=0; x<fcount; x++) {
    var flower = new Flower(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.gapHeight);

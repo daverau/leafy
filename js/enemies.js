@@ -3,7 +3,8 @@
 // # Bees
 function genBees() {
   game.bees = game.add.group();
-  var beeCount = Math.ceil(vars.worldSize * 0.003);
+  //var beeCount = Math.ceil(vars.worldSize * 0.003);
+  var beeCount = 2;
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);

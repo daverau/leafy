@@ -45,6 +45,7 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 - rework wrapping/camera follow
 - earn points for gap jumps
 - fall off screen to gameover/score/highscore/restart
+- refactor objects besides gaps for reposition vs destroy&recreate
 - move flowers, blueleaves and trees from gaps
 - doorway and sister leaf endgame
 - design start/end screens
