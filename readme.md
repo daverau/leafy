@@ -12,7 +12,7 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 ## Sketch
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
-## Done
+### v1.3
 - GA basic (event tracking)[https://github.com/danwilson/google-analytics-plugin]
 - refactor objects for reposition vs destroy&recreate (better fps ~40-52)
 - rework wrapping/camera follow `game.camera.bounds.setTo(null,null);` and `game.camera.bounds.height = game.height;` did the trick
@@ -20,6 +20,8 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 - refactor gap generation (increase mobile framerate from ~12fps to ~40fps)
 - optimize world for mobile
 - reduce world size from 50,000 pixels to 3x screen width
+
+### V1.2
 - refine gaps (only a dozen vs 500 before)
 - add gulp uglify, and rsync tasks
 - submit to iOS app store (testflight beta)
@@ -33,6 +35,8 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 - add gaps to require jumping
 - add flower pickups
 - crude plant trees working (removed)
+
+### v1.1
 - draw add bee enemy
 - owl comes back after time
 - quick trees in front with a second loop and tree.group
