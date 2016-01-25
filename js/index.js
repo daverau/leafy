@@ -14,10 +14,13 @@ var app = {
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
 
+
     // # GA Event tracking
     var analytics = navigator.analytics;
-    analytics.setTrackingId('UA-5536882-24');
-    analytics.sendAppView('playing', successCallback, errorCallback);
+    if (analytics) {
+      analytics.setTrackingId('UA-5536882-24');
+      analytics.sendAppView('playing', successCallback, errorCallback);
+    }
 
 
     // # Create Phaser game

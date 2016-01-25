@@ -13,6 +13,7 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Done
+- GA basic (event tracking)[https://www.npmjs.com/package/com.cmackay.plugins.googleanalytics]
 - refactor objects for reposition vs destroy&recreate
 - rework wrapping/camera follow `game.camera.bounds.setTo(null,null);` and `game.camera.bounds.height = game.height;` did the trick
 - earn points for gap jumps
