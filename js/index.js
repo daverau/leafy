@@ -15,14 +15,6 @@ var app = {
     app.receivedEvent('deviceready');
 
 
-    // # GA Event tracking
-    var analytics = navigator.analytics;
-    if (analytics) {
-      analytics.setTrackingId('UA-5536882-24');
-      analytics.sendAppView('playing', successCallback, errorCallback);
-    }
-
-
     // # Create Phaser game
     // retina full-screen canvas, y'all
     var w = window.innerWidth*window.devicePixelRatio;

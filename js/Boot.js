@@ -16,6 +16,14 @@ BasicGame.Boot.prototype = {
     this.input.maxPointers = 2;
     this.stage.disableVisibilityChange = true;
     this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+
+    // # GA Event tracking
+    var analytics = navigator.analytics;
+    if (typeof analytics != 'undefined') {
+      analytics.setTrackingId('UA-5536882-24');
+      analytics.sendAppView('playing', successCallback, errorCallback);
+    }
+
   },
 
   preload: function () {
