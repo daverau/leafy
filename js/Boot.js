@@ -17,12 +17,6 @@ BasicGame.Boot.prototype = {
     this.stage.disableVisibilityChange = true;
     this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
 
-    // # GA Event tracking
-    if (window.analytics) {
-      window.analytics.startTrackerWithId('UA-5536882-24');
-      window.analytics.trackView('playing');
-    }
-
   },
 
   preload: function () {

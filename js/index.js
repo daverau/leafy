@@ -14,6 +14,12 @@ var app = {
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
 
+    // # GA Event tracking
+    if (window.analytics) {
+      window.analytics.startTrackerWithId('UA-5536882-24');
+      window.analytics.trackView('playing');
+    }
+
     // # Create Phaser game
     // retina full-screen canvas, y'all
     var w = window.innerWidth*window.devicePixelRatio;
