@@ -18,8 +18,10 @@ BasicGame.Boot.prototype = {
     this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
 
     // # GA Event tracking
-    window.analytics.startTrackerWithId('UA-5536882-24');
-    window.analytics.trackView('playing');
+    if (window.analytics) {
+      window.analytics.startTrackerWithId('UA-5536882-24');
+      window.analytics.trackView('playing');
+    }
 
   },
 
