@@ -14,7 +14,6 @@ var app = {
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
 
-
     // # Create Phaser game
     // retina full-screen canvas, y'all
     var w = window.innerWidth*window.devicePixelRatio;
