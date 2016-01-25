@@ -14,6 +14,12 @@ var app = {
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
 
+    // # GA Event tracking
+    var analytics = navigator.analytics;
+    analytics.setTrackingId('UA-5536882-24');
+    analytics.sendAppView('playing', successCallback, errorCallback);
+
+
     // # Create Phaser game
     // retina full-screen canvas, y'all
     var w = window.innerWidth*window.devicePixelRatio;
@@ -28,9 +34,12 @@ var app = {
 
     game.state.start('Boot'); // start it up, yo
 
+
   },
   // # Update DOM on a Received Event
   receivedEvent: function(id) {
+
+
     // var parentElement = document.getElementById(id);
     // var listeningElement = parentElement.querySelector('.listening');
     // var receivedElement = parentElement.querySelector('.received');

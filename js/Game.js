@@ -3,7 +3,6 @@ BasicGame.Game.prototype = {
 
   create: function () {
 
-
     // # Setup
     this.stage.smoothed = false;
     this.time.advancedTiming = true; // [todo] need this?
