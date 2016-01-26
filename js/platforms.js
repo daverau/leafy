@@ -63,7 +63,7 @@ function resetPlatforms() {
     // should be able to shiftPlatform(index)
     platform.kill();
     platform.x = 0;
-    platform.alpha = 1;
+    //platform.alpha = 1;
   });
 }
 
@@ -73,7 +73,7 @@ function moveFarPlatforms() {
     if ( (game.leafy.x - (platform.x + platform.width)) > game.width * 1.5 ) {
       platform.kill();
       platform.x = 0;
-      platform.alpha = 1;
+      //platform.alpha = 1;
     }
   });
 }
@@ -82,7 +82,7 @@ function shiftPlatform(index) {
   console.log('fn() shiftPlatform');
   var index = index || 0;
   game.platforms[index].kill();
-  game.platforms[index].alpha = 1;
+  //game.platforms[index].alpha = 1;
   game.platforms[index].x = 0;
 }
 
@@ -93,17 +93,17 @@ function platformTouch(leafy, platform) {
     console.log('fn() platform touch');
     platform.touched = true;
     game.leafy.score += platform.score;
-    game.leafyText.setText( platform.score +'in');
+    game.leafyText.setText( platform.score );
 
     // set jump score so it follows Leafy around
     game.leafyText.alpha = 1;
     game.leafyText.x = ((game.leafy.x/2) * vars.ratio);
-    game.leafyText.y = (game.leafy.y/2 - 100) * vars.ratio;
+    game.leafyText.y = (game.leafy.y/2 - 90) * vars.ratio;
 
-    game.leafyText.tween.delay(500).start();
+    game.leafyText.tween.delay(200).start();
     
     // [todo] animate platform
-    platform.alpha = .5;
+    //platform.alpha = .5;
 
     // shuffle platforms if possible
     moveFarPlatforms();

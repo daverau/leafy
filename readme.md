@@ -1,21 +1,35 @@
 # Leafy: a phaser.io game experiment
 
-Leafy is a game about growing and exploring. You start in the middle of a field where you can go left or right.
+Leafy is a platform game about finding your sister. You start at the edge of the woods where you can go right.
 
 ### Controls
 1. Left/Right arrow keys to move
 2. Spacebar/Up to jump over gaps and earn points
 3. Collect the blue leaves to jump farther/higher
 4. Avoid the bees until you have flowers
-5. Find your sister!
 
 ## Sketch
+My original concept was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
+
+## Todo
+- fall off screen to gameover/score/highscore/restart
+- move flowers, blueleaves and trees from gaps
+- start + end screens
+- endgame with doorway and friend
+- music
+- platform gaps scale with jump boost for difficulty
+- background stars, clouds, gradient
+- bees drop honey for bonus points/boost
+- rain on timer
+
+## Changelog
 
 ### v1.3
 - GA basic (event tracking)[https://github.com/danwilson/google-analytics-plugin]
 - refactor objects for reposition vs destroy&recreate (better fps ~40-52)
 - rework wrapping/camera follow `game.camera.bounds.setTo(null,null);` and `game.camera.bounds.height = game.height;` did the trick
+- refine jump boost gain on leaf pickup with max value
 - earn points for gap jumps
 - refactor gap generation (increase mobile framerate from ~12fps to ~40fps)
 - optimize world for mobile
@@ -48,14 +62,3 @@ Leafy is a game about growing and exploring. You start in the middle of a field 
 - expand world size
 - add tree pngs
 - retina issues mostly resolved using `* vars.ratio`
-
-## Todo
-- fall off screen to gameover/score/highscore/restart
-- move flowers, blueleaves and trees from gaps
-- doorway and sister leaf endgame
-- design start/end screens
-- music
-- refine gain jump boost on leaf pickup with max value, gapmax scales with this, gain difficulty
-- bees drop honey for bonus points or boost
-- background stars, clouds, gradient
-- rain on timer
