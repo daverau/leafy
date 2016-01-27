@@ -2,7 +2,7 @@
 
 function placePlatforms() {
   var platformCount = game.platforms.children.length;
-  console.log('fn: placePlatforms(): '+platformCount);
+  //console.log('fn: placePlatforms(): '+platformCount);
 
   for (var i=0; i<platformCount; i++) {
 
@@ -35,8 +35,8 @@ function placePlatforms() {
       //game.platforms.setAll('checkWorldBounds', true);
       //game.platforms.setAll('outOfBoundsKill', true);
 
-      console.log('---platform'+i+1+'---');
-      console.log(w+'w ('+platformw+')');
+      //console.log('---platform'+i+1+'---');
+      //console.log(w+'w ('+platformw+')');
       // console.log('x: '+nextX);
       // console.log('last pillar x: '+maxPlatformX);
     } else {
@@ -46,7 +46,7 @@ function placePlatforms() {
 }
 
 function getLastPlatformX() {
-  console.log('fn: getLastPlatformX()');
+  //console.log('fn: getLastPlatformX()');
   // find max x value
   var maxPlatformX = 0;
   game.platforms.forEach(function(platform) {
@@ -56,9 +56,8 @@ function getLastPlatformX() {
 }
 
 function resetPlatforms() {
-  console.log('fn() resetPlatforms');
+  //console.log('fn() resetPlatforms');
   game.platforms.forEach(function(platform, index, array) {
-  //game.platforms.forEach(function(platform, index, array) {
     // [question] why are index & array null?
     // should be able to shiftPlatform(index)
     platform.kill();
@@ -68,7 +67,7 @@ function resetPlatforms() {
 }
 
 function moveFarPlatforms() {
-  console.log('fn() moveFarPlatforms');
+  //console.log('fn() moveFarPlatforms');
   game.platforms.forEach(function(platform, index, array) {
     if ( (game.leafy.x - (platform.x + platform.width)) > game.width * 1.5 ) {
       platform.kill();
@@ -79,7 +78,7 @@ function moveFarPlatforms() {
 }
 
 function shiftPlatform(index) {
-  console.log('fn() shiftPlatform');
+  //console.log('fn() shiftPlatform');
   var index = index || 0;
   game.platforms[index].kill();
   //game.platforms[index].alpha = 1;
@@ -89,8 +88,8 @@ function shiftPlatform(index) {
 
 // # Leafy collide with platform
 function platformTouch(leafy, platform) {
-  if (!platform.touched) {
-    console.log('fn() platform touch');
+  if (!platform.touched && leafy.alive) {
+    //console.log('fn() platform touch');
     platform.touched = true;
     game.leafy.score += platform.score;
     game.leafyText.setText( platform.score );
@@ -108,7 +107,6 @@ function platformTouch(leafy, platform) {
     // shuffle platforms if possible
     moveFarPlatforms();
     placePlatforms();
-
     moveFarTrees();
   }
 }

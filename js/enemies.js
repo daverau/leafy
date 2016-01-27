@@ -92,16 +92,18 @@ function moveEnemy(enemy){
 
 // called by update leafy,bee group overlap check
 function passBee(leafy, bee) {
-  if (leafy.flowers < 1 && !bee.pickedup) {
-    game.sfxbuzz.play();
-    leafy.kill();
-  } else {
-    if (!bee.pickedup) {
-      bee.pickedup = true;
-      bee.animations.play('flyhappy');
+  if (leafy.alive) {
+    if (leafy.flowers < 1 && !bee.pickedup) {
       game.sfxbuzz.play();
-      bee.hittween.start();
-      leafy.flowers -= 1;
+      leafy.kill();
+    } else {
+      if (!bee.pickedup) {
+        bee.pickedup = true;
+        bee.animations.play('flyhappy');
+        game.sfxbuzz.play();
+        bee.hittween.start();
+        leafy.flowers -= 1;
+      }
     }
   }
 }

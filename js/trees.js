@@ -1,7 +1,7 @@
 // # Trees
 
 function moveFarTrees() {
-  console.log('fn() moveFarTrees');
+  //console.log('fn() moveFarTrees');
   game.trees.forEach(function(tree) {
     if ( (game.leafy.x - tree.x) > game.width * 1 ) {
       //tree.tint = Math.random() * 0xffffff;
@@ -12,6 +12,7 @@ function moveFarTrees() {
 }
 
 // new functions for platform trees
+// [todo] use this
 function platformTrees(x1, x2) {
   console.log('fn(): platformTrees');
   var tcount = Math.ceil( (x1 + x2) * 0.015);

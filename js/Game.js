@@ -101,8 +101,12 @@ BasicGame.Game.prototype = {
     // # Leafy movement and Respawn
     game.leafy.body.velocity.x = 0;
 
-    if (!game.leafy.alive) {
+    if (!game.leafy.alive && !game.rewpawning) {
+      game.rewpawning = true;
       //respawn(game.leafy);
+      game.leafy.kill();
+      console.log('^^^died !alive^^^');
+
       //this.state.start('Retry');
 
     } else {
@@ -114,7 +118,8 @@ BasicGame.Game.prototype = {
   if (game.leafy.body.y > (game.height * 2) ) {
     //console.log( 'kill leafy' );
     //game.leafy.kill();
-        this.state.start('MainMenu');
+    console.log('^^^world fallout^^^');
+    this.state.start('MainMenu');
 
   }
 
