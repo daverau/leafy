@@ -23,6 +23,7 @@ BasicGame.Preloader.prototype = {
 		this.load.image('bgnight', 'img/bg-night.png');
 		this.load.image('platform', 'img/platform.png');
 		this.load.audio('bgnoise', 'audio/bgnoise.wav');
+		this.load.audio('fall', 'audio/fall2.wav');
 
 		// just using the color for now...
 		this.load.image('tree', 'img/tree.png');

@@ -40,9 +40,12 @@ function genLeafy() {
   game.leafy.animations.add('turn', [7], 0, true);
   game.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
   game.leafy.animations.add('jump', [1], 0, true);
+  game.sfxfall = game.add.audio('fall');
 
   // death animation
   game.leafy.kill = function() {
+
+    game.sfxfall.play();
 
     game.add.tween(game.camera.bounds).to( { 
       height: game.height*2
