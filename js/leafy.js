@@ -66,9 +66,9 @@ function genLeafy() {
         this.events.destroy();
     }, this);
 
-    if (this.events) {
-        this.events.onKilled$dispatch(this);
-    }
+    // if (this.events) {
+    //     this.events.onKilled$dispatch(this);
+    // }
 
     return this;
   };
