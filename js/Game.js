@@ -3,19 +3,6 @@ BasicGame.Game.prototype = {
 
   create: function () {
 
-    // # Setup
-    this.stage.smoothed = false;
-    this.time.advancedTiming = true; // [todo] need this?
-    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-
-
-    // # Inputs
-    this.input.maxPointers = 2; // for mobile
-    this.input.addPointer();
-    this.input.addPointer();
-    game.cursors = this.input.keyboard.createCursorKeys();
-    game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
 
     // # World gen
     console.log('world size: ' + vars.worldSize);
@@ -41,15 +28,14 @@ BasicGame.Game.prototype = {
 
     // # Draw game objects
     drawMoon();
-  genStump();
+    genStump(); // move
     genTrees();
-  genOwl();
+    genOwl();   // move
     genBees();
     genLeafy();
-      genBlueleaves();
-      genFlowers();
-
-    //genForetrees();
+    genBlueleaves();
+    genFlowers();
+    //genForetrees(); // redo
     
 
     // # Platforms
@@ -85,7 +71,7 @@ BasicGame.Game.prototype = {
     this.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
-    
+  
     // owl
     if (game.owl) {
       if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
@@ -100,31 +86,25 @@ BasicGame.Game.prototype = {
 
     // # Leafy movement and Respawn
     game.leafy.body.velocity.x = 0;
-
     if (!game.leafy.alive && !game.rewpawning) {
       game.rewpawning = true;
       //respawn(game.leafy);
       game.leafy.kill();
       console.log('^^^died !alive^^^');
-
       //this.state.start('Retry');
-
     } else {
       playerMove(game.leafy);
-
     }
 
 
-  if (game.leafy.body.y > (game.height * 2) ) {
-    //console.log( 'kill leafy' );
-    //game.leafy.kill();
-    console.log('^^^world fallout^^^');
-    this.state.start('MainMenu');
-
-  }
-
-
-
+    // # world fallout
+    if (game.leafy.body.y > (game.height * 2) ) {
+      //console.log( 'kill leafy' );
+      //game.leafy.kill();
+      console.log('^^^world fallout^^^');
+      //this.state.start('MainMenu');
+      this.state.start('GameOver');
+    }
 
   },
 

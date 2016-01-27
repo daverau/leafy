@@ -1,38 +1,40 @@
 BasicGame.MainMenu = function (game) {
 
-	this.music = null;
-	this.playButton = null;
+  this.music = null;
+  this.playButton = null;
 
 };
 BasicGame.MainMenu.prototype = {
 
-	create: function () {
+  create: function () {
 
-		// # Title/start screen
-		// [todo] put some design time into this to make it nice with music and a button
-		//this.music = this.add.audio('titleMusic');
-		//this.music.play();
-		//this.add.sprite(0, 0, 'titlepage');
-		//this.playButton = this.add.button(this.world.centerX, this.world.centerY, 'playButton', this.startGame, this);
+    // # Title/start screen
+    // [todo] put some design time into this to make it nice with music and a button
+    //this.music = this.add.audio('titleMusic');
+    //this.music.play();
+    this.bigleafy = this.add.sprite(0, 0, 'bigleafy');
+    this.bigleafy.scale.setTo(.5);
+    this.playButton = this.add.button(0,0, 'playButton', this.startGame, this);
+    this.playButton.scale.setTo(.5);
 
-		this.startGame();
+    //this.startGame();
 
-	},
+  },
 
-	update: function () {
+  update: function () {
 
-		//	Do some nice funky main menu effect here
+    //  Do some nice funky main menu effect here
 
-	},
+  },
 
-	startGame: function (pointer) {
+  startGame: function (pointer) {
 
-		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
-		//this.music.stop();
+    //  Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
+    //this.music.stop();
 
-		//	And start the actual game
-		this.state.start('Game');
+    //  And start the actual game
+    this.state.start('Game');
 
-	}
+  }
 
 };

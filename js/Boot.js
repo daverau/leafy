@@ -13,9 +13,24 @@ BasicGame.Boot.prototype = {
 
   init: function () {
     // # Setup
-    this.input.maxPointers = 2;
+    //this.input.maxPointers = 2;
     this.stage.disableVisibilityChange = true;
     this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
+
+
+    // # Setup
+    this.stage.smoothed = false;
+    this.time.advancedTiming = true; // [todo] need this?
+    //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+
+    // # Inputs
+    this.input.maxPointers = 2; // for mobile
+    this.input.addPointer();
+    this.input.addPointer();
+    game.cursors = this.input.keyboard.createCursorKeys();
+    game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
 
   },
 

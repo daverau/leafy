@@ -31,6 +31,7 @@ var app = {
     game.state.add('Preloader', BasicGame.Preloader);
     game.state.add('MainMenu', BasicGame.MainMenu);
     game.state.add('Game', BasicGame.Game);
+    game.state.add('GameOver', BasicGame.GameOver);
 
     game.state.start('Boot'); // start it up, yo
 
