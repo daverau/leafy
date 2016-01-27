@@ -25,7 +25,7 @@ function owlFlyaway(leafy, owl) {
   //console.log('flying');
   game.sfxhoot.play();
   game.owl.animations.play('flap');
-  var randomx = (Math.random()*2000+1); // magic number
+  var randomx = (Math.random()*(game.height+game.owl.height+1)); // magic number
   randomx *= Math.floor(Math.random()*2) == 1 ? 1 : -1;
   var t = game.add.tween(game.owl).to( { x: (game.stump.x + randomx ), y: (game.stump.y - 1500) }, 3000, null, true); // [todo] move out once I build new interactions for later play
   t.onComplete.add(owlFlytostump, this);
