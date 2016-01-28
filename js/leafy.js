@@ -31,7 +31,7 @@ function genLeafy() {
   // game.leafy.outOfBoundsKill = true;
 
   // player score
-  game.leafyText = game.add.text( game.leafy.x, game.leafy.y, '+200', { font: (14*vars.ratio)+"px Arial", fill: '#F5A623' });
+  game.leafyText = game.add.text( game.leafy.x, game.leafy.y, '+200', { font: (14*vars.ratio)+"px Avenir-Medium", fill: '#F5A623' });
   game.leafyText.tween = game.add.tween(game.leafyText).to({
     alpha: 0,
     y: (game.leafyText.y + 400)

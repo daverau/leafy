@@ -24,11 +24,11 @@ BasicGame.GameOver.prototype = {
     this.gameoverScores.add(this.gameoverText);
 
     // your score
-    this.gameoverYourScore = this.add.text( game.width*.1+190, 250-game.height, game.leafy.score, { font: (24*vars.ratio)+"px Arial", fill: '#F5A623' });
+    this.gameoverYourScore = this.add.text( game.width*.1+190, 250-game.height, game.leafy.score, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
     this.gameoverScores.add(this.gameoverYourScore);
 
     // best score
-    this.gameoverBestjump = this.add.text( game.width*.1+190, 320-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px Arial", fill: '#85BFD2' });
+    this.gameoverBestjump = this.add.text( game.width*.1+190, 320-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#85BFD2' });
     this.gameoverScores.add(this.gameoverBestjump);
 
     // giantleafy

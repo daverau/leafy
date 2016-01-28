@@ -255,7 +255,7 @@ function passRain(leafy, leaf) {
 
 // distance
 // create():
-game.distanceText = game.add.text( game.width-100, game.height-40, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
+game.distanceText = game.add.text( game.width-100, game.height-40, '-', { font: (11*vars.ratio)+"px Avenir-Medium", fill: '#000' });
 game.distanceText.fixedToCamera = true;
 game.distanceText.alpha = .2;
 // update():
