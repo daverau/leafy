@@ -11,17 +11,20 @@ BasicGame.Preloader.prototype = {
   preload: function () {
 
     this.add.sprite(0,0, 'bgnight');
-    this.preloadBar = this.add.sprite(0, game.height/2, 'preloaderBar');
-    this.preloadBar.width = game.width/1.5;
-    this.preloadBar.x = game.width/1.625 - (this.preloadBar.width/2);
-    this.load.setPreloadSprite(this.preloadBar);
+    // this.preloadBar = this.add.sprite(0, game.height/2, 'preloaderBar');
+    // this.preloadBar.width = game.width/1.5;
+    // this.preloadBar.x = game.width/1.625 - (this.preloadBar.width/2);
+    // this.load.setPreloadSprite(this.preloadBar);
 
     // load everything else...
     this.load.image('playButton', 'img/startbutton.png');
+    this.load.image('retryButton', 'img/retrybutton.png');
+
+    this.load.image('gameoverText', 'img/text-gameover.png');
     this.load.image('gameover', 'img/gameover.png');
     
     this.load.spritesheet('leafy', 'img/leafy-v2.png', 128, 128);
-    this.load.image('platform', 'img/platform.png');
+    //this.load.image('platform', 'img/platform.png');
     this.load.audio('bgnoise', 'audio/bgnoise.wav');
     this.load.audio('fall', 'audio/fall.wav');
     this.load.image('bigleafy', 'img/bigleafy.png');
@@ -62,7 +65,7 @@ BasicGame.Preloader.prototype = {
   create: function () {
 
     // Once the load has finished we disable the crop because we're going to sit in the update loop for a short while as the music decodes
-    this.preloadBar.cropEnabled = false;
+    //this.preloadBar.cropEnabled = false;
 
   },
 

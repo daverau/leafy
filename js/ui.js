@@ -17,6 +17,11 @@ function genUI() {
   game.flowersText.fixedToCamera = true;
   game.ui.add(game.flowersText);
 
+  // score
+  game.scoreText = game.add.text( game.width/2, 45, '0', { font: (15*vars.ratio)+"px Arial", fill: '#000' });
+  game.scoreText.fixedToCamera = true;
+  game.ui.add(game.scoreText);
+
   // fps
   game.fps = game.add.text( game.width-90, game.height-50, '-', { font: (11*vars.ratio)+"px Arial", fill: '#000' });
   game.fps.fixedToCamera = true;

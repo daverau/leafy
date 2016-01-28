@@ -56,7 +56,7 @@ BasicGame.Game.prototype = {
 
 
     // # Rain
-    genRain();
+    //genRain();
 
 
     // # UI
@@ -90,6 +90,7 @@ BasicGame.Game.prototype = {
     game.flowersText.setText(game.leafy.flowers);
     game.blueLeafText.setText(game.leafy.blueLeafCount);
     game.fps.setText(game.time.fps + "fps");
+    game.scoreText.setText(game.leafy.score);
 
 
     // # Leafy movement and Respawn

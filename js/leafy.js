@@ -7,6 +7,8 @@ function genLeafy() {
   game.leafy.alive = true;
   game.leafy.score = 0;
 
+  game.leafy.bestScore = localStorage.getItem("leafybestScore") == null ? 0 : localStorage.getItem("leafybestScore");
+
   game.camera.follow(game.leafy);
   //game.camera.focusOnXY(game.leafy.body.x, 0);
 
@@ -42,21 +44,26 @@ function genLeafy() {
   game.leafy.animations.add('jump', [1], 0, true);
   game.sfxfall = game.add.audio('fall');
 
-  // death animation
+  // death
   game.leafy.kill = function() {
 
     game.sfxfall.play();
 
-    game.add.tween(game.camera.bounds).to( { 
-      height: game.height*2
-    }, 1000, Phaser.Easing.Cubic.Out);
+    // score
+    localStorage.setItem("leafybestScore", Math.max(game.leafy.score, game.leafy.bestScore));
+
+    // camera fall
+    game.leafy.cameraFall = game.add.tween(game.camera.bounds).to( { 
+      height: game.height*4
+    }, 5000);
+    game.leafy.cameraFall.start();
 
     this.alive = false;
     this.body.velocity.setTo(0,0);
     this.animations.stop();
     //this.animations.play('die');
 
-    game.camera.bounds.height = game.height*2;
+    //game.camera.bounds.height = game.height*2;
     this.deathTween.start();
     game.moon.deathTween.start();
     game.ui.deathTween.start();
@@ -64,9 +71,9 @@ function genLeafy() {
     game.platforms.destroy();
 
     this.events.onAnimationComplete.addOnce(function() {
-        this.exists = true;
-        this.visible = false;
-        this.events.destroy();
+      this.exists = true;
+      this.visible = false;
+      this.events.destroy();
     }, this);
 
     // only for newer phaser 2.4.4

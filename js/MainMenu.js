@@ -23,8 +23,6 @@ BasicGame.MainMenu.prototype = {
     this.playButton = this.add.button(game.width/1.45, game.height/2, 'playButton', this.startGame, this);
     this.playButton.scale.setTo(.5);
 
-    this.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
     //this.startGame();
 
   },
@@ -42,7 +40,7 @@ BasicGame.MainMenu.prototype = {
   render: function () {
 
     //console.log('render');
-    game.debug.pointer( game.input.activePointer );
+    //game.debug.pointer( game.input.activePointer );
 
   },
 

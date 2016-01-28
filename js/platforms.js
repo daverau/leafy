@@ -91,7 +91,7 @@ function platformTouch(leafy, platform) {
   if (!platform.touched && leafy.alive) {
     //console.log('fn() platform touch');
     platform.touched = true;
-    game.leafy.score += platform.score;
+    game.leafy.score = Number(platform.score) + Number(game.leafy.score);
     game.leafyText.setText( platform.score );
 
     // set jump score so it follows Leafy around
