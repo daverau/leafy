@@ -62,6 +62,16 @@ BasicGame.Game.prototype = {
     // # UI
     genUI();
 
+    // bg gameover
+    game.bggameover = this.add.sprite(0,0, 'bggameover');
+    game.bggameover.alpha = 0;
+    game.bggameover.width = game.width;
+    game.bggameover.height = game.height;
+    game.bggameover.fixedToCamera = true;
+    game.bggameover.tween = this.add.tween(game.bggameover).to({
+      alpha: .5,
+    }, 4000, Phaser.Easing.Cubic.Out);
+
   },
 
 
@@ -97,7 +107,6 @@ BasicGame.Game.prototype = {
     game.leafy.body.velocity.x = 0;
     if (!game.leafy.alive && !game.rewpawning) {
       game.rewpawning = true;
-      //respawn(game.leafy);
       game.leafy.kill();
       console.log('^^^died !alive^^^');
       //this.state.start('Retry');
@@ -122,7 +131,6 @@ BasicGame.Game.prototype = {
 
     // Here you should destroy anything you no longer need.
     // Stop music, delete sprites, purge caches, free resources, all that good stuff.
-
     this.state.start('MainMenu');
 
   },
@@ -131,6 +139,7 @@ BasicGame.Game.prototype = {
 
     //console.log('render');
     //game.debug.pointer( game.input.activePointer );
+    //game.debug.body( game.bees.children[0] );
 
   }
 

@@ -15,13 +15,36 @@ BasicGame.MainMenu.prototype = {
 
 
     // # Background images
-    game.bgnight = game.add.sprite(0,0, 'bgnight');
+    this.bg = this.add.sprite(game.width,game.height, 'bgnight');
+    this.bg.anchor.setTo(1);
 
-    this.bigleafy = this.add.sprite(50, game.height/2, 'bigleafy');
-    this.bigleafy.scale.setTo(.5);
-    this.bigleafy.anchor.setTo(0,.5);
-    this.playButton = this.add.button(game.width/1.45, game.height/2, 'playButton', this.startGame, this);
-    this.playButton.scale.setTo(.5);
+    this.ground = this.add.tileSprite(0 , game.height-90, game.width, 90, 'tree');
+    this.physics.arcade.enable(this.ground);
+    this.ground.body.immovable = true;
+    this.ground.body.allowGravity = false;
+
+    drawMoon();
+    genTrees();
+    genStump(); // move
+    genOwl();   // move
+    genBees(1);
+    game.moon.alpha=.3;
+    //genLeafy();
+
+    // this.bg = game.add.sprite(game.width/2, game.height/2, 'title');
+    // this.bg.anchor.setTo(.5);
+    // this.bg.width = game.width;
+    // this.bg.height = game.height;
+
+    // this.bigleafy = this.add.sprite(50, game.height/2, 'bigleafy');
+    // this.bigleafy.scale.setTo(.5);
+    // this.bigleafy.anchor.setTo(0,.5);
+    this.playButton = this.add.button(game.width/2, game.height/1.8, 'playButton', this.startGame, this);
+    this.playButton.anchor.setTo(.5,0);
+
+
+    this.titleText = game.add.text( game.width/2, game.height*.4, 'LEAFY', { font: "288px AvenirNext-Heavy", fill: '#fff' });
+    this.titleText.anchor.setTo(.5);
 
     //this.startGame();
 
@@ -30,6 +53,7 @@ BasicGame.MainMenu.prototype = {
   update: function () {
 
     //console.log( this.input.activePointer.isDown );
+    //this.physics.arcade.collide(game.leafy, this.ground, null, null, this);      
 
     // if ( this.input.activePointer.isDown || this.jumpButton.isDown) {
     //   this.startGame();

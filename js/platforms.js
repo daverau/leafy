@@ -88,8 +88,10 @@ function shiftPlatform(index) {
 
 // # Leafy collide with platform
 function platformTouch(leafy, platform) {
-  if (!platform.touched && leafy.alive) {
+  if (!platform.touched) {
     //console.log('fn() platform touch');
+    game.leafyText.tween.stop();
+    game.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
     platform.touched = true;
     game.leafy.score = Number(platform.score) + Number(game.leafy.score);
     game.leafyText.setText( platform.score );
@@ -97,9 +99,8 @@ function platformTouch(leafy, platform) {
     // set jump score so it follows Leafy around
     game.leafyText.alpha = 1;
     game.leafyText.x = ((game.leafy.x/2) * vars.ratio);
-    game.leafyText.y = (game.leafy.y/2 - 90) * vars.ratio;
-
-    game.leafyText.tween.delay(200).start();
+    game.leafyText.y = (game.leafy.y/2 - 80) * vars.ratio;
+    game.leafyText.tween.delay(140).start();
     
     // [todo] animate platform
     //platform.alpha = .5;

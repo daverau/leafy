@@ -48,15 +48,18 @@ function genLeafy() {
   game.leafy.kill = function() {
 
     game.sfxfall.play();
+    game.leafy.body.gravity.y = 500;
+    game.leafy.body.maxVelocity.y = 2500;
 
     // score
     localStorage.setItem("leafybestScore", Math.max(game.leafy.score, game.leafy.bestScore));
 
     // camera fall
     game.leafy.cameraFall = game.add.tween(game.camera.bounds).to( { 
-      height: game.height*4
-    }, 5000);
+      height: game.height*3
+    }, 3000);
     game.leafy.cameraFall.start();
+    
 
     this.alive = false;
     this.body.velocity.setTo(0,0);
@@ -70,16 +73,22 @@ function genLeafy() {
 
     game.platforms.destroy();
 
+    game.bgnight.tween = game.add.tween(game.bgnight).to( { 
+      alpha: 0
+    }, 2000);
+    game.bgnight.tween.start();
+
     this.events.onAnimationComplete.addOnce(function() {
       this.exists = true;
       this.visible = false;
       this.events.destroy();
     }, this);
+    game.bggameover.tween.start();
 
     // only for newer phaser 2.4.4
-    // if (this.events) {
-    //   this.events.onKilled$dispatch(this);
-    // }
+    if (this.events) {
+      this.events.onKilled$dispatch(this);
+    }
 
     return this;
   };

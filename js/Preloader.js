@@ -11,14 +11,17 @@ BasicGame.Preloader.prototype = {
   preload: function () {
 
     this.add.sprite(0,0, 'bgnight');
+    this.load.image('title', 'img/title.png');
     // this.preloadBar = this.add.sprite(0, game.height/2, 'preloaderBar');
     // this.preloadBar.width = game.width/1.5;
     // this.preloadBar.x = game.width/1.625 - (this.preloadBar.width/2);
     // this.load.setPreloadSprite(this.preloadBar);
 
     // load everything else...
-    this.load.image('playButton', 'img/startbutton.png');
     this.load.image('retryButton', 'img/retrybutton.png');
+    this.load.image('playButton', 'img/playbutton.png');
+    this.load.image('menuButton', 'img/menubutton.png');
+    this.load.image('bggameover', 'img/bg-gameover.png');
 
     this.load.image('gameoverText', 'img/text-gameover.png');
     this.load.image('gameover', 'img/gameover.png');

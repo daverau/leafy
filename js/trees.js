@@ -1,7 +1,7 @@
 // # Trees
 
 function moveFarTrees() {
-  //console.log('fn() moveFarTrees');
+  console.log('moveFarTrees()');
   game.trees.forEach(function(tree) {
     if ( (game.leafy.x - tree.x) > game.width * 1 ) {
       //tree.tint = Math.random() * 0xffffff;

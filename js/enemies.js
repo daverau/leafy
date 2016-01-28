@@ -1,10 +1,10 @@
 // Enemies
 
 // # Bees
-function genBees() {
+function genBees(num) {
   game.bees = game.add.group();
   //var beeCount = Math.ceil(vars.worldSize * 0.003);
-  var beeCount = 3;
+  var beeCount = num || 3;
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);
@@ -21,6 +21,7 @@ Enemy = function (game, x, y, direction, speed) {
   game.physics.enable(this, Phaser.Physics.ARCADE);
   this.xSpeed = direction*speed*-1;
   this.startX = x;
+  this.body.setSize(240, 160, 0, -20); // hitbox adjusted
 
   // animations
   this.animations.add('fly', [0,1,2,3,4], 30, true);
@@ -48,13 +49,15 @@ Enemy.prototype.update = function() {
 
 
 function resetBee(item) {
-  if ( (game.leafy.x - item.x) > game.width * 1 ) {
-    item.animations.play('fly');
-    item.alpha = 1;
-    item.y = game.height-90;
-    item.pickedup = false;
-    item.y = game.height - vars.platformHeight;
-    item.x = game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+  if (game.leafy) {
+    if ( (game.leafy.x - item.x) > game.width * 1 ) {
+      item.animations.play('fly');
+      item.alpha = 1;
+      item.y = game.height-90;
+      item.pickedup = false;
+      item.y = game.height - vars.platformHeight;
+      item.x = game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+    }
   }
 }
 
