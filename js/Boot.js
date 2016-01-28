@@ -1,3 +1,22 @@
+// # Global variables (more like constants)
+var vars = {};
+
+// setup
+vars.ratio = window.devicePixelRatio || 1;
+
+// world
+// many game variables are based on this number
+// trees, bees, and blue leaves, oh, hey!
+vars.worldSize = window.innerWidth*2;
+
+// platforms
+vars.platforms = 8; // [todo] refine, magic number, smaller doesn't move platforms fast enough to the front
+vars.platformHeight = 90;
+
+// bee speed
+vars.beeSpeed = 370;
+
+
 // # Phaser global
 // [question] is this leaking or causing bloat since it's global?
 BasicGame = {
@@ -14,29 +33,20 @@ BasicGame.Boot.prototype = {
   init: function () {
     // # Setup
     //this.input.maxPointers = 2;
-    this.stage.disableVisibilityChange = true;
-    this.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
-
+    game.stage.disableVisibilityChange = true;
+    //game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
 
     // # Setup
-    this.stage.smoothed = false;
-    this.time.advancedTiming = true; // [todo] need this?
-    //this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-
-
-    // # Inputs
-    this.input.maxPointers = 2; // for mobile
-    this.input.addPointer();
-    this.input.addPointer();
-    game.cursors = this.input.keyboard.createCursorKeys();
-    game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
+    game.stage.smoothed = false;
+    game.time.advancedTiming = true; // [todo] need this?
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
   },
 
   preload: function () {
     // # Preload images
     this.load.image('preloaderBar', 'img/preloaderbar.png');
+    this.load.image('bgnight', 'img/bg-night.png');
   },
 
   create: function () {
