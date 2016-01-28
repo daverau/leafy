@@ -15,6 +15,14 @@ BasicGame.Game.prototype = {
     }, 3000, Phaser.Easing.Cubic.Out);
 
 
+    // # Inputs
+    game.input.maxPointers = 2; // for mobile
+    game.input.addPointer();
+    game.input.addPointer();
+    game.cursors = this.input.keyboard.createCursorKeys();
+    game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+
     // # Background images
     game.bgnight = game.add.sprite(0,0, 'bgnight');
     game.bgnight.fixedToCamera = true;
@@ -121,7 +129,7 @@ BasicGame.Game.prototype = {
   render: function () {
 
     //console.log('render');
-    // game.debug.pointer( game.input.activePointer );
+    //game.debug.pointer( game.input.activePointer );
 
   }
 

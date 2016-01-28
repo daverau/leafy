@@ -28,8 +28,3 @@ function genUI() {
   }, 500, Phaser.Easing.Cubic.Out);
 
 }
-
-
-function dbug(msg) {
-  vars.$log.innerHTML = msg;
-}

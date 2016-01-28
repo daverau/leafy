@@ -12,10 +12,18 @@ BasicGame.MainMenu.prototype = {
     // [todo] put some design time into this to make it nice with music and a button
     //this.music = this.add.audio('titleMusic');
     //this.music.play();
-    this.bigleafy = this.add.sprite(0, 0, 'bigleafy');
+
+
+    // # Background images
+    game.bgnight = game.add.sprite(0,0, 'bgnight');
+
+    this.bigleafy = this.add.sprite(50, game.height/2, 'bigleafy');
     this.bigleafy.scale.setTo(.5);
-    this.playButton = this.add.button(0,0, 'playButton', this.startGame, this);
+    this.bigleafy.anchor.setTo(0,.5);
+    this.playButton = this.add.button(game.width/1.45, game.height/2, 'playButton', this.startGame, this);
     this.playButton.scale.setTo(.5);
+
+    this.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     //this.startGame();
 
@@ -23,7 +31,18 @@ BasicGame.MainMenu.prototype = {
 
   update: function () {
 
-    //  Do some nice funky main menu effect here
+    //console.log( this.input.activePointer.isDown );
+
+    // if ( this.input.activePointer.isDown || this.jumpButton.isDown) {
+    //   this.startGame();
+    // }
+
+  },
+
+  render: function () {
+
+    //console.log('render');
+    game.debug.pointer( game.input.activePointer );
 
   },
 

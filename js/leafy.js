@@ -12,7 +12,7 @@ function genLeafy() {
 
   game.leafy.blueLeafCount=0;
   game.leafy.honeyCount = 0;
-  game.leafy.flowers = 0;  
+  game.leafy.flowers = 10;  
 
   game.physics.arcade.enable(game.leafy);
   game.leafy.enableBody = true;
@@ -69,8 +69,9 @@ function genLeafy() {
         this.events.destroy();
     }, this);
 
+    // only for newer phaser 2.4.4
     // if (this.events) {
-    //     this.events.onKilled$dispatch(this);
+    //   this.events.onKilled$dispatch(this);
     // }
 
     return this;
