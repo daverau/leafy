@@ -44,7 +44,7 @@ BasicGame.GameOver.prototype = {
     this.gameoverScores.add(this.menuButton);
 
     // retry
-    this.playButton = this.add.button( game.width - (game.width*0.1), (game.height/2) - (game.height + 130), 'playButton', this.retryGame, this, 1, 0, 2);
+    this.playButton = this.add.button( game.width - (game.width*0.1), (game.height/2) - (game.height - 130), 'playButton', this.retryGame, this, 1, 0, 2);
     this.playButton.anchor.setTo(1,0);
     this.gameoverScores.add(this.playButton);
     

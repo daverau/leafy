@@ -75,8 +75,8 @@ BasicGame.Game.prototype = {
     game.bggameover.tween = this.add.tween(game.bggameover).to({
       alpha: 0.5,
     }, 4000, Phaser.Easing.Cubic.Out);
-
-//this.state.start('GameOver'); // test
+    
+this.state.start('GameOver'); // test
 
   },
 
