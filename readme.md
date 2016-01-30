@@ -26,10 +26,10 @@ My original concept was inspired by a gamejam theme about "growing"
 
 ### v1.5
 - allow leafy to jump just after falling off gaps
+- tighter typography
 -- short/long jumps based on button press duration
 -- platform gaps scale with jump boost for difficulty
 -- score UI animate
--- gameover/localstorage your longest jump
 
 ### v1.4
 - fall off screen to gameover/score/highscore/restart

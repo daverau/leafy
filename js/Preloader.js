@@ -19,8 +19,8 @@ BasicGame.Preloader.prototype = {
 
     // load everything else...
     this.load.image('retryButton', 'img/retrybutton.png');
-    this.load.image('playButton', 'img/playbutton.png');
-    this.load.image('menuButton', 'img/menubutton.png');
+    this.load.spritesheet('playButton', 'img/playbutton.png', 161*2, 50*2);
+    this.load.spritesheet('menuButton', 'img/menubutton.png', 161*2, 50*2);
     this.load.image('bggameover', 'img/bg-gameover.png');
 
     this.load.image('gameoverText', 'img/text-gameover.png');
@@ -29,6 +29,7 @@ BasicGame.Preloader.prototype = {
     this.load.spritesheet('leafy', 'img/leafy-v2.png', 128, 128);
     //this.load.image('platform', 'img/platform.png');
     this.load.audio('bgnoise', 'audio/bgnoise.wav');
+    this.load.audio('button', 'audio/woosh.wav');
     this.load.audio('fall', 'audio/fall.wav');
     this.load.image('bigleafy', 'img/bigleafy.png');
 

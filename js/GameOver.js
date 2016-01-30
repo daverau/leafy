@@ -40,10 +40,11 @@ BasicGame.GameOver.prototype = {
     }, 1000, Phaser.Easing.Cubic.Out);
 
     // retry
-    this.playButton = this.add.button( game.width*.1, 440-game.height, 'playButton', this.retryGame, this);
+    this.playButton = this.add.button( game.width*.1, 440-game.height, 'playButton', this.retryGame, this, 1, 0, 2);
     this.gameoverScores.add(this.playButton);
     
-    this.menuButton = this.add.button( game.width*.1+350, 440-game.height, 'menuButton', this.startGame, this);
+
+    this.menuButton = this.add.button( game.width*.1+350, 440-game.height, 'menuButton', this.startGame, this, 1, 0, 2);
     this.gameoverScores.add(this.menuButton);
 
     // animation
@@ -54,17 +55,19 @@ BasicGame.GameOver.prototype = {
 
 
   create: function () {
-
     this.gameoverLeafytween.start();
     this.gameoverTween.start();
-
   },
 
+  // button play
   retryGame: function() {
+    game.sfxbutton.play();
     this.state.start('Game');
   },
 
+  // button menu
   startGame: function() {
+    game.sfxbutton.play();
     this.state.start('MainMenu');
   },
 

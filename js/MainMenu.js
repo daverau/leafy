@@ -39,10 +39,10 @@ BasicGame.MainMenu.prototype = {
     // this.bigleafy = this.add.sprite(50, game.height/2, 'bigleafy');
     // this.bigleafy.scale.setTo(.5);
     // this.bigleafy.anchor.setTo(0,.5);
-    this.playButton = this.add.button(game.width/2, game.height*.6, 'playButton', this.startGame, this);
+    this.playButton = this.add.button(game.width/2, game.height*.6, 'playButton', this.startGame, this, 1, 0, 2);
     this.playButton.anchor.setTo(.5,0);
-
-
+    game.sfxbutton = game.add.audio('button');
+    
     this.titleText = game.add.text( game.width/2, game.height*.4, 'LEAFY', { font: "288px AvenirNext-Heavy", fill: '#fff' });
     this.titleText.anchor.setTo(.5);
 
@@ -74,6 +74,7 @@ BasicGame.MainMenu.prototype = {
     //this.music.stop();
 
     //  And start the actual game
+    game.sfxbutton.play();
     this.state.start('Game');
 
   }
