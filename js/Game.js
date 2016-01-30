@@ -40,7 +40,7 @@ BasicGame.Game.prototype = {
     genTrees();
     genOwl();   // move
     genBees();
-    genLeafy();
+    game.leafy = genLeafy();
     genBlueleaves();
     genFlowers();
     //genForetrees(); // redo
