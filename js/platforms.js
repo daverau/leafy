@@ -90,17 +90,17 @@ function shiftPlatform(index) {
 function platformTouch(leafy, platform) {
   if (!platform.touched) {
     //console.log('fn() platform touch');
-    game.leafyText.tween.stop();
-    game.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
+    leafy.leafyText.tween.stop();
+    leafy.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
     platform.touched = true;
     game.leafy.score = Number(platform.score) + Number(game.leafy.score);
-    game.leafyText.setText( platform.score );
+    leafy.leafyText.setText( platform.score );
 
     // set jump score so it follows Leafy around
-    game.leafyText.alpha = 1;
-    game.leafyText.x = ((game.leafy.x/2) * vars.ratio);
-    game.leafyText.y = (game.leafy.y/2 - 80) * vars.ratio;
-    game.leafyText.tween.delay(140).start();
+    leafy.leafyText.alpha = 1;
+    leafy.leafyText.x = ((game.leafy.x/2) * vars.ratio);
+    leafy.leafyText.y = (game.leafy.y/2 - 80) * vars.ratio;
+    leafy.leafyText.tween.delay(140).start();
     
     // [todo] animate platform
     //platform.alpha = .5;

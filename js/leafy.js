@@ -37,12 +37,12 @@ function genLeafy() {
   }, 1500, Phaser.Easing.Cubic.Out);
 
   // player score
-  game.leafyText = game.add.text( leafy.x, leafy.y, '+200', { font: (14*vars.ratio)+"px Avenir-Medium", fill: '#F5A623' });
-  game.leafyText.tween = game.add.tween(game.leafyText).to({
+  leafy.leafyText = game.add.text( leafy.x, leafy.y, '+200', { font: (14*vars.ratio)+"px Avenir-Medium", fill: '#F5A623' });
+  leafy.leafyText.tween = game.add.tween(leafy.leafyText).to({
     alpha: 0,
-    y: (game.leafyText.y + 400)
+    y: (leafy.leafyText.y + 400)
   }, 2000, Phaser.Easing.Cubic.Out);
-  game.leafyText.anchor.set(0.5)
+  leafy.leafyText.anchor.set(0.5)
 
   // animations
   leafy.animations.add('turn', [7], 0, true);
