@@ -13,17 +13,28 @@ My original concept was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
-- fall off screen to gameover/score/highscore/restart
-- move flowers, blueleaves and trees from gaps
-- start + end screens
+- allow leafy to jump just after falling off gaps
+- short/long jumps based on button press duration
 - endgame with doorway and friend
-- music
+- move flowers, blueleaves and trees from gaps
 - platform gaps scale with jump boost for difficulty
+- music
+- instructions overlay
 - background stars, clouds, gradient
 - bees drop honey for bonus points/boost
-- rain on timer
+- button hover and click sounds
+- score UI animate
+- gameover/localstorage your longest jump
+- fix performance on resume (what is wrong?)
 
 ## Changelog
+
+### v1.4
+- fall off screen to gameover/score/highscore/restart
+- start + end screens
+- ~~rain on timer~~ removed particle emitter for rain and increased fps to ~60! horray!
+- sad face on death
+- animate gameover
 
 ### v1.3
 - GA basic (event tracking)[https://github.com/danwilson/google-analytics-plugin]
