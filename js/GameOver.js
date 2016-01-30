@@ -52,7 +52,7 @@ BasicGame.GameOver.prototype = {
     // animation
     this.gameoverTween = this.add.tween(this.gameoverScores).to({
       y: game.height,
-    }, 1000, Phaser.Easing.Cubic.Out);
+    }, 600, Phaser.Easing.Cubic.Out);
   },
 
 

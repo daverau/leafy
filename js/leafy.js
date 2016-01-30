@@ -73,7 +73,7 @@ function genLeafy() {
     // camera fall
     leafy.cameraFall = game.add.tween(game.camera.bounds).to( { 
       height: game.height*3
-    }, 3000);
+    }, 2000);
     leafy.cameraFall.start();
     
     // animate world
@@ -83,7 +83,7 @@ function genLeafy() {
     game.platforms.destroy();
     game.bgnight.tween = game.add.tween(game.bgnight).to( { 
       alpha: 0
-    }, 2000);
+    }, 1500);
     game.bgnight.tween.start();
     game.bggameover.tween.start();
 
