@@ -19,9 +19,9 @@ BasicGame.MainMenu.prototype = {
     this.bg.anchor.setTo(1);
 
     this.ground = this.add.tileSprite(0 , game.height-90, game.width, 90, 'tree');
-    this.physics.arcade.enable(this.ground);
-    this.ground.body.immovable = true;
-    this.ground.body.allowGravity = false;
+    // this.physics.arcade.enable(this.ground);
+    // this.ground.body.immovable = true;
+    // this.ground.body.allowGravity = false;
 
     drawMoon();
     genTrees();
@@ -39,7 +39,7 @@ BasicGame.MainMenu.prototype = {
     // this.bigleafy = this.add.sprite(50, game.height/2, 'bigleafy');
     // this.bigleafy.scale.setTo(.5);
     // this.bigleafy.anchor.setTo(0,.5);
-    this.playButton = this.add.button(game.width/2, game.height/1.8, 'playButton', this.startGame, this);
+    this.playButton = this.add.button(game.width/2, game.height*.6, 'playButton', this.startGame, this);
     this.playButton.anchor.setTo(.5,0);
 
 

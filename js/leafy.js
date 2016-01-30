@@ -42,6 +42,8 @@ function genLeafy() {
   game.leafy.animations.add('turn', [7], 0, true);
   game.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
   game.leafy.animations.add('jump', [1], 0, true);
+  game.leafy.animations.add('sad', [8], 0, true);
+  game.leafy.animations.add('surprised', [9], 0, true);
   game.sfxfall = game.add.audio('fall');
 
   // death
@@ -64,7 +66,7 @@ function genLeafy() {
     this.alive = false;
     this.body.velocity.setTo(0,0);
     this.animations.stop();
-    //this.animations.play('die');
+    this.animations.play('sad');
 
     //game.camera.bounds.height = game.height*2;
     this.deathTween.start();
@@ -99,7 +101,7 @@ function genLeafy() {
 function playerMove(leafy) {
 
   // move left
-  if (game.cursors.left.isDown || ((game.input.pointer1.x*window.devicePixelRatio) < game.width/2 && game.input.pointer1.isDown) ) {
+  if (game.cursors.left.isDown || (game.input.pointer1.x < game.width/2 && game.input.pointer1.isDown) ) {
 
     leafy.animations.play('walk');
     leafy.body.velocity.x = (leafy.playerSpeed * -1); // [todo] speed boost variable
@@ -109,7 +111,7 @@ function playerMove(leafy) {
     }
 
   // moveright
-  } else if (game.cursors.right.isDown || ((game.input.pointer1.x*window.devicePixelRatio) > game.width/2 && game.input.pointer1.isDown) ) {
+  } else if (game.cursors.right.isDown || (game.input.pointer1.x > game.width/2 && game.input.pointer1.isDown) ) {
 
     leafy.animations.play('walk');
     leafy.body.velocity.x = leafy.playerSpeed;
