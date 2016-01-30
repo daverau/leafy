@@ -16,9 +16,9 @@ BasicGame.Game.prototype = {
 
 
     // # Inputs
-    game.input.maxPointers = 2; // for mobile
-    game.input.addPointer();
-    game.input.addPointer();
+    this.input.maxPointers = 2; // for mobile
+    this.input.addPointer();
+    this.input.addPointer();
     game.cursors = this.input.keyboard.createCursorKeys();
     game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
@@ -59,6 +59,10 @@ BasicGame.Game.prototype = {
     //genRain();
 
 
+    // testing...
+    //genEasyPlatorms();
+
+
     // # UI
     genUI();
 
@@ -86,6 +90,7 @@ BasicGame.Game.prototype = {
 
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
+    this.physics.arcade.collide(game.leafy, game.easyPlatorms, null, null, this);      
     this.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
@@ -105,6 +110,7 @@ BasicGame.Game.prototype = {
 
     // # Jump timing stuff
     game.leafy.standing = game.leafy.body.blocked.down || game.leafy.body.touching.down;
+    //console.log(game.leafy.standing);
 
     if (!game.leafy.standing && game.leafy.wasStanding) {
         game.leafy.edgeTimer = game.time.time + 250;

@@ -20,36 +20,39 @@ BasicGame.GameOver.prototype = {
     this.gameoverScores = this.add.group();
 
     // gameover
-    this.gameoverText = this.add.sprite( game.width*0.1, 140-game.height, 'gameoverText');
+    this.gameoverText = this.add.sprite( game.width*0.27, 140-game.height, 'gameoverText');
     this.gameoverScores.add(this.gameoverText);
 
     // your score
-    this.gameoverYourScore = this.add.text( game.width*0.1+205, 260-game.height, game.leafy.score, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
+    this.gameoverYourScore = this.add.text( game.width*0.27, 295-game.height, game.leafy.score, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
     this.gameoverScores.add(this.gameoverYourScore);
 
     // best score
-    this.gameoverBestjump = this.add.text( game.width*0.1+205, 330-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#85BFD2' });
+    this.gameoverBestjump = this.add.text( game.width*0.27, 415-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#85BFD2' });
     this.gameoverScores.add(this.gameoverBestjump);
 
-    // giantleafy
-    this.gameoverLeafy = this.add.sprite(game.width-(game.width/8), game.height*2, 'gameover');
+    // giant leafy
+    this.gameoverLeafy = this.add.sprite(0, game.height*2, 'gameover');
     this.gameoverLeafy.anchor.setTo(0.5);
-    this.gameoverLeafy.scale.setTo(-0.5,0.5);
+    this.gameoverLeafy.scale.setTo(0.5);
     this.gameoverLeafytween = this.add.tween(this.gameoverLeafy).to({
       y: game.height-(game.height/3),
     }, 1000, Phaser.Easing.Cubic.Out);
 
+    // menu button
+    this.menuButton = this.add.button( game.width*0.27, 500 - game.height, 'menuButton', this.startGame, this, 1, 0, 2);
+    this.menuButton.scale.setTo(0.5);
+    this.gameoverScores.add(this.menuButton);
+
     // retry
-    this.playButton = this.add.button( game.width*0.1, 440-game.height, 'playButton', this.retryGame, this, 1, 0, 2);
+    this.playButton = this.add.button( game.width - (game.width*0.3), (game.height/2) - game.height, 'playButton', this.retryGame, this, 1, 0, 2);
+    this.playButton.anchor.setTo(0.5);
     this.gameoverScores.add(this.playButton);
     
 
-    this.menuButton = this.add.button( game.width*0.1+350, 440-game.height, 'menuButton', this.startGame, this, 1, 0, 2);
-    this.gameoverScores.add(this.menuButton);
-
     // animation
     this.gameoverTween = this.add.tween(this.gameoverScores).to({
-      y: game.height*1.02,
+      y: game.height,
     }, 1000, Phaser.Easing.Cubic.Out);
   },
 

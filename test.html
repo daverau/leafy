@@ -1,72 +1,59 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-<meta charset="UTF-8" />
-<title>test</title>
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-<script type="text/javascript" src="lib/phaser.min.js"></script>
-<style type="text/css">
-body {
-  margin: 1em;
-  background: #F4F4F4;
-  background: #eee;
-  text-align: center;
-}
-canvas {
-  width: 300px;
-  height: 300px;
-  margin: 1em auto;
-}
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
+  <meta name="msapplication-tap-highlight" content="no" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="HandheldFriendly" content="true" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Phaser App">
+  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi, minimal-ui" />
+
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Leafy</title>
 </head>
 <body>
 
+  <a href="index.html" id="refresh"></a>
+  <div id="debug">debug...<span id="log"></span></div>
+  <div id="game"></div>
+  <div id="orientation"></div>
 
-<button onclick="game.owl.animations.play('blink');">blink</button>
-<button onclick="game.owl.animations.play('look');">look</button>
-<button onclick="game.owl.animations.play('flap');">flap</button>
+  <script type="text/javascript">
+    if (!navigator.userAgent.toLowerCase().match('rau')) {
+        document.write("<script src='cordova.js'><\/script>");
+    }
+  </script>
 
+  <script src="js/index.js"></script>
+  <script src="lib/phaser2.4.4.js"></script>
+  <script src="js/Boot.js"></script>
+  <script src="js/Preloader.js"></script>
+  <script src="js/platforms.js"></script>
+  <script src="js/trees.js"></script>
+  <script src="js/moon.js"></script>
+  <script src="js/flower.js"></script>
+  <script src="js/owl.js"></script>
+  <script src="js/leafy.js"></script>
+  <script src="js/enemies.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/MainMenu.js"></script>
+  <script src="js/Game.js"></script>
+  <script src="js/GameOver.js"></script>
+  <script type="text/javascript">
+  var game = {};
+  app.initialize();
 
-<script type="text/javascript">
-var game = new Phaser.Game( (300*window.devicePixelRatio), (300*window.devicePixelRatio), Phaser.CANVAS, 'owl-game', { preload: preload, create: create, update: update, render: render } );
-
-function preload() {
-  game.load.spritesheet('owl', 'assets/sprite-owl.png', 256, 256);
-}
-
-function create() {
-  cursors = game.input.keyboard.createCursorKeys();
-  game.stage.backgroundColor = 0xF4F4F4;
-  game.owl = game.add.sprite(0,0,'owl');
-  
-  // center
-  game.owl.anchor.setTo(.5,.5);
-  game.owl.x=game.width/2;
-  game.owl.y=game.height/2;
-
-  // sprinkle in animations
-  game.owl.animations.add('all', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 10, true);
-  game.owl.animations.add('sit', [0], 0, false);
-  game.owl.animations.add('blink', [0,1,2,0], 10, false);
-  game.owl.animations.add('look', [0,3,4,4,4,4,4, 5,6,7,8,8,8,8,8,8,7,0], 10, false);
-  game.owl.animations.add('flap', [0,10,11,12,13,14], 20, true);
-
-  // trigger
-  game.owl.animations.play('blink');
-  //game.owl.animations.play('look');
-  //game.owl.animations.play('flap');
-}
-
-function update() {
-  if (cursors.left.isDown) {
-    game.owl.scale.x = -1; //flipped
-    game.owl.animations.play('walk');
+  // testing only
+  var is_chrome = navigator.userAgent.toLowerCase().indexOf('rau') > -1;
+  if (typeof cordova != undefined && is_chrome) {
+    app.onDeviceReady();
   }
-}
-
-function render() {
-}
-</script>
+  </script>
 
 </body>
 </html>

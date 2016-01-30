@@ -113,3 +113,27 @@ function platformTouch(leafy, platform) {
 }
 
 
+function genEasyPlatorms() {
+
+  game.easyPlatorms = game.add.physicsGroup();
+
+  var ground = game.add.tileSprite(0 , game.height-120, 500, 60, 'gap');
+  game.physics.arcade.enable(ground);
+  ground.body.immovable = true;
+  ground.body.allowGravity = false;
+  game.easyPlatorms.add(ground);
+
+  ground = game.add.tileSprite(600 , game.height-250, 500, 60, 'gap');
+  game.physics.arcade.enable(ground);
+  ground.body.immovable = true;
+  ground.body.allowGravity = false;
+  game.easyPlatorms.add(ground);
+
+  ground = game.add.tileSprite(900 , game.height-380, 500, 60, 'gap');
+  game.physics.arcade.enable(ground);
+  ground.body.immovable = true;
+  ground.body.allowGravity = false;
+  game.easyPlatorms.add(ground);
+
+
+}

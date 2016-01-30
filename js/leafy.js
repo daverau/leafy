@@ -12,6 +12,8 @@ function genLeafy() {
   leafy.bestJump = 0;
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
 
+  leafy.jumpHangtimer = 0;
+
   game.camera.follow(leafy);
 
   game.physics.arcade.enable(leafy);
@@ -152,18 +154,18 @@ function playerMove(leafy) {
     console.log('^^^died fall^^^');
   }
 
-    // No longer standing on the edge, but were
-    // Give them a grace period to jump after falling
-    if ( allowJump(leafy) ) {
+  // No longer standing on the edge, but were
+  // Give them a grace period to jump after falling
+  if ( allowJump(leafy) ) {
 
-  // player jump
-  // [todo] add swipe up to jump
-  // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
-  if ( pressedJump()  ) {
-    //console.log('jump pressed');
+    // player jump
+    // [todo] add swipe up to jump
+    // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
+    if ( pressedJump()  ) {
+      //console.log('jump pressed');
 
 
-      console.log('call leafyJump()');
+      console.log('leafyJump()');
       leafyJump(leafy);
 
 
