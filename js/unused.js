@@ -1,4 +1,24 @@
-// # Used and keeping for devnotes
+// # short/medium/long jumps, more devnotes
+// create()
+var globalGravity = 9; // or any value you need
+var playerJumped = false;
+
+// update()
+if (cursors.up.isDown && player.body.touching.down) {
+  //  Allow the player to jump if they are touching the ground.
+  player.body.velocity.y = -200;
+  playerJumped = true;
+} else if (cursors.up.isDown && playerJumped === true) {
+  // reduce players gravity if player recently jumped and jump key is down
+  player.body.gravity.y = globalGravity - 4;
+} else {
+  // reset gravity once the jump key is released to prevent prolongation
+  playerJumped = false;
+  player.body.gravity.y = globalGravity;
+}
+
+
+// # Jump tolerance for allowing jumps shortly after falling off platforms, devnotes
 // create()
   this.edgeTimer = 0;
   this.jumpTimer = 0;
@@ -277,6 +297,6 @@ function passRain(leafy, leaf) {
 // create():
 game.distanceText = game.add.text( game.width-100, game.height-40, '-', { font: (11*vars.ratio)+"px Avenir-Medium", fill: '#000' });
 game.distanceText.fixedToCamera = true;
-game.distanceText.alpha = .2;
+game.distanceText.alpha = 0.2;
 // update():
 game.distanceText.text = Math.round( ( Math.abs( Math.round( ( (vars.worldSize/2) - game.leafy.x ) / vars.ratio ) ) ) / 45 ) + " steps";

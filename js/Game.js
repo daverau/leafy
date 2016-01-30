@@ -69,7 +69,7 @@ BasicGame.Game.prototype = {
     game.bggameover.height = game.height;
     game.bggameover.fixedToCamera = true;
     game.bggameover.tween = this.add.tween(game.bggameover).to({
-      alpha: .5,
+      alpha: 0.5,
     }, 4000, Phaser.Easing.Cubic.Out);
 
   },

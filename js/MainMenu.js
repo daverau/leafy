@@ -28,7 +28,7 @@ BasicGame.MainMenu.prototype = {
     genStump(); // move
     genOwl();   // move
     genBees(1);
-    game.moon.alpha=.3;
+    game.moon.alpha=0.3;
     //genLeafy();
 
     // this.bg = game.add.sprite(game.width/2, game.height/2, 'title');
@@ -39,12 +39,12 @@ BasicGame.MainMenu.prototype = {
     // this.bigleafy = this.add.sprite(50, game.height/2, 'bigleafy');
     // this.bigleafy.scale.setTo(.5);
     // this.bigleafy.anchor.setTo(0,.5);
-    this.playButton = this.add.button(game.width/2, game.height*.6, 'playButton', this.startGame, this, 1, 0, 2);
-    this.playButton.anchor.setTo(.5,0);
+    this.playButton = this.add.button(game.width/2, game.height*0.6, 'playButton', this.startGame, this, 1, 0, 2);
+    this.playButton.anchor.setTo(0.5,0);
     game.sfxbutton = game.add.audio('button');
-    
-    this.titleText = game.add.text( game.width/2, game.height*.4, 'LEAFY', { font: "288px AvenirNext-Heavy", fill: '#fff' });
-    this.titleText.anchor.setTo(.5);
+
+    this.titleText = game.add.text( game.width/2, game.height*0.4, 'LEAFY', { font: "288px AvenirNext-Heavy", fill: '#fff' });
+    this.titleText.anchor.setTo(0.5);
 
     //this.startGame();
 

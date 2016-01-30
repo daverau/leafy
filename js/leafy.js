@@ -10,7 +10,7 @@ function genLeafy() {
   leafy.honeyCount = 0;
   leafy.flowers = 10;  
   leafy.bestJump = 0;
-  leafy.bestScore = localStorage.getItem("leafybestScore") == null ? 0 : localStorage.getItem("leafybestScore");
+  leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
 
   game.camera.follow(leafy);
 
@@ -41,7 +41,7 @@ function genLeafy() {
     alpha: 0,
     y: (leafy.leafyText.y + 400)
   }, 2000, Phaser.Easing.Cubic.Out);
-  leafy.leafyText.anchor.set(0.5)
+  leafy.leafyText.anchor.set(0.5);
 
   // animations
   leafy.animations.add('turn', [7], 0, true);
