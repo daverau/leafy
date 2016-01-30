@@ -103,6 +103,13 @@ BasicGame.Game.prototype = {
     game.scoreText.setText(game.leafy.score);
 
 
+    // # Jump timing stuff
+    game.leafy.standing = game.leafy.body.blocked.down || game.leafy.body.touching.down;
+
+    if (!game.leafy.standing && game.leafy.wasStanding) {
+        game.leafy.edgeTimer = game.time.time + 250;
+    }
+
     // # Leafy movement and Respawn
     game.leafy.body.velocity.x = 0;
     if (!game.leafy.alive && !game.rewpawning) {
@@ -113,6 +120,9 @@ BasicGame.Game.prototype = {
     } else {
       playerMove(game.leafy);
     }
+
+    // standing ...
+    game.leafy.wasStanding = game.leafy.standing;
 
 
     // # world fallout

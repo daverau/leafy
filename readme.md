@@ -13,21 +13,23 @@ My original concept was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
-- allow leafy to jump just after falling off gaps
-- short/long jumps based on button press duration
 - endgame with doorway and friend
 - move flowers, blueleaves and trees from gaps
-- platform gaps scale with jump boost for difficulty
 - music
 - instructions overlay
 - background stars, clouds, gradient
 - bees drop honey for bonus points/boost
 - button hover and click sounds
-- score UI animate
-- gameover/localstorage your longest jump
 - fix performance on resume (what is wrong?)
 
 ## Changelog
+
+### v1.5
+- allow leafy to jump just after falling off gaps
+-- short/long jumps based on button press duration
+-- platform gaps scale with jump boost for difficulty
+-- score UI animate
+-- gameover/localstorage your longest jump
 
 ### v1.4
 - fall off screen to gameover/score/highscore/restart

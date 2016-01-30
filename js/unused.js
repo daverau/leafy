@@ -1,3 +1,23 @@
+// # Used and keeping for devnotes
+// create()
+  this.edgeTimer = 0;
+  this.jumpTimer = 0;
+  this.wasStanding = false;
+// update()
+  var standing = this.player.body.blocked.down || this.player.body.touching.down;
+  //  No longer standing on the edge, but were
+  //  Give them a 250ms grace period to jump after falling
+  if (!standing && this.wasStanding) {
+      this.edgeTimer = this.time.time + 250;
+  }
+  //  Allowed to jump?
+  if ((standing || this.time.time <= this.edgeTimer) && this.cursors.up.isDown && this.time.time > this.jumpTimer) {
+      this.player.body.velocity.y = -500;
+      this.jumpTimer = this.time.time + 750;
+  }
+  this.wasStanding = standing;
+
+
 // # World wrap
 // wrap(sprite, padding, useBounds, horizontal, vertical)
 // was useful at first, but leafy is a limitless world, so i'll roll the dice with float point numbers, how big can i go before problems arise?
