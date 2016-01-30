@@ -1,8 +1,6 @@
 // Leafy setup
 function genLeafy() {
-  var leafy = {};
-
-  leafy = game.add.sprite( 50 , -100, 'leafy');
+  var leafy = game.add.sprite( 50 , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
   leafy.playerSpeed = 150 * vars.ratio;
   leafy.jumpHeight = -800;
@@ -11,6 +9,7 @@ function genLeafy() {
   leafy.blueLeafCount=0;
   leafy.honeyCount = 0;
   leafy.flowers = 10;  
+  leafy.bestJump = 0;
   leafy.bestScore = localStorage.getItem("leafybestScore") == null ? 0 : localStorage.getItem("leafybestScore");
 
   game.camera.follow(leafy);
