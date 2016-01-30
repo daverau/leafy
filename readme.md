@@ -19,7 +19,6 @@ My original concept was inspired by a gamejam theme about "growing"
 - instructions overlay
 - background stars, clouds, gradient
 - bees drop honey for bonus points/boost
-- button hover and click sounds
 - fix performance on resume (what is wrong?)
 
 ## Changelog
@@ -27,6 +26,7 @@ My original concept was inspired by a gamejam theme about "growing"
 ### v1.5
 - allow leafy to jump just after falling off gaps
 - tighter typography
+- button hover and click sounds
 -- short/long jumps based on button press duration
 -- platform gaps scale with jump boost for difficulty
 -- score UI animate

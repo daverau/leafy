@@ -25,7 +25,7 @@ function genLeafy() {
 
   // jump/edge timing for a better feel
   leafy.edgeTimer = 0;
-  leafy.jumpTimer = 0;
+  leafy.allowJumpTimer = 0;
   leafy.wasStanding = false;
 
 
@@ -152,27 +152,43 @@ function playerMove(leafy) {
     console.log('^^^died fall^^^');
   }
 
+    // No longer standing on the edge, but were
+    // Give them a grace period to jump after falling
+    if ( allowJump(leafy) ) {
+
   // player jump
   // [todo] add swipe up to jump
   // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
-  if ( (game.cursors.up.isDown || game.jumpButton.isDown || (game.input.pointer1.y < game.height/2 && game.input.pointer1.isDown) || (game.input.pointer2.isDown))  ) {
+  if ( pressedJump()  ) {
+    //console.log('jump pressed');
 
-    console.log('jump pressed');
-    // No longer standing on the edge, but were
-    // Give them a 250ms grace period to jump after falling
-    if ((leafy.standing || game.time.time <= leafy.edgeTimer) && game.time.time > leafy.jumpTimer) {
+
       console.log('call leafyJump()');
       leafyJump(leafy);
+
+
     }
 
   }
 
 }
 
+function pressedJump() {
+  if ( (game.cursors.up.isDown || game.jumpButton.isDown || (game.input.pointer1.y < game.height/2 && game.input.pointer1.isDown) || (game.input.pointer2.isDown)) ) {
+    return true;
+  }
+}
+
+function allowJump(leafy) {
+  if ((leafy.standing || game.time.time <= leafy.edgeTimer) && game.time.time > leafy.allowJumpTimer) {
+    return true;
+  }  
+}
+
 function leafyJump(leafy) {
   leafy.animations.play('jump');
   leafy.body.velocity.y = leafy.jumpHeight;
-  leafy.jumpTimer = game.time.time + 750;
+  leafy.allowJumpTimer = game.time.time + 750; // magic number, [todo] tune for gameplay
 }
 
 function respawn(leafy) {
