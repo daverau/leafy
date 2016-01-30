@@ -76,6 +76,8 @@ BasicGame.Game.prototype = {
       alpha: 0.5,
     }, 4000, Phaser.Easing.Cubic.Out);
 
+//this.state.start('GameOver'); // test
+
   },
 
 
