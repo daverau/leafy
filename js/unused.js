@@ -1,3 +1,12 @@
+// not using these but keeping around for later since new phaser may work better here
+// game.leafy.checkWorldBounds = true;
+// game.leafy.outOfBoundsKill = true;
+
+
+// [todo] add swipe up to jump
+// (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
+
+
 // # short/medium/long jumps, more devnotes
 // create()
 var globalGravity = 9; // or any value you need
