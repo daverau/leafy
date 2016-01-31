@@ -23,6 +23,7 @@
 <div id="orientation"></div>
 
 <script src="lib/phaser2.4.4.js"></script>
+<script src="lib/gyro.js"></script>
 <script src="js/moon.js"></script>
 
 <script>
@@ -70,31 +71,21 @@ Leafy.Play.prototype = {
     game.jumpKey = this.input.keyboard.addKey(Phaser.Keyboard.UP);
     game.jumptimer = 0;
 
-    // gyro movements
-    gyro.frequency = 10;
-    // start gyroscope detection
-    gyro.startTracking(function(o) {
-      // updating player velocity
-      player.body.velocity.x += o.gamma/20;
-      player.body.velocity.y += o.beta/20;
-    });   
-
-
   },
 
   update: function() {
     // this is where the main magic happens
     // the y offset and the height of the world are adjusted
     // to match the highest point the hero has reached
-    this.world.setBounds( 0, -this.hero.yChange, this.world.width, this.game.height + this.hero.yChange );
+    this.world.setBounds( 0, -game.hero.yChange, this.world.width, this.game.height + game.hero.yChange );
 
     // the built in camera follow methods won't work for our needs
     // this is a custom follow style that will not ever move down, it only moves up
-    this.cameraYMin = Math.min( this.cameraYMin, this.hero.y - this.game.height * 0.75 );
+    this.cameraYMin = Math.min( this.cameraYMin, game.hero.y - this.game.height * 0.75 );
     this.camera.y = this.cameraYMin;
 
     // hero collisions and movement
-    this.physics.arcade.collide( this.hero, this.platforms );
+    this.physics.arcade.collide( game.hero, this.platforms );
     this.heroMove();
 
     // for each plat form, find out which is the highest
@@ -113,8 +104,8 @@ Leafy.Play.prototype = {
     // reset everything, or the world will be messed up
     this.world.setBounds( 0, 0, this.game.width, this.game.height );
     this.cursor = null;
-    this.hero.destroy();
-    this.hero = null;
+    game.hero.destroy();
+    game.hero = null;
     this.platforms.destroy();
     this.platforms = null;
   },
@@ -145,56 +136,67 @@ Leafy.Play.prototype = {
 
   heroCreate: function() {
     // basic hero setup
-    this.hero = game.add.sprite( this.world.centerX, 0, 'leafy' );
-    this.hero.y = this.world.height - this.hero.height;
-    this.hero.anchor.set( 0.5 );
+    game.hero = game.add.sprite( this.world.centerX, 0, 'leafy' );
+    game.hero.y = this.world.height - game.hero.height;
+    game.hero.anchor.set( 0.5 );
     
     // track where the hero started and how much the distance has changed from that point
-    this.hero.yOrig = this.hero.y;
-    this.hero.yChange = 0;
+    game.hero.yOrig = game.hero.y;
+    game.hero.yChange = 0;
 
     // hero collision setup
     // disable all collisions except for down
-    this.physics.arcade.enable( this.hero );
-    this.hero.body.gravity.y = 1000;
-    this.hero.body.setSize(50, 110, 0, -4); // hitbox adjusted
+    this.physics.arcade.enable( game.hero );
+    game.hero.body.gravity.y = 1000;
+    game.hero.body.setSize(50, 110, 0, -4); // hitbox adjusted
 
-    this.hero.body.checkCollision.up = false;
-    this.hero.body.checkCollision.left = false;
-    this.hero.body.checkCollision.right = false;
+    game.hero.body.checkCollision.up = false;
+    game.hero.body.checkCollision.left = false;
+    game.hero.body.checkCollision.right = false;
+
+    // gyro movements
+    gyro.frequency = 10;
+    // start gyroscope detection
+    gyro.startTracking(function(o) {
+      // updating player velocity
+      game.hero.body.velocity.x += o.gamma/20;
+      game.hero.body.velocity.y += o.beta/20;
+    });   
+
+
   },
 
   heroMove: function() {
     // handle the left and right movement of the hero
-    if( this.cursor.left.isDown || (this.input.pointer1.x < this.hero.x && this.input.pointer1.isDown) ) {
-      this.hero.body.velocity.x = -400;
-    } else if( this.cursor.right.isDown || (this.input.pointer1.x > this.hero.x && this.input.pointer1.isDown) ) {
-      this.hero.body.velocity.x = 400;
+    if( this.cursor.left.isDown || (this.input.pointer1.x < game.hero.x && this.input.pointer1.isDown) ) {
+      game.hero.body.velocity.x = -400;
+    } else if( this.cursor.right.isDown || (this.input.pointer1.x > game.hero.x && this.input.pointer1.isDown) ) {
+      game.hero.body.velocity.x = 400;
     } else {
-      this.hero.body.velocity.x = 0;
+      game.hero.body.velocity.x = 0;
     }
     // handle hero jumping
     // auto jump  this.cursor.up.isDown && 
-    if( this.hero.body.touching.down ) {
+    if( game.hero.body.touching.down ) {
       this.sfxboing.play();
-      this.hero.body.velocity.y = -700;
+      game.hero.body.velocity.y = -700;
     } 
     
     // // jump attempt 2, sucks
-    // this.hero.body.velocity.y = 0;
+    // game.hero.body.velocity.y = 0;
     // if (game.jumpKey.isDown) {
     //   this.sfxboing.play();
-    //   this.hero.body.velocity.y = -700;
+    //   game.hero.body.velocity.y = -700;
     // }
 
-    // if (this.cursor.up.isDown && this.hero.body.touching.down) {
+    // if (this.cursor.up.isDown && game.hero.body.touching.down) {
     //   game.jumptimer = game.time.time;
-    //   this.hero.body.velocity.y = -750;
+    //   game.hero.body.velocity.y = -750;
     // } else if (this.cursor.up.isDown && (game.jumptimer != 0)) {
     //   if (game.jumptimer > 600) {
     //     game.jumptimer = 0;
     //   } else {
-    //     this.hero.body.velocity.y = -250;
+    //     game.hero.body.velocity.y = -250;
     //   }
     // } else if (game.jumptimer != 0) {
     //   game.jumptimer = 0;
@@ -202,13 +204,13 @@ Leafy.Play.prototype = {
 
 
     // wrap world coordinated so that you can warp from left to right and right to left
-    this.world.wrap( this.hero, this.hero.width / 2, false );
+    this.world.wrap( game.hero, game.hero.width / 2, false );
 
     // track the maximum amount that the hero has travelled
-    this.hero.yChange = Math.max( this.hero.yChange, Math.abs( this.hero.y - this.hero.yOrig ) );
+    game.hero.yChange = Math.max( game.hero.yChange, Math.abs( game.hero.y - game.hero.yOrig ) );
     
     // if the hero falls below the camera view, gameover
-    if( this.hero.y > this.cameraYMin + this.game.height && this.hero.alive ) {
+    if( game.hero.y > this.cameraYMin + this.game.height && game.hero.alive ) {
       this.state.start( 'Play' );
     }
   }
