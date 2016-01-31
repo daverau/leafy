@@ -1,6 +1,9 @@
 // # Global variables (more like constants)
 var vars = {};
 
+// runmode,always run tothe right?
+vars.runmode = true;
+
 // setup
 vars.ratio = window.devicePixelRatio || 1;
 
