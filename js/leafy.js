@@ -148,7 +148,7 @@ function playerMove(leafy) {
 
   // kill on world fallout
   // using this since I couldn't get this version of phaser to obey outofboundskill
-  if (leafy.body.y > (game.height - 150) && leafy.alive) {
+  if (leafy.body.y > (game.height - leafy.height) && leafy.alive) {
     leafy.kill();
     // game.leafy.alive = false;
     console.log('^^^died fall^^^');
@@ -190,6 +190,7 @@ function allowJump(leafy) {
 function leafyJump(leafy) {
   leafy.animations.play('jump');
   leafy.body.velocity.y = leafy.jumpHeight;
+  console.log( leafy.jumpHeight );
   leafy.allowJumpTimer = game.time.time + 750; // magic number, [todo] tune for gameplay
 }
 

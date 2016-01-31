@@ -67,9 +67,6 @@ Leafy.Play.prototype = {
 
     // controls
     this.cursor = this.input.keyboard.createCursorKeys();
-    game.jumpKey = this.input.keyboard.addKey(Phaser.Keyboard.UP);
-    game.jumptimer = 0;
-
   },
 
   update: function() {
@@ -164,35 +161,13 @@ Leafy.Play.prototype = {
       this.hero.body.velocity.x = 0;
     }
 
-
     // handle hero jumping
     // auto jump  this.cursor.up.isDown && 
-    if( this.hero.body.touching.down ) {
+    if(this.hero.body.touching.down ) {
       this.sfxboing.play();
       this.hero.body.velocity.y = -700;
     } 
     
-    // // jump attempt 2, sucks
-    // this.hero.body.velocity.y = 0;
-    // if (game.jumpKey.isDown) {
-    //   this.sfxboing.play();
-    //   this.hero.body.velocity.y = -700;
-    // }
-
-    // if (this.cursor.up.isDown && this.hero.body.touching.down) {
-    //   game.jumptimer = game.time.time;
-    //   this.hero.body.velocity.y = -750;
-    // } else if (this.cursor.up.isDown && (game.jumptimer != 0)) {
-    //   if (game.jumptimer > 600) {
-    //     game.jumptimer = 0;
-    //   } else {
-    //     this.hero.body.velocity.y = -250;
-    //   }
-    // } else if (game.jumptimer != 0) {
-    //   game.jumptimer = 0;
-    // }
-
-
     // wrap world coordinated so that you can warp from left to right and right to left
     this.world.wrap( this.hero, this.hero.width / 2, false );
 
