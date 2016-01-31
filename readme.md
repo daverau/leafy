@@ -13,6 +13,8 @@ My original concept was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
+- platform gaps scale with jump boost for difficulty
+- score UI animate
 - endgame with doorway and friend
 - move flowers, blueleaves and trees from gaps
 - music
@@ -23,13 +25,11 @@ My original concept was inspired by a gamejam theme about "growing"
 
 ## Changelog
 
-### v1.5
+### v1.4.1
 - allow leafy to jump just after falling off gaps
 - tighter typography
 - button hover and click sounds
 - short/long jumps based on button press duration
--- platform gaps scale with jump boost for difficulty
--- score UI animate
 
 ### v1.4
 - fall off screen to gameover/score/highscore/restart

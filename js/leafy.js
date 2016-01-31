@@ -8,8 +8,8 @@ function genLeafy() {
   leafy.blueLeafCount=0;
   leafy.honeyCount = 0;
   leafy.flowers = 10;  
-  leafy.bestJump = 0;
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
+  leafy.jumpsScore = 0;
 
 
   game.camera.follow(leafy);
@@ -62,6 +62,7 @@ function genLeafy() {
     this.body.velocity.setTo(0,0);
     this.animations.stop();
     this.animations.play('sad');
+    vars.triesScore++;
 
     // fall
     game.sfxfall.play();

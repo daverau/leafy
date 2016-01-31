@@ -22,7 +22,6 @@ BasicGame.Game.prototype = {
     game.cursors = this.input.keyboard.createCursorKeys();
     game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-
     // # Background images
     game.bgnight = game.add.sprite(game.width,game.height, 'bgnight');
     game.bgnight.fixedToCamera = true;
@@ -135,7 +134,6 @@ BasicGame.Game.prototype = {
     // standing ...
     game.leafy.wasStanding = game.leafy.standing;
 
-      this.state.start('GameOver');
 
     // # world fallout
     if (game.leafy.body.y > (game.height * 2) ) {
@@ -145,6 +143,9 @@ BasicGame.Game.prototype = {
       //this.state.start('MainMenu');
       this.state.start('GameOver');
     }
+
+    // test
+//this.state.start('GameOver');
 
   },
 

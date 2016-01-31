@@ -27,9 +27,17 @@ BasicGame.GameOver.prototype = {
     this.gameoverYourScore = this.add.text( game.width*0.1, 175-game.height, game.leafy.score, { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
     this.gameoverScores.add(this.gameoverYourScore);
 
-    // best score
-    this.gameoverBestjump = this.add.text( game.width*0.1, 410-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#85BFD2' });
+    // high score
+    this.gameoverBestjump = this.add.text( game.width*0.27, 344-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#85BFD2' });
     this.gameoverScores.add(this.gameoverBestjump);
+
+    // tries
+    this.gameoverTriesscore = this.add.text( game.width*0.27, 414-game.height, vars.triesScore, { font: (20*vars.ratio)+"px AvenirNext-Medium", fill: '#85BFD2' });
+    this.gameoverScores.add(this.gameoverTriesscore);
+
+    // jumps
+    this.gameoverJumpsscore = this.add.text( game.width*0.27, 475-game.height, game.leafy.jumpsScore, { font: (20*vars.ratio)+"px AvenirNext-Medium", fill: '#85BFD2' });
+    this.gameoverScores.add(this.gameoverJumpsscore);
 
     // menu button
     this.menuButton = this.add.button( game.width - (game.width*0.1), 50-game.height, 'menuButton', this.startGame, this, 1, 0, 2);

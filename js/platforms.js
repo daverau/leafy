@@ -105,6 +105,8 @@ function platformTouch(leafy, platform) {
     // [todo] animate platform
     //platform.alpha = .5;
 
+    leafy.jumpsScore++;
+
     // shuffle platforms if possible
     moveFarPlatforms();
     placePlatforms();

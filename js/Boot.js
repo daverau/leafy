@@ -16,6 +16,9 @@ vars.platformHeight = 90;
 // bee speed
 vars.beeSpeed = 370;
 
+// track deaths
+vars.triesScore = 0;
+
 
 // # Phaser global
 // [question] is this leaking or causing bloat since it's global?
