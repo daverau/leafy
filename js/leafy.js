@@ -175,25 +175,18 @@ if (!vars.runmode) {
     leafy.body.velocity.y = leafy.JUMP_SPEED;
     leafy.jumping = true;
     leafy.animations.play('jump');
-  }
+    if (!leafy.playingSound) {
+      leafy.playingSound = true;
+      leafy.sfxboing.play();
+    }
+ }
   // Reduce the number of available jumps if the jump input is released
   if (leafy.jumping && upInputReleased()) {
     leafy.jumps--;
     leafy.jumping = false;
+    leafy.playingSound = false;
   }
 
-}
-
-
-function respawn(leafy) {
-  //console.log('respawn');
-  game.respawning = false;
-  leafy.body.position.x = 50;
-  leafy.body.position.y = -100;
-  leafy.body.velocity.x = 0;
-  leafy.body.velocity.y = 0;
-  leafy.playerSpeed = 150 * vars.ratio;
-  leafy.revive();
 }
 
 
@@ -221,4 +214,15 @@ function upInputReleased() {
     released |= game.input.activePointer.justReleased();
 
     return released;
+}
+
+function respawn(leafy) {
+  //console.log('respawn');
+  game.respawning = false;
+  leafy.body.position.x = 50;
+  leafy.body.position.y = -100;
+  leafy.body.velocity.x = 0;
+  leafy.body.velocity.y = 0;
+  leafy.playerSpeed = 150 * vars.ratio;
+  leafy.revive();
 }
