@@ -31,24 +31,19 @@ BasicGame.GameOver.prototype = {
     this.gameoverBestjump = this.add.text( game.width*0.1, 410-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#85BFD2' });
     this.gameoverScores.add(this.gameoverBestjump);
 
-    // this.gameoverLeafy = this.add.sprite(0, game.height*2, 'gameover');
-    // this.gameoverLeafy.anchor.setTo(0.5);
-    // this.gameoverLeafytween = this.add.tween(this.gameoverLeafy).to({
-    //   y: game.height-(game.height/3),
-    // }, 1000, Phaser.Easing.Cubic.Out);
-
     // menu button
-    this.menuButton = this.add.button( game.width*0.1, 550 - game.height, 'menuButton', this.startGame, this, 1, 0, 2);
+    this.menuButton = this.add.button( game.width - (game.width*0.1), 50-game.height, 'menuButton', this.startGame, this, 1, 0, 2);
     this.menuButton.scale.setTo(0.5);
+    this.menuButton.anchor.setTo(1,0);
     this.gameoverScores.add(this.menuButton);
 
     // play button
-    this.playButton = this.add.button( game.width - (game.width*0.1), (game.height/2) - (game.height - 130), 'playButton', this.retryGame, this, 1, 0, 2);
-    this.playButton.anchor.setTo(1,0);
+    this.playButton = this.add.button( game.width - (game.width*0.1), (game.height- (game.height*0.18)) - (game.height), 'playButton', this.retryGame, this, 1, 0, 2);
+    this.playButton.anchor.setTo(1,1);
     this.gameoverScores.add(this.playButton);
     
     // running leafy
-    this.leafy = game.add.sprite( this.playButton.x - (this.playButton.width/2), (game.height/2) - (game.height - 145), 'leafy');
+    this.leafy = game.add.sprite( this.playButton.x - (this.playButton.width/2), (this.playButton.y/2)-(game.height*0.2), 'leafy'); // [todo] fix sloppy positioning
     this.leafy.anchor.setTo(0.5, 1); //flip at middle point
     this.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
     this.leafy.animations.play('walk');

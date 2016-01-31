@@ -114,20 +114,11 @@ BasicGame.Game.prototype = {
     game.scoreText.setText(game.leafy.score);
 
 
-    // # Jump timing stuff
-    game.leafy.standing = game.leafy.body.blocked.down || game.leafy.body.touching.down;
-    //console.log(game.leafy.standing);
-
-    if (!game.leafy.standing && game.leafy.wasStanding) {
-        game.leafy.edgeTimer = game.time.time + 250;
+    // World fallout
+    if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
+      game.leafy.kill();
+      console.log('^^^died fall^^^');
     }
-
-
-  // World fallout
-  if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
-    game.leafy.kill();
-    console.log('^^^died fall^^^');
-  }
 
 
     // # Leafy movement and Respawn
@@ -144,6 +135,7 @@ BasicGame.Game.prototype = {
     // standing ...
     game.leafy.wasStanding = game.leafy.standing;
 
+      this.state.start('GameOver');
 
     // # world fallout
     if (game.leafy.body.y > (game.height * 2) ) {

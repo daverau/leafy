@@ -3,7 +3,6 @@ function genLeafy() {
   var leafy = game.add.sprite( 50 , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
   leafy.playerSpeed = 150 * vars.ratio;
-  leafy.jumpHeight = -800;
   leafy.alive = true;
   leafy.score = 0;
   leafy.blueLeafCount=0;
@@ -16,11 +15,9 @@ function genLeafy() {
   game.camera.follow(leafy);
 
 
-// Define movement constants
-leafy.MAX_SPEED = 500; // pixels/second
-leafy.ACCELERATION = 1500; // pixels/second/second
-//leafy.DRAG = 600; // pixels/second
-  leafy.JUMP_SPEED = -750; // pixels/second (negative y is up)
+  // Define movement constants
+  leafy.ACCELERATION = 1500; // pixels/second/second
+  leafy.JUMP_SPEED = -650; // pixels/second (negative y is up)
 
   game.physics.arcade.enable(leafy);
   leafy.enableBody = true;
@@ -28,7 +25,7 @@ leafy.ACCELERATION = 1500; // pixels/second/second
   leafy.body.maxVelocity.x = 500;
   leafy.body.maxVelocity.y = 5000;
   leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
-//leafy.body.drag.setTo(600, 0);
+  //leafy.body.drag.setTo(600, 0);
 
   leafy.jumping = false;
 
@@ -117,7 +114,7 @@ function playerMove(leafy) {
   if (game.cursors.left.isDown || (game.input.pointer1.x < game.width/2 && game.input.pointer1.isDown) ) {
 
     leafy.animations.play('walk');
-    leafy.body.velocity.x = (leafy.playerSpeed * -1);
+    leafy.body.velocity.x = -leafy.playerSpeed;
     //leafy.body.acceleration.x = -leafy.ACCELERATION;
     
     if (leafy.facing != 'left') {
