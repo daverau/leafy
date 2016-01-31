@@ -29,6 +29,8 @@
 <script>
 
 var Leafy = function() {};
+var player = {};
+
 Leafy.Play = function() {};
 Leafy.Play.prototype = {
 
@@ -77,15 +79,15 @@ Leafy.Play.prototype = {
     // this is where the main magic happens
     // the y offset and the height of the world are adjusted
     // to match the highest point the hero has reached
-    this.world.setBounds( 0, -game.hero.yChange, this.world.width, this.game.height + game.hero.yChange );
+    this.world.setBounds( 0, -player.yChange, this.world.width, this.game.height + player.yChange );
 
     // the built in camera follow methods won't work for our needs
     // this is a custom follow style that will not ever move down, it only moves up
-    this.cameraYMin = Math.min( this.cameraYMin, game.hero.y - this.game.height * 0.75 );
+    this.cameraYMin = Math.min( this.cameraYMin, player.y - this.game.height * 0.75 );
     this.camera.y = this.cameraYMin;
 
     // hero collisions and movement
-    this.physics.arcade.collide( game.hero, this.platforms );
+    this.physics.arcade.collide( player, this.platforms );
     this.heroMove();
 
     // for each plat form, find out which is the highest
@@ -104,8 +106,8 @@ Leafy.Play.prototype = {
     // reset everything, or the world will be messed up
     this.world.setBounds( 0, 0, this.game.width, this.game.height );
     this.cursor = null;
-    game.hero.destroy();
-    game.hero = null;
+    player.destroy();
+    player = null;
     this.platforms.destroy();
     this.platforms = null;
   },
@@ -136,31 +138,31 @@ Leafy.Play.prototype = {
 
   heroCreate: function() {
     // basic hero setup
-    game.hero = game.add.sprite( this.world.centerX, 0, 'leafy' );
-    game.hero.y = this.world.height - game.hero.height;
-    game.hero.anchor.set( 0.5 );
+    player = game.add.sprite( this.world.centerX, 0, 'leafy' );
+    player.y = this.world.height - player.height;
+    player.anchor.set( 0.5 );
     
     // track where the hero started and how much the distance has changed from that point
-    game.hero.yOrig = game.hero.y;
-    game.hero.yChange = 0;
+    player.yOrig = player.y;
+    player.yChange = 0;
 
     // hero collision setup
     // disable all collisions except for down
-    this.physics.arcade.enable( game.hero );
-    game.hero.body.gravity.y = 1000;
-    game.hero.body.setSize(50, 110, 0, -4); // hitbox adjusted
+    this.physics.arcade.enable( player );
+    player.body.gravity.y = 1000;
+    player.body.setSize(50, 110, 0, -4); // hitbox adjusted
 
-    game.hero.body.checkCollision.up = false;
-    game.hero.body.checkCollision.left = false;
-    game.hero.body.checkCollision.right = false;
+    player.body.checkCollision.up = false;
+    player.body.checkCollision.left = false;
+    player.body.checkCollision.right = false;
 
     // gyro movements
     gyro.frequency = 10;
     // start gyroscope detection
     gyro.startTracking(function(o) {
       // updating player velocity
-      game.hero.body.velocity.x += o.gamma/20;
-      game.hero.body.velocity.y += o.beta/20;
+      player.body.velocity.x += o.gamma/20;
+      player.body.velocity.y += o.beta/20;
     });   
 
 
@@ -168,35 +170,35 @@ Leafy.Play.prototype = {
 
   heroMove: function() {
     // handle the left and right movement of the hero
-    if( this.cursor.left.isDown || (this.input.pointer1.x < game.hero.x && this.input.pointer1.isDown) ) {
-      game.hero.body.velocity.x = -400;
-    } else if( this.cursor.right.isDown || (this.input.pointer1.x > game.hero.x && this.input.pointer1.isDown) ) {
-      game.hero.body.velocity.x = 400;
+    if( this.cursor.left.isDown || (this.input.pointer1.x < player.x && this.input.pointer1.isDown) ) {
+      player.body.velocity.x = -400;
+    } else if( this.cursor.right.isDown || (this.input.pointer1.x > player.x && this.input.pointer1.isDown) ) {
+      player.body.velocity.x = 400;
     } else {
-      game.hero.body.velocity.x = 0;
+      player.body.velocity.x = 0;
     }
     // handle hero jumping
     // auto jump  this.cursor.up.isDown && 
-    if( game.hero.body.touching.down ) {
+    if( player.body.touching.down ) {
       this.sfxboing.play();
-      game.hero.body.velocity.y = -700;
+      player.body.velocity.y = -700;
     } 
     
     // // jump attempt 2, sucks
-    // game.hero.body.velocity.y = 0;
+    // player.body.velocity.y = 0;
     // if (game.jumpKey.isDown) {
     //   this.sfxboing.play();
-    //   game.hero.body.velocity.y = -700;
+    //   player.body.velocity.y = -700;
     // }
 
-    // if (this.cursor.up.isDown && game.hero.body.touching.down) {
+    // if (this.cursor.up.isDown && player.body.touching.down) {
     //   game.jumptimer = game.time.time;
-    //   game.hero.body.velocity.y = -750;
+    //   player.body.velocity.y = -750;
     // } else if (this.cursor.up.isDown && (game.jumptimer != 0)) {
     //   if (game.jumptimer > 600) {
     //     game.jumptimer = 0;
     //   } else {
-    //     game.hero.body.velocity.y = -250;
+    //     player.body.velocity.y = -250;
     //   }
     // } else if (game.jumptimer != 0) {
     //   game.jumptimer = 0;
@@ -204,13 +206,13 @@ Leafy.Play.prototype = {
 
 
     // wrap world coordinated so that you can warp from left to right and right to left
-    this.world.wrap( game.hero, game.hero.width / 2, false );
+    this.world.wrap( player, player.width / 2, false );
 
     // track the maximum amount that the hero has travelled
-    game.hero.yChange = Math.max( game.hero.yChange, Math.abs( game.hero.y - game.hero.yOrig ) );
+    player.yChange = Math.max( player.yChange, Math.abs( player.y - player.yOrig ) );
     
     // if the hero falls below the camera view, gameover
-    if( game.hero.y > this.cameraYMin + this.game.height && game.hero.alive ) {
+    if( player.y > this.cameraYMin + this.game.height && player.alive ) {
       this.state.start( 'Play' );
     }
   }
