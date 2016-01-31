@@ -7,6 +7,7 @@ BasicGame.GameOver = function (game) {
 BasicGame.GameOver.prototype = {
 
   preload: function () {
+    // # Music
     //this.music = this.add.audio('titleMusic');
     //this.music.play();
 
@@ -20,12 +21,7 @@ BasicGame.GameOver.prototype = {
     this.gameoverLeafy = this.add.sprite(-game.width, 160+game.height, 'gameover');
     this.gameoverLeafy.anchor.setTo(0,1);
     this.gameoverLeafy.scale.setTo(0.5);
-    //this.gameoverLeafy.alpha = 0.5;
-    this.gameoverLeafy.tween = this.add.tween(this.gameoverLeafy).to({
-      x: -this.gameoverLeafy.width/2.3,
-    }, 600, Phaser.Easing.Cubic.Out);
-    this.gameoverLeafy.tween.start();
-
+    
     // # gameoverScores group
     this.gameoverScores = this.add.group();
 
@@ -67,8 +63,10 @@ BasicGame.GameOver.prototype = {
     this.leafy.animations.play('walk');
     this.gameoverScores.add(this.leafy);
 
-
     // animation
+    this.gameoverLeafytween = this.add.tween(this.gameoverLeafy).to({
+      x: -this.gameoverLeafy.width/2.3,
+    }, 600, Phaser.Easing.Cubic.Out);
     this.gameoverTween = this.add.tween(this.gameoverScores).to({
       y: game.height,
     }, 600, Phaser.Easing.Cubic.Out);
@@ -76,7 +74,7 @@ BasicGame.GameOver.prototype = {
 
 
   create: function () {
-    //this.gameoverLeafytween.start();
+    this.gameoverLeafytween.start();
     this.gameoverTween.start();
   },
 

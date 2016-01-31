@@ -14,22 +14,22 @@ My original concept was inspired by a gamejam theme about "growing"
 
 ## Todo
 - platform gaps scale with jump boost for difficulty
-- score UI animate
 - endgame with doorway and friend
 - move flowers, blueleaves and trees from gaps
 - music
 - instructions overlay
 - background stars, clouds, gradient
-- bees drop honey for bonus points/boost
-- fix performance on resume (what is wrong?)
+- score UI animate
+- [bug] fix performance on resume (what is wrong?)
+- [bug] sound issue on fresh start (what is wrong?)
 
 ## Changelog
 
-### v1.4.1
+### v1.5
+- short/long jumps based on button press duration
 - allow leafy to jump just after falling off gaps
 - tighter typography
 - button hover and click sounds
-- short/long jumps based on button press duration
 - runmode: always run to the right
 
 ### v1.4
