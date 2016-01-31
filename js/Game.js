@@ -127,6 +127,10 @@ BasicGame.Game.prototype = {
       game.leafy.kill();
       console.log('^^^died !alive^^^');
       //this.state.start('Retry');
+    game.leafy.body.velocity.x = 0;
+
+  vars.runmode = false;
+
     } else {
       playerMove(game.leafy);
     }
@@ -141,6 +145,7 @@ BasicGame.Game.prototype = {
       //game.leafy.kill();
       console.log('^^^world fallout^^^');
       //this.state.start('MainMenu');
+      vars.runmode = false;
       this.state.start('GameOver');
     }
 

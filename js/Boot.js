@@ -2,7 +2,7 @@
 var vars = {};
 
 // runmode,always run tothe right?
-vars.runmode = true;
+vars.runmode = false;
 
 // setup
 vars.ratio = window.devicePixelRatio || 1;

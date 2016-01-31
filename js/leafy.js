@@ -2,32 +2,30 @@
 function genLeafy() {
   var leafy = game.add.sprite( 50 , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
-  leafy.playerSpeed = 150 * vars.ratio;
+  leafy.playerSpeed = 160 * vars.ratio;
   leafy.alive = true;
   leafy.score = 0;
   leafy.blueLeafCount=0;
-  leafy.honeyCount = 0;
-  leafy.flowers = 10;  
+  leafy.flowers = 10;
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
 
-
   game.camera.follow(leafy);
 
-
   // Define movement constants
-  leafy.ACCELERATION = 1500; // pixels/second/second
-  leafy.JUMP_SPEED = -650; // pixels/second (negative y is up)
+  leafy.ACCELERATION = 2000; // pixels/second/second
+  leafy.JUMP_SPEED = -750; // pixels/second (negative y is up)
 
   game.physics.arcade.enable(leafy);
   leafy.enableBody = true;
-  leafy.body.gravity.y = 2600;
+  leafy.body.gravity.y = 3000;
   leafy.body.maxVelocity.x = 500;
-  leafy.body.maxVelocity.y = 5000;
+  leafy.body.maxVelocity.y = 4000;
   leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
   //leafy.body.drag.setTo(600, 0);
 
   leafy.jumping = false;
+  leafy.body.velocity.x = 0;
 
 
 
@@ -113,6 +111,8 @@ function playerMove(leafy) {
 
 if (!vars.runmode) {
 
+  leafy.body.velocity.x = 0;
+
   // move left
   if (game.cursors.left.isDown || (game.input.pointer1.x < game.width/2 && game.input.pointer1.isDown) ) {
 
@@ -160,7 +160,7 @@ if (!vars.runmode) {
   leafy.animations.play('walk');
   leafy.body.velocity.x = leafy.playerSpeed;
   leafy.scale.x = 1; //default direction
-  leafy.facing = 'right';  
+  leafy.facing = 'right';
 }
 
 
@@ -198,15 +198,18 @@ function respawn(leafy) {
 
 
 function upInputIsActive(duration) {
-    var isActive = false;
-
+  var isActive = false;
+  if (vars.runmode) {
+    isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
+    isActive |= game.input.activePointer.justPressed(duration + 1000/60);
+  } else {
     isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
     isActive |= game.input.pointer2.justPressed(duration + 1000/60);
     isActive |= (game.input.activePointer.justPressed(duration + 1000/60) &&
-        game.input.activePointer.x > game.width/4 &&
-        game.input.activePointer.x < game.width/2 + game.width/4);
-
-    return isActive;
+      game.input.activePointer.x > game.width/4 &&
+      game.input.activePointer.x < game.width/2 + game.width/4);
+  }
+  return isActive;
 }
 
 // This function returns true when the player releases the "jump" control

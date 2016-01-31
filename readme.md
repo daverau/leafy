@@ -30,6 +30,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - tighter typography
 - button hover and click sounds
 - short/long jumps based on button press duration
+- runmode: always run to the right
 
 ### v1.4
 - fall off screen to gameover/score/highscore/restart
