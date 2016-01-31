@@ -32,14 +32,10 @@ BasicGame.Boot.prototype = {
 
   init: function () {
     // # Setup
-    //this.input.maxPointers = 2;
-    game.stage.disableVisibilityChange = true;
-    //game.scale.scaleMode = Phaser.ScaleManager.NO_SCALE;
-
-    // # Setup
-    game.stage.smoothed = false;
-    game.time.advancedTiming = true; // [todo] need this?
-    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.stage.disableVisibilityChange = true;
+    this.stage.smoothed = false;
+    this.time.advancedTiming = true; // [todo] need this?
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
   },
 
