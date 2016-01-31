@@ -19,7 +19,7 @@ function genLeafy() {
 // Define movement constants
 leafy.MAX_SPEED = 500; // pixels/second
 leafy.ACCELERATION = 1500; // pixels/second/second
-leafy.DRAG = 600; // pixels/second
+//leafy.DRAG = 600; // pixels/second
   leafy.JUMP_SPEED = -750; // pixels/second (negative y is up)
 
   game.physics.arcade.enable(leafy);
@@ -28,14 +28,10 @@ leafy.DRAG = 600; // pixels/second
   leafy.body.maxVelocity.x = 500;
   leafy.body.maxVelocity.y = 5000;
   leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
-  leafy.body.drag.setTo(600, 0);
+//leafy.body.drag.setTo(600, 0);
 
   leafy.jumping = false;
 
-  // jump/edge timing for a better feel
-  leafy.edgeTimer = 0;
-  leafy.allowJumpTimer = 0;
-  leafy.wasStanding = false;
 
 
   // animation
@@ -59,6 +55,7 @@ leafy.DRAG = 600; // pixels/second
   leafy.animations.add('sad', [8], 0, true);
   leafy.animations.add('surprised', [9], 0, true);
   game.sfxfall = game.add.audio('fall');
+  leafy.sfxboing = game.add.audio('boing');
 
 
   // death
@@ -158,76 +155,26 @@ function playerMove(leafy) {
     leafy.animations.play('walk');
   }
 
-  // World fallout
-  if (leafy.body.y > (game.height - leafy.height) && leafy.alive) {
-    leafy.kill();
-    console.log('^^^died fall^^^');
-  }
-
-
-
-
-
-  // Set a variable that is true when the player is touching the ground
+  // Jumping
   var onTheGround = leafy.body.touching.down;
-
-  // If the player is touching the ground, let him have 2 jumps
   if (onTheGround) {
-    leafy.jumps = 1;
+    leafy.jumps = 1; // If touching ground, give 1 jump
     leafy.jumping = false;
   }
-
   // Jump! Keep y velocity constant while the jump button is held for up to 150 ms
   if (leafy.jumps > 0 && upInputIsActive(210)) {
     leafy.body.velocity.y = leafy.JUMP_SPEED;
     leafy.jumping = true;
     leafy.animations.play('jump');
   }
-
   // Reduce the number of available jumps if the jump input is released
   if (leafy.jumping && upInputReleased()) {
     leafy.jumps--;
     leafy.jumping = false;
   }
 
-
-
-  // // No longer standing on the edge, but were
-  // // Give them a grace period to jump after falling
-  // if ( allowJump(leafy) ) {
-
-  //   // player jump
-  //   if ( pressedJump()  ) {
-  //     //console.log('jump pressed');
-
-  //     console.log('leafyJump()');
-  //     leafyJump(leafy);
-
-  //   }
-
-  // }
-
 }
 
-function pressedJump() {
-  if ( (game.cursors.up.isDown || game.jumpButton.isDown || (game.input.pointer1.y < game.height/2 && game.input.pointer1.isDown) || (game.input.pointer2.isDown)) ) {
-    return true;
-    leafy.jumpFrames = 1;
-  }
-}
-
-function allowJump(leafy) {
-  if ((leafy.standing || game.time.time <= leafy.edgeTimer) && game.time.time > leafy.allowJumpTimer) {
-    return true;
-  }  
-}
-
-function leafyJump(leafy) {
-  leafy.animations.play('jump');
-  leafy.body.velocity.y = leafy.jumpHeight;
-  console.log( leafy.jumpHeight );
-  leafy.allowJumpTimer = game.time.time + 750; // magic number, [todo] tune for gameplay
-}
 
 function respawn(leafy) {
   //console.log('respawn');
@@ -245,19 +192,21 @@ function upInputIsActive(duration) {
     var isActive = false;
 
     isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
+    isActive |= game.input.pointer2.justPressed(duration + 1000/60);
     isActive |= (game.input.activePointer.justPressed(duration + 1000/60) &&
         game.input.activePointer.x > game.width/4 &&
         game.input.activePointer.x < game.width/2 + game.width/4);
 
     return isActive;
-};
+}
 
 // This function returns true when the player releases the "jump" control
 function upInputReleased() {
     var released = false;
 
     released = game.input.keyboard.upDuration(Phaser.Keyboard.UP);
+    released |= game.input.pointer2.justReleased();
     released |= game.input.activePointer.justReleased();
 
     return released;
-};
+}

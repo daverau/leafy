@@ -32,6 +32,7 @@ BasicGame.Preloader.prototype = {
     this.load.audio('button', 'audio/woosh.wav');
     this.load.audio('fall', 'audio/fall.wav');
     this.load.image('bigleafy', 'img/bigleafy.png');
+    this.load.audio('boing', 'audio/boing.wav');
 
     // just using the color for now...
     this.load.image('tree', 'img/tree.png');

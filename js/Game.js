@@ -24,8 +24,12 @@ BasicGame.Game.prototype = {
 
 
     // # Background images
-    game.bgnight = game.add.sprite(0,0, 'bgnight');
+    game.bgnight = game.add.sprite(game.width,game.height, 'bgnight');
     game.bgnight.fixedToCamera = true;
+    game.bgnight.anchor.setTo(1);
+
+    //this.bg = this.add.sprite(game.width,game.height, 'bgnight');
+    //this.bg.anchor.setTo(1);
 
 
     // # Sound
@@ -117,6 +121,14 @@ BasicGame.Game.prototype = {
     if (!game.leafy.standing && game.leafy.wasStanding) {
         game.leafy.edgeTimer = game.time.time + 250;
     }
+
+
+  // World fallout
+  if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
+    game.leafy.kill();
+    console.log('^^^died fall^^^');
+  }
+
 
     // # Leafy movement and Respawn
     game.leafy.body.velocity.x = 0;
