@@ -127,10 +127,6 @@ BasicGame.Game.prototype = {
       game.leafy.kill();
       console.log('^^^died !alive^^^');
       //this.state.start('Retry');
-    game.leafy.body.velocity.x = 0;
-
-  vars.runmode = false;
-
     } else {
       playerMove(game.leafy);
     }

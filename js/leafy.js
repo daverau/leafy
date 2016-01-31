@@ -167,7 +167,7 @@ if (!vars.runmode) {
   // Jumping
   var onTheGround = leafy.body.touching.down;
   if (onTheGround) {
-    leafy.jumps = 1; // If touching ground, give 1 jump
+    leafy.jumps = 2; // If touching ground, give 1 jump
     leafy.jumping = false;
   }
   // Jump! Keep y velocity constant while the jump button is held for up to 150 ms
