@@ -70,6 +70,16 @@ Leafy.Play.prototype = {
     game.jumpKey = this.input.keyboard.addKey(Phaser.Keyboard.UP);
     game.jumptimer = 0;
 
+    // gyro movements
+    gyro.frequency = 10;
+    // start gyroscope detection
+    gyro.startTracking(function(o) {
+      // updating player velocity
+      player.body.velocity.x += o.gamma/20;
+      player.body.velocity.y += o.beta/20;
+    });   
+
+
   },
 
   update: function() {
@@ -163,8 +173,6 @@ Leafy.Play.prototype = {
     } else {
       this.hero.body.velocity.x = 0;
     }
-
-
     // handle hero jumping
     // auto jump  this.cursor.up.isDown && 
     if( this.hero.body.touching.down ) {
