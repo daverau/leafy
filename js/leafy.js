@@ -154,32 +154,24 @@ function playerMove(leafy) {
     console.log('^^^died fall^^^');
   }
 
-  if ( game.jumpButton.isDown ) {
-    //leafy.body.velocity.y = -700;
-    leafy.body.acceleration.y = -700;
-  } else {
-    //leafy.body.velocity.y = +200;
-    leafy.body.acceleration.y = 0;
+  // No longer standing on the edge, but were
+  // Give them a grace period to jump after falling
+  if ( allowJump(leafy) ) {
+
+    // player jump
+    // [todo] add swipe up to jump
+    // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
+    if ( pressedJump()  ) {
+      //console.log('jump pressed');
+
+
+      console.log('leafyJump()');
+      leafyJump(leafy);
+
+
+    }
+
   }
-
-  // // No longer standing on the edge, but were
-  // // Give them a grace period to jump after falling
-  // if ( allowJump(leafy) ) {
-
-  //   // player jump
-  //   // [todo] add swipe up to jump
-  //   // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
-  //   if ( pressedJump()  ) {
-  //     //console.log('jump pressed');
-
-
-  //     console.log('leafyJump()');
-  //     leafyJump(leafy);
-
-
-  //   }
-
-  // }
 
 }
 
