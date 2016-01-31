@@ -33,7 +33,11 @@ var app = {
     game.state.add('Game', BasicGame.Game);
     game.state.add('GameOver', BasicGame.GameOver);
 
-    game.state.start('Boot'); // start it up, yo
+    game.state.add( 'Jumper', Leafy.Jumper ); // hmmm
+    game.state.start( 'Jumper' );
+
+    //game.state.start('Boot'); // start it up, yo
+
 
 
   },
