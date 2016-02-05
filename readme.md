@@ -17,7 +17,6 @@ My original concept was inspired by a gamejam theme about "growing"
 - score UI animate
 - background stars, clouds, gradient
 - music
-- [bug] fix performance on resume (what is wrong?)
 - [bug] sound issue on fresh start (what is wrong?)
 - fun???
 
@@ -25,6 +24,7 @@ My original concept was inspired by a gamejam theme about "growing"
 
 ### v1.6 (in progress)
 - jump sound that doesn't loop (still clips on repeat)
+- [bug] fix performance on resume (requestAnimationFrame wasn't pausing)
 -- platform gaps scale with jump boost for difficulty
 -- endgame with doorway and friend
 -- move flowers, blueleaves and trees from gaps
