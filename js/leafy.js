@@ -48,6 +48,7 @@ function genLeafy() {
   leafy.animations.add('surprised', [9], 0, true);
   game.sfxfall = game.add.audio('fall');
   leafy.sfxboing = game.add.audio('boing');
+  leafy.sfxboing.allowMultiple = true;
 
 
   // death
@@ -174,7 +175,7 @@ if (!vars.runmode) {
     leafy.animations.play('jump');
     if (!leafy.playingSound) {
       leafy.playingSound = true;
-      leafy.sfxboing.play();
+      leafy.sfxboing.play('',0,1,false,false);
     }
  }
   // Reduce the number of available jumps if the jump input is released

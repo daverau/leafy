@@ -13,21 +13,22 @@ My original concept was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
-- instructions overlay
+- platform gaps scale with jump boost for difficulty
+- move flowers, blueleaves and trees from gaps
+- endgame with doorway and friend
 - score UI animate
 - background stars, clouds, gradient
 - music
+- instructions overlay
 - [bug] sound issue on fresh start (what is wrong?)
 - fun???
 
 ## Changelog
 
-### v1.6 (in progress)
-- jump sound that doesn't loop (still clips on repeat)
-- [bug] fix performance on resume (requestAnimationFrame wasn't pausing)
--- platform gaps scale with jump boost for difficulty
--- endgame with doorway and friend
--- move flowers, blueleaves and trees from gaps
+### v1.6
+- jump sound should fire only once (doesn't loop the whole time you're jumping due to `update()`)
+- double jump sound fixed with `allowMultiple = true`
+- [bug] fix performance on resume (`requestAnimationFrame` wasn't pausing)
 
 ### v1.5
 - short/long jumps based on button press duration
