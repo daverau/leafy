@@ -9,6 +9,7 @@ function genLeafy() {
   leafy.flowers = 10;
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
+  leafy.jumping = false;
 
   game.camera.follow(leafy);
 
@@ -19,15 +20,11 @@ function genLeafy() {
   game.physics.arcade.enable(leafy);
   leafy.enableBody = true;
   leafy.body.gravity.y = 3000;
+  //leafy.body.drag.setTo(600, 0);
+  leafy.body.velocity.x = 0;
   leafy.body.maxVelocity.x = 500;
   leafy.body.maxVelocity.y = 4000;
   leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
-  //leafy.body.drag.setTo(600, 0);
-
-  leafy.jumping = false;
-  leafy.body.velocity.x = 0;
-
-
 
   // animation
   leafy.deathTween = game.add.tween(leafy).to({
