@@ -146,16 +146,6 @@ BasicGame.Game.prototype = {
     }
 
 
-    // # pause/resume
-    document.addEventListener("pause", function() {
-      game.paused = true;
-      game.raf.stop();
-    }, false);
-    document.addEventListener("resume", function() {
-      game.paused = false;
-      game.raf.start();
-    }, false);
-
     // test
 //this.state.start('GameOver');
 

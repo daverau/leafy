@@ -7,6 +7,17 @@ var app = {
   // 'load', 'deviceready', 'offline', and 'online'.
   bindEvents: function() {
     document.addEventListener('deviceready', this.onDeviceReady, false);
+
+    // # pause/resume
+    document.addEventListener("pause", function() {
+      game.paused = true;
+      game.raf.stop();
+    }, false);
+    document.addEventListener("resume", function() {
+      game.paused = false;
+      game.raf.start();
+    }, false);
+
   },
   // # deviceready Event Handler
   // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -33,17 +44,11 @@ var app = {
     game.state.add('Game', BasicGame.Game);
     game.state.add('GameOver', BasicGame.GameOver);
 
-    //game.state.add( 'Jumper', Leafy.Jumper ); // hmmm
-    //game.state.start( 'Jumper' );
-
     game.state.start('Boot'); // start it up, yo
-
-
 
   },
   // # Update DOM on a Received Event
   receivedEvent: function(id) {
-
 
     // var parentElement = document.getElementById(id);
     // var listeningElement = parentElement.querySelector('.listening');
