@@ -30,7 +30,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - jump sound should fire only once (doesn't loop the whole time you're jumping due to `update()`)
 - double jump sound fixed with `allowMultiple = true`
 - [bug] fix performance on resume (`requestAnimationFrame` wasn't pausing)
-- balancing bees + jump on them
+- jump on bees, 1-way movement, fewer bees
 
 ### v1.5
 - short/long jumps based on button press duration

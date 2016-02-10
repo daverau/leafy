@@ -5,8 +5,8 @@ function genLeafy() {
   leafy.playerSpeed = 160 * vars.ratio;
   leafy.alive = true;
   leafy.score = 0;
-  leafy.blueLeafCount=0;
-  leafy.flowers = 10;
+  leafy.blueLeafCount = 0;
+  leafy.flowers = 0;
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
   leafy.jumping = false;

@@ -79,9 +79,9 @@ function checkOverlap(spriteA, spriteB) {
   return Phaser.Rectangle.intersects(boundsA, boundsB);
 }
 function resetMove(item) {
-  console.log('resetMove()');
   if ( (game.leafy.x - (item.x+item.width)) > game.width * 1.1 ) {
-    console.log('--move--');
+    //console.log('resetMove() ' + item.key);
+    //console.log('--move--');
     item.alpha = 1;
     item.pickedup = false;
     item.y = game.height - vars.platformHeight;

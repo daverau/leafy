@@ -55,6 +55,7 @@ Enemy.prototype.update = function() {
 function resetBee(item) {
   if (game.leafy) {
     if ( (game.leafy.x - item.x) > game.width * 1 ) {
+      //console.log('resetBee()');
       item.animations.play('fly');
       item.alpha = 1;
       item.y = game.height-90;
