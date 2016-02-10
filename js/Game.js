@@ -42,13 +42,11 @@ BasicGame.Game.prototype = {
     genStump(); // move
     genTrees();
     genOwl();   // move
-    genBees();
     game.leafy = genLeafy();
     genBlueleaves();
     genFlowers();
     //genForetrees(); // redo
     
-
     // # Platforms
     game.platforms = game.add.group();
     game.platforms.enableBody = true;
@@ -57,6 +55,7 @@ BasicGame.Game.prototype = {
     resetPlatforms();
     placePlatforms();
 
+    genBees(1);
 
     // # Rain
     //genRain();

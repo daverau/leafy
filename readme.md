@@ -15,13 +15,14 @@ My original concept was inspired by a gamejam theme about "growing"
 ## Todo
 - platform gaps scale with jump boost for difficulty
 - move flowers, blueleaves and trees from gaps
+- arrange blue leaves in patterns
 - endgame with doorway and friend
 - score UI animate
 - background stars, clouds, gradient
 - music
 - instructions overlay
 - [bug] sound issue on fresh start (what is wrong?)
-- fun???
+- [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
 
 ## Changelog
 
@@ -29,6 +30,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - jump sound should fire only once (doesn't loop the whole time you're jumping due to `update()`)
 - double jump sound fixed with `allowMultiple = true`
 - [bug] fix performance on resume (`requestAnimationFrame` wasn't pausing)
+- balancing bees + jump on them
 
 ### v1.5
 - short/long jumps based on button press duration
