@@ -53,16 +53,14 @@ Enemy.prototype.update = function() {
 
 
 function resetBee(item) {
-  if (game.leafy) {
-    if ( (game.leafy.x - item.x) > game.width * 1 ) {
-      //console.log('resetBee()');
-      item.animations.play('fly');
-      item.alpha = 1;
-      item.y = game.height-90;
-      item.pickedup = false;
-      item.y = game.height - vars.platformHeight;
-      item.x = game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
-    }
+  if ( (game.camera.x - item.x) > game.width * 1 ) {
+    //console.log('resetBee()');
+    item.animations.play('fly');
+    item.alpha = 1;
+    item.y = game.height-90;
+    item.pickedup = false;
+    item.y = game.height - vars.platformHeight;
+    item.x = game.camera.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
   }
 }
 
