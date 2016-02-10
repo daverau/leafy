@@ -106,60 +106,11 @@ function genLeafy() {
 
 
 function playerMove(leafy) {
-
-if (!vars.runmode) {
-
-  leafy.body.velocity.x = 0;
-
-  // move left
-  if (game.cursors.left.isDown || (game.input.pointer1.x < game.width/2 && game.input.pointer1.isDown) ) {
-
-    leafy.animations.play('walk');
-    leafy.body.velocity.x = -leafy.playerSpeed;
-    //leafy.body.acceleration.x = -leafy.ACCELERATION;
-    
-    if (leafy.facing != 'left') {
-      leafy.facing = 'left';
-      leafy.scale.x = -1;
-    }
-
-  // moveright
-  } else if (game.cursors.right.isDown || (game.input.pointer1.x > game.width/2 && game.input.pointer1.isDown) ) {
-
-    leafy.animations.play('walk');
-    leafy.body.velocity.x = leafy.playerSpeed;
-    //leafy.body.acceleration.x = leafy.ACCELERATION;
-    
-    if (leafy.facing != 'right') {
-      leafy.scale.x = 1; //default direction
-      leafy.facing = 'right';
-    }
-
-  // idle
-  } else if (leafy.facing != 'idle') {
-    
-    leafy.animations.play('turn');
-    
-    if (leafy.facing == 'left') {
-      leafy.frame = 0;
-    } else {
-      leafy.frame = 5;
-    }
-    leafy.facing = 'idle';
-  }
-
-  // Walk animation
-  if (game.cursors.left.isDown || game.cursors.right.isDown && (leafy.body.onFloor() || leafy.body.touching.down)) {
-    leafy.animations.play('walk');
-  }
-
-} else {
   // always run to the right
   leafy.animations.play('walk');
   leafy.body.velocity.x = leafy.playerSpeed;
   leafy.scale.x = 1; //default direction
   leafy.facing = 'right';
-}
 
 
   // Jumping
@@ -167,6 +118,8 @@ if (!vars.runmode) {
   if (onTheGround) {
     leafy.jumps = 2; // If touching ground, give 1 jump
     leafy.jumping = false;
+  } else {
+    leafy.animations.play('jump');
   }
   // Jump! Keep y velocity constant while the jump button is held for up to 150 ms
   if (leafy.jumps > 0 && upInputIsActive(210)) {
