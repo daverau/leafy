@@ -8,7 +8,7 @@ function genBees(num) {
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);
-    var bee = new Enemy(game, game.rnd.integerInRange(0, vars.worldSize), game.height-90, game.rnd.integerInRange(1, 200), vars.beeSpeed);
+    var bee = new Enemy(game, game.rnd.integerInRange(game.width/2, vars.worldSize), game.height-90, 1, vars.beeSpeed);
     game.bees.add(bee);
   }
 }
@@ -34,6 +34,10 @@ Enemy = function (game, x, y, direction, speed) {
     //alpha: .5,
     y: (this.y - 200)
   }, 1000, Phaser.Easing.Cubic.Out);
+  this.jumpsquash = game.add.tween(this).to({
+    alpha: 0,
+    y: (this.y + 300)
+  }, 1000, Phaser.Easing.Cubic.Out);
 };
 
 // create prototype
@@ -42,8 +46,8 @@ Enemy.prototype.constructor = Enemy;
 
 // update
 Enemy.prototype.update = function() {
-  this.body.velocity.x = this.xSpeed;
-  moveEnemy(this);
+  this.body.velocity.x = -vars.beeSpeed;
+  //moveEnemy(this);
   resetBee(this);
 };
 
@@ -64,7 +68,7 @@ function resetBee(item) {
 
 
 // Enemy move left and right loop
-function moveEnemy(enemy){
+function moveEnemy(enemy) {
 
   if (enemy.pickedup) {
 
@@ -96,17 +100,32 @@ function moveEnemy(enemy){
 // called by update leafy,bee group overlap check
 function passBee(leafy, bee) {
   if (leafy.alive) {
-    if (leafy.flowers < 1 && !bee.pickedup) {
+
+    // jump squash
+    if ( bee.body.touching.up && !bee.pickedup) {
+
+      bee.pickedup = true;
+      bee.animations.play('flyhappy');
       game.sfxbuzz.play();
-      leafy.kill();
+      bee.jumpsquash.start();
+      leafyJump();
+
     } else {
-      if (!bee.pickedup) {
-        bee.pickedup = true;
-        bee.animations.play('flyhappy');
+
+      if (leafy.flowers < 1 && !bee.pickedup) {
         game.sfxbuzz.play();
-        bee.hittween.start();
-        leafy.flowers -= 1;
+        leafy.kill();
+      } else {
+        if (!bee.pickedup) {
+          bee.pickedup = true;
+          bee.animations.play('flyhappy');
+          game.sfxbuzz.play();
+          bee.hittween.start();
+          leafy.flowers -= 1;
+        }
       }
-    }
+
+    } // end jump squash
+
   }
 }

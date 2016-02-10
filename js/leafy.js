@@ -170,14 +170,8 @@ if (!vars.runmode) {
   }
   // Jump! Keep y velocity constant while the jump button is held for up to 150 ms
   if (leafy.jumps > 0 && upInputIsActive(210)) {
-    leafy.body.velocity.y = leafy.JUMP_SPEED;
-    leafy.jumping = true;
-    leafy.animations.play('jump');
-    if (!leafy.playingSound) {
-      leafy.playingSound = true;
-      leafy.sfxboing.play('',0,1,false,false);
-    }
- }
+    leafyJump();
+  }
   // Reduce the number of available jumps if the jump input is released
   if (leafy.jumping && upInputReleased()) {
     leafy.jumps--;
@@ -187,6 +181,15 @@ if (!vars.runmode) {
 
 }
 
+function leafyJump() {
+  game.leafy.body.velocity.y = game.leafy.JUMP_SPEED;
+  game.leafy.jumping = true;
+  game.leafy.animations.play('jump');
+  if (!game.leafy.playingSound) {
+    game.leafy.playingSound = true;
+    game.leafy.sfxboing.play('',0,1,false,false);
+  }
+}
 
 function upInputIsActive(duration) {
   var isActive = false;
