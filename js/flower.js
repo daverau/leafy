@@ -9,7 +9,8 @@ function genBlueleaves() {
   console.log('blue leaves: '+blueLeafTotal);
   
   for (var i=0; i<blueLeafTotal; i++) {
-    var leaf = new Blueleaf(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.platformHeight);
+    var y = game.rnd.integerInRange(0, game.height-vars.platformHeight);
+    var leaf = new Blueleaf(game, game.rnd.integerInRange(0, vars.worldSize), y);
     game.blueleaves.add(leaf);
   }
 }
@@ -45,6 +46,17 @@ function passBlueleaf(leafy, leaf) {
     }
     game.sfxding._sound.playbackRate.value = 0.6;
     leaf.tween.start();
+  }
+}
+
+function resetLeaf(item) {
+  if ( (game.camera.x - (item.x+item.width)) > game.width * 1.1 ) {
+    //console.log('resetMove() ' + item.key);
+    //console.log('--move--');
+    item.alpha = 1;
+    item.pickedup = false;
+    item.y = game.height - vars.platformHeight;
+    item.x = game.camera.x + Math.floor(Math.random()*(game.width * 2.5)+(game.width * 1.5));
   }
 }
 
