@@ -8,7 +8,7 @@ function genBees(num) {
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);
-    var bee = new Enemy(game, game.rnd.integerInRange(game.width/2, vars.worldSize), game.height-90, 1, vars.beeSpeed);
+    var bee = new Enemy(game, game.rnd.integerInRange(game.width, game.width*2), game.height-90, 1, vars.beeSpeed);
     game.bees.add(bee);
   }
 }

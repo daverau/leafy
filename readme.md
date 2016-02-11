@@ -31,6 +31,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - double jump sound fixed with `allowMultiple = true`
 - [bug] fix performance on resume (`requestAnimationFrame` wasn't pausing)
 - jump on bees, 1-way movement, fewer bees
+- [bug] fix leafy jump animation
 
 ### v1.5
 - short/long jumps based on button press duration

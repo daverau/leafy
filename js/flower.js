@@ -4,8 +4,8 @@ function genBlueleaves() {
   game.blueleaves.enableBody = true;
   
   // generate leaves
-  // var blueLeafTotal = vars.worldSize * .01;
-  var blueLeafTotal = 3;
+  //var blueLeafTotal = vars.worldSize * .01;
+  var blueLeafTotal = 9;
   console.log('blue leaves: '+blueLeafTotal);
   
   for (var i=0; i<blueLeafTotal; i++) {

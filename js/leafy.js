@@ -1,6 +1,6 @@
 // Leafy setup
 function genLeafy() {
-  var leafy = game.add.sprite( 50 , -100, 'leafy');
+  var leafy = game.add.sprite( -100 , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
   leafy.playerSpeed = 160 * vars.ratio;
   leafy.alive = true;
@@ -111,7 +111,6 @@ function playerMove(leafy) {
   leafy.body.velocity.x = leafy.playerSpeed;
   leafy.scale.x = 1; //default direction
   leafy.facing = 'right';
-
 
   // Jumping
   var onTheGround = leafy.body.touching.down;

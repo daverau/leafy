@@ -24,7 +24,7 @@ function drawMoon() {
 function genRain() {
   game.emitter = game.add.emitter(game.width/2, 0, 500);
   game.emitter.fixedToCamera = true;
-  game.emitter.width = game.width * 1.4; // magic number
+  game.emitter.width = game.width * vars.ratio * 1.4; // magic number
   game.emitter.makeParticles('tree'); // use a dark color
   game.emitter.minParticleScale = 0.1;
   game.emitter.maxParticleScale = 0.7;
