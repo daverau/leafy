@@ -51,7 +51,7 @@ BasicGame.Game.prototype = {
     game.platforms.enableBody = true;
     game.platforms.createMultiple(vars.platforms, 'tree', false);
     game.platforms.setAll('body.immovable', true);
-    resetPlatforms();
+    //resetPlatforms();
     placePlatforms();
 
 
