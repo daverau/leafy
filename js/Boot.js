@@ -1,9 +1,6 @@
 // # Global variables (more like constants)
 var vars = {};
 
-// runmode,always run tothe right?
-vars.runmode = false;
-
 // setup
 vars.ratio = window.devicePixelRatio || 1;
 
@@ -42,6 +39,9 @@ BasicGame.Boot.prototype = {
     this.stage.smoothed = false;
     this.time.advancedTiming = true; // [todo] need this?
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    this.input.maxPointers = 2; // for mobile
+    this.input.addPointer();
+    this.input.addPointer();
 
   },
 

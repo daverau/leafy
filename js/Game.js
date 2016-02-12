@@ -16,9 +16,6 @@ BasicGame.Game.prototype = {
 
 
     // # Inputs
-    this.input.maxPointers = 2; // for mobile
-    this.input.addPointer();
-    this.input.addPointer();
     game.cursors = this.input.keyboard.createCursorKeys();
     game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
@@ -48,6 +45,7 @@ BasicGame.Game.prototype = {
     genFlowers();
     //genForetrees(); // redo
     
+
     // # Platforms
     game.platforms = game.add.group();
     game.platforms.enableBody = true;
@@ -56,7 +54,10 @@ BasicGame.Game.prototype = {
     resetPlatforms();
     placePlatforms();
 
+
+    // # Bees
     genBees(1);
+
 
     // # Rain
     //genRain();
@@ -69,7 +70,8 @@ BasicGame.Game.prototype = {
     // # UI
     genUI();
 
-    // bg gameover
+
+    // # bg gameover
     game.bggameover = this.add.sprite(0,0, 'bggameover');
     game.bggameover.alpha = 0;
     game.bggameover.width = game.width;
@@ -79,7 +81,9 @@ BasicGame.Game.prototype = {
       alpha: 0.5,
     }, 4000, Phaser.Easing.Cubic.Out);
 
-//this.state.start('GameOver'); // test
+
+    // # TEST
+    //this.state.start('GameOver'); // test
 
   },
 
@@ -141,7 +145,6 @@ BasicGame.Game.prototype = {
       //game.leafy.kill();
       console.log('^^^world fallout^^^');
       //this.state.start('MainMenu');
-      vars.runmode = false;
       this.state.start('GameOver');
     }
 

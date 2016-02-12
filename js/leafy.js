@@ -145,16 +145,8 @@ function leafyJump() {
 
 function upInputIsActive(duration) {
   var isActive = false;
-  if (vars.runmode) {
     isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
     isActive |= game.input.activePointer.justPressed(duration + 1000/60);
-  } else {
-    isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
-    isActive |= game.input.pointer2.justPressed(duration + 1000/60);
-    isActive |= (game.input.activePointer.justPressed(duration + 1000/60) &&
-      game.input.activePointer.x > game.width/4 &&
-      game.input.activePointer.x < game.width/2 + game.width/4);
-  }
   return isActive;
 }
 

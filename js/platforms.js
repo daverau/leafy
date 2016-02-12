@@ -95,8 +95,6 @@ function platformTouch(leafy, platform) {
     platform.touched = true;
     
     if (game.leafy.score === 0) {
-      // runmode,always run tothe right?
-      vars.runmode = true;
       game.leafy.score = 1;
     } else {
       game.leafy.score = Number(platform.score) + Number(game.leafy.score);
