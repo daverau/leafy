@@ -94,12 +94,13 @@ function platformTouch(leafy, platform) {
     leafy.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
     platform.touched = true;
     
-    if (game.leafy.score === 0) {
-      game.leafy.score = 1;
-    } else {
-      game.leafy.score = Number(platform.score) + Number(game.leafy.score);
-      leafy.leafyText.setText( platform.score );
-    }
+    leafy.leafyText.setText( platform.score );
+    // # jump-based scoring, consider bonus points later or highscore best jump
+    // if (game.leafy.score === 0) {
+    //   game.leafy.score = 1;
+    // } else {
+    //   game.leafy.score = Number(platform.score) + Number(game.leafy.score);
+    // }
 
     // set jump score so it follows Leafy around
     leafy.leafyText.alpha = 1;

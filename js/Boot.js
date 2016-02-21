@@ -1,4 +1,4 @@
-// # Global variables (more like constants)
+// # Global variables
 var vars = {};
 
 // setup
@@ -19,9 +19,7 @@ vars.beeSpeed = 370;
 // track deaths
 vars.triesScore = 0;
 
-
 // # Phaser global
-// [question] is this leaking or causing bloat since it's global?
 BasicGame = {
  score: 0, // unused
  music: null, // to be used

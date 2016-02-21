@@ -5,7 +5,7 @@ function genLeafy() {
   leafy.playerSpeed = 160 * vars.ratio;
   leafy.alive = true;
   leafy.score = 0;
-  leafy.blueLeafCount = 0;
+  leafy.blueLeafCount = localStorage.getItem("leafyblueLeafCount") === null ? 0 : localStorage.getItem("leafyblueLeafCount");
   leafy.flowers = 0;
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
@@ -67,6 +67,7 @@ function genLeafy() {
 
     // score
     localStorage.setItem("leafybestScore", Math.max(leafy.score, leafy.bestScore));
+    localStorage.setItem("leafyblueLeafCount", leafy.blueLeafCount);
 
     // camera fall
     leafy.cameraFall = game.add.tween(game.camera.bounds).to( { 
@@ -112,6 +113,8 @@ function playerMove(leafy) {
   leafy.scale.x = 1; //default direction
   leafy.facing = 'right';
 
+  game.leafy.score = Math.round(game.leafy.x/10);
+
   // Jumping
   var onTheGround = leafy.body.touching.down;
   if (onTheGround) {
@@ -155,7 +158,6 @@ function upInputReleased() {
     var released = false;
 
     released = game.input.keyboard.upDuration(Phaser.Keyboard.UP);
-    released |= game.input.pointer2.justReleased();
     released |= game.input.activePointer.justReleased();
 
     return released;

@@ -18,7 +18,8 @@ function genUI() {
   game.ui.add(game.flowersText);
 
   // score
-  game.scoreText = game.add.text( game.width/2, 45, '0', { font: (15*vars.ratio)+"px Avenir-Medium", fill: '#F5A623' });
+  // { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' }
+  game.scoreText = game.add.text( game.width/2, 45, '0', { font: (15*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
   game.scoreText.fixedToCamera = true;
   game.ui.add(game.scoreText);
 
