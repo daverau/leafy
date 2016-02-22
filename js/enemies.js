@@ -1,14 +1,16 @@
 // Enemies
 
 // # Bees
-function genBees(num,xValue) {
-  xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
-  game.bees = game.add.group();
+function genBees(num,xValue,yValue) {
+  var xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
+  var yValue = yValue || game.height-90;
   var beeCount = num || 3;
-  console.log('bees: '+beeCount);
+
+  game.bees = game.add.group();
+  //console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);
-    var bee = new Enemy(game, xValue, game.height-90, 1, vars.beeSpeed);
+    var bee = new Enemy(game, xValue, yValue, 1, vars.beeSpeed);
     game.bees.add(bee);
   }
 }
@@ -48,19 +50,19 @@ Enemy.prototype.constructor = Enemy;
 Enemy.prototype.update = function() {
   this.body.velocity.x = -vars.beeSpeed;
   //moveEnemy(this);
-  resetBee(this);
+  if ( offCamera(this) ) {
+    resetBee(this);
+  }
 };
 
 function resetBee(item) {
-  if ( (game.camera.x - item.x) > game.width * 1 ) {
-    //console.log('resetBee()');
-    item.animations.play('fly');
-    item.alpha = 1;
-    item.y = game.height-90;
-    item.pickedup = false;
-    item.y = game.height - vars.platformHeight;
-    item.x = game.camera.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
-  }
+  //console.log('resetBee()');
+  item.animations.play('fly');
+  item.alpha = 1;
+  item.y = game.height-90;
+  item.pickedup = false;
+  item.y = game.height - vars.platformHeight;
+  item.x = game.camera.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
 }
 
 // Enemy move left and right loop

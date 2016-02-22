@@ -43,17 +43,12 @@ function placePlatforms() {
       //console.log('+ move ring for platform: '+platform.i + ' at x: ' + platform.x);
       placeBluering(platform);
 
-      // place trees for this platform
+      // [todo] place trees for this platform
 
     } else {
       //console.log('no dead platforms, move around first...');
     }
   }
-}
-
-// helper
-function offCamera(item) {
-  return item.x < game.camera.x;
 }
 
 // recycle rings as they fall off camera
