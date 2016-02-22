@@ -78,7 +78,7 @@ function checkOverlap(spriteA, spriteB) {
 }
 // helper
 function offCamera(item) {
-  return item.x < game.camera.x;
+  return (item.x + item.width) < game.camera.x;
 }
 function resetMove(item,x,y) {
   var x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));

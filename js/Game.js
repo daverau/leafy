@@ -52,7 +52,6 @@ BasicGame.Game.prototype = {
     game.platforms.enableBody = true;
     game.platforms.createMultiple(vars.platforms, 'platform', false);
     game.platforms.setAll('body.immovable', true);
-    //resetPlatforms();
     placePlatforms();
 
     // nice first platform
@@ -115,6 +114,8 @@ BasicGame.Game.prototype = {
     // World fallout
     if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
       game.leafy.kill();
+      game.leafy.jumps = 0;
+      game.platforms.destroy();
       //console.log('^^^died fall^^^');
     }
 

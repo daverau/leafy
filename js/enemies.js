@@ -38,7 +38,7 @@ Enemy = function (game, x, y, direction, speed) {
   }, 1000, Phaser.Easing.Cubic.Out);
   this.jumpsquash = game.add.tween(this).to({
     alpha: 0,
-    y: (this.y + 300)
+    y: (this.height + game.height)
   }, 1000, Phaser.Easing.Cubic.Out);
 };
 
@@ -59,9 +59,10 @@ function resetBee(item) {
   //console.log('resetBee()');
   item.animations.play('fly');
   item.alpha = 1;
-  item.y = game.height-90;
+  //item.y = game.height-90;
   item.pickedup = false;
   item.y = game.height - vars.platformHeight;
+  //item.y = Math.floor(Math.random()*(maxY)+(150));
   item.x = game.camera.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
 }
 

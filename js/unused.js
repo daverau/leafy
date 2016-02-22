@@ -3,6 +3,30 @@
 // game.leafy.outOfBoundsKill = true;
 
 
+
+function genEasyPlatorms() {
+  game.easyPlatorms = game.add.physicsGroup();
+
+  var ground = game.add.tileSprite(0 , game.height-120, 500, 90, 'platform');
+  game.physics.arcade.enable(ground);
+  ground.body.immovable = true;
+  ground.body.allowGravity = false;
+  game.easyPlatorms.add(ground);
+
+  ground = game.add.tileSprite(600 , game.height-250, 500, 90, 'platform');
+  game.physics.arcade.enable(ground);
+  ground.body.immovable = true;
+  ground.body.allowGravity = false;
+  game.easyPlatorms.add(ground);
+
+  ground = game.add.tileSprite(900 , game.height-380, 500, 90, 'platform');
+  game.physics.arcade.enable(ground);
+  ground.body.immovable = true;
+  ground.body.allowGravity = false;
+  game.easyPlatorms.add(ground);
+}
+
+
 // [todo] add swipe up to jump
 // (this.swipe.isDown && (this.swipjumpButtone.positionDown.y > this.swipe.position.y))
 

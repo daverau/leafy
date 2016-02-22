@@ -53,10 +53,9 @@ function placePlatforms() {
 
 // recycle rings as they fall off camera
 function placeBluering(platform) {
-  game.ringstoRecycle = game.bluerings.children.filter( offCamera );
-  game.platformstoRecycle = game.platforms.children.filter( offCamera );
   //console.log('ringstoRecycle: '+game.ringstoRecycle.length);
   //console.log('platformstoRecycle: '+game.platformstoRecycle.length);
+  game.ringstoRecycle = game.bluerings.children.filter( offCamera );
 
   var ring = game.ringstoRecycle[0];
   if (ring) {
@@ -76,78 +75,28 @@ function getLastPlatformX() {
   return maxPlatformX;
 }
 
-function resetPlatforms() {
-  game.platforms.forEach(function(platform, index, array) {
-    // [question] why are index & array null?
-    // should be able to shiftPlatform(index)
+function moveFarPlatforms() {
+  //console.log('fn() moveFarPlatforms');
+
+  game.platformstoRecycle.forEach(function(platform) {
     platform.kill();
     platform.x = 0;
   });
 }
 
-function moveFarPlatforms() {
-  //console.log('fn() moveFarPlatforms');
-  game.platforms.forEach(function(platform, index, array) {
-    if ( (game.leafy.x - (platform.x + platform.width)) > game.width * 1.5 ) {
-      platform.kill();
-      platform.x = 0;
-    }
-  });
-}
-
-function shiftPlatform(index) {
-  var index = index || 0;
-  game.platforms[index].kill();
-  game.platforms[index].x = 0;
-}
-
 // # Leafy collide with platform
 function platformTouch(leafy, platform) {
   if (!platform.touched) {
-    leafy.leafyText.tween.stop();
-    leafy.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
     platform.touched = true;
-    
-    leafy.leafyText.setText( platform.score );
-    // # jump-based scoring, consider bonus points later or highscore best jump
-    // if (game.leafy.score === 0) {
-    //   game.leafy.score = 1;
-    // } else {
-    //   game.leafy.score = Number(platform.score) + Number(game.leafy.score);
-    // }
 
-    // set jump score so it follows Leafy around
-    leafy.leafyText.alpha = 1;
-    leafy.leafyText.x = ((game.leafy.x/2) * vars.ratio);
-    leafy.leafyText.y = (game.leafy.y/2 - 80) * vars.ratio;
-    leafy.leafyText.tween.delay(140).start();
-    leafy.jumpsScore++;
+    // platform jump score
+    touchPlatformScore(leafy, platform.score);
 
     // shuffle platforms if possible
+    game.platformstoRecycle = game.platforms.children.filter( offCamera );
+
     moveFarPlatforms();
     placePlatforms();
     moveFarTrees();
   }
-}
-
-function genEasyPlatorms() {
-  game.easyPlatorms = game.add.physicsGroup();
-
-  var ground = game.add.tileSprite(0 , game.height-120, 500, 60, 'platform');
-  game.physics.arcade.enable(ground);
-  ground.body.immovable = true;
-  ground.body.allowGravity = false;
-  game.easyPlatorms.add(ground);
-
-  ground = game.add.tileSprite(600 , game.height-250, 500, 60, 'platform');
-  game.physics.arcade.enable(ground);
-  ground.body.immovable = true;
-  ground.body.allowGravity = false;
-  game.easyPlatorms.add(ground);
-
-  ground = game.add.tileSprite(900 , game.height-380, 500, 60, 'platform');
-  game.physics.arcade.enable(ground);
-  ground.body.immovable = true;
-  ground.body.allowGravity = false;
-  game.easyPlatorms.add(ground);
 }
