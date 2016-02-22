@@ -43,9 +43,6 @@ function genBlueRings() {
   var blueRingTotal = 5;
   for (var i=0; i<blueRingTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
-    //var y = game.rnd.integerInRange(0, game.height-vars.platformHeight);
-    //var ring = new Bluering(game, x, y);
-
     var bluering = game.add.group();
     bluering.enableBody = true;
 
@@ -76,6 +73,7 @@ function passBlueleaf(leafy, leaf) {
     leafy.blueLeafCount = Number(leafy.blueLeafCount) + 1;
     game.sfxding.play();
 
+    // [todo] upgrade/timer boost based on pickups
     // if (leafy.body.gravity.y > 300) {
     //   leafy.body.gravity.y -= 20;
     // }
@@ -85,24 +83,21 @@ function passBlueleaf(leafy, leaf) {
 }
 
 function resetLeaf(item) {
-  if ( (item.x+item.width) < (game.leafy.x + (game.width))) {
-    //console.log('resetMove() ' + item.key);
-    item.alpha = 1;
-    item.pickedup = false;
-    item.y = item.pos.y;
-  }
+  //console.log('resetMove() ' + item.key);
+  item.alpha = 1;
+  item.pickedup = false;
+  item.y = item.pos.y;
 }
-
 
 // # Flowers
 function genFlowers() {
   game.flowers = game.add.group();
   game.flowers.enableBody = true;
-  //var fcount = Math.ceil(vars.worldSize * 0.005);
-  var fcount = 2;
+  var fcount = 1;
   console.log('flowers: '+fcount);
   for (x=0; x<fcount; x++) {
-    var flower = new Flower(game, game.rnd.integerInRange(0, vars.worldSize), game.height-vars.platformHeight);
+    var worldx = game.leafy.x + Math.floor(Math.random()*(game.width * 4)+(game.width * 2.5));
+    var flower = new Flower(game, worldx, game.height-vars.platformHeight);
     game.flowers.add(flower);
     //console.log('flower created at x:'+flower.x);
   }
@@ -127,7 +122,10 @@ Flower.prototype = Object.create(Phaser.Sprite.prototype);
 Flower.prototype.constructor = Flower;
 Flower.prototype.update = function() {
   // [question] how to refactor this?
-  resetMove(this);
+  if ( offCamera(this) ) {
+    var worldx = game.leafy.x + Math.floor(Math.random()*(game.width * 9)+(game.width * 3.5));
+    resetMove(this, worldx);
+  }
 };
 
 function passFlower(leafy, flower) {
