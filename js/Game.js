@@ -3,7 +3,6 @@ BasicGame.Game.prototype = {
 
   create: function () {
 
-
     // # World gen
     console.log('world size: ' + vars.worldSize);
     this.world.setBounds(0, 0, vars.worldSize, game.height);
@@ -37,12 +36,14 @@ BasicGame.Game.prototype = {
 
     // # Draw game objects
     drawMoon();
-    genStump(); // move
+    //genStump(); // move
     genTrees();
-    genOwl();   // move
+    //genOwl();   // move
     game.leafy = genLeafy();
-    genBlueleaves();
+    //genBlueleaves();
     genFlowers();
+
+    genBlueRings();
     //genForetrees(); // redo
     
 
@@ -56,7 +57,7 @@ BasicGame.Game.prototype = {
 
 
     // # Bees
-    genBees(1);
+    //genBees(1);
 
 
     // # Rain
@@ -85,6 +86,8 @@ BasicGame.Game.prototype = {
     // # TEST
     //this.state.start('GameOver'); // test
 
+  //game.leafy.playerSpeed = 0;
+
   },
 
 
@@ -99,13 +102,13 @@ BasicGame.Game.prototype = {
 
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
-    this.physics.arcade.collide(game.leafy, game.easyPlatorms, null, null, this);      
-    this.physics.arcade.overlap(game.leafy, game.blueleaves, passBlueleaf, null, this);
+    //this.physics.arcade.collide(game.leafy, game.easyPlatorms, null, null, this);      
+    this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
   
     // owl
-    if (game.owl) {
+    if (game.owl.alive) {
       if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
     }
 
@@ -120,7 +123,7 @@ BasicGame.Game.prototype = {
     // World fallout
     if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
       game.leafy.kill();
-      console.log('^^^died fall^^^');
+      //console.log('^^^died fall^^^');
     }
 
 
@@ -129,7 +132,7 @@ BasicGame.Game.prototype = {
     if (!game.leafy.alive && !game.rewpawning) {
       game.rewpawning = true;
       game.leafy.kill();
-      console.log('^^^died !alive^^^');
+      //console.log('^^^died !alive^^^');
       //this.state.start('Retry');
     } else {
       playerMove(game.leafy);
@@ -141,16 +144,14 @@ BasicGame.Game.prototype = {
 
     // # world fallout
     if (game.leafy.body.y > (game.height * 2) ) {
-      //console.log( 'kill leafy' );
-      //game.leafy.kill();
-      console.log('^^^world fallout^^^');
-      //this.state.start('MainMenu');
+      //console.log('^^^world fallout^^^');
       this.state.start('GameOver');
     }
 
 
+
     // test
-//this.state.start('GameOver');
+    //this.state.start('GameOver');
 
   },
 

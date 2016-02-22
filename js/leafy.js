@@ -1,8 +1,9 @@
 // Leafy setup
 function genLeafy() {
-  var leafy = game.add.sprite( -100 , -100, 'leafy');
+  var leafy = game.add.sprite( 40 , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
   leafy.playerSpeed = 160 * vars.ratio;
+  //leafy.playerSpeed = 0;
   leafy.alive = true;
   leafy.score = 0;
   leafy.blueLeafCount = localStorage.getItem("leafyblueLeafCount") === null ? 0 : localStorage.getItem("leafyblueLeafCount");
@@ -79,7 +80,7 @@ function genLeafy() {
     this.deathTween.start();
     game.moon.deathTween.start();
     game.ui.deathTween.start();
-    game.platforms.destroy();
+    //game.platforms.destroy();
     game.bgnight.tween = game.add.tween(game.bgnight).to( { 
       alpha: 0
     }, 1500);

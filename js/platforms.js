@@ -6,9 +6,13 @@ function placePlatforms() {
 
   for (var i=0; i<platformCount; i++) {
 
+    //console.log('--placePlatforms--'+i);
     var maxPlatformX = getLastPlatformX();
+    //console.log('maxPlatformX:'+maxPlatformX);
     var platformw = Math.floor(Math.random() * 230) + 100;
+    //console.log('platformw:'+platformw);
     var nextX = maxPlatformX + platformw ;
+    //console.log('nextX:'+nextX);
 
     // first pillar should be at x:0
     if (i === 0) {
@@ -21,6 +25,11 @@ function placePlatforms() {
       platform.score = platformw;
       platform.touched = false;
 
+      // set a platform ID, for state tracking ... bleh
+      if (!platform.i) {
+        platform.i = i;
+      }
+
       // randomize width
       // [todo] weighted
       var w = Math.floor(Math.random() * 400) + 150;
@@ -28,25 +37,40 @@ function placePlatforms() {
       // apply platform
       platform.reset(nextX, game.height-90);
       platform.width = w;
+      platform.nextX = nextX;
       platform.height = vars.platformHeight;
 
-      // removed these since we're doing our own checks
-      // but keeping around if we want later
-      //game.platforms.setAll('checkWorldBounds', true);
-      //game.platforms.setAll('outOfBoundsKill', true);
+      //console.log('+ move ring for platform: '+platform.i + ' at x: ' + platform.x);
+      placeBluering(platform);
 
-      //console.log('---platform'+i+1+'---');
-      //console.log(w+'w ('+platformw+')');
-      // console.log('x: '+nextX);
-      // console.log('last pillar x: '+maxPlatformX);
     } else {
       //console.log('no dead platforms, move around first...');
     }
   }
 }
 
+// helper
+function isPast(item) {
+  return item.x < game.camera.x;
+}
+
+// recycle rings as they fall off camera
+function placeBluering(platform) {
+  game.ringstoRecycle = game.bluerings.children.filter( isPast );
+  game.platformstoRecycle = game.platforms.children.filter( isPast );
+  //console.log('ringstoRecycle: '+game.ringstoRecycle.length);
+  //console.log('platformstoRecycle: '+game.platformstoRecycle.length);
+
+  var ring = game.ringstoRecycle[0];
+  if (ring) {
+    ring.x = platform.x + platform.width + (platform.nextX/2);
+    ring.children.forEach(function(blueleaf) {
+      resetLeaf(blueleaf);
+    });
+  }
+}
+
 function getLastPlatformX() {
-  //console.log('fn: getLastPlatformX()');
   // find max x value
   var maxPlatformX = 0;
   game.platforms.forEach(function(platform) {
@@ -56,13 +80,11 @@ function getLastPlatformX() {
 }
 
 function resetPlatforms() {
-  //console.log('fn() resetPlatforms');
   game.platforms.forEach(function(platform, index, array) {
     // [question] why are index & array null?
     // should be able to shiftPlatform(index)
     platform.kill();
     platform.x = 0;
-    //platform.alpha = 1;
   });
 }
 
@@ -72,16 +94,13 @@ function moveFarPlatforms() {
     if ( (game.leafy.x - (platform.x + platform.width)) > game.width * 1.5 ) {
       platform.kill();
       platform.x = 0;
-      //platform.alpha = 1;
     }
   });
 }
 
 function shiftPlatform(index) {
-  //console.log('fn() shiftPlatform');
   var index = index || 0;
   game.platforms[index].kill();
-  //game.platforms[index].alpha = 1;
   game.platforms[index].x = 0;
 }
 
@@ -89,7 +108,6 @@ function shiftPlatform(index) {
 // # Leafy collide with platform
 function platformTouch(leafy, platform) {
   if (!platform.touched) {
-    //console.log('fn() platform touch');
     leafy.leafyText.tween.stop();
     leafy.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
     platform.touched = true;
@@ -107,10 +125,6 @@ function platformTouch(leafy, platform) {
     leafy.leafyText.x = ((game.leafy.x/2) * vars.ratio);
     leafy.leafyText.y = (game.leafy.y/2 - 80) * vars.ratio;
     leafy.leafyText.tween.delay(140).start();
-    
-    // [todo] animate platform
-    //platform.alpha = .5;
-
     leafy.jumpsScore++;
 
     // shuffle platforms if possible

@@ -40,7 +40,7 @@ BasicGame.Preloader.prototype = {
 
     // blue leaf pickup assets
     this.load.image('blueleaf', 'img/blueleaf.png');
-    this.load.audio('ding', 'audio/pickup.wav');
+    this.load.audio('ding', 'audio/woosh.wav');
 
     // flower
     this.load.image('flower', 'img/flower.png');
