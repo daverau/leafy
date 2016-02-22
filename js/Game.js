@@ -68,7 +68,7 @@ BasicGame.Game.prototype = {
 
 
     // # Bees
-    //genBees(1);
+    genBees(1);
 
 
     // # Rain
