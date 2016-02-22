@@ -2,36 +2,41 @@
 function genLeafy() {
   var leafy = game.add.sprite( 40 , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
-  leafy.playerSpeed = 160 * vars.ratio;
-  //leafy.playerSpeed = 0;
   leafy.alive = true;
+  leafy.jumping = false;
+  
+  // scores
   leafy.score = 0;
   leafy.blueLeafCount = localStorage.getItem("leafyblueLeafCount") === null ? 0 : localStorage.getItem("leafyblueLeafCount");
   leafy.flowers = localStorage.getItem("leafyFlowerCount") === null ? 0 : localStorage.getItem("leafyFlowerCount");
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
-  leafy.jumping = false;
 
+  // speed
   game.camera.follow(leafy);
-
-  // Define movement constants
+  leafy.playerSpeed = 160 * vars.ratio;
+  //leafy.playerSpeed = 0;
   leafy.ACCELERATION = 2000; // pixels/second/second
   leafy.JUMP_SPEED = -750; // pixels/second (negative y is up)
 
+  // physics
   game.physics.arcade.enable(leafy);
   leafy.enableBody = true;
   leafy.body.gravity.y = 3000;
-  //leafy.body.drag.setTo(600, 0);
   leafy.body.velocity.x = 0;
   leafy.body.maxVelocity.x = 500;
   leafy.body.maxVelocity.y = 4000;
   leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
+  //leafy.body.drag.setTo(600, 0);
 
   // animation
   leafy.deathTween = game.add.tween(leafy).to({
     alpha: 0,
     angle: 30
   }, 1500, Phaser.Easing.Cubic.Out);
+  game.camera.deathTween = game.add.tween(game.camera).to({
+    y: 2000
+  }, 3000, Phaser.Easing.Cubic.Out);
 
   // player score
   leafy.leafyText = game.add.text( leafy.x, leafy.y, '+200', { font: (14*vars.ratio)+"px Avenir-Medium", fill: '#F5A623' });
@@ -51,10 +56,8 @@ function genLeafy() {
   leafy.sfxboing = game.add.audio('boing');
   leafy.sfxboing.allowMultiple = true;
 
-
   // death
   leafy.kill = function() {
-
     this.alive = false;
     this.body.velocity.setTo(0,0);
     this.animations.stop();
@@ -95,56 +98,51 @@ function genLeafy() {
       this.events.destroy();
     }, this);
 
-    // only for newer phaser 2.4.4
+    // only for newer phaser 2.4.4+
     if (this.events) {
       this.events.onKilled$dispatch(this);
     }
-
     return this;
   };
-
   return leafy;
-
 }
 
-
 function playerMove(leafy) {
+  leafy.scale.x = 1; //default direction
+  leafy.facing = 'right';
+  leafy.score = Math.round(leafy.x/10);
+
   // always run to the right
   leafy.animations.play('walk');
   leafy.body.velocity.x = leafy.playerSpeed;
-  leafy.scale.x = 1; //default direction
-  leafy.facing = 'right';
-
-  game.leafy.score = Math.round(game.leafy.x/10);
 
   // Jumping
-  var onTheGround = leafy.body.touching.down;
+  var onTheGround = leafy.body.touching.down; // [todo] refine for only platforms to fix double jump bug
   if (onTheGround) {
-    leafy.jumps = 2; // If touching ground, give 1 jump
+    leafy.jumps = 2; // If touching ground, give X jump
     leafy.jumping = false;
   } else {
     leafy.animations.play('jump');
   }
-  // Jump! Keep y velocity constant while the jump button is held for up to 150 ms
+  // Jump! Keep y velocity constant while jump is held for up to X ms
   if (leafy.jumps > 0 && upInputIsActive(210)) {
-    leafyJump();
+    leafyJump(leafy);
   }
-  // Reduce the number of available jumps if the jump input is released
+  // Reduce the number of available jumps if jump is released
   if (leafy.jumping && upInputReleased()) {
     leafy.jumps--;
     leafy.jumping = false;
     leafy.playingSound = false;
   }
-
 }
 
-function leafyJump() {
-  game.leafy.body.velocity.y = game.leafy.JUMP_SPEED;
-  game.leafy.jumping = true;
-  game.leafy.animations.play('jump');
-  if (!game.leafy.playingSound) {
-    game.leafy.playingSound = true;
-    game.leafy.sfxboing.play('',0,1,false,false);
+function leafyJump(leafy) {
+  leafy.body.velocity.y = leafy.JUMP_SPEED;
+  leafy.jumping = true;
+  leafy.animations.play('jump');
+  if (!leafy.playingSound) {
+    leafy.playingSound = true;
+    leafy.sfxboing.play('',0,1,false,false);
   }
 }
 
@@ -155,13 +153,11 @@ function upInputIsActive(duration) {
   return isActive;
 }
 
-// This function returns true when the player releases the "jump" control
+// returns true when the player releases jump
 function upInputReleased() {
     var released = false;
-
     released = game.input.keyboard.upDuration(Phaser.Keyboard.UP);
     released |= game.input.activePointer.justReleased();
-
     return released;
 }
 

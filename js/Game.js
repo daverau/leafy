@@ -3,16 +3,14 @@ BasicGame.Game.prototype = {
 
   create: function () {
 
+    // vue debug test
+    //vm.game = game;
+
     // # World gen
-    console.log('world size: ' + vars.worldSize);
+    //console.log('world size: ' + vars.worldSize);
     this.world.setBounds(0, 0, vars.worldSize, game.height);
     game.camera.bounds.setTo(null,null);
     game.camera.bounds.height = game.height;
-
-    game.camera.deathTween = game.add.tween(game.camera).to({
-      y: 2000
-    }, 3000, Phaser.Easing.Cubic.Out);
-
 
     // # Inputs
     game.cursors = this.input.keyboard.createCursorKeys();
@@ -22,9 +20,6 @@ BasicGame.Game.prototype = {
     game.bgnight = game.add.sprite(game.width,game.height, 'bgnight');
     game.bgnight.fixedToCamera = true;
     game.bgnight.anchor.setTo(1);
-
-    //this.bg = this.add.sprite(game.width,game.height, 'bgnight');
-    //this.bg.anchor.setTo(1);
 
     // waves bg
     this.waves = game.add.sprite(game.width,game.height, 'waves');
@@ -40,7 +35,6 @@ BasicGame.Game.prototype = {
     game.sfxding = game.add.audio('ding');
     game.sfxding.allowMultiple = true;
 
-
     // # Draw game objects
     drawMoon();
     //genStump(); // move
@@ -53,7 +47,6 @@ BasicGame.Game.prototype = {
     genBlueRings();
     //genForetrees(); // redo
     
-
     // # Platforms
     game.platforms = game.add.group();
     game.platforms.enableBody = true;
@@ -66,22 +59,17 @@ BasicGame.Game.prototype = {
     game.platforms.children[0].x = 0;
     game.platforms.children[0].width = 1600;
 
-
     // # Bees
     genBees(1);
-
 
     // # Rain
     //genRain();
 
-
     // testing...
     //genEasyPlatorms();
 
-
     // # UI
     genUI();
-
 
     // # bg gameover
     game.bggameover = this.add.sprite(0,0, 'bggameover');
@@ -93,27 +81,22 @@ BasicGame.Game.prototype = {
       alpha: 0.5,
     }, 4000, Phaser.Easing.Cubic.Out);
 
-
     // # TEST
     //this.state.start('GameOver'); // test
-
-  //game.leafy.playerSpeed = 0;
+    //game.leafy.playerSpeed = 0;
 
   },
 
 
   update: function () {
 
-
     // # Music
     if(!game.sfxbgnoise.isPlaying){
      game.sfxbgnoise.play();
     }
 
-
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
-    //this.physics.arcade.collide(game.leafy, game.easyPlatorms, null, null, this);      
     this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
@@ -123,13 +106,11 @@ BasicGame.Game.prototype = {
       if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
     }
 
-
     // # UI
     game.flowersText.setText(game.leafy.flowers);
     game.blueLeafText.setText(game.leafy.blueLeafCount);
     game.fps.setText(game.time.fps + "fps");
     game.scoreText.setText(game.leafy.score);
-
 
     // World fallout
     if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
@@ -137,14 +118,12 @@ BasicGame.Game.prototype = {
       //console.log('^^^died fall^^^');
     }
 
-
     // # Leafy movement and Respawn
     game.leafy.body.velocity.x = 0;
     if (!game.leafy.alive && !game.rewpawning) {
       game.rewpawning = true;
       game.leafy.kill();
       //console.log('^^^died !alive^^^');
-      //this.state.start('Retry');
     } else {
       playerMove(game.leafy);
     }
@@ -158,8 +137,6 @@ BasicGame.Game.prototype = {
       //console.log('^^^world fallout^^^');
       this.state.start('GameOver');
     }
-
-
 
     // test
     //this.state.start('GameOver');

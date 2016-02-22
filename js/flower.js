@@ -33,6 +33,7 @@ Blueleaf.prototype = Object.create(Phaser.Sprite.prototype);
 Blueleaf.prototype.constructor = Blueleaf;
 Blueleaf.prototype.update = function() {
   //resetLeaf(this);
+  // moved to platforms.js blue ring stuff
 };
 
 function genBlueRings() {

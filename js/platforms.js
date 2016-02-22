@@ -43,6 +43,8 @@ function placePlatforms() {
       //console.log('+ move ring for platform: '+platform.i + ' at x: ' + platform.x);
       placeBluering(platform);
 
+      // place trees for this platform
+
     } else {
       //console.log('no dead platforms, move around first...');
     }
@@ -50,14 +52,14 @@ function placePlatforms() {
 }
 
 // helper
-function isPast(item) {
+function offCamera(item) {
   return item.x < game.camera.x;
 }
 
 // recycle rings as they fall off camera
 function placeBluering(platform) {
-  game.ringstoRecycle = game.bluerings.children.filter( isPast );
-  game.platformstoRecycle = game.platforms.children.filter( isPast );
+  game.ringstoRecycle = game.bluerings.children.filter( offCamera );
+  game.platformstoRecycle = game.platforms.children.filter( offCamera );
   //console.log('ringstoRecycle: '+game.ringstoRecycle.length);
   //console.log('platformstoRecycle: '+game.platformstoRecycle.length);
 
@@ -104,7 +106,6 @@ function shiftPlatform(index) {
   game.platforms[index].x = 0;
 }
 
-
 // # Leafy collide with platform
 function platformTouch(leafy, platform) {
   if (!platform.touched) {
@@ -134,9 +135,7 @@ function platformTouch(leafy, platform) {
   }
 }
 
-
 function genEasyPlatorms() {
-
   game.easyPlatorms = game.add.physicsGroup();
 
   var ground = game.add.tileSprite(0 , game.height-120, 500, 60, 'platform');
@@ -156,6 +155,4 @@ function genEasyPlatorms() {
   ground.body.immovable = true;
   ground.body.allowGravity = false;
   game.easyPlatorms.add(ground);
-
-
 }

@@ -1,14 +1,14 @@
 // Enemies
 
 // # Bees
-function genBees(num) {
+function genBees(num,xValue) {
+  xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
   game.bees = game.add.group();
-  //var beeCount = Math.ceil(vars.worldSize * 0.003);
   var beeCount = num || 3;
   console.log('bees: '+beeCount);
   for (x=0; x<beeCount; x++) {
     //console.log('bee created at x:'+bee.x);
-    var bee = new Enemy(game, game.rnd.integerInRange(game.width, game.width*2), game.height-90, 1, vars.beeSpeed);
+    var bee = new Enemy(game, xValue, game.height-90, 1, vars.beeSpeed);
     game.bees.add(bee);
   }
 }
@@ -51,7 +51,6 @@ Enemy.prototype.update = function() {
   resetBee(this);
 };
 
-
 function resetBee(item) {
   if ( (game.camera.x - item.x) > game.width * 1 ) {
     //console.log('resetBee()');
@@ -63,8 +62,6 @@ function resetBee(item) {
     item.x = game.camera.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
   }
 }
-
-
 
 // Enemy move left and right loop
 function moveEnemy(enemy) {
@@ -107,7 +104,7 @@ function passBee(leafy, bee) {
       bee.animations.play('flyhappy');
       game.sfxbuzz.play();
       bee.jumpsquash.start();
-      leafyJump();
+      leafyJump(leafy);
 
     } else {
 
