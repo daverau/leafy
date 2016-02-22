@@ -76,13 +76,17 @@ function checkOverlap(spriteA, spriteB) {
   var boundsB = spriteB.getBounds();
   return Phaser.Rectangle.intersects(boundsA, boundsB);
 }
-function resetMove(item) {
-  if ( (game.leafy.x - (item.x+item.width)) > game.width * 1.1 ) {
-    //console.log('resetMove() ' + item.key);
-    //console.log('--move--');
-    item.alpha = 1;
-    item.pickedup = false;
-    item.y = game.height - vars.platformHeight;
-    item.x = game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
-  }
+// helper
+function offCamera(item) {
+  return item.x < game.camera.x;
+}
+function resetMove(item,x,y) {
+  var x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+  var y = y || game.height - vars.platformHeight;
+  //console.log('resetMove() ' + item.key);
+  //console.log('--move--');
+  item.alpha = 1;
+  item.pickedup = false;
+  item.y = y;
+  item.x = x;
 }
