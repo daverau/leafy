@@ -39,7 +39,7 @@ function genBlueRings() {
   game.bluerings = game.add.group();
   game.bluerings.enableBody = true;
 
-  var blueRingTotal = 8;
+  var blueRingTotal = 5;
   for (var i=0; i<blueRingTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
     //var y = game.rnd.integerInRange(0, game.height-vars.platformHeight);
@@ -131,7 +131,7 @@ Flower.prototype.update = function() {
 
 function passFlower(leafy, flower) {
   if (!flower.pickedup) {
-    game.leafy.flowers += 1;
+    leafy.flowers = Number(leafy.flowers) + 1;
     flower.pickedup = true;
     game.sfxding.play();
     game.sfxding._sound.playbackRate.value = 0.3;

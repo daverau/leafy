@@ -34,11 +34,11 @@ BasicGame.GameOver.prototype = {
     this.gameoverScores.add(this.gameoverYourScore);
 
     // high score
-    this.gameoverBestjump = this.add.text( game.width*0.408, 344-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#526675' });
+    this.gameoverBestjump = this.add.text( game.width*0.41, 344-game.height, game.leafy.bestScore, { font: (24*vars.ratio)+"px AvenirNext-Heavy", fill: '#526675' });
     this.gameoverScores.add(this.gameoverBestjump);
 
     // tries
-    this.gameoverTriesscore = this.add.text( game.width*0.408, 416-game.height, vars.triesScore, { font: (20*vars.ratio)+"px AvenirNext-Medium", fill: '#526675' });
+    this.gameoverTriesscore = this.add.text( game.width*0.41, 415-game.height, vars.triesScore, { font: (20*vars.ratio)+"px AvenirNext-Medium", fill: '#526675' });
     this.gameoverScores.add(this.gameoverTriesscore);
 
     // jumps

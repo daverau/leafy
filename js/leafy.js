@@ -7,7 +7,7 @@ function genLeafy() {
   leafy.alive = true;
   leafy.score = 0;
   leafy.blueLeafCount = localStorage.getItem("leafyblueLeafCount") === null ? 0 : localStorage.getItem("leafyblueLeafCount");
-  leafy.flowers = 0;
+  leafy.flowers = localStorage.getItem("leafyFlowerCount") === null ? 0 : localStorage.getItem("leafyFlowerCount");
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
   leafy.jumping = false;
@@ -69,6 +69,7 @@ function genLeafy() {
     // score
     localStorage.setItem("leafybestScore", Math.max(leafy.score, leafy.bestScore));
     localStorage.setItem("leafyblueLeafCount", leafy.blueLeafCount);
+    localStorage.setItem("leafyFlowerCount", leafy.flowers);
 
     // camera fall
     leafy.cameraFall = game.add.tween(game.camera.bounds).to( { 

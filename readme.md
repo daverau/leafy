@@ -14,10 +14,8 @@ My original concept was inspired by a gamejam theme about "growing"
 
 ## Todo
 - platform gaps scale with jump boost for difficulty
-- move flowers, blueleaves and trees from gaps
-- arrange blue leaves in patterns
+- move flowers and trees from gaps
 - endgame with doorway and friend
-- score UI animate
 - background stars, clouds, gradient
 - music
 - instructions overlay
@@ -27,6 +25,9 @@ My original concept was inspired by a gamejam theme about "growing"
 ## Changelog
 
 ### v1.6
+- background water could be better; color refinements to world
+- score UI animate; keep blue leaves and flowers after falling
+- arrange blue leaves a pattern, move from gaps
 - jump sound should fire only once (doesn't loop the whole time you're jumping due to `update()`)
 - double jump sound fixed with `allowMultiple = true`
 - [bug] fix performance on resume (`requestAnimationFrame` wasn't pausing)
