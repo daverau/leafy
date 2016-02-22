@@ -26,6 +26,13 @@ BasicGame.Game.prototype = {
     //this.bg = this.add.sprite(game.width,game.height, 'bgnight');
     //this.bg.anchor.setTo(1);
 
+    // waves bg
+    this.waves = game.add.sprite(game.width,game.height, 'waves');
+    this.waves.fixedToCamera = true;
+    this.waves.anchor.setTo(1);
+    this.waves.scale.setTo(0.5);
+    this.waves.width = game.width;
+    this.waves.alpha = 0.3;
 
     // # Sound
     game.sfxbgnoise = game.add.audio('bgnoise');
@@ -50,10 +57,14 @@ BasicGame.Game.prototype = {
     // # Platforms
     game.platforms = game.add.group();
     game.platforms.enableBody = true;
-    game.platforms.createMultiple(vars.platforms, 'tree', false);
+    game.platforms.createMultiple(vars.platforms, 'platform', false);
     game.platforms.setAll('body.immovable', true);
     //resetPlatforms();
     placePlatforms();
+
+    // nice first platform
+    game.platforms.children[0].x = 0;
+    game.platforms.children[0].width = 1600;
 
 
     // # Bees
