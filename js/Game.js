@@ -56,7 +56,7 @@ BasicGame.Game.prototype = {
 
     // nice first platform
     game.platforms.children[0].x = 0;
-    game.platforms.children[0].width = 1600;
+    game.platforms.children[0].width = 600;
 
     // # Bees
     genBees(1);

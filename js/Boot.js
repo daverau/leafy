@@ -4,6 +4,9 @@ var vars = {};
 // setup
 vars.ratio = window.devicePixelRatio || 1;
 
+// testing/auto start
+vars.autoStart = true;
+
 // world
 // many game variables are based on this number
 // trees, bees, and blue leaves, oh, hey!

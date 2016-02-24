@@ -50,7 +50,9 @@ BasicGame.MainMenu.prototype = {
 
     genBees(1);
 
-    //this.state.start('Game');
+    if (vars.autoStart) {
+        this.state.start('Game');
+    }
 
   },
 
