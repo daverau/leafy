@@ -14,11 +14,6 @@ function placePlatforms() {
     var nextX = maxPlatformX + platformw ;
     //console.log('nextX:'+nextX);
 
-    // first pillar should be at x:0
-    if (i === 0) {
-      nextX = 0;
-    }
-
     // get from pool
     var platform = game.platforms.getFirstDead();
     if (platform) {
