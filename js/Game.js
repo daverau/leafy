@@ -115,7 +115,7 @@ BasicGame.Game.prototype = {
     if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
       game.leafy.kill();
       game.leafy.jumps = 0;
-      game.platforms.destroy();
+      //game.platforms.destroy();
       //console.log('^^^died fall^^^');
     }
 

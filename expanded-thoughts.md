@@ -1,4 +1,4 @@
-## Version 2.0
+# Version 2.0
 - seasons, snowy winter, blooming spring, windy fall
 - day to night
 - bear in the tree offers upgrades for honey drops from bees
@@ -21,24 +21,56 @@
 - switch between gameplay and tree farm area
 
 # Animals to consider adding to the game
-grey wolf
-panther
-brown/grizzly bear - unfriendly at first until you give him honey, must refill honey jars or he will become unfriendly
-ant
-beetle
-butterfly - used as warning around trees and Leafy
-mouse
-fox
-frog
-tortoise
-ladybug
-rabbit - gives you super jump boots, gives you super hop
-wren
-woodpecker
-eagle
-crow
-finch
-starling
-thornbill
-squirrel
+- grey wolf
+- panther
+- brown/grizzly bear: unfriendly at first until you give him honey, must refill honey jars or he will become unfriendly
+- ant
+- beetle
+- butterfly: used as warning around trees and Leafy
+- mouse
+- fox
+- frog
+- tortoise
+- ladybug
+- rabbit: gives you super jump boots, gives you super hop
+- wren
+- woodpecker
+- eagle
+- crow
+- finch
+- starling
+- thornbill
+- squirrel
 
+# SMB structure and design
+- 8 worlds
+- 4 levels each (last levels are bosses)
+- 11 bonus areas (coins + warps)
+- 5 themes:
+## enemies
+  single
+  two
+  three
+  four
+  roof
+## gaps
+  single
+  multiple
+  variable
+  gap enemy
+  pillar
+## valleys
+  empty
+  pipe
+  enemy
+  roof
+## multiple paths
+  two
+  three
+  risk/reward
+## stairs
+  up
+  down
+  empty stair valley
+  enemy stair valley
+  gap stair valley
