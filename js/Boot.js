@@ -21,7 +21,7 @@ var vars = {
   autoStart: false,
 
   levelEveryX: 10000, // every 1,000 score or 10,000 pixels
-  levelEveryX: 5000 // test
+  //levelEveryX: 5000 // test
 };
 
 // platform heights

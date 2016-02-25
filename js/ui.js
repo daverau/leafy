@@ -29,8 +29,21 @@ function genUI() {
   game.fps.alpha = 0.2;
   game.ui.add(game.fps);
 
+  // level
+  game.levelText = game.add.text( 50, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#FFFFFF' });
+  game.levelText.alpha = 0.8;
+  game.ui.add(game.levelText);
+
+
   game.ui.deathTween = game.add.tween(game.ui).to({
     alpha: 0,
   }, 500, Phaser.Easing.Cubic.Out);
 
+}
+
+function setLevelText() {
+  if ( (game.levelText.x + game.levelText.width) < game.camera.x) {
+    game.levelText.x = isLevel() * vars.levelEveryX;
+    game.levelText.text = 'Level ' + (isLevel() + 1); // show upcoming level marker
+  }
 }

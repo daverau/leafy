@@ -97,5 +97,6 @@ function platformTouch(leafy, platform) {
     resetFarPlatforms();
     placePlatforms();
     moveFarTrees();
+    setLevelText();
   }
 }
