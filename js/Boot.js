@@ -1,6 +1,6 @@
 // # Global variables
 var vars = {
-  version: '1.7.0', // Leafy game version
+  version: '1.7.1', // Leafy game version
 
   ratio: window.devicePixelRatio || 1,
 

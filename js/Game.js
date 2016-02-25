@@ -39,6 +39,7 @@ create: function () {
   drawMoon();
   //genStump(); // move
   genTrees();
+  genLevelText();
   //genOwl();   // move
   game.leafy = genLeafy();
   //genBlueleaves();
@@ -63,9 +64,6 @@ create: function () {
 
   // # Rain
   //genRain();
-
-  // testing...
-  //genEasyPlatorms();
 
   // # UI
   genUI();
