@@ -4,6 +4,7 @@ function genLeafy() {
   leafy.anchor.setTo(0.5, 1); //flip at middle point
   leafy.alive = true;
   leafy.jumping = false;
+  leafy.maxJumps = 2;
   
   // scores
   leafy.score = 0;
@@ -78,7 +79,7 @@ function genLeafy() {
     leafy.cameraFall = game.add.tween(game.camera.bounds).to( { 
       height: game.height*3
     }, 2000);
-    leafy.cameraFall.start();
+    //leafy.cameraFall.start();
     
     // animate world
     this.deathTween.start();
@@ -119,7 +120,7 @@ function playerMove(leafy) {
   // Jumping
   var onTheGround = leafy.body.touching.down; // [todo] refine for only platforms to fix double jump bug
   if (onTheGround) {
-    leafy.jumps = 2; // If touching ground, give X jump
+    leafy.jumps = leafy.maxJumps; // If touching ground, give X jump
     leafy.jumping = false;
   } else {
     leafy.animations.play('jump');

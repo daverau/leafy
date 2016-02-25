@@ -6,61 +6,35 @@ function placePlatforms() {
 
   for (var i=0; i<platformCount; i++) {
 
-    var maxPlatformX = getLastPlatformX();
-    //console.log('maxPlatformX:'+maxPlatformX);
-
-    // gaps
-    var gapw = Math.floor(Math.random() * 50) + 100;
-    //var gapw = 100;
-      if (game.leafy.x/10 > 1000) {
-        // level 2
-        var gapw = Math.floor(Math.random() * 150) + 100;
-        //console.log('level 2 platforms');
-      }
-      if (game.leafy.x/10 > 2000) {
-        // level 3
-        var gapw = Math.floor(Math.random() * 230) + 100;
-        //console.log('level 3 platforms');
-      }
-    //console.log('gap: '+gapw);
-    //var gapws = ['200', '330'];
-    //var gapw = gapws[Math.floor(Math.random()*gapws.length)];
-    //console.log('gapw:'+gapw);
-
-    var nextX = maxPlatformX + gapw ;
-    //console.log('nextX:'+nextX);
-
     // get from pool
     var platform = game.platforms.getFirstDead();
     if (platform) {
-      platform.score = gapw;
-      platform.touched = false;
 
-      // set a platform ID, for state tracking ... bleh
+      // far platform.x
+      var maxPlatformX = getLastPlatformX();
+
+      // platform settings per level
+      var widths = vars.platformLevels[isLevel()].widths;
+      var w = vars.platformWidths[widths[Math.floor(Math.random()*widths.length)] -1];
+
+      var heights = vars.platformLevels[isLevel()].heights;
+      var h = vars.platformHeights[heights[Math.floor(Math.random()*heights.length)] -1];
+
+      var gapws = vars.platformLevels[isLevel()].gaps;
+      var gapw = vars.platformGaps[gapws[Math.floor(Math.random()*gapws.length)] -1];
+
+      // set a platform ID
       if (!platform.i) {
         platform.i = i;
       }
 
-      // randomize width
-      //var w = Math.floor(Math.random() * 400) + 150;
-
-      // weighted platform widths
-      // easy game mechanic value to adjust over time based on leafy.x
-      var widths = ['250', '550'];
-      if (game.leafy.x/10 > 1000) {
-        // level 2
-        var widths = ['80', '150', '250'];
-        //console.log('level 2 platforms');
-      }
-      if (game.leafy.x/10 > 2000) {
-        // level 3
-        var widths = ['50', '90', '150'];
-        //console.log('level 3 platforms');
-      }
-      var w = widths[Math.floor(Math.random()*widths.length)];
+      // set nextX coordinate for platform
+      var nextX = maxPlatformX + gapw ;
 
       // apply platform
-      platform.reset(nextX, game.height-90);
+      platform.score = gapw;
+      platform.touched = false;
+      platform.reset(nextX, game.height - h);
       platform.width = w;
       platform.nextX = nextX;
       platform.height = vars.platformHeight;

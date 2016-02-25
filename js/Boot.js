@@ -1,26 +1,76 @@
 // # Global variables
-var vars = {};
+var vars = {
+  ratio: window.devicePixelRatio || 1,
 
-// setup
-vars.ratio = window.devicePixelRatio || 1;
+  // world
+  // many game variables are based on this number
+  // trees, bees, and blue leaves, oh, hey!
+  worldSize: window.innerWidth*2,
+  
+  // platforms
+  platforms: 8, // [todo] refine, magic number, smaller doesn't move platforms fast enough to the front
+  platformHeight: 90,
 
-// testing/auto start
-vars.autoStart = true;
+  // bee speed
+  beeSpeed: 300,
 
-// world
-// many game variables are based on this number
-// trees, bees, and blue leaves, oh, hey!
-vars.worldSize = window.innerWidth*2;
+  // track deaths
+  triesScore: 0,
+  
+  // testing/auto start
+  autoStart: false,
 
-// platforms
-vars.platforms = 8; // [todo] refine, magic number, smaller doesn't move platforms fast enough to the front
-vars.platformHeight = 90;
+  levelEveryX: 10000, // every 1,000 score or 10,000 pixels
+  levelEveryX: 5000 // test
+};
 
-// bee speed
-vars.beeSpeed = 370;
-
-// track deaths
-vars.triesScore = 0;
+// platform heights
+vars.platformHeights = [
+  90,
+  180,
+  360
+];
+vars.platformGaps = [
+  100, 
+  150, 
+  200, 
+  250, 
+  300
+];
+vars.platformWidths = [
+  350,
+  250,
+  150,
+  90,
+  50,
+];
+vars.platformLevels = {
+  1: {
+    widths: [1, 2],
+    heights: [1],
+    gaps: [1]
+  },
+  2: {
+    widths: [2, 3, 4],
+    heights: [1, 2],
+    gaps: [1, 2, 2, 3]
+  },
+  3: {
+    widths: [3, 3, 3, 4, 4, 5],
+    heights: [1, 1, 2, 3, 3],
+    gaps: [1, 2, 2, 3, 3, 3, 4, 4, 4, 5]
+  },
+  4: {
+    widths: [3, 4, 4, 5, 5],
+    heights: [1, 2, 3, 3, 3],
+    gaps: [1, 2, 3, 3, 3, 4, 4, 4, 5, 5]
+  },
+  5: {
+    widths: [2, 4, 4, 5, 5],
+    heights: [1, 3, 3],
+    gaps: [4, 5, 5]
+  }
+};
 
 // # Phaser global
 BasicGame = {
@@ -92,4 +142,12 @@ function resetMove(item,x,y) {
   item.pickedup = false;
   item.y = y;
   item.x = x;
+}
+function isLevel() {
+  if (game.leafy) {
+    return Math.min( 
+      Math.ceil(game.leafy.x/vars.levelEveryX),
+      5
+      );
+  }
 }

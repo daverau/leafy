@@ -93,9 +93,9 @@ BasicGame.GameOver.prototype = {
   update: function () {
 
     //console.log('update');
-    // if ( this.input.activePointer.isDown || this.jumpButton.isDown) {
-    //   this.retryGame();
-    // }
+    if ( game.cursors.up.isDown) {
+      this.retryGame();
+    }
 
   }
 

@@ -13,16 +13,20 @@ My original concept was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
 ## Todo
-- platform gaps scale with jump boost for difficulty
-- move flowers and trees from gaps
 - endgame with doorway and friend
-- background stars, clouds, gradient
-- music
-- instructions overlay
+- [polish] move flowers and trees from gaps
+- [polish] music
+- [polish] instructions overlay
+- [polish] background stars, clouds, gradient
 - [bug] sound issue on fresh start (what is wrong?)
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
 
 ## Changelog
+
+### v1.7
+- platform gaps scale with jump boost for difficulty
+- adjust small platform frequency
+- level animation
 
 ### v1.6
 - background water could be better; color refinements to world

@@ -40,7 +40,7 @@ function genBlueRings() {
   game.bluerings = game.add.group();
   game.bluerings.enableBody = true;
 
-  var blueRingTotal = 5;
+  var blueRingTotal = 4;
   for (var i=0; i<blueRingTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
     var bluering = game.add.group();

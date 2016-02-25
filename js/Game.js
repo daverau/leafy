@@ -7,14 +7,14 @@ BasicGame.Game.prototype = {
     //vm.game = game;
 
     // # World gen
-    //console.log('world size: ' + vars.worldSize);
+    console.log('++world gen: ' + vars.worldSize + '++');
     this.world.setBounds(0, 0, vars.worldSize, game.height);
     game.camera.bounds.setTo(null,null);
     game.camera.bounds.height = game.height;
 
     // # Inputs
     game.cursors = this.input.keyboard.createCursorKeys();
-    game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    //game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
     // # Background images
     game.bgnight = game.add.sprite(game.width,game.height, 'bgnight');

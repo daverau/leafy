@@ -1,7 +1,10 @@
+// randomize width
+//var w = Math.floor(Math.random() * 400) + 150;
+
+
 // not using these but keeping around for later since new phaser may work better here
 // game.leafy.checkWorldBounds = true;
 // game.leafy.outOfBoundsKill = true;
-
 
 
 function genEasyPlatorms() {

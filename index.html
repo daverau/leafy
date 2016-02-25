@@ -18,26 +18,6 @@
 </head>
 <body>
 
-  <a href="index.html" id="refresh"></a>
-  <div id="debug">
-    <ul>
-      <li>leafy.x: {{game.leafy.x}}</li>
-      <li>camera.x: {{game.camera.x}}</li>
-      <li>platforms to recycle: {{game.platformstoRecycle.length}}</li>
-      <li>p1: {{game.platforms.children[0].x}} ({{game.bluerings.children[0].x}})</li>
-      <li>p2: {{game.platforms.children[1].x}} ({{game.bluerings.children[1].x}})</li>
-      <li>p3: {{game.platforms.children[2].x}} ({{game.bluerings.children[2].x}})</li>
-      <li>p4: {{game.platforms.children[3].x}} ({{game.bluerings.children[3].x}})</li>
-      <li>p5: {{game.platforms.children[4].x}} ({{game.bluerings.children[4].x}})</li>
-      <li>p6: {{game.platforms.children[5].x}} ({{game.bluerings.children[5].x}})</li>
-      <li>p7: {{game.platforms.children[6].x}} ({{game.bluerings.children[6].x}})</li>
-      <li>p8: {{game.platforms.children[7].x}} ({{game.bluerings.children[7].x}})</li>
-
-      <li>rings to recycle: {{game.ringstoRecycle.length}}</li>
-    </ul>
-
-    <span id="log"></span>
-  </div>
   <div id="game"></div>
   <div id="orientation"></div>
 
@@ -47,7 +27,6 @@
     }
   </script>
 
-  <script src="lib/vue.js"></script>
   <script src="js/index.js"></script>
   <script src="lib/phaser2.4.4.js"></script>
   <script src="js/Boot.js"></script>
@@ -66,14 +45,6 @@
   <script type="text/javascript">
   var game = {};
   app.initialize();
-
-  // var vm = new Vue({
-  //   el: '#debug',
-  //   data: {
-  //     'game': game,
-  //     'leafyX':''
-  //   }
-  // })
 
   // testing only
   var is_chrome = navigator.userAgent.toLowerCase().indexOf('rau') > -1;
