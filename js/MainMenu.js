@@ -41,6 +41,9 @@ BasicGame.MainMenu.prototype = {
     this.titleText = game.add.text( game.width/2, game.height*0.4, 'LEAFY', { font: "288px AvenirNext-Heavy", fill: '#fff' });
     this.titleText.anchor.setTo(0.5);
 
+    this.verText = game.add.text( game.width - 100, game.height - 60, 'v'+vars.version, { font: (11*vars.ratio)+"px Avenir-Medium", fill: '#000000' });
+    this.verText.alpha = 0.3;
+
     genStump(); // move
     genOwl();   // move
 
