@@ -19,6 +19,7 @@ function genBlueleaves() {
 Blueleaf = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, "blueleaf");
   this.anchor.setTo(0.5,1);
+  //this.scale.setTo(0.5);
   this.pickedup = false;
   this.pos = {'x': x, 'y': y};
 

@@ -20,6 +20,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - [polish] background stars, clouds, gradient
 - [bug] sound issue on fresh start (what is wrong?)
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
+- [feature] pause: https://github.com/presidenten/phaser-examples/blob/7c0befd068b99bc653a492c61519a46ce532a188/examples/misc/pause%20menu.js
 
 ## Changelog
 
@@ -27,6 +28,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - platform gaps scale with jump boost for difficulty
 - adjust small platform frequency
 - level animation
+- reduce trees to 9 for better performance
 
 ### v1.6
 - background water could be better; color refinements to world
