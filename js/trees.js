@@ -74,7 +74,8 @@ function placeTree(group, x1, x2) {
 
 
 function genTrees() {
-  var tcount = Math.ceil(vars.worldSize * 0.015);
+  var tcount = 9;
+  //var tcount = Math.ceil(vars.worldSize * 0.015);
   console.log('trees: '+tcount);
 
   game.trees = game.add.group();
