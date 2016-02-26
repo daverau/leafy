@@ -40,7 +40,7 @@ BasicGame.Preloader.prototype = {
     this.load.image('tree', 'img/tree.png');
 
     // blue leaf pickup assets
-    this.load.image('blueleaf', 'img/blueleaf.png');
+    this.load.image('blueleaf', 'img/acorn-blue.png');
     this.load.audio('ding', 'audio/woosh.wav');
 
     // flower
@@ -56,16 +56,16 @@ BasicGame.Preloader.prototype = {
 
     // will replace with code-generated trees at some point...
     this.load.image('treestump', 'img/treestump.png');
-    this.load.image('tree1', 'img/tree1.png');
-    this.load.image('tree2', 'img/tree2.png');
-    this.load.image('tree3', 'img/tree3.png');
-    this.load.image('tree4', 'img/tree4.png');
-    this.load.image('tree5', 'img/tree5.png');
-    this.load.image('tree6', 'img/tree6.png');
-    this.load.image('tree7', 'img/tree7.png');
-    this.load.image('tree8', 'img/tree8.png');
-    this.load.image('tree9', 'img/tree9.png');
-    this.load.image('tree10', 'img/tree10.png');
+    this.load.image('tree1', 'img/tree-grey1.png');
+    this.load.image('tree2', 'img/tree-grey2.png');
+    this.load.image('tree3', 'img/tree-grey3.png');
+    this.load.image('tree4', 'img/tree-grey4.png');
+    this.load.image('tree5', 'img/tree-grey5.png');
+    this.load.image('tree6', 'img/tree-grey6.png');
+    this.load.image('tree7', 'img/tree-grey7.png');
+    this.load.image('tree8', 'img/tree-grey8.png');
+    this.load.image('tree9', 'img/tree-grey9.png');
+    this.load.image('tree10', 'img/tree-grey10.png');
 
   },
 
