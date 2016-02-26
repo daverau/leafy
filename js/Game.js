@@ -17,6 +17,8 @@ create: function () {
   //game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
   // # Background images
+  // x/y game.width,game.height
+  // x/y 0,0
   game.bgnight = game.add.sprite(game.width,game.height, 'bgnight');
   game.bgnight.fixedToCamera = true;
   game.bgnight.anchor.setTo(1);
@@ -92,17 +94,6 @@ update: function () {
    game.sfxbgnoise.play();
   }
 
-  // # Collisions
-  this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
-  this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
-  this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
-  this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
-
-  // owl
-  if (game.owl.alive) {
-    if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
-  }
-
   // # UI
   game.flowersText.setText(game.leafy.flowers);
   game.blueLeafText.setText(game.leafy.blueLeafCount);
@@ -124,6 +115,18 @@ update: function () {
     game.leafy.kill();
     //console.log('^^^died !alive^^^');
   } else {
+
+    // # Collisions
+    this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
+    this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
+    this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
+    this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
+
+    // owl
+    if (game.owl.alive) {
+      if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
+    }
+
     playerMove(game.leafy);
   }
 
