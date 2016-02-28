@@ -1,3 +1,19 @@
+// # drawings
+function drawBG(g) {
+  g.bgnight = g.add.sprite(g.width,g.height, 'bgnight');
+  g.bgnight.fixedToCamera = true;
+  g.bgnight.anchor.setTo(1);
+}
+
+function drawWaves(g) {
+  g.waves = g.add.sprite(g.width,g.height, 'waves');
+  g.waves.fixedToCamera = true;
+  g.waves.anchor.setTo(1);
+  g.waves.scale.setTo(0.5);
+  g.waves.width = g.width;
+  g.waves.alpha = 0.3;
+}
+
 // # Moon
 function drawMoon() {
   
