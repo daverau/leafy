@@ -13,6 +13,15 @@ function genLeafy() {
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
 
+  // score reset 
+  leafy.resetScores = function() {
+    leafy.score = 0;
+    leafy.blueLeafCount = 0;
+    leafy.flowers = 0;
+    leafy.bestScore = 0;
+    leafy.jumpsScore = 0;
+  }
+
   // speed
   game.camera.follow(leafy);
   leafy.playerSpeed = 160 * vars.ratio;
@@ -61,14 +70,16 @@ function genLeafy() {
   leafy.kill = function() {
     this.alive = false;
     this.body.velocity.setTo(0,0);
+    this.enableBody = false;
+
     this.animations.stop();
     this.animations.play('sad');
     vars.triesScore++;
 
     // fall
     game.sfxfall.play();
-    leafy.body.gravity.y = 2900;
-    leafy.body.maxVelocity.y = 5000;
+    //leafy.body.gravity.y = 2900;
+    //leafy.body.maxVelocity.y = 5000;
 
     // score
     localStorage.setItem("leafybestScore", Math.max(leafy.score, leafy.bestScore));
