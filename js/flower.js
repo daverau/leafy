@@ -12,7 +12,7 @@
 // }
 
 function genCoins() {
-  var coinTotal = 40;
+  var coinTotal = 30;
   game.coins = game.add.group();
   game.coins.enableBody = true;
   for (var i=0; i<coinTotal; i++) {

@@ -29,6 +29,8 @@ My original concept was inspired by a gamejam theme about "growing"
 - adjust small platform frequency
 - level animation
 - reduce trees to 9 for better performance
+- replaced blueleaves with acorns
+- added random acorn platforms
 
 ### v1.6
 - background water could be better; color refinements to world

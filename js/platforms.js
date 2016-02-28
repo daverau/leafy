@@ -39,12 +39,19 @@ function placePlatforms() {
       platform.nextX = nextX;
       platform.height = vars.platformHeight;
 
-      if (w > 200) {
-        placeCoins(platform);
+      // coins?
+      var items = [1,1,2,3];
+      var yesCoins = items[Math.floor(Math.random()*items.length)];
+      // 1 === do nothing
+      // coins
+      if (yesCoins === 2) {
+        if (w > 50) {
+          placeCoins(platform);
+        }
+      // coin rings
+      } else if (yesCoins === 3) {
+        placeBluering(platform);
       }
-
-      //console.log('+ move ring for platform: '+platform.i + ' at x: ' + platform.x);
-      placeBluering(platform);
 
       // [todo] place trees for this platform
 
@@ -56,7 +63,7 @@ function placePlatforms() {
 
 // coin platforms
 function placeCoins(platform) {
-  var coinCount = Math.floor( (platform.width-60) / 60);
+  var coinCount = Math.floor( (platform.width-120) / 60);
   //console.log('long platform with coins: ' + coinCount);
   game.coinstoRecycle = game.coins.children.filter( offCamera );
   for (i = 0; i <= coinCount; i++) {
@@ -64,9 +71,9 @@ function placeCoins(platform) {
     if (coin) {
       coin.pos.y = platform.y - 60;
       resetLeaf(coin);
-      coin.reset( platform.x + 30 + (i * 60), platform.y - 60 );
+      coin.reset( platform.x + 60 + (i * 60), platform.y - 60 );
     } else {
-      console.log('0 coins');
+      //console.log('0 coins');
     }
   }
 }
@@ -82,7 +89,7 @@ function placeBluering(platform) {
       resetLeaf(blueleaf);
     });
   } else {
-    console.log('0 rings');
+    //console.log('0 rings');
   }
 }
 

@@ -23,14 +23,14 @@ var vars = {
   autoStart: false,
 
   levelEveryX: 10000, // every 1,000 score or 10,000 pixels
-  //levelEveryX: 5000 // test
+  //levelEveryX: 2200 // test
 };
 
-// platform heights
+// platforms
 vars.platformHeights = [
   90,
-  180,
-  360
+  250,
+  400
 ];
 vars.platformGaps = [
   100, 
@@ -40,12 +40,14 @@ vars.platformGaps = [
   300
 ];
 vars.platformWidths = [
-  350,
-  250,
-  150,
+  360,
+  240,
+  180,
   90,
   50,
 ];
+
+// game level settings
 vars.platformLevels = {
   1: {
     widths: [1, 2],
@@ -145,12 +147,11 @@ function resetMove(item,x,y) {
   item.y = y;
   item.x = x;
 }
-function isLevel() {
-  if (game.leafy) {
-    return Math.min( 
-      Math.ceil(game.leafy.x/vars.levelEveryX),
-      5
-      );
+function isLevel(x) {
+  if (x > 0) {
+    return Math.min( Math.ceil(x/vars.levelEveryX), 5 );
+  } else if (game.leafy) {
+    return Math.min( Math.ceil(game.leafy.x/vars.levelEveryX), 5 );
   }
 }
 
