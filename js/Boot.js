@@ -1,29 +1,29 @@
 // # Global variables
 var vars = {
-  version: '1.7.1', // Leafy game version
+  version: '1.7.2', // Leafy game version
+  autoStart: false, // testing/auto start
 
-  ratio: window.devicePixelRatio || 1,
+  // levels
+  levelEveryX: 10000, // 1,000 score == 10,000 pixels
+  //levelEveryX: 2200 // test
 
-  // world
-  // many game variables are based on this number
-  // trees, bees, and blue leaves, oh, hey!
-  worldSize: window.innerWidth*2,
-  
   // platforms
-  platforms: 8, // [todo] refine, magic number, smaller doesn't move platforms fast enough to the front
+  platforms: 7,
   platformHeight: 90,
 
-  // bee speed
+  // coins
+  coinTotal: 15,
+  blueRingTotal: 4,
+
+  // bees
   beeSpeed: 300,
 
+  // setup
+  ratio: window.devicePixelRatio || 1,
+  worldSize: window.innerWidth*2,
   // track deaths
   triesScore: 0,
   
-  // testing/auto start
-  autoStart: false,
-
-  levelEveryX: 10000, // every 1,000 score or 10,000 pixels
-  //levelEveryX: 2200 // test
 };
 
 // platforms
@@ -50,9 +50,9 @@ vars.platformWidths = [
 // game level settings
 vars.platformLevels = {
   1: {
-    widths: [1, 2],
+    widths: [1, 2, 3],
     heights: [1],
-    gaps: [1]
+    gaps: [1, 1, 2]
   },
   2: {
     widths: [2, 3, 4],
