@@ -48,7 +48,7 @@ create: function () {
   game.platforms.children[0].width = 600;
 
   // # Bees
-  genBees(1);
+  genBees(vars.startBees);
 
   // # Rain
   //genRain();
@@ -68,7 +68,6 @@ create: function () {
 
   // # TEST
   //this.state.start('GameOver'); // test
-  //game.leafy.playerSpeed = 0;
 
 },
 
@@ -85,6 +84,7 @@ update: function () {
   game.blueLeafText.setText(game.leafy.blueLeafCount);
   game.fps.setText(game.time.fps + "fps");
   game.scoreText.setText(game.leafy.score);
+  game.score = game.leafy.score;
 
   // World fallout
   if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {

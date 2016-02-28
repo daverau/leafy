@@ -1,10 +1,10 @@
 // Leafy setup
 function genLeafy() {
-  var leafy = game.add.sprite( 40 , -100, 'leafy');
+  var leafy = game.add.sprite( 140 , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
   leafy.alive = true;
   leafy.jumping = false;
-  leafy.maxJumps = 2;
+  leafy.maxJumps = vars.leafyJumps;
   
   // scores
   leafy.score = 0;
@@ -24,18 +24,14 @@ function genLeafy() {
 
   // speed
   game.camera.follow(leafy);
-  leafy.playerSpeed = 160 * vars.ratio;
-  //leafy.playerSpeed = 0;
-  leafy.ACCELERATION = 2000; // pixels/second/second
-  leafy.JUMP_SPEED = -750; // pixels/second (negative y is up)
 
   // physics
   game.physics.arcade.enable(leafy);
   leafy.enableBody = true;
-  leafy.body.gravity.y = 3000;
+  leafy.body.gravity.y = vars.leafyGravity;
   leafy.body.velocity.x = 0;
-  leafy.body.maxVelocity.x = 500;
-  leafy.body.maxVelocity.y = 4000;
+  leafy.body.maxVelocity.x = vars.leafyMaxVelocityX;
+  leafy.body.maxVelocity.y = vars.leafyMaxVelocityY;
   leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
   //leafy.body.drag.setTo(600, 0);
 
@@ -126,7 +122,7 @@ function playerMove(leafy) {
 
   // always run to the right
   leafy.animations.play('walk');
-  leafy.body.velocity.x = leafy.playerSpeed;
+  leafy.body.velocity.x = vars.leafySpeed * vars.ratio;
 
   // Jumping
   var onTheGround = leafy.body.touching.down; // [todo] refine for only platforms to fix double jump bug
@@ -137,7 +133,7 @@ function playerMove(leafy) {
     leafy.animations.play('jump');
   }
   // Jump! Keep y velocity constant while jump is held for up to X ms
-  if (leafy.jumps > 0 && upInputIsActive(210)) {
+  if (leafy.jumps > 0 && upInputIsActive(vars.leafyJumpConstant)) {
     leafyJump(leafy);
   }
   // Reduce the number of available jumps if jump is released
@@ -149,7 +145,7 @@ function playerMove(leafy) {
 }
 
 function leafyJump(leafy) {
-  leafy.body.velocity.y = leafy.JUMP_SPEED;
+  leafy.body.velocity.y = vars.leafyJumpVelocityY;
   leafy.jumping = true;
   leafy.animations.play('jump');
   if (!leafy.playingSound) {
@@ -200,6 +196,5 @@ function respawn(leafy) {
   leafy.body.position.y = -100;
   leafy.body.velocity.x = 0;
   leafy.body.velocity.y = 0;
-  leafy.playerSpeed = 150 * vars.ratio;
   leafy.revive();
 }

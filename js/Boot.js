@@ -7,6 +7,16 @@ var vars = {
   levelEveryX: 10000, // 1,000 score == 10,000 pixels
   //levelEveryX: 2200 // test
 
+  // leafy/player
+  leafyJumps: 2,
+  leafySpeed: 160,
+  //leafySpeed: 0, // test
+  leafyJumpVelocityY: -750, // pixels/second (negative y is up)
+  leafyJumpConstant: 210,
+  leafyGravity: 3000,
+  leafyMaxVelocityX: 500,
+  leafyMaxVelocityY: 4000,
+
   // platforms
   platforms: 7,
   platformHeight: 90,
@@ -16,6 +26,7 @@ var vars = {
   blueRingTotal: 4,
 
   // bees
+  startBees: 1, // 1
   beeSpeed: 300,
 
   // setup
