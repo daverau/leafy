@@ -12,10 +12,9 @@
 // }
 
 function genCoins() {
-  var coinTotal = 30;
   game.coins = game.add.group();
   game.coins.enableBody = true;
-  for (var i=0; i<coinTotal; i++) {
+  for (var i=0; i<vars.coinTotal; i++) {
     var coin = new Blueleaf(game, -100, game.height-vars.platformHeight);
     game.coins.add(coin);
   }
@@ -52,9 +51,7 @@ Blueleaf.prototype.update = function() {
 function genBlueRings() {
   game.bluerings = game.add.group();
   game.bluerings.enableBody = true;
-
-  var blueRingTotal = 4;
-  for (var i=0; i<blueRingTotal; i++) {
+  for (var i=0; i<vars.blueRingTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
     var bluering = game.add.group();
     bluering.enableBody = true;

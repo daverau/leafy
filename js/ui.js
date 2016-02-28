@@ -36,8 +36,9 @@ function genUI() {
 }
 
 function genLevelText() {
-  game.levelText = game.add.text( 50, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#63434B' });
-  game.levelText.alpha = 0.8;
+  game.levelText = game.add.text( 50, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#ffffff' });
+  // #63434B platform color
+  game.levelText.alpha = 0.3;
 }
 
 function setLevelText() {
