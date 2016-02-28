@@ -13,6 +13,7 @@ BasicGame.MainMenu.prototype = {
     //this.music = this.add.audio('titleMusic');
     //this.music.play();
 
+  game.cursors = this.input.keyboard.createCursorKeys();
 
     // # Background images
     this.bg = this.add.sprite(game.width,game.height, 'bgnight');
@@ -64,9 +65,9 @@ BasicGame.MainMenu.prototype = {
     //console.log( this.input.activePointer.isDown );
     //this.physics.arcade.collide(game.leafy, this.ground, null, null, this);      
 
-    // if ( this.input.activePointer.isDown || this.jumpButton.isDown) {
-    //   this.startGame();
-    // }
+    if ( game.cursors.up.isDown) {
+      this.startGame();
+    }
 
   },
 
