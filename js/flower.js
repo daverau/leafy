@@ -1,18 +1,23 @@
 // # Blue leaf pickups
-function genBlueleaves() {
-  game.blueleaves = game.add.group();
-  game.blueleaves.enableBody = true;
-  
-  // generate leaves
-  //var blueLeafTotal = vars.worldSize * .01;
-  var blueLeafTotal = 9;
-  console.log('blue leaves: '+blueLeafTotal);
-  
-  for (var i=0; i<blueLeafTotal; i++) {
-    var x = game.rnd.integerInRange(0, vars.worldSize);
-    var y = game.rnd.integerInRange(0, game.height-vars.platformHeight);
-    var leaf = new Blueleaf(game, x, y);
-    game.blueleaves.add(leaf);
+// function genBlueleaves() {
+//   var blueLeafTotal = 6;
+//   game.blueleaves = game.add.group();
+//   game.blueleaves.enableBody = true;
+//   for (var i=0; i<blueLeafTotal; i++) {
+//     var x = game.rnd.integerInRange(0, vars.worldSize);
+//     var y = game.rnd.integerInRange(0, game.height-vars.platformHeight);
+//     var leaf = new Blueleaf(game, x, y);
+//     game.blueleaves.add(leaf);
+//   }
+// }
+
+function genCoins() {
+  var coinTotal = 40;
+  game.coins = game.add.group();
+  game.coins.enableBody = true;
+  for (var i=0; i<coinTotal; i++) {
+    var coin = new Blueleaf(game, -100, game.height-vars.platformHeight);
+    game.coins.add(coin);
   }
 }
 
@@ -22,6 +27,7 @@ Blueleaf = function (game, x, y) {
   //this.scale.setTo(0.5);
   this.pickedup = false;
   this.pos = {'x': x, 'y': y};
+  this.enableBody = true;
 
   // animations
   this.tween = game.add.tween(this).to({
@@ -35,6 +41,12 @@ Blueleaf.prototype.constructor = Blueleaf;
 Blueleaf.prototype.update = function() {
   //resetLeaf(this);
   // moved to platforms.js blue ring stuff
+
+  // [todo] magnet so coins move toward leafy when he's close
+  // if ( game.physics.arcade.distanceBetween(game.leafy, this) < 100 ) {
+  //   game.physics.arcade.moveToObject( this, game.leafy, 200);
+  // }
+
 };
 
 function genBlueRings() {
@@ -88,6 +100,13 @@ function resetLeaf(item) {
   item.alpha = 1;
   item.pickedup = false;
   item.y = item.pos.y;
+
+  // animations
+  item.tween = game.add.tween(item).to({
+    alpha: 0,
+    y: (item.y - 400),
+  }, 1000, Phaser.Easing.Cubic.Out);
+
 }
 
 // # Flowers

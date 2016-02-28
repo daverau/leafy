@@ -13,23 +13,7 @@ create: function () {
   game.camera.bounds.height = game.height;
 
   // # Inputs
-  game.cursors = this.input.keyboard.createCursorKeys();
   //game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-
-  // # Background images
-  // x/y game.width,game.height
-  // x/y 0,0
-  game.bgnight = game.add.sprite(game.width,game.height, 'bgnight');
-  game.bgnight.fixedToCamera = true;
-  game.bgnight.anchor.setTo(1);
-
-  // waves bg
-  this.waves = game.add.sprite(game.width,game.height, 'waves');
-  this.waves.fixedToCamera = true;
-  this.waves.anchor.setTo(1);
-  this.waves.scale.setTo(0.5);
-  this.waves.width = game.width;
-  this.waves.alpha = 0.3;
 
   // # Sound
   game.sfxbgnoise = game.add.audio('bgnoise');
@@ -38,6 +22,8 @@ create: function () {
   game.sfxding.allowMultiple = true;
 
   // # Draw game objects
+  drawBG(game);
+  drawWaves(game);
   drawMoon();
   //genStump(); // move
   genTrees();
@@ -46,7 +32,7 @@ create: function () {
   game.leafy = genLeafy();
   //genBlueleaves();
   genFlowers();
-
+  genCoins();
   genBlueRings();
   //genForetrees(); // redo
   
@@ -119,6 +105,7 @@ update: function () {
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
     this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
+    this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
 
@@ -135,7 +122,7 @@ update: function () {
 
 
   // # world fallout
-  if (game.leafy.body.y > (game.height * 2) ) {
+  if (game.leafy.y > (game.height * 2) ) {
     //console.log('^^^world fallout^^^');
     this.state.start('GameOver');
   }
