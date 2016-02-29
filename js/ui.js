@@ -35,6 +35,16 @@ function genUI() {
 
 }
 
+function pause() {
+  if ( !game.paused ) {
+    game.paused = true;
+    document.getElementById('pause').innerHTML = 'Paused';
+  } else {
+    game.paused = false;
+    document.getElementById('pause').innerHTML = 'Pause';
+  }
+}
+
 function genLevelText() {
   game.levelText = game.add.text( 50, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#ffffff' });
   // #63434B platform color
@@ -45,5 +55,17 @@ function setLevelText() {
   if ( (game.levelText.x + game.levelText.width) < game.camera.x) {
     game.levelText.x = isLevel() * vars.levelEveryX;
     game.levelText.text = 'Level ' + (isLevel() + 1); // show upcoming level marker
+  }
+}
+
+function genPause() {
+  // Create a label to use as a button
+
+
+  function unpause(event){
+    if(game.paused){
+    } else {
+      game.paused = false;
+    }
   }
 }

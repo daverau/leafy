@@ -11,6 +11,8 @@ BasicGame.GameOver.prototype = {
     //this.music = this.add.audio('titleMusic');
     //this.music.play();
 
+    document.getElementById('ui').classList.add('hide');
+
     // # Background images
     this.bggameover = this.add.sprite(0,0, 'bggameover');
     this.bggameover.width = game.width;

@@ -3,6 +3,9 @@ BasicGame.Game.prototype = {
 
 create: function () {
 
+  // show ui
+  document.getElementById('ui').classList.remove('hide');
+
   // vue debug test
   //vm.game = game;
 
