@@ -51,22 +51,6 @@
   var game = {};
   app.initialize();
 
-    // # pause/resume
-    var $pause = document.getElementById("pause");
-    $pause.addEventListener("touchstart", gamePause, false);
-    function gamePause(e) {
-      if (!game.paused) {
-        game.paused = true;
-        $pause.classList.add('paused');
-        game.raf.stop();
-      } else {
-        game.paused = false;
-        $pause.classList.remove('paused');
-        game.raf.start();
-      }
-    }
-
-
   // testing only
   var is_chrome = navigator.userAgent.toLowerCase().indexOf('rau') > -1;
   if (typeof cordova != undefined && is_chrome) {

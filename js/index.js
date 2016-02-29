@@ -8,6 +8,20 @@ var app = {
   bindEvents: function() {
     document.addEventListener('deviceready', this.onDeviceReady, false);
 
+    // # pause/resume
+    var $pause = document.getElementById("pause");
+    $pause.addEventListener("touchstart", gamePause, false);
+    function gamePause(e) {
+      if (!game.paused) {
+        game.paused = true;
+        $pause.classList.add('paused');
+        game.raf.stop();
+      } else {
+        game.paused = false;
+        $pause.classList.remove('paused');
+        game.raf.start();
+      }
+    }
 
   },
   // # deviceready Event Handler

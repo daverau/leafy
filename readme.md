@@ -22,8 +22,6 @@ My original concept was inspired by a gamejam theme about "growing"
 - [bug] sound issue on fresh start (what is wrong?)
 
 ## Changelog
-### v1.8
-- [feature] pause: https://github.com/presidenten/phaser-examples/blob/7c0befd068b99bc653a492c61519a46ce532a188/examples/misc/pause%20menu.js
 
 ### v1.7
 - platform gaps scale with jump boost for difficulty
@@ -32,6 +30,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - reduce trees to 9 for better performance
 - replaced blueleaves with acorns
 - added random acorn platforms
+- [feature] pause: https://github.com/presidenten/phaser-examples/blob/7c0befd068b99bc653a492c61519a46ce532a188/examples/misc/pause%20menu.js
 
 ### v1.6
 - background water could be better; color refinements to world

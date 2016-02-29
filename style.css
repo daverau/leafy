@@ -56,7 +56,7 @@ canvas {
   outline: none;
   top: 0;
   left: 0;
-  padding: 20px 14px;
+  padding: 20px;
 }
 #pause:after {
   display: block;
