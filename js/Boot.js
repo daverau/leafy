@@ -1,6 +1,6 @@
 // # Global variables
 var vars = {
-  version: '1.7.2', // Leafy game version
+  version: '1.7.3', // Leafy game version
   autoStart: false, // testing/auto start
 
   // levels

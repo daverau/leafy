@@ -48,13 +48,35 @@ canvas {
 #pause {
   opacity: .3;
   border: 0;
+  display: block;
+  width: 80px;
+  height: 30px;
   background: none;
   font: 11px 'Avenir-Medium', helvetica, sans-serif;
   outline: none;
-  top: 20px;
-  left: 10px;
+  top: 0;
+  left: 0;
+  padding: 20px 14px;
+}
+#pause:after {
+  display: block;
+  content: '';
+  width: 4px;
+  height: 16px;
+  border-right: 4px solid #fff;
+  border-left: 4px solid #fff;
+}
+#pause.paused:after {
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-left: 12px solid #fff;
+  border-bottom: 8px solid transparent;
+  border-right: 0;
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }

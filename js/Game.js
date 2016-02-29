@@ -4,6 +4,7 @@ BasicGame.Game.prototype = {
 create: function () {
 
   // show ui
+  document.getElementById('refresh').classList.add('hide');
   document.getElementById('ui').classList.remove('hide');
 
   // vue debug test

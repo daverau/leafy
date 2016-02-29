@@ -18,12 +18,12 @@ My original concept was inspired by a gamejam theme about "growing"
 - [polish] background stars, clouds, day/night shift
 - [polish] music
 - [polish] instructions overlay
-- [feature] pause: https://github.com/presidenten/phaser-examples/blob/7c0befd068b99bc653a492c61519a46ce532a188/examples/misc/pause%20menu.js
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
 - [bug] sound issue on fresh start (what is wrong?)
 
 ## Changelog
 ### v1.8
+- [feature] pause: https://github.com/presidenten/phaser-examples/blob/7c0befd068b99bc653a492c61519a46ce532a188/examples/misc/pause%20menu.js
 
 ### v1.7
 - platform gaps scale with jump boost for difficulty

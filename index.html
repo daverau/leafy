@@ -18,8 +18,9 @@
 </head>
 <body>
 
+  <a id="refresh" href="index.html"></a>
   <div id="ui" class="hide">
-    <button id="pause" onclick="pause()">Pause</button>
+    <span id="pause"></span>
   </div>
   
   <div id="game"></div>
@@ -49,6 +50,22 @@
   <script type="text/javascript">
   var game = {};
   app.initialize();
+
+    // # pause/resume
+    var $pause = document.getElementById("pause");
+    $pause.addEventListener("touchstart", gamePause, false);
+    function gamePause(e) {
+      if (!game.paused) {
+        game.paused = true;
+        $pause.classList.add('paused');
+        game.raf.stop();
+      } else {
+        game.paused = false;
+        $pause.classList.remove('paused');
+        game.raf.start();
+      }
+    }
+
 
   // testing only
   var is_chrome = navigator.userAgent.toLowerCase().indexOf('rau') > -1;

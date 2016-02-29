@@ -8,12 +8,16 @@ BasicGame.MainMenu.prototype = {
 
   create: function () {
 
+    // show refresh, hide pause
+    document.getElementById('refresh').classList.remove('hide');
+    document.getElementById('ui').classList.add('hide');
+
     // # Title/start screen
     // [todo] put some design time into this to make it nice with music and a button
     //this.music = this.add.audio('titleMusic');
     //this.music.play();
 
-  game.cursors = this.input.keyboard.createCursorKeys();
+    game.cursors = this.input.keyboard.createCursorKeys();
 
     // # Background images
     this.bg = this.add.sprite(game.width,game.height, 'bgnight');
