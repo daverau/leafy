@@ -2,8 +2,8 @@
 
 // # Bees
 function genBees(num,xValue,yValue) {
-  var xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
-  var yValue = yValue || game.height-90;
+  xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
+  yValue = yValue || game.height-90;
   var beeCount = num || 3;
 
   game.bees = game.add.group();

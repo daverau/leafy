@@ -20,7 +20,7 @@ function genLeafy() {
     leafy.flowers = 0;
     leafy.bestScore = 0;
     leafy.jumpsScore = 0;
-  }
+  };
 
   // speed
   game.camera.follow(leafy);

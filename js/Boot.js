@@ -149,8 +149,8 @@ function offCamera(item) {
   return (item.x + item.width) < game.camera.x;
 }
 function resetMove(item,x,y) {
-  var x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
-  var y = y || game.height - vars.platformHeight;
+  x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+  y = y || game.height - vars.platformHeight;
   //console.log('resetMove() ' + item.key);
   //console.log('--move--');
   item.alpha = 1;
