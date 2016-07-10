@@ -12,6 +12,11 @@ Leafy is a platform game about finding your sister. You start at the edge of the
 My original concept was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
 
+## Local setup and commands
+- `gulp` to build and bundle js
+- `gulp lint` to test js for lint errors
+- `gulp sync` to copy `/www/` into `/platforms/ios/www/...` and excludes `node_modules` and other files you don't want in the ios bundle for distribution
+
 ## Todo
 - endgame with doorway and friend
 - [polish] scale trees as you go higher in levels

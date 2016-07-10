@@ -2,8 +2,8 @@
 
 // # Bees
 function genBees(num,xValue,yValue) {
-  var xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
-  var yValue = yValue || game.height-90;
+  xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
+  yValue = yValue || game.height-90;
   var beeCount = num || 3;
 
   game.bees = game.add.group();
@@ -18,7 +18,7 @@ function genBees(num,xValue,yValue) {
 // factory pattern
 Enemy = function (game, x, y, direction, speed) {
   Phaser.Sprite.call(this, game, x, y, "bee");
-  this.anchor.setTo(0.5,1);
+  this.anchor.setTo(0.5, 1);
   this.scale.setTo(0.5);
   game.physics.enable(this, Phaser.Physics.ARCADE);
   this.xSpeed = direction*speed*-1;
@@ -26,8 +26,8 @@ Enemy = function (game, x, y, direction, speed) {
   this.body.setSize(240, 160, 0, -20); // hitbox adjusted
 
   // animations
-  this.animations.add('fly', [0,1,2,3,4], 30, true);
-  this.animations.add('flyhappy', [5,6,7,8], 30, true);
+  this.animations.add('fly', [0, 1, 2, 3, 4], 30, true);
+  this.animations.add('flyhappy', [5, 6, 7, 8], 30, true);
   this.animations.play('fly');
   this.tween = game.add.tween(this).to({
     alpha: 0,
@@ -59,10 +59,8 @@ function resetBee(item) {
   //console.log('resetBee()');
   item.animations.play('fly');
   item.alpha = 1;
-  //item.y = game.height-90;
   item.pickedup = false;
   item.y = game.height - vars.platformHeight;
-  //item.y = Math.floor(Math.random()*(maxY)+(150));
   item.x = game.camera.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
 }
 

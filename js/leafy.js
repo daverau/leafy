@@ -5,7 +5,7 @@ function genLeafy() {
   leafy.alive = true;
   leafy.jumping = false;
   leafy.maxJumps = vars.leafyJumps;
-  
+
   // scores
   leafy.score = 0;
   leafy.blueLeafCount = localStorage.getItem("leafyblueLeafCount") === null ? 0 : localStorage.getItem("leafyblueLeafCount");
@@ -13,14 +13,14 @@ function genLeafy() {
   leafy.bestScore = localStorage.getItem("leafybestScore") === null ? 0 : localStorage.getItem("leafybestScore");
   leafy.jumpsScore = 0;
 
-  // score reset 
+  // score reset
   leafy.resetScores = function() {
     leafy.score = 0;
     leafy.blueLeafCount = 0;
     leafy.flowers = 0;
     leafy.bestScore = 0;
     leafy.jumpsScore = 0;
-  }
+  };
 
   // speed
   game.camera.follow(leafy);
@@ -61,9 +61,12 @@ function genLeafy() {
   game.sfxfall = game.add.audio('fall');
   leafy.sfxboing = game.add.audio('boing');
   leafy.sfxboing.allowMultiple = true;
+  leafy.scale.x = 1; //default direction
+  leafy.facing = 'right';
 
   // death
   leafy.kill = function() {
+    this.jumps = 0;
     this.alive = false;
     this.body.velocity.setTo(0,0);
     this.enableBody = false;
@@ -83,17 +86,17 @@ function genLeafy() {
     localStorage.setItem("leafyFlowerCount", leafy.flowers);
 
     // camera fall
-    leafy.cameraFall = game.add.tween(game.camera.bounds).to( { 
+    leafy.cameraFall = game.add.tween(game.camera.bounds).to( {
       height: game.height*3
     }, 2000);
     //leafy.cameraFall.start();
-    
+
     // animate world
     this.deathTween.start();
     game.moon.deathTween.start();
     game.ui.deathTween.start();
     //game.platforms.destroy();
-    game.bgnight.tween = game.add.tween(game.bgnight).to( { 
+    game.bgnight.tween = game.add.tween(game.bgnight).to( {
       alpha: 0
     }, 1500);
     game.bgnight.tween.start();
@@ -116,8 +119,6 @@ function genLeafy() {
 }
 
 function playerMove(leafy) {
-  leafy.scale.x = 1; //default direction
-  leafy.facing = 'right';
   leafy.score = Math.round(leafy.x/10);
 
   // always run to the right
@@ -150,7 +151,7 @@ function leafyJump(leafy) {
   leafy.animations.play('jump');
   if (!leafy.playingSound) {
     leafy.playingSound = true;
-    leafy.sfxboing.play('',0,1,false,false);
+    leafy.sfxboing.play('', 0, 1, false, false);
   }
 }
 
@@ -173,7 +174,7 @@ function touchPlatformScore(leafy, score) {
   // set jump score so it follows Leafy around
   leafy.leafyText.tween.stop();
   leafy.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
-  
+
   leafy.leafyText.setText( score );
   // # jump-based scoring, consider bonus points later or highscore best jump
   // if (game.leafy.score === 0) {

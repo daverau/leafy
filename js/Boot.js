@@ -32,9 +32,10 @@ var vars = {
   // setup
   ratio: window.devicePixelRatio || 1,
   worldSize: window.innerWidth*2,
+
   // track deaths
   triesScore: 0,
-  
+
 };
 
 // platforms
@@ -44,10 +45,10 @@ vars.platformHeights = [
   400
 ];
 vars.platformGaps = [
-  100, 
-  150, 
-  200, 
-  250, 
+  100,
+  150,
+  200,
+  250,
   300
 ];
 vars.platformWidths = [
@@ -149,8 +150,8 @@ function offCamera(item) {
   return (item.x + item.width) < game.camera.x;
 }
 function resetMove(item,x,y) {
-  var x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
-  var y = y || game.height - vars.platformHeight;
+  x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
+  y = y || game.height - vars.platformHeight;
   //console.log('resetMove() ' + item.key);
   //console.log('--move--');
   item.alpha = 1;

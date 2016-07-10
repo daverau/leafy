@@ -97,7 +97,7 @@ function placeBluering(platform) {
 function getLastPlatformX() {
   var maxPlatformX = 0;
   game.platforms.forEach(function(platform) {
-    maxPlatformX = Math.max(platform.x+platform.width,maxPlatformX);    
+    maxPlatformX = Math.max(platform.x+platform.width,maxPlatformX);
   });
   return maxPlatformX;
 }

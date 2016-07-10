@@ -29,10 +29,4 @@
   player object and movement controls
   tree generation vs randomization and weighted
   leaf pickups and arrangements challenges
-  enemies and 
-
-Part 1
-2
-3
-4
-
+  enemies and
