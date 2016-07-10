@@ -39,7 +39,7 @@ create: function () {
   genCoins();
   genBlueRings();
   //genForetrees(); // redo
-  
+
   // # Platforms
   game.platforms = game.add.group();
   game.platforms.enableBody = true;
@@ -107,7 +107,7 @@ update: function () {
   } else {
 
     // # Collisions
-    this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);      
+    this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
     this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);

@@ -37,7 +37,7 @@ Blueleaf = function (game, x, y) {
 
 Blueleaf.prototype = Object.create(Phaser.Sprite.prototype);
 Blueleaf.prototype.constructor = Blueleaf;
-Blueleaf.prototype.update = function() {
+// Blueleaf.prototype.update = function() {
   //resetLeaf(this);
   // moved to platforms.js blue ring stuff
 
@@ -46,7 +46,7 @@ Blueleaf.prototype.update = function() {
   //   game.physics.arcade.moveToObject( this, game.leafy, 200);
   // }
 
-};
+// };
 
 function genBlueRings() {
   game.bluerings = game.add.group();
@@ -56,16 +56,19 @@ function genBlueRings() {
     var bluering = game.add.group();
     bluering.enableBody = true;
 
-    // 5 leaves
+    // manual placement of 5 leaves to form a ring
     var leaf = new Blueleaf(game, 0, 0);
     bluering.add(leaf);
 
     leaf = new Blueleaf(game, 70, 20);
     bluering.add(leaf);
+
     leaf = new Blueleaf(game, -70, 20);
     bluering.add(leaf);
+
     leaf = new Blueleaf(game, 66*2, 30*2);
     bluering.add(leaf);
+
     leaf = new Blueleaf(game, -66*2, 30*2);
     bluering.add(leaf);
 

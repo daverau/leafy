@@ -32,9 +32,10 @@ var vars = {
   // setup
   ratio: window.devicePixelRatio || 1,
   worldSize: window.innerWidth*2,
+
   // track deaths
   triesScore: 0,
-  
+
 };
 
 // platforms
@@ -44,10 +45,10 @@ vars.platformHeights = [
   400
 ];
 vars.platformGaps = [
-  100, 
-  150, 
-  200, 
-  250, 
+  100,
+  150,
+  200,
+  250,
   300
 ];
 vars.platformWidths = [
