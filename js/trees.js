@@ -107,7 +107,7 @@ function genStump() {
 
 // # Generate trees based on some parameters
 function genTree(group) {
-  
+
   var pxrange;
 
   // get random x value for tree
@@ -115,7 +115,7 @@ function genTree(group) {
 
   // smaller trees
   var treeimg = 'tree' + Math.floor(Math.random()*4+1);
-  
+
   // default tree group
   if (!group) group = game.trees;
 

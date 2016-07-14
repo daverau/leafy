@@ -70,9 +70,6 @@ create: function () {
     alpha: 0.5,
   }, 4000, Phaser.Easing.Cubic.Out);
 
-  // # TEST
-  //this.state.start('GameOver'); // test
-
 },
 
 
@@ -80,7 +77,7 @@ update: function () {
 
   // # Music
   if(!game.sfxbgnoise.isPlaying){
-   game.sfxbgnoise.play();
+    //game.sfxbgnoise.play();
   }
 
   // # UI
@@ -95,7 +92,6 @@ update: function () {
     game.leafy.kill();
     game.leafy.jumps = 0;
     //game.platforms.destroy();
-    //console.log('^^^died fall^^^');
   }
 
   // # Leafy movement and Respawn
@@ -127,20 +123,15 @@ update: function () {
 
   // # world fallout
   if (game.leafy.y > (game.height * 2) ) {
-    //console.log('^^^world fallout^^^');
     this.state.start('GameOver');
   }
-
-  // test
-  //this.state.start('GameOver');
 
 },
 
 
 quitGame: function (pointer) {
 
-  // Here you should destroy anything you no longer need.
-  // Stop music, delete sprites, purge caches, free resources, all that good stuff.
+  // Destroy no longer need music+sprites
   this.state.start('MainMenu');
 
 },

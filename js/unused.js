@@ -86,7 +86,7 @@ this.world.wrap(game.leafy, 0, false, true, false);
 if(!game.wrapping && (game.leafy.x < vars.worldSize) ) {
 
   console.log('---World wrap---');
-  
+
   game.wraps++;
   game.wrapping = true;
 
@@ -199,7 +199,7 @@ function killChildren(grp) {
 
 // v1 platform/gap objects to collide with
 // add "gap" objects
-function genPlatforms() {  
+function genPlatforms() {
   var platformCount = vars.worldSize * 0.01; // about 500 for the 50k world size
   console.log('platforms: '+platformCount);
   for (x=0; x<platformCount; x++) {
@@ -336,3 +336,46 @@ game.distanceText.fixedToCamera = true;
 game.distanceText.alpha = 0.2;
 // update():
 game.distanceText.text = Math.round( ( Math.abs( Math.round( ( (vars.worldSize/2) - game.leafy.x ) / vars.ratio ) ) ) / 45 ) + " steps";
+
+
+
+// # Trees 2.0 but for some reason is way slower...
+
+Tree = function (game, x, y) {
+  var treeimg = 'tree' + Math.floor(Math.random()*10+1);
+
+  Phaser.Sprite.call(this, game, x, y, treeimg);
+  this.anchor.setTo(0.5, 1);
+  //this.pos = {'x': x, 'y': y};
+  this.alpha = 0.9;
+};
+
+Tree.prototype = Object.create(Phaser.Sprite.prototype);
+Tree.prototype.constructor = Tree;
+Tree.prototype.update = function() {
+  resetTree(this);
+};
+
+function genTrees() {
+  game.trees = game.add.group();
+  console.log('creating trees: '+ vars.treesTotal);
+  for (var i=0; i<vars.treesTotal; i++) {
+    var x = Math.floor(Math.random()*(game.width * 3)+(0));
+    var y = game.height-vars.platformHeight;
+    var tree = new Tree(game, x, y);
+    console.log("tree"+i+': '+x);
+    //console.log(tree);
+    game.trees.add(tree);
+  }
+}
+
+function resetTree(item) {
+  if ( (item.position.x + (item.width/2)) < game.camera.x) {
+    //item.tint = Math.random() * 0xffffff;
+    //console.log('leafy: ' + game.leafy.x);
+    //console.log('old: ' + item.pos.x);
+    item.position.setTo(game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5)), item.position.y);
+    console.log(game.camera.x);
+    console.log('moved tree: ' + item.position.x);
+  }
+}

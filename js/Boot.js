@@ -5,12 +5,10 @@ var vars = {
 
   // levels
   levelEveryX: 10000, // 1,000 score == 10,000 pixels
-  //levelEveryX: 2200 // test
 
   // leafy/player
   leafyJumps: 2,
   leafySpeed: 160,
-  //leafySpeed: 0, // test
   leafyJumpVelocityY: -750, // pixels/second (negative y is up)
   leafyJumpConstant: 210,
   leafyGravity: 3000,
