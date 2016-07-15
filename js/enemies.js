@@ -1,7 +1,7 @@
 // Enemies
 
 // # Bees
-function genBees(num,xValue,yValue) {
+function genBees(num, xValue, yValue) {
   xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
   yValue = yValue || game.height-90;
   var beeCount = num || 3;

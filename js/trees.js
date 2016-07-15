@@ -141,4 +141,7 @@ function genTree(group) {
   t.y = game.world.height - (t.height + (vars.platformHeight-2));
   t.alpha = 0.9;
 
+  game.physics.arcade.enable(t);
+  t.body.velocity.x = vars.gameSpeed;
+
 }

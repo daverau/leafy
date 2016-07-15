@@ -1,6 +1,6 @@
 // Leafy setup
 function genLeafy() {
-  var leafy = game.add.sprite( 140 , -100, 'leafy');
+  var leafy = game.add.sprite( vars.leafyXposition , -100, 'leafy');
   leafy.anchor.setTo(0.5, 1); //flip at middle point
   leafy.alive = true;
   leafy.jumping = false;
@@ -23,14 +23,15 @@ function genLeafy() {
   };
 
   // speed
-  game.camera.follow(leafy);
+  //game.camera.follow(leafy);
 
   // physics
   game.physics.arcade.enable(leafy);
   leafy.enableBody = true;
+
   leafy.body.gravity.y = vars.leafyGravity;
   leafy.body.velocity.x = 0;
-  leafy.body.maxVelocity.x = vars.leafyMaxVelocityX;
+  leafy.body.maxVelocity.x = 0;
   leafy.body.maxVelocity.y = vars.leafyMaxVelocityY;
   leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
   //leafy.body.drag.setTo(600, 0);
@@ -96,10 +97,10 @@ function genLeafy() {
     game.moon.deathTween.start();
     game.ui.deathTween.start();
     //game.platforms.destroy();
-    game.bgnight.tween = game.add.tween(game.bgnight).to( {
-      alpha: 0
-    }, 1500);
-    game.bgnight.tween.start();
+    // game.bgnight.tween = game.add.tween(game.bgnight).to( {
+    //   alpha: 0
+    // }, 1500);
+    // game.bgnight.tween.start();
     game.bggameover.tween.start();
 
     // not sure why i have this or where it came from
@@ -119,11 +120,8 @@ function genLeafy() {
 }
 
 function playerMove(leafy) {
-  leafy.score = Math.round(leafy.x/10);
-
-  // always run to the right
+  //leafy.score = Math.round(leafy.x/10);
   leafy.animations.play('walk');
-  leafy.body.velocity.x = vars.leafySpeed * vars.ratio;
 
   // Jumping
   var onTheGround = leafy.body.touching.down; // [todo] refine for only platforms to fix double jump bug

@@ -4,11 +4,13 @@ var vars = {
   autoStart: false, // testing/auto start
 
   // levels
+  currentLevel: 2,
   levelEveryX: 10000, // 1,000 score == 10,000 pixels
 
   // leafy/player
   leafyJumps: 2,
-  leafySpeed: 160,
+  gameSpeed: -200,
+  leafyXposition: 240, // x left start position
   leafyJumpVelocityY: -750, // pixels/second (negative y is up)
   leafyJumpConstant: 210,
   leafyGravity: 3000,
@@ -32,6 +34,7 @@ var vars = {
   worldSize: window.innerWidth*2,
 
   // track deaths
+  score: 0,
   triesScore: 0,
 
 };
