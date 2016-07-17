@@ -1,8 +1,17 @@
 // # drawings
 function drawBG(g) {
-  g.bgnight = g.add.sprite(g.width,g.height, 'bgnight');
-  g.bgnight.fixedToCamera = true;
-  g.bgnight.anchor.setTo(1);
+  //g.bgnight = g.add.sprite(g.width,g.height, 'bgnight');
+  //g.bgnight.fixedToCamera = true;
+  //g.bgnight.anchor.setTo(1);
+
+  var myBitmap = game.add.bitmapData(g.width, g.height);
+  var grd = myBitmap.context.createLinearGradient(0,0,0,g.height);
+  grd.addColorStop(0,"#80AFBE");
+  grd.addColorStop(1,"#261B28");
+  myBitmap.context.fillStyle=grd;
+  myBitmap.context.fillRect(0,0,g.width,g.height);
+  game.add.sprite(0, 0, myBitmap);
+
 }
 
 function drawWaves(g) {
@@ -16,7 +25,7 @@ function drawWaves(g) {
 
 // # Moon
 function drawMoon() {
-  
+
   // draw the shape
   var bmd = game.add.bitmapData(512,512);
   bmd.ctx.beginPath();

@@ -2,7 +2,7 @@ BasicGame.Game = function (game) {};
 BasicGame.Game.prototype = {
 
 create: function () {
-
+game.forceSingleUpdate = true;
   // show ui
   document.getElementById('refresh').classList.add('hide');
   document.getElementById('ui').classList.remove('hide');

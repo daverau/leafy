@@ -17,23 +17,14 @@ function addPlatform(id) {
 
   platform.update = function () {
     if ( (this.position.x + this.width) < -10) {
-      //console.log('---move platform: '+ this.id);
 
       // random width
-      var widths = vars.platformLevels[vars.currentLevel].widths;
-      var w = vars.platformWidths[widths[Math.floor(Math.random()*widths.length)] -1];
-      this.width = w;
+      this.width = vars.platformWidths[vars.platformLevels[vars.currentLevel].widths[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].widths.length)] -1];
 
-      var heights = vars.platformLevels[vars.currentLevel].heights;
-      var h = vars.platformHeights[heights[Math.floor(Math.random()*heights.length)] -1];
-      this.y = h;
-
-      // random gap
-      var gapws = vars.platformLevels[vars.currentLevel].gaps;
-      var gapw = vars.platformGaps[gapws[Math.floor(Math.random()*gapws.length)] -1];
+      this.y = vars.platformHeights[vars.platformLevels[vars.currentLevel].heights[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].heights.length)] -1];
 
       // set new X position based on last X
-      this.position.x = getLastPlatformX() + gapw;
+      this.position.x = getLastPlatformX() + vars.platformGaps[vars.platformLevels[vars.currentLevel].gaps[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].gaps.length)] -1];
 
     }
   }

@@ -4,7 +4,7 @@ var vars = {
   autoStart: false, // testing/auto start
 
   // levels
-  currentLevel: 2,
+  currentLevel: 3,
   levelEveryX: 10000, // 1,000 score == 10,000 pixels
 
   // leafy/player
