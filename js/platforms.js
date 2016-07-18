@@ -1,7 +1,7 @@
 // Platforms
 function addPlatform(id) {
   // Create a pipe at the position x and y
-  var platform = game.add.sprite(0, 550, 'platform');
+  var platform = game.add.sprite(0, game.height - vars.platformHeight, 'platform');
   platform.scale.setTo(0.5);
   platform.id = id;
 
@@ -21,10 +21,28 @@ function addPlatform(id) {
       // random width
       this.width = vars.platformWidths[vars.platformLevels[vars.currentLevel].widths[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].widths.length)] -1];
 
-      this.y = vars.platformHeights[vars.platformLevels[vars.currentLevel].heights[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].heights.length)] -1];
+      this.y = game.height -  (vars.platformHeights[vars.platformLevels[vars.currentLevel].heights[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].heights.length)] -1]);
 
       // set new X position based on last X
       this.position.x = getLastPlatformX() + vars.platformGaps[vars.platformLevels[vars.currentLevel].gaps[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].gaps.length)] -1];
+
+      // coins?
+      var items = [0,0,1,2];
+      var yesCoins = items[Math.floor(Math.random()*items.length)];
+      console.log(yesCoins);
+      // 1 === do nothing
+      // coins
+      if (yesCoins === 1) {
+        console.log('1');
+        console.log(platform.width);
+        if (platform.width > 50) {
+          placeCoins(platform);
+        }
+      // coin rings
+    } else if (yesCoins === 2) {
+        placeBluering(platform);
+      }
+
 
     }
   }
@@ -91,10 +109,12 @@ function setupPlatforms() {
 // coin platforms
 function placeCoins(platform) {
   var coinCount = Math.floor( (platform.width-120) / 60);
-  //console.log('long platform with coins: ' + coinCount);
+  console.log('long platform with coins: ' + coinCount);
   game.coinstoRecycle = game.coins.children.filter( offCamera );
+  console.log(game.coinstoRecycle);
   for (i = 0; i <= coinCount; i++) {
     var coin = game.coinstoRecycle[i];
+    console.log(coin);
     if (coin) {
       coin.pos.y = platform.y - 60;
       resetLeaf(coin);
@@ -129,7 +149,5 @@ function platformTouch(leafy, platform) {
 
     // platform jump score
     // touchPlatformScore(leafy, platform.score);
-
-    // shuffle platforms if possible
   }
 }

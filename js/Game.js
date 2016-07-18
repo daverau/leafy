@@ -18,10 +18,11 @@ game.forceSingleUpdate = true;
   game.sfxding.allowMultiple = true;
 
   // # Draw game objects
-  drawBG(game);
+  drawBG('80AFBE', '261B28');
+  //drawBG('61C13C', '2D541A');
   drawWaves(game);
   drawMoon();
-  //genTrees();
+  genTrees(game.trees, true);
   genLevelText();
   game.leafy = genLeafy();
   genCoins();
@@ -63,10 +64,6 @@ game.forceSingleUpdate = true;
     alpha: 0.5,
   }, 4000, Phaser.Easing.Cubic.Out);
 
-  // update
-  //game.time.events.loop(Phaser.Timer.SECOND * 1.5, resetFarPlatforms, this);
-  //game.time.events.loop(Phaser.Timer.SECOND * 1.6, setupPlatforms, this);
-
 },
 
 
@@ -95,6 +92,16 @@ update: function () {
 
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
+
+    this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
+    this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
+    this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
+    this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
+
+    // owl
+    if (game.owl.alive) {
+      if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
+    }
 
     playerMove(game.leafy);
 

@@ -111,7 +111,7 @@ function passBee(leafy, bee) {
 
       if (leafy.flowers < 1 && !bee.pickedup) {
         game.sfxbuzz.play();
-        leafy.kill();
+        //leafy.kill();
       } else {
         if (!bee.pickedup) {
           bee.pickedup = true;

@@ -1,15 +1,15 @@
 // # drawings
-function drawBG(g) {
+function drawBG(startColor, endColor) {
   //g.bgnight = g.add.sprite(g.width,g.height, 'bgnight');
   //g.bgnight.fixedToCamera = true;
   //g.bgnight.anchor.setTo(1);
 
-  var myBitmap = game.add.bitmapData(g.width, g.height);
-  var grd = myBitmap.context.createLinearGradient(0,0,0,g.height);
-  grd.addColorStop(0,"#80AFBE");
-  grd.addColorStop(1,"#261B28");
+  var myBitmap = game.add.bitmapData(game.width, game.height);
+  var grd = myBitmap.context.createLinearGradient(0,0,0,game.height);
+  grd.addColorStop(0,"#"+startColor);
+  grd.addColorStop(1,"#"+endColor);
   myBitmap.context.fillStyle=grd;
-  myBitmap.context.fillRect(0,0,g.width,g.height);
+  myBitmap.context.fillRect(0,0,game.width,game.height);
   game.add.sprite(0, 0, myBitmap);
 
 }

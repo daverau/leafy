@@ -20,13 +20,9 @@ BasicGame.MainMenu.prototype = {
     game.cursors = this.input.keyboard.createCursorKeys();
 
     // # Background images
-    this.bg = this.add.sprite(game.width,game.height, 'bgnight');
-    this.bg.anchor.setTo(1);
-
+    //drawBG('D3F4FF', '31BCF3');
+    drawBG('80AFBE', '261B28');
     this.ground = this.add.tileSprite(0 , game.height-90, game.width, 90, 'tree');
-    // this.physics.arcade.enable(this.ground);
-    // this.ground.body.immovable = true;
-    // this.ground.body.allowGravity = false;
 
     drawMoon();
     genTrees();
@@ -43,7 +39,7 @@ BasicGame.MainMenu.prototype = {
     // this.bigleafy.anchor.setTo(0,.5);
 
     //layering order
-    this.titleText = game.add.text( game.width/2, game.height*0.4, 'LEAFY', { font: "288px AvenirNext-Heavy", fill: '#fff' });
+    this.titleText = game.add.text( game.width/2, game.height*0.4, 'Leafy’s Trip', { font: "170px AvenirNext-Heavy", fill: '#fff' });
     this.titleText.anchor.setTo(0.5);
 
     this.verText = game.add.text( game.width - 100, game.height - 60, 'v'+vars.version, { font: (11*vars.ratio)+"px Avenir-Medium", fill: '#000000' });
@@ -67,7 +63,7 @@ BasicGame.MainMenu.prototype = {
   update: function () {
 
     //console.log( this.input.activePointer.isDown );
-    //this.physics.arcade.collide(game.leafy, this.ground, null, null, this);      
+    //this.physics.arcade.collide(game.leafy, this.ground, null, null, this);
 
     if ( game.cursors.up.isDown) {
       this.startGame();
