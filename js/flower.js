@@ -100,13 +100,6 @@ function resetLeaf(item) {
   item.alpha = 1;
   item.pickedup = false;
   item.y = item.pos.y;
-
-  // animations
-  item.tween = game.add.tween(item).to({
-    alpha: 0,
-    y: (item.y - 400),
-  }, 1000, Phaser.Easing.Cubic.Out);
-
 }
 
 // # Flowers
@@ -131,7 +124,7 @@ Flower = function (game, x, y) {
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
-    y: (this.y - 400),
+    y: (this.y - (this.y - 400)),
   }, 1000, Phaser.Easing.Cubic.Out);
   // this.tween.onComplete.add(function() {
   //   this.kill();

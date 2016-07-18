@@ -70,6 +70,11 @@ create: function () {
     alpha: 0.5,
   }, 4000, Phaser.Easing.Cubic.Out);
 
+  game.time.events.loop(Phaser.Timer.SECOND * 2.0, resetFarPlatforms, this);
+  game.time.events.loop(Phaser.Timer.SECOND * 2.5, placePlatforms, this);
+  game.time.events.loop(Phaser.Timer.SECOND * 2.7, moveFarTrees, this);
+  game.time.events.loop(Phaser.Timer.SECOND * 2.3, setLevelText, this);
+
 },
 
 

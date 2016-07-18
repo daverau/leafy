@@ -104,7 +104,7 @@ function getLastPlatformX() {
 
 function resetFarPlatforms() {
   //console.log('fn() resetFarPlatforms');
-  game.platformstoRecycle.forEach(function(platform) {
+  game.platforms.children.filter( offCamera ).forEach(function(platform) {
     platform.kill();
     platform.x = 0;
   });
@@ -116,14 +116,6 @@ function platformTouch(leafy, platform) {
     platform.touched = true;
 
     // platform jump score
-    touchPlatformScore(leafy, platform.score);
-
-    // shuffle platforms if possible
-    game.platformstoRecycle = game.platforms.children.filter( offCamera );
-
-    resetFarPlatforms();
-    placePlatforms();
-    moveFarTrees();
-    setLevelText();
+    // touchPlatformScore(leafy, platform.score);
   }
 }
