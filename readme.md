@@ -1,6 +1,6 @@
-# Leafy: a phaser.io game experiment
+# Leafy's Trip: a phaser.js platform game
 
-Leafy is a platform game about finding your sister. You start at the edge of the woods where you can go right.
+Leafy's Trip is a platform game about finding your sister. It's also my first game I'm hoping to publish to the iOS App Store.
 
 ### Install locally
 1. `git clone https://github.com/daverau/leafy && cd leafy`
