@@ -2,34 +2,31 @@
 
 Leafy is a platform game about finding your sister. You start at the edge of the woods where you can go right.
 
+### Install locally
+1. `git clone https://github.com/daverau/leafy && cd leafy`
+2. `npm install -g`
+
 ### Controls
 1. Touch screen or up arrow to jump
 2. Collect the blue acorns for upgrades
-3. Avoid the bees until you have flowers
-4. Jump on bees to get past them
+3. Jump on bees until you have flowers
 
 ## Gameplay
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/gameplay.gif">
 
-## Sketch
-My original concept was inspired by a gamejam theme about "growing"
-<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
-
-## Local setup and commands
-- `gulp` to build and bundle js
-- `gulp lint` to test js for lint errors
-- `gulp sync` to copy `/www/` into `/platforms/ios/www/...` and excludes `node_modules` and other files you don't want in the ios bundle for distribution
-
 ## Todo
-- endgame with doorway and friend
+- [feature] endgame with doorway and friend
 - [polish] scale trees as you go higher in levels
 - [polish] background stars, clouds, day/night shift
 - [polish] music
 - [polish] instructions overlay
+- [optimize] reduce garbage collection, look into platform lastX checking
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
-- [bug] sound issue on fresh start (what is wrong?)
 
 ## Changelog
+
+### unreleased
+- 
 
 ### v1.7
 - platform gaps scale with jump boost for difficulty
@@ -102,3 +99,7 @@ My original concept was inspired by a gamejam theme about "growing"
 - expand world size
 - add tree pngs
 - retina issues mostly resolved using `* vars.ratio`
+
+## Sketch
+My original concept sketch was inspired by a gamejam theme about "growing"
+<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
