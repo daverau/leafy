@@ -61,7 +61,6 @@ function setLevelText() {
 function genPause() {
   // Create a label to use as a button
 
-
   function unpause(event){
     if(game.paused){
     } else {

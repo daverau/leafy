@@ -3,10 +3,13 @@
 Leafy is a platform game about finding your sister. You start at the edge of the woods where you can go right.
 
 ### Controls
-1. Left/Right arrow keys to move
-2. Spacebar/Up to jump over gaps and earn points
-3. Collect the blue leaves to jump farther/higher
-4. Avoid the bees until you have flowers
+1. Touch screen or up arrow to jump
+2. Collect the blue acorns for upgrades
+3. Avoid the bees until you have flowers
+4. Jump on bees to get past them
+
+## Gameplay
+<img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/gameplay.gif">
 
 ## Sketch
 My original concept was inspired by a gamejam theme about "growing"
