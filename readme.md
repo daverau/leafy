@@ -4,7 +4,10 @@ Leafy is a platform game about finding your sister. You start at the edge of the
 
 ### Install locally
 1. `git clone https://github.com/daverau/leafy && cd leafy`
-2. `npm install -g`
+2. `npm install -g browser-sync` if you don't already have it
+3. `browser-sync start --server`
+4. Open Chrome Developer Tools and toggle the iPhone5 responsive view
+5. Play!
 
 ### Controls
 1. Touch screen or up arrow to jump
@@ -26,7 +29,7 @@ Leafy is a platform game about finding your sister. You start at the edge of the
 ## Changelog
 
 ### unreleased
-- 
+-
 
 ### v1.7
 - platform gaps scale with jump boost for difficulty
