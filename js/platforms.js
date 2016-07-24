@@ -29,12 +29,12 @@ function addPlatform(id) {
       // coins?
       var items = [0,0,1,2];
       var yesCoins = items[Math.floor(Math.random()*items.length)];
-      console.log(yesCoins);
+      //console.log(yesCoins);
       // 1 === do nothing
       // coins
       if (yesCoins === 1) {
-        console.log('1');
-        console.log(platform.width);
+        //console.log('1');
+        //console.log(platform.width);
         if (platform.width > 50) {
           placeCoins(platform);
         }
@@ -109,16 +109,17 @@ function setupPlatforms() {
 // coin platforms
 function placeCoins(platform) {
   var coinCount = Math.floor( (platform.width-120) / 60);
-  console.log('long platform with coins: ' + coinCount);
+  //console.log('long platform with coins: ' + coinCount);
   game.coinstoRecycle = game.coins.children.filter( offCamera );
-  console.log(game.coinstoRecycle);
+  //console.log(game.coinstoRecycle);
   for (i = 0; i <= coinCount; i++) {
     var coin = game.coinstoRecycle[i];
-    console.log(coin);
+    //console.log(coin);
     if (coin) {
       coin.pos.y = platform.y - 60;
       resetLeaf(coin);
       coin.reset( platform.x + 60 + (i * 60), platform.y - 60 );
+      coin.body.velocity.x = vars.gameSpeed;
     } else {
       //console.log('0 coins');
     }
