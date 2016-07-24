@@ -41,7 +41,7 @@ function addPlatform(id) {
         }
       // coin rings
     } else if (yesCoins === 2) {
-        placeBluering(platform);
+        //placeBluering(platform);
       }
 
 
@@ -141,11 +141,9 @@ function placeBluering(platform) {
     });
 
     ring.update = function () {
-      this.x = game.platforms.children[this.platformId].body.x;
+      this.x = game.platforms.children[this.platformId - 1].body.x;
       if (this.x + this.width < - 10) {
-
         console.log('reset this ring');
-
       }
     }
 

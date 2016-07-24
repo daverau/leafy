@@ -31,7 +31,9 @@ Blueleaf = function (game, x, y) {
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
-    y: (this.y - 400),
+    //y: (this.y - 400),
+    x: (game.width - 100),
+    y: (100),
   }, 1000, Phaser.Easing.Cubic.Out);
 };
 

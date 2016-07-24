@@ -1,5 +1,32 @@
 // # Trees
 
+function whereTrees() {
+  game.trees.children.forEach(function(tree){
+    console.log(tree.x);
+  });
+}
+
+Tree = function (game, x, y) {
+  var treeimg = 'tree' + Math.floor(Math.random() * 8 + 1);
+  console.log('++new tree++');
+  Phaser.Sprite.call(this, game, x, y, treeimg);
+  this.anchor.setTo(0.5,1);
+  this.scale.setTo(0.5);
+  game.physics.arcade.enable(this);
+  this.body.velocity.x = vars.gameSpeed;
+};
+
+Tree.prototype = Object.create(Phaser.Sprite.prototype);
+Tree.prototype.constructor = Tree;
+Tree.prototype.update = function() {
+  if ( offCamera(this) ) {
+    resetMove(
+      this,
+      Math.floor(Math.random() * (game.width * 9) + (game.width * 3.5)));
+  }
+};
+
+
 function moveFarTrees() {
   //console.log('moveFarTrees()');
   game.trees.forEach(function(tree) {
@@ -73,7 +100,7 @@ function placeTree(group, x1, x2) {
 }
 
 
-function genTrees() {
+function genTreesOld() {
   var tcount = 9;
   //var tcount = Math.ceil(vars.worldSize * 0.015);
   console.log('trees: '+tcount);
@@ -84,6 +111,18 @@ function genTrees() {
     genTree();
   }
 }
+
+function genTrees() {
+  console.log('trees: ' + vars.treeCount);
+  game.trees = game.add.group();
+  game.trees.enableBody = true;
+  for (var i=0; i<vars.treeCount; i++) {
+    var tree = new Tree(game, 0, game.height-vars.platformHeight);
+    game.trees.add(tree);
+  }
+}
+
+
 
 function genForetrees() {
   var ftrees = Math.ceil(vars.worldSize * 0.007);
@@ -108,6 +147,9 @@ function genStump() {
 // # Generate trees based on some parameters
 function genTree(group) {
 
+  // default tree group
+  if (!group) group = game.trees;
+
   var pxrange;
 
   // get random x value for tree
@@ -115,9 +157,6 @@ function genTree(group) {
 
   // smaller trees
   var treeimg = 'tree' + Math.floor(Math.random()*4+1);
-
-  // default tree group
-  if (!group) group = game.trees;
 
   // ## group trees by world depth
   // middle full range
@@ -148,23 +187,3 @@ function genTree(group) {
   }
 
 }
-
-
-
-Tree = function (game, x, y) {
-  Phaser.Sprite.call(this, game, x, y, "tree");
-  this.anchor.setTo(0.5,1);
-  this.scale.setTo(0.5);
-  game.physics.arcade.enable(this);
-  this.body.velocity.x = vars.gameSpeed;
-};
-
-Tree.prototype = Object.create(Phaser.Sprite.prototype);
-Tree.prototype.constructor = Tree;
-Tree.prototype.update = function() {
-  if ( offCamera(this) ) {
-    resetMove(
-      this,
-      game.leafy.x + Math.floor(Math.random() * (game.width * 9) + (game.width * 3.5)));
-  }
-};

@@ -26,7 +26,7 @@ game.forceSingleUpdate = true;
   genLevelText();
   game.leafy = genLeafy();
   genCoins();
-  genBlueRings();
+  //genBlueRings();
   genFlowers();
 
   // # Platforms
@@ -96,7 +96,7 @@ update: function () {
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
 
-    this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
+    //this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
