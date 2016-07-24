@@ -82,7 +82,7 @@ update: function () {
     //game.leafy.kill();
     //game.leafy.jumps = 0;
 
-    console.log('never die!!!');
+    // never die!!!
     game.leafy.body.position.y = -100;
   }
 

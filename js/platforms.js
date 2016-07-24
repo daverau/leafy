@@ -20,7 +20,7 @@ function addPlatform(id) {
 
       console.log('--platform ' + this.id + '--');
       var level = isLevel();
-      
+
       // random width
       this.width = vars.platformWidths[vars.platformLevels[level].widths[Math.floor(Math.random()*vars.platformLevels[level].widths.length)] -1];
 
@@ -132,12 +132,23 @@ function placeBluering(platform) {
   game.ringstoRecycle = game.bluerings.children.filter( offCamera );
   var ring = game.ringstoRecycle[0];
   if (ring) {
+    ring.platformId = platform.id;
     ring.x = platform.x + platform.width;
     ring.y = platform.y - 190;
     console.log('place ring: ' + ring.x);
     ring.children.forEach(function(blueleaf) {
       resetLeaf(blueleaf);
     });
+
+    ring.update = function () {
+      this.x = game.platforms.children[this.platformId].body.x;
+      if (this.x + this.width < - 10) {
+
+        console.log('reset this ring');
+
+      }
+    }
+
   } else {
     console.log('0 rings');
   }
