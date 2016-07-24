@@ -51,6 +51,7 @@ Blueleaf.prototype.constructor = Blueleaf;
 function genBlueRings() {
   game.bluerings = game.add.group();
   game.bluerings.enableBody = true;
+
   for (var i=0; i<vars.blueRingTotal; i++) {
     var x = game.rnd.integerInRange(0, vars.worldSize);
     var bluering = game.add.group();
@@ -76,6 +77,7 @@ function genBlueRings() {
     bluering.x = -2000;
 
     game.bluerings.add(bluering);
+
   }
 }
 
@@ -100,7 +102,6 @@ function resetLeaf(item) {
   item.alpha = 1;
   item.pickedup = false;
   item.y = item.pos.y;
-
 }
 
 // # Flowers
@@ -110,7 +111,7 @@ function genFlowers() {
   var fcount = 1;
   console.log('flowers: '+fcount);
   for (x=0; x<fcount; x++) {
-    var worldx = game.leafy.x + Math.floor(Math.random()*(game.width * 4)+(game.width * 2.5));
+    var worldx = Math.floor(Math.random() * (game.width * 4) + (game.width * 2.5));
     var flower = new Flower(game, worldx, game.height-vars.platformHeight);
     game.flowers.add(flower);
     //console.log('flower created at x:'+flower.x);
@@ -121,7 +122,10 @@ Flower = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, "flower");
   this.anchor.setTo(0.5,1);
   this.scale.setTo(0.5);
+  game.physics.arcade.enable(this);
+  this.body.velocity.x = vars.gameSpeed;
   this.pickedup = false;
+
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
@@ -135,10 +139,11 @@ Flower = function (game, x, y) {
 Flower.prototype = Object.create(Phaser.Sprite.prototype);
 Flower.prototype.constructor = Flower;
 Flower.prototype.update = function() {
-  // [question] how to refactor this?
   if ( offCamera(this) ) {
-    var worldx = game.leafy.x + Math.floor(Math.random()*(game.width * 9)+(game.width * 3.5));
-    resetMove(this, worldx);
+    //console.log('move a flower...');
+    resetMove(
+      this,
+      game.leafy.x + Math.floor(Math.random() * (game.width * 9) + (game.width * 3.5)));
   }
 };
 

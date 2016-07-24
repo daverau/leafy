@@ -148,3 +148,23 @@ function genTree(group) {
   }
 
 }
+
+
+
+Tree = function (game, x, y) {
+  Phaser.Sprite.call(this, game, x, y, "tree");
+  this.anchor.setTo(0.5,1);
+  this.scale.setTo(0.5);
+  game.physics.arcade.enable(this);
+  this.body.velocity.x = vars.gameSpeed;
+};
+
+Tree.prototype = Object.create(Phaser.Sprite.prototype);
+Tree.prototype.constructor = Tree;
+Tree.prototype.update = function() {
+  if ( offCamera(this) ) {
+    resetMove(
+      this,
+      game.leafy.x + Math.floor(Math.random() * (game.width * 9) + (game.width * 3.5)));
+  }
+};

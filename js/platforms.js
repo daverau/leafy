@@ -18,22 +18,23 @@ function addPlatform(id) {
   platform.update = function () {
     if ( (this.position.x + this.width) < -10) {
 
+      console.log('--platform ' + this.id + '--');
+      var level = isLevel();
+      
       // random width
-      this.width = vars.platformWidths[vars.platformLevels[vars.currentLevel].widths[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].widths.length)] -1];
+      this.width = vars.platformWidths[vars.platformLevels[level].widths[Math.floor(Math.random()*vars.platformLevels[level].widths.length)] -1];
 
-      this.y = game.height -  (vars.platformHeights[vars.platformLevels[vars.currentLevel].heights[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].heights.length)] -1]);
+      this.y = game.height -  (vars.platformHeights[vars.platformLevels[level].heights[Math.floor(Math.random()*vars.platformLevels[level].heights.length)] -1]);
 
       // set new X position based on last X
-      this.position.x = getLastPlatformX() + vars.platformGaps[vars.platformLevels[vars.currentLevel].gaps[Math.floor(Math.random()*vars.platformLevels[vars.currentLevel].gaps.length)] -1];
+      this.position.x = getLastPlatformX() + vars.platformGaps[vars.platformLevels[level].gaps[Math.floor(Math.random()*vars.platformLevels[level].gaps.length)] -1];
 
       // coins?
-      var items = [0,0,1,2];
+      var items = [0,0,0,0,1,1,1,2];
       var yesCoins = items[Math.floor(Math.random()*items.length)];
       //console.log(yesCoins);
-      // 1 === do nothing
       // coins
       if (yesCoins === 1) {
-        //console.log('1');
         //console.log(platform.width);
         if (platform.width > 50) {
           placeCoins(platform);
@@ -131,13 +132,14 @@ function placeBluering(platform) {
   game.ringstoRecycle = game.bluerings.children.filter( offCamera );
   var ring = game.ringstoRecycle[0];
   if (ring) {
-    ring.x = platform.x + platform.width + (platform.nextX/2);
+    ring.x = platform.x + platform.width;
     ring.y = platform.y - 190;
+    console.log('place ring: ' + ring.x);
     ring.children.forEach(function(blueleaf) {
       resetLeaf(blueleaf);
     });
   } else {
-    //console.log('0 rings');
+    console.log('0 rings');
   }
 }
 

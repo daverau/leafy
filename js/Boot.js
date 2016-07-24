@@ -13,7 +13,7 @@ var vars = {
 
   // leafy/player
   leafyJumps:            2, // could be upgradable
-  gameSpeed:          -250, // could be upgradable
+  gameSpeed:          -270, // could be upgradable
   leafyXposition:      240, // x left start position
   leafyJumpVelocityY: -750, // pixels per second negative y is up
   leafyJumpConstant:   210, // jump numbers are magic
@@ -140,23 +140,19 @@ BasicGame.Boot.prototype = {
 // Utilities, to be moved once I have more here...
 // # Basic overlap check without physics, useful for owl check, etc
 function checkOverlap(spriteA, spriteB) {
-  var boundsA = spriteA.getBounds();
-  var boundsB = spriteB.getBounds();
-  return Phaser.Rectangle.intersects(boundsA, boundsB);
+  return Phaser.Rectangle.intersects(spriteA.getBounds(), spriteB.getBounds());
 }
 // helper
 function offCamera(item) {
   return (item.x + item.width) < 0;
 }
-function resetMove(item,x,y) {
-  x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
-  y = y || game.height - vars.platformHeight;
+function resetMove(item, x, y) {
   //console.log('resetMove() ' + item.key);
   //console.log('--move--');
   item.alpha = 1;
   item.pickedup = false;
-  item.y = y;
-  item.x = x;
+  item.y = y || game.height - vars.platformHeight;
+  item.x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
 }
 function isLevel() {
   return Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );

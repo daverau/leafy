@@ -27,6 +27,7 @@ game.forceSingleUpdate = true;
   game.leafy = genLeafy();
   genCoins();
   genBlueRings();
+  genFlowers();
 
   // # Platforms
   game.platforms = game.add.group();
@@ -80,6 +81,8 @@ update: function () {
   if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
     //game.leafy.kill();
     //game.leafy.jumps = 0;
+
+    console.log('never die!!!');
     game.leafy.body.position.y = -100;
   }
 
