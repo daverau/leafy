@@ -18,8 +18,10 @@ function addPlatform(id) {
   platform.update = function () {
     if ( (this.position.x + this.width) < -10) {
 
-      console.log('--platform ' + this.id + '--');
+      //console.log('--platform ' + this.id + '--');
       var level = isLevel();
+
+      this.touched = false;
 
       // random width
       this.width = vars.platformWidths[vars.platformLevels[level].widths[Math.floor(Math.random()*vars.platformLevels[level].widths.length)] -1];
@@ -89,19 +91,17 @@ function setupPlatforms() {
     platform.height = vars.platformHeight;
 
     // coins?
-    if (game.coins) {
-      var items = [1,1,2,3];
-      var yesCoins = items[Math.floor(Math.random()*items.length)];
-      // 1 === do nothing
-      // coins
-      if (yesCoins === 2) {
-        if (w > 50) {
-          placeCoins(platform);
-        }
-      // coin rings
-      } else if (yesCoins === 3) {
-        placeBluering(platform);
+    var items = [1,1,2,3];
+    var yesCoins = items[Math.floor(Math.random()*items.length)];
+    // 1 === do nothing
+    // coins
+    if (yesCoins === 2) {
+      if (w > 50) {
+        placeCoins(platform);
       }
+    // coin rings
+    } else if (yesCoins === 3) {
+      placeBluering(platform);
     }
 
   });
@@ -148,7 +148,7 @@ function placeBluering(platform) {
     }
 
   } else {
-    console.log('0 rings');
+    console.log('!!! 0 rings !!!');
   }
 }
 
@@ -158,6 +158,8 @@ function platformTouch(leafy, platform) {
   game.leafy.position.x = vars.leafyXposition;
   if (!platform.touched) {
     platform.touched = true;
+
+    //leafy.tint = Math.random() * 0xffffff;
 
     // platform jump score
     // touchPlatformScore(leafy, platform.score);

@@ -20,15 +20,6 @@ game.forceSingleUpdate = true;
   // # Draw game objects
   drawBG('80AFBE', '261B28');
   //drawBG('61C13C', '2D541A');
-  drawWaves(game);
-  drawMoon();
-  genTrees(game.trees, true);
-  genLevelText();
-  game.leafy = genLeafy();
-  genCoins();
-  //genBlueRings();
-  genFlowers();
-
   // # Platforms
   game.platforms = game.add.group();
   addPlatform(1);
@@ -44,10 +35,18 @@ game.forceSingleUpdate = true;
   addPlatform(8);
   addPlatform(9);
 
-  // nice first platform
+  drawWaves(game);
+  drawMoon();
+  genTrees(game.trees, true);
+  genLevelText();
+  game.leafy = genLeafy();
+  genCoins();
+  //genBlueRings();
+  genFlowers();
 
   // # Bees
   genBees(vars.startBees);
+  game.world.bringToTop(game.platforms);
 
   // # Rain
   //genRain();

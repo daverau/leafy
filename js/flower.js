@@ -1,15 +1,4 @@
-// # Blue leaf pickups
-// function genBlueleaves() {
-//   var blueLeafTotal = 6;
-//   game.blueleaves = game.add.group();
-//   game.blueleaves.enableBody = true;
-//   for (var i=0; i<blueLeafTotal; i++) {
-//     var x = game.rnd.integerInRange(0, vars.worldSize);
-//     var y = game.rnd.integerInRange(0, game.height-vars.platformHeight);
-//     var leaf = new Blueleaf(game, x, y);
-//     game.blueleaves.add(leaf);
-//   }
-// }
+// # Blue acorn pickups
 
 function genCoins() {
   game.coins = game.add.group();
@@ -55,7 +44,6 @@ function genBlueRings() {
   game.bluerings.enableBody = true;
 
   for (var i=0; i<vars.blueRingTotal; i++) {
-    var x = game.rnd.integerInRange(0, vars.worldSize);
     var bluering = game.add.group();
     bluering.enableBody = true;
 
@@ -76,7 +64,7 @@ function genBlueRings() {
     bluering.add(leaf);
 
     bluering.y = game.height - 280;
-    bluering.x = -2000;
+    bluering.x = game.width;
 
     game.bluerings.add(bluering);
 
@@ -131,7 +119,9 @@ Flower = function (game, x, y) {
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
-    y: (this.y - 400),
+    //y: (this.y - 400),
+    x: (game.width - 200),
+    y: (100),
   }, 1000, Phaser.Easing.Cubic.Out);
   // this.tween.onComplete.add(function() {
   //   this.kill();

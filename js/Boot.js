@@ -3,13 +3,12 @@ var vars = {
   // setup
   ratio: window.devicePixelRatio || 1,
   worldSize: window.innerWidth*2,
-  treeCount:             9,
+  treeCount:             6,
 
   version:         '1.7.3', // Leafy game version
   autoStart:         false, // testing/auto start
 
   // levels
-  currentLevel:          1, // starts at 1
   levelEveryX:        1000,
 
   // leafy/player

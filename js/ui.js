@@ -46,7 +46,7 @@ function pause() {
 }
 
 function genLevelText() {
-  game.levelText = game.add.text( 50, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
+  game.levelText = game.add.text( game.width - 500, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
   // #F5A623 yellow color
   // #63434B platform color
   game.levelText.alpha = 0.3;
