@@ -1,7 +1,7 @@
 // Leafy setup
 function genLeafy() {
   var leafy = game.add.sprite( vars.leafyXposition , -100, 'leafy');
-  leafy.anchor.setTo(0.5, 1); //flip at middle point
+  leafy.anchor.setTo(0.5, .35); //flip at middle point
   leafy.alive = true;
   leafy.jumping = false;
   leafy.maxJumps = vars.leafyJumps;
@@ -45,6 +45,10 @@ function genLeafy() {
     y: 2000
   }, 3000, Phaser.Easing.Cubic.Out);
 
+  leafy.spinTween = game.add.tween(leafy).to({
+    angle: '+360'
+  }, 450, Phaser.Easing.Linear.None);
+
   // player score
   leafy.leafyText = game.add.text( leafy.x, leafy.y, '+200', { font: (14*vars.ratio)+"px Avenir-Medium", fill: '#F5A623' });
   leafy.leafyText.tween = game.add.tween(leafy.leafyText).to({
@@ -56,7 +60,7 @@ function genLeafy() {
   // animations
   leafy.animations.add('turn', [7], 0, true);
   leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
-  leafy.animations.add('jump', [1], 0, true);
+  leafy.animations.add('jump', [3], 0, true);
   leafy.animations.add('sad', [8], 0, true);
   leafy.animations.add('surprised', [9], 0, true);
   game.sfxfall = game.add.audio('fall');
@@ -147,6 +151,9 @@ function leafyJump(leafy) {
   leafy.body.velocity.y = vars.leafyJumpVelocityY;
   leafy.jumping = true;
   leafy.animations.play('jump');
+  if (leafy.jumps === 1) {
+    leafy.spinTween.start();
+  }
   if (!leafy.playingSound) {
     leafy.playingSound = true;
     leafy.sfxboing.play('', 0, 1, false, false);

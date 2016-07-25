@@ -1,7 +1,7 @@
 // # Trees
 
 Tree = function (game, x, y) {
-  var treeimg = 'tree' + Math.floor(Math.random() * 10 + 1);
+  var treeimg = 'tree' + Math.floor(Math.random() * 9 + 1);
   console.log('+ tree');
   Phaser.Sprite.call(this, game, x, y, treeimg);
   this.anchor.setTo(0.5,1);
