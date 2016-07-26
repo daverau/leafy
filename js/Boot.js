@@ -110,7 +110,6 @@ BasicGame.Boot.prototype = {
     this.input.maxPointers = 2; // for mobile touch
     this.input.addPointer();
     this.input.addPointer();
-
   },
 
   preload: function () {
@@ -123,7 +122,6 @@ BasicGame.Boot.prototype = {
   },
 
   gameResized: function (width, height) {
-
   },
 
   enterIncorrectOrientation: function () {
@@ -144,16 +142,13 @@ function checkOverlap(spriteA, spriteB) {
   //console.log('overlap check');
   return Phaser.Rectangle.intersects(spriteA.getBounds(), spriteB.getBounds());
 }
-// helper
-var d = false;
+
+// check off camera (to the left) for object pooling and reuse
 function offCamera(item) {
-  if (!d) {
-    console.log(item);
-    d = true;
-  }
   //console.log('off camera check');
   return (item.x + item.width) < 0;
 }
+
 function resetMove(item, x, y) {
   //console.log('resetMove() ' + item.key);
   item.alpha = 1;
@@ -161,6 +156,8 @@ function resetMove(item, x, y) {
   item.y = y || game.height - vars.platformHeight;
   item.x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
 }
+
+// check current level based on vars setting
 function isLevel() {
   //console.log('level check');
   return Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );

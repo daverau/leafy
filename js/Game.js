@@ -9,7 +9,7 @@ create: function () {
   document.getElementById('ui').classList.remove('hide');
 
   // # World gen
-  console.log('++world gen: ' + vars.worldSize + '++');
+  console.log('world gen: ' + vars.worldSize + 'px');
   this.world.setBounds(0, 0, vars.worldSize, game.height);
 
   // # Sound
@@ -53,16 +53,6 @@ create: function () {
   // # UI
   genUI();
 
-  // # bg gameover
-  game.bggameover = this.add.sprite(0,0, 'bggameover');
-  game.bggameover.alpha = 0;
-  game.bggameover.width = game.width;
-  game.bggameover.height = game.height;
-  game.bggameover.fixedToCamera = true;
-  game.bggameover.tween = this.add.tween(game.bggameover).to({
-    alpha: 0.5,
-  }, 4000, Phaser.Easing.Cubic.Out);
-
 },
 
 
@@ -77,11 +67,11 @@ update: function () {
 
   // World fallout
   if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
-    //game.leafy.kill();
-    //game.leafy.jumps = 0;
+    game.leafy.kill();
+    game.leafy.jumps = 0;
 
     // never die!!!
-    game.leafy.body.position.y = -100;
+    //game.leafy.body.position.y = -100;
   }
 
   // # Leafy movement and Respawn

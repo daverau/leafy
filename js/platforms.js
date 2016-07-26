@@ -153,6 +153,8 @@ function platformTouch(leafy, platform) {
   if (!platform.touched) {
     platform.touched = true;
 
+    // random color platform on jump
+    // cool effect, saving this for later...
     //leafy.tint = Math.random() * 0xffffff;
 
     // platform jump score

@@ -74,7 +74,7 @@ function genLeafy() {
     this.jumps = 0;
     this.alive = false;
     this.body.velocity.setTo(0,0);
-    this.enableBody = false;
+    //this.enableBody = false;
 
     this.animations.stop();
     this.animations.play('sad');
@@ -98,31 +98,13 @@ function genLeafy() {
     this.deathTween.start();
     game.moon.deathTween.start();
     game.ui.deathTween.start();
-    //game.platforms.destroy();
-    // game.bgnight.tween = game.add.tween(game.bgnight).to( {
-    //   alpha: 0
-    // }, 1500);
-    // game.bgnight.tween.start();
-    game.bggameover.tween.start();
 
-    // not sure why i have this or where it came from
-    this.events.onAnimationComplete.addOnce(function() {
-      this.exists = true;
-      this.visible = false;
-      this.events.destroy();
-    }, this);
-
-    // only for newer phaser 2.4.4+
-    if (this.events) {
-      this.events.onKilled$dispatch(this);
-    }
     return this;
   };
   return leafy;
 }
 
 function playerMove(leafy) {
-  //leafy.score = Math.round(leafy.x/10);
   leafy.animations.play('walk');
 
   // Jumping
@@ -172,26 +154,6 @@ function upInputReleased() {
     released |= game.input.activePointer.justReleased();
     return released;
     released = null;
-}
-
-function touchPlatformScore(leafy, score) {
-  // set jump score so it follows Leafy around
-  leafy.leafyText.tween.stop();
-  leafy.leafyText.tween.pendingDelete = false; // http://www.html5gamedevs.com/topic/16641-restart-tween/
-
-  leafy.leafyText.setText( score );
-  // # jump-based scoring, consider bonus points later or highscore best jump
-  // if (game.leafy.score === 0) {
-  //   game.leafy.score = 1;
-  // } else {
-  //   game.leafy.score = Number(platform.score) + Number(game.leafy.score);
-  // }
-
-  leafy.leafyText.alpha = 1;
-  leafy.leafyText.x = ((game.leafy.x/2) * vars.ratio);
-  leafy.leafyText.y = (game.leafy.y/2 - 80) * vars.ratio;
-  leafy.leafyText.tween.delay(140).start();
-  leafy.jumpsScore++;
 }
 
 function respawn(leafy) {
