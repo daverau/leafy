@@ -1,38 +1,41 @@
 // # Global variables
 var vars = {
-  version: '1.7.3', // Leafy game version
-  autoStart: false, // testing/auto start
-
-  // levels
-  levelEveryX: 10000, // 1,000 score == 10,000 pixels
-
-  // leafy/player
-  leafyJumps: 2,
-  leafySpeed: 160,
-  leafyJumpVelocityY: -750, // pixels/second (negative y is up)
-  leafyJumpConstant: 210,
-  leafyGravity: 3000,
-  leafyMaxVelocityX: 500,
-  leafyMaxVelocityY: 4000,
-
-  // platforms
-  platforms: 7,
-  platformHeight: 90,
-
-  // coins
-  coinTotal: 15,
-  blueRingTotal: 4,
-
-  // bees
-  startBees: 1, // 1
-  beeSpeed: 300,
-
   // setup
   ratio: window.devicePixelRatio || 1,
   worldSize: window.innerWidth*2,
+  treeCount:             6,
+
+  version:         '1.7.3', // Leafy game version
+  autoStart:         false, // testing/auto start
+
+  // levels
+  levelEveryX:        1000,
+
+  // leafy/player
+  leafyJumps:            2, // could be upgradable
+  gameSpeed:          -270, // could be upgradable
+  leafyXposition:      240, // x left start position
+  leafyJumpVelocityY: -750, // pixels per second negative y is up
+  leafyJumpConstant:   210, // jump numbers are magic
+  leafyGravity:       3000,
+  leafyMaxVelocityX:   500,
+  leafyMaxVelocityY:  4000,
+
+  // platforms
+  platforms:             7, // based on a small width
+  platformHeight:       90,
+
+  // coins
+  coinTotal:            15,
+  blueRingTotal:         4,
+
+  // bees
+  startBees:             1, // 1
+  beeSpeed:            440,
 
   // track deaths
-  triesScore: 0,
+  score:                 0, // overall distance score
+  triesScore:            0, // number of tries
 
 };
 
@@ -95,7 +98,6 @@ BasicGame = {
 
 BasicGame.Boot = function (game) {
 };
-
 BasicGame.Boot.prototype = {
 
   init: function () {
@@ -113,7 +115,6 @@ BasicGame.Boot.prototype = {
   preload: function () {
     // # Preload images
     this.load.image('preloaderBar', 'img/preloaderbar.png');
-    this.load.image('bgnight', 'img/bg-night.png');
   },
 
   create: function () {
@@ -139,28 +140,20 @@ BasicGame.Boot.prototype = {
 // Utilities, to be moved once I have more here...
 // # Basic overlap check without physics, useful for owl check, etc
 function checkOverlap(spriteA, spriteB) {
-  var boundsA = spriteA.getBounds();
-  var boundsB = spriteB.getBounds();
-  return Phaser.Rectangle.intersects(boundsA, boundsB);
+  return Phaser.Rectangle.intersects(spriteA.getBounds(), spriteB.getBounds());
 }
 // helper
 function offCamera(item) {
-  return (item.x + item.width) < game.camera.x;
+  return (item.x + item.width) < 0;
 }
-function resetMove(item,x,y) {
-  x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
-  y = y || game.height - vars.platformHeight;
+function resetMove(item, x, y) {
   //console.log('resetMove() ' + item.key);
   //console.log('--move--');
   item.alpha = 1;
   item.pickedup = false;
-  item.y = y;
-  item.x = x;
+  item.y = y || game.height - vars.platformHeight;
+  item.x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
 }
-function isLevel(x) {
-  if (x > 0) {
-    return Math.min( Math.ceil(x/vars.levelEveryX), 5 );
-  } else if (game.leafy) {
-    return Math.min( Math.ceil(game.leafy.x/vars.levelEveryX), 5 );
-  }
+function isLevel() {
+  return Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );
 }

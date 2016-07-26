@@ -2,22 +2,15 @@ BasicGame.Game = function (game) {};
 BasicGame.Game.prototype = {
 
 create: function () {
+  // game.forceSingleUpdate = true;
 
   // show ui
   document.getElementById('refresh').classList.add('hide');
   document.getElementById('ui').classList.remove('hide');
 
-  // vue debug test
-  //vm.game = game;
-
   // # World gen
   console.log('++world gen: ' + vars.worldSize + '++');
   this.world.setBounds(0, 0, vars.worldSize, game.height);
-  game.camera.bounds.setTo(null,null);
-  game.camera.bounds.height = game.height;
-
-  // # Inputs
-  //game.jumpButton = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
   // # Sound
   game.sfxbgnoise = game.add.audio('bgnoise');
@@ -26,33 +19,34 @@ create: function () {
   game.sfxding.allowMultiple = true;
 
   // # Draw game objects
-  drawBG(game);
-  drawWaves(game);
-  drawMoon();
-  //genStump(); // move
-  genTrees();
-  genLevelText();
-  //genOwl();   // move
-  game.leafy = genLeafy();
-  //genBlueleaves();
-  genFlowers();
-  genCoins();
-  genBlueRings();
-  //genForetrees(); // redo
-
+  drawBG('80AFBE', '261B28');
+  //drawBG('61C13C', '2D541A');
   // # Platforms
   game.platforms = game.add.group();
-  game.platforms.enableBody = true;
-  game.platforms.createMultiple(vars.platforms, 'platform', false);
-  game.platforms.setAll('body.immovable', true);
-  placePlatforms();
-
-  // nice first platform
-  game.platforms.children[0].x = 0;
+  addPlatform(1);
+  game.platforms.children[0].x = 100;
   game.platforms.children[0].width = 600;
+  addPlatform(2);
+  addPlatform(3);
+  addPlatform(4);
+  addPlatform(5);
+  addPlatform(6);
+  addPlatform(7);
+  addPlatform(8);
+  addPlatform(9);
+
+  drawWaves(game);
+  drawMoon();
+  genTrees(game.trees, true);
+  genLevelText();
+  game.leafy = genLeafy();
+  genCoins();
+  //genBlueRings();
+  genFlowers();
 
   // # Bees
   genBees(vars.startBees);
+  game.world.bringToTop(game.platforms);
 
   // # Rain
   //genRain();
@@ -70,33 +64,25 @@ create: function () {
     alpha: 0.5,
   }, 4000, Phaser.Easing.Cubic.Out);
 
-  game.time.events.loop(Phaser.Timer.SECOND * 2.0, resetFarPlatforms, this);
-  game.time.events.loop(Phaser.Timer.SECOND * 2.5, placePlatforms, this);
-  game.time.events.loop(Phaser.Timer.SECOND * 2.7, moveFarTrees, this);
-  game.time.events.loop(Phaser.Timer.SECOND * 2.3, setLevelText, this);
-
 },
 
 
 update: function () {
 
-  // # Music
-  if(!game.sfxbgnoise.isPlaying){
-    //game.sfxbgnoise.play();
-  }
-
   // # UI
   game.flowersText.setText(game.leafy.flowers);
   game.blueLeafText.setText(game.leafy.blueLeafCount);
   game.fps.setText(game.time.fps + "fps");
-  game.scoreText.setText(game.leafy.score);
-  game.score = game.leafy.score;
+  vars.score += 1;
+  game.scoreText.setText(vars.score);
 
   // World fallout
   if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
-    game.leafy.kill();
-    game.leafy.jumps = 0;
-    //game.platforms.destroy();
+    //game.leafy.kill();
+    //game.leafy.jumps = 0;
+
+    // never die!!!
+    game.leafy.body.position.y = -100;
   }
 
   // # Leafy movement and Respawn
@@ -104,12 +90,12 @@ update: function () {
   if (!game.leafy.alive && !game.rewpawning) {
     game.rewpawning = true;
     game.leafy.kill();
-    //console.log('^^^died !alive^^^');
   } else {
 
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
-    this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
+
+    //this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
@@ -120,6 +106,7 @@ update: function () {
     }
 
     playerMove(game.leafy);
+
   }
 
   // standing ...

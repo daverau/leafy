@@ -10,12 +10,7 @@ BasicGame.Preloader.prototype = {
 
   preload: function () {
 
-    this.add.sprite(0,0, 'bgnight');
     this.load.image('title', 'img/title.png');
-    // this.preloadBar = this.add.sprite(0, game.height/2, 'preloaderBar');
-    // this.preloadBar.width = game.width/1.5;
-    // this.preloadBar.x = game.width/1.625 - (this.preloadBar.width/2);
-    // this.load.setPreloadSprite(this.preloadBar);
 
     // load everything else...
     this.load.image('retryButton', 'img/retrybutton.png');
@@ -27,9 +22,10 @@ BasicGame.Preloader.prototype = {
 
     this.load.image('gameoverText', 'img/text-gameover.png');
     this.load.image('gameover', 'img/gameover.png');
-    
-    this.load.spritesheet('leafy', 'img/leafy-v2.png', 128, 128);
-    //this.load.image('platform', 'img/platform.png');
+
+    this.load.spritesheet('leafy-red', 'img/v3-red.png', 128, 128);
+    this.load.spritesheet('leafy-green', 'img/v3-green.png', 128, 128);
+    this.load.spritesheet('leafy-yellow', 'img/v3-yellow.png', 128, 128);
     this.load.audio('bgnoise', 'audio/bgnoise.wav');
     this.load.audio('button', 'audio/woosh.wav');
     this.load.audio('fall', 'audio/fall.wav');
@@ -56,16 +52,16 @@ BasicGame.Preloader.prototype = {
 
     // will replace with code-generated trees at some point...
     this.load.image('treestump', 'img/treestump.png');
-    this.load.image('tree1', 'img/tree-grey1.png');
-    this.load.image('tree2', 'img/tree-grey2.png');
-    this.load.image('tree3', 'img/tree-grey3.png');
-    this.load.image('tree4', 'img/tree-grey4.png');
-    this.load.image('tree5', 'img/tree-grey5.png');
-    this.load.image('tree6', 'img/tree-grey6.png');
-    this.load.image('tree7', 'img/tree-grey7.png');
-    this.load.image('tree8', 'img/tree-grey8.png');
-    this.load.image('tree9', 'img/tree-grey9.png');
-    this.load.image('tree10', 'img/tree-grey10.png');
+    this.load.image('tree1', 'img/tree1.png');
+    this.load.image('tree2', 'img/tree2.png');
+    this.load.image('tree3', 'img/tree3.png');
+    this.load.image('tree4', 'img/tree4.png');
+    this.load.image('tree5', 'img/tree5.png');
+    this.load.image('tree6', 'img/tree6.png');
+    this.load.image('tree7', 'img/tree7.png');
+    this.load.image('tree8', 'img/tree8.png');
+    this.load.image('tree9', 'img/tree9.png');
+    this.load.image('tree10', 'img/tree10.png');
 
   },
 

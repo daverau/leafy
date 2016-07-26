@@ -1,118 +1,110 @@
 // Platforms
+function addPlatform(id) {
+  // Create a pipe at the position x and y
+  var platform = game.add.sprite(0, game.height - vars.platformHeight, 'platform');
+  platform.scale.setTo(0.5);
+  platform.id = id;
 
-function placePlatforms() {
-  var platformCount = game.platforms.children.length;
-  //console.log('placePlatforms(): '+platformCount);
+  // Add the pipe to our previously created group
+  game.platforms.add(platform);
 
-  for (var i=0; i<platformCount; i++) {
+  // Enable physics on the pipe
+  game.physics.arcade.enable(platform);
 
-    // get from pool
-    var platform = game.platforms.getFirstDead();
-    if (platform) {
+  // Add velocity to the pipe to make it move left
+  platform.body.velocity.x = vars.gameSpeed;
+  platform.body.immovable = true;
 
-      // far platform.x
-      var maxPlatformX = getLastPlatformX();
+  platform.update = function () {
+    if ( (this.position.x + this.width) < -10) {
 
-      var heights = vars.platformLevels[isLevel(maxPlatformX)].heights;
-      var h = vars.platformHeights[vars.platformLevels[isLevel(maxPlatformX)].heights[Math.floor(Math.random() * vars.platformLevels[isLevel(maxPlatformX)].heights.length)] -1];
+      //console.log('--platform ' + this.id + '--');
+      var level = isLevel();
 
-      // set a platform ID
-      if (!platform.i) {
-        platform.i = i;
-      }
+      this.touched = false;
 
-      // apply platform
-      // an optimized, but unreadable mess
-      // JS garbage collection is interesting
-      platform.score = vars.platformGaps[vars.platformLevels[isLevel(maxPlatformX)].gaps[Math.floor(Math.random()*vars.platformLevels[isLevel(maxPlatformX)].gaps.length)] -1];
-      platform.touched = false;
-      platform.reset(maxPlatformX + vars.platformGaps[vars.platformLevels[isLevel(maxPlatformX)].gaps[Math.floor(Math.random()*vars.platformLevels[isLevel(maxPlatformX)].gaps.length)] -1], game.height - h);
-      platform.width = vars.platformWidths[vars.platformLevels[isLevel(maxPlatformX)].widths[Math.floor(Math.random()*vars.platformLevels[isLevel(maxPlatformX)].widths.length)] -1];
-      platform.nextX = maxPlatformX + vars.platformGaps[vars.platformLevels[isLevel(maxPlatformX)].gaps[Math.floor(Math.random()*vars.platformLevels[isLevel(maxPlatformX)].gaps.length)] -1];
-      platform.height = vars.platformHeight;
+      // random width
+      this.width = vars.platformWidths[vars.platformLevels[level].widths[Math.floor(Math.random()*vars.platformLevels[level].widths.length)] -1];
+
+      this.y = game.height -  (vars.platformHeights[vars.platformLevels[level].heights[Math.floor(Math.random()*vars.platformLevels[level].heights.length)] -1]);
+
+      // set new X position based on last X
+      this.position.x = getLastPlatformX() + vars.platformGaps[vars.platformLevels[level].gaps[Math.floor(Math.random()*vars.platformLevels[level].gaps.length)] -1];
 
       // coins?
-      var items = [1,1,2,3];
+      var items = [0,0,0,0,1,1,1,2];
       var yesCoins = items[Math.floor(Math.random()*items.length)];
-      // 1 === do nothing
+      //console.log(yesCoins);
       // coins
-      if (yesCoins === 2) {
+      if (yesCoins === 1) {
+        //console.log(platform.width);
         if (platform.width > 50) {
           placeCoins(platform);
         }
       // coin rings
-      } else if (yesCoins === 3) {
-        placeBluering(platform);
+    } else if (yesCoins === 2) {
+        //placeBluering(platform);
       }
 
-      // [todo] place trees for this platform
 
-    } else {
-      //console.log('...no dead platforms...');
     }
   }
+
+  // kill pipes off screen
+  //platform.checkWorldBounds = true;
+  //platform.outOfBoundsKill = true;
 }
 
+function getLastPlatformX() {
+  var maxPlatformX = 0;
+  game.platforms.forEach(function(platform) {
+    maxPlatformX = Math.max(platform.x+platform.width,maxPlatformX);
+  });
+  return maxPlatformX;
+}
 
-function placePlatformsUnoptimized() {
-  var platformCount = game.platforms.children.length;
-  //console.log('placePlatforms(): '+platformCount);
+function setupPlatforms() {
+  game.platforms.forEach(function(platform) {
 
-  for (var i=0; i<platformCount; i++) {
+    // far platform.x
+    var maxPlatformX = getLastPlatformX();
 
-    // get from pool
-    var platform = game.platforms.getFirstDead();
-    if (platform) {
+    // platform settings per level
+    var widths = vars.platformLevels[isLevel(maxPlatformX)].widths;
+    var w = vars.platformWidths[widths[Math.floor(Math.random()*widths.length)] -1];
 
-      // far platform.x
-      var maxPlatformX = getLastPlatformX();
+    var heights = vars.platformLevels[isLevel(maxPlatformX)].heights;
+    var h = vars.platformHeights[heights[Math.floor(Math.random()*heights.length)] -1];
 
-      // platform settings per level
-      var widths = vars.platformLevels[isLevel(maxPlatformX)].widths;
-      var w = vars.platformWidths[widths[Math.floor(Math.random()*widths.length)] -1];
+    var gapws = vars.platformLevels[isLevel(maxPlatformX)].gaps;
+    var gapw = vars.platformGaps[gapws[Math.floor(Math.random()*gapws.length)] -1];
 
-      var heights = vars.platformLevels[isLevel(maxPlatformX)].heights;
-      var h = vars.platformHeights[heights[Math.floor(Math.random()*heights.length)] -1];
+    // set nextX coordinate for platform
+    var nextX = maxPlatformX + gapw ;
 
-      var gapws = vars.platformLevels[isLevel(maxPlatformX)].gaps;
-      var gapw = vars.platformGaps[gapws[Math.floor(Math.random()*gapws.length)] -1];
+    // apply platform
+    platform.score = gapw;
+    platform.touched = false;
+    platform.reset(nextX, game.height - h);
+    platform.width = w;
+    platform.nextX = nextX;
+    platform.height = vars.platformHeight;
 
-      // set a platform ID
-      if (!platform.i) {
-        platform.i = i;
+    // coins?
+    var items = [1,1,2,3];
+    var yesCoins = items[Math.floor(Math.random()*items.length)];
+    // 1 === do nothing
+    // coins
+    if (yesCoins === 2) {
+      if (w > 50) {
+        placeCoins(platform);
       }
-
-      // set nextX coordinate for platform
-      var nextX = maxPlatformX + gapw ;
-
-      // apply platform
-      platform.score = gapw;
-      platform.touched = false;
-      platform.reset(nextX, game.height - h);
-      platform.width = w;
-      platform.nextX = nextX;
-      platform.height = vars.platformHeight;
-
-      // coins?
-      var items = [1,1,2,3];
-      var yesCoins = items[Math.floor(Math.random()*items.length)];
-      // 1 === do nothing
-      // coins
-      if (yesCoins === 2) {
-        if (w > 50) {
-          placeCoins(platform);
-        }
-      // coin rings
-      } else if (yesCoins === 3) {
-        placeBluering(platform);
-      }
-
-      // [todo] place trees for this platform
-
-    } else {
-      //console.log('...no dead platforms...');
+    // coin rings
+    } else if (yesCoins === 3) {
+      placeBluering(platform);
     }
-  }
+
+  });
 }
 
 // coin platforms
@@ -120,12 +112,15 @@ function placeCoins(platform) {
   var coinCount = Math.floor( (platform.width-120) / 60);
   //console.log('long platform with coins: ' + coinCount);
   game.coinstoRecycle = game.coins.children.filter( offCamera );
+  //console.log(game.coinstoRecycle);
   for (i = 0; i <= coinCount; i++) {
     var coin = game.coinstoRecycle[i];
+    //console.log(coin);
     if (coin) {
       coin.pos.y = platform.y - 60;
       resetLeaf(coin);
       coin.reset( platform.x + 60 + (i * 60), platform.y - 60 );
+      coin.body.velocity.x = vars.gameSpeed;
     } else {
       //console.log('0 coins');
     }
@@ -137,37 +132,34 @@ function placeBluering(platform) {
   game.ringstoRecycle = game.bluerings.children.filter( offCamera );
   var ring = game.ringstoRecycle[0];
   if (ring) {
-    ring.x = platform.x + platform.width + (platform.nextX/2);
+    ring.platformId = platform.id;
+    ring.x = platform.x + platform.width;
     ring.y = platform.y - 190;
+    console.log('place ring: ' + ring.x);
     ring.children.forEach(function(blueleaf) {
       resetLeaf(blueleaf);
     });
+
+    ring.update = function () {
+      this.x = game.platforms.children[this.platformId - 1].body.x;
+      if (this.x + this.width < - 10) {
+        console.log('reset this ring');
+      }
+    }
+
   } else {
-    //console.log('0 rings');
+    console.log('!!! 0 rings !!!');
   }
-}
-
-// find max x value
-function getLastPlatformX() {
-  var maxPlatformX = 0;
-  game.platforms.forEach(function(platform) {
-    maxPlatformX = Math.max(platform.x+platform.width,maxPlatformX);
-  });
-  return maxPlatformX;
-}
-
-function resetFarPlatforms() {
-  //console.log('fn() resetFarPlatforms');
-  game.platforms.children.filter( offCamera ).forEach(function(platform) {
-    platform.kill();
-    platform.x = 0;
-  });
 }
 
 // # Leafy collide with platform
 function platformTouch(leafy, platform) {
+  //console.log('fn() platformTouch');
+  game.leafy.position.x = vars.leafyXposition;
   if (!platform.touched) {
     platform.touched = true;
+
+    //leafy.tint = Math.random() * 0xffffff;
 
     // platform jump score
     // touchPlatformScore(leafy, platform.score);

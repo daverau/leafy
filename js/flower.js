@@ -1,15 +1,4 @@
-// # Blue leaf pickups
-// function genBlueleaves() {
-//   var blueLeafTotal = 6;
-//   game.blueleaves = game.add.group();
-//   game.blueleaves.enableBody = true;
-//   for (var i=0; i<blueLeafTotal; i++) {
-//     var x = game.rnd.integerInRange(0, vars.worldSize);
-//     var y = game.rnd.integerInRange(0, game.height-vars.platformHeight);
-//     var leaf = new Blueleaf(game, x, y);
-//     game.blueleaves.add(leaf);
-//   }
-// }
+// # Blue acorn pickups
 
 function genCoins() {
   game.coins = game.add.group();
@@ -31,7 +20,9 @@ Blueleaf = function (game, x, y) {
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
-    y: (this.y - 400),
+    //y: (this.y - 400),
+    x: (game.width - 100),
+    y: (100),
   }, 1000, Phaser.Easing.Cubic.Out);
 };
 
@@ -51,8 +42,8 @@ Blueleaf.prototype.constructor = Blueleaf;
 function genBlueRings() {
   game.bluerings = game.add.group();
   game.bluerings.enableBody = true;
+
   for (var i=0; i<vars.blueRingTotal; i++) {
-    var x = game.rnd.integerInRange(0, vars.worldSize);
     var bluering = game.add.group();
     bluering.enableBody = true;
 
@@ -73,9 +64,10 @@ function genBlueRings() {
     bluering.add(leaf);
 
     bluering.y = game.height - 280;
-    bluering.x = -2000;
+    bluering.x = game.width;
 
     game.bluerings.add(bluering);
+
   }
 }
 
@@ -109,7 +101,7 @@ function genFlowers() {
   var fcount = 1;
   console.log('flowers: '+fcount);
   for (x=0; x<fcount; x++) {
-    var worldx = game.leafy.x + Math.floor(Math.random()*(game.width * 4)+(game.width * 2.5));
+    var worldx = Math.floor(Math.random() * (game.width * 4) + (game.width * 2.5));
     var flower = new Flower(game, worldx, game.height-vars.platformHeight);
     game.flowers.add(flower);
     //console.log('flower created at x:'+flower.x);
@@ -120,11 +112,16 @@ Flower = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, "flower");
   this.anchor.setTo(0.5,1);
   this.scale.setTo(0.5);
+  game.physics.arcade.enable(this);
+  this.body.velocity.x = vars.gameSpeed;
   this.pickedup = false;
+
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
-    y: (this.y - (this.y - 400)),
+    //y: (this.y - 400),
+    x: (game.width - 200),
+    y: (100),
   }, 1000, Phaser.Easing.Cubic.Out);
   // this.tween.onComplete.add(function() {
   //   this.kill();
@@ -134,10 +131,11 @@ Flower = function (game, x, y) {
 Flower.prototype = Object.create(Phaser.Sprite.prototype);
 Flower.prototype.constructor = Flower;
 Flower.prototype.update = function() {
-  // [question] how to refactor this?
   if ( offCamera(this) ) {
-    var worldx = game.leafy.x + Math.floor(Math.random()*(game.width * 9)+(game.width * 3.5));
-    resetMove(this, worldx);
+    //console.log('move a flower...');
+    resetMove(
+      this,
+      game.leafy.x + Math.floor(Math.random() * (game.width * 9) + (game.width * 3.5)));
   }
 };
 

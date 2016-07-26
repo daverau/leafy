@@ -1,7 +1,7 @@
 // Enemies
 
 // # Bees
-function genBees(num,xValue,yValue) {
+function genBees(num, xValue, yValue) {
   xValue = xValue || game.rnd.integerInRange(game.width*5, game.width*7);
   yValue = yValue || game.height-90;
   var beeCount = num || 3;
@@ -111,7 +111,7 @@ function passBee(leafy, bee) {
 
       if (leafy.flowers < 1 && !bee.pickedup) {
         game.sfxbuzz.play();
-        leafy.kill();
+        //leafy.kill();
       } else {
         if (!bee.pickedup) {
           bee.pickedup = true;

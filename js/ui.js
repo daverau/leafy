@@ -46,20 +46,26 @@ function pause() {
 }
 
 function genLevelText() {
-  game.levelText = game.add.text( 50, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#ffffff' });
+  game.levelText = game.add.text( game.width - 500, game.height - (vars.platformHeight + 144), 'Level 1', { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
+  // #F5A623 yellow color
   // #63434B platform color
   game.levelText.alpha = 0.3;
+
+  game.physics.arcade.enable(game.levelText);
+  game.levelText.body.velocity.x = vars.gameSpeed;
+
 }
 
 function setLevelText() {
-  if ( (game.levelText.x + game.levelText.width) < game.camera.x) {
-    game.levelText.x = isLevel() * vars.levelEveryX;
+  if ( (game.levelText.x + game.levelText.width) < 0) {
+    game.levelText.x = (isLevel() * vars.levelEveryX) + (game.width/2);
     game.levelText.text = 'Level ' + (isLevel() + 1); // show upcoming level marker
   }
 }
 
 function genPause() {
   // Create a label to use as a button
+
 
   function unpause(event){
     if(game.paused){
