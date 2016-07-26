@@ -33,7 +33,7 @@ function genLeafy() {
   leafy.body.velocity.x = 0;
   leafy.body.maxVelocity.x = 0;
   leafy.body.maxVelocity.y = vars.leafyMaxVelocityY;
-  leafy.body.setSize(50, 110, 0, -13); // hitbox adjusted
+  leafy.body.setSize(50, 110, 0, 0); // hitbox adjusted
   //leafy.body.drag.setTo(600, 0);
 
   // animation
@@ -82,8 +82,6 @@ function genLeafy() {
 
     // fall
     game.sfxfall.play();
-    //leafy.body.gravity.y = 2900;
-    //leafy.body.maxVelocity.y = 5000;
 
     // score
     localStorage.setItem("leafybestScore", Math.max(leafy.score, leafy.bestScore));
@@ -128,8 +126,7 @@ function playerMove(leafy) {
   leafy.animations.play('walk');
 
   // Jumping
-  var onTheGround = leafy.body.touching.down; // [todo] refine for only platforms to fix double jump bug
-  if (onTheGround) {
+  if (leafy.body.touching.down) {
     leafy.jumps = leafy.maxJumps; // If touching ground, give X jump
     leafy.jumping = false;
   } else {
@@ -165,6 +162,7 @@ function upInputIsActive(duration) {
     isActive = game.input.keyboard.downDuration(Phaser.Keyboard.UP, duration);
     isActive |= game.input.activePointer.justPressed(duration + 1000/60);
   return isActive;
+  isActive = null;
 }
 
 // returns true when the player releases jump
@@ -173,6 +171,7 @@ function upInputReleased() {
     released = game.input.keyboard.upDuration(Phaser.Keyboard.UP);
     released |= game.input.activePointer.justReleased();
     return released;
+    released = null;
 }
 
 function touchPlatformScore(leafy, score) {

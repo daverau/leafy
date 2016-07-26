@@ -2,7 +2,7 @@ BasicGame.Game = function (game) {};
 BasicGame.Game.prototype = {
 
 create: function () {
-  // game.forceSingleUpdate = true;
+  game.forceSingleUpdate = true;
 
   // show ui
   document.getElementById('refresh').classList.add('hide');
@@ -43,12 +43,11 @@ create: function () {
   genCoins();
   //genBlueRings();
   genFlowers();
-
-  // # Bees
-  genBees(vars.startBees);
   game.world.bringToTop(game.platforms);
+  genBees(vars.startBees);
 
   // # Rain
+  // commented until i figure out FPS/perf issues
   //genRain();
 
   // # UI
@@ -132,7 +131,7 @@ render: function () {
 
   //console.log('render');
   //game.debug.pointer( game.input.activePointer );
-  //game.debug.body( game.bees.children[0] );
+  //game.debug.body( game.leafy );
 
 }
 

@@ -42,17 +42,11 @@ function addPlatform(id) {
           placeCoins(platform);
         }
       // coin rings
-    } else if (yesCoins === 2) {
-        //placeBluering(platform);
+      } else if (yesCoins === 2) {
+          //placeBluering(platform);
       }
-
-
     }
   }
-
-  // kill pipes off screen
-  //platform.checkWorldBounds = true;
-  //platform.outOfBoundsKill = true;
 }
 
 function getLastPlatformX() {
