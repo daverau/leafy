@@ -27,7 +27,8 @@
 
   <script type="text/javascript">
     var is_localdev = false;
-    if (document.URL == "http://localhost:3000/") {
+    if (document.URL === 'http://localhost:3000/' ||
+        document.URL === 'http://daverau.github.io/leafy/') {
       is_localdev = true;
     }
   </script>
