@@ -13,12 +13,14 @@ BasicGame.Preloader.prototype = {
     this.load.image('title', 'img/title.png');
 
     // load everything else...
-    this.load.image('retryButton', 'img/retrybutton.png');
+    //this.load.image('retryButton', 'img/retrybutton.png');
     this.load.image('platform', 'img/platform.png');
     this.load.image('waves', 'img/waves.png');
     this.load.spritesheet('playButton', 'img/playbutton.png', 161*2, 50*2);
     this.load.spritesheet('menuButton', 'img/menubutton.png', 161*2, 50*2);
     this.load.image('bggameover', 'img/bg-gameover.png');
+    this.load.image('rainbow', 'img/rainbow.png');
+    this.load.image('cloud', 'img/cloud.png');
 
     this.load.image('gameoverText', 'img/text-gameover.png');
     this.load.image('gameover', 'img/gameover.png');

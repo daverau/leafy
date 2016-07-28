@@ -48,6 +48,7 @@ var app = {
     game.state.add('MainMenu', BasicGame.MainMenu);
     game.state.add('Game', BasicGame.Game);
     game.state.add('GameOver', BasicGame.GameOver);
+    game.state.add('Win', BasicGame.Win);
 
     game.state.start('Boot'); // start it up, yo
 

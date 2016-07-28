@@ -162,3 +162,13 @@ function platformTouch(leafy, platform) {
     // touchPlatformScore(leafy, platform.score);
   }
 }
+
+// final platform with doorway
+function addFinalPlatform() {
+  console.log('+ final platform');
+  game.platforms.children[1].x = game.width;
+  game.platforms.children[1].width = game.width;
+
+  game.doorwaytree = new DoorwayTree(game, game.platforms.children[1].x + 300, game.height-vars.platformHeight);
+  game.trees.add(game.doorwaytree);
+}

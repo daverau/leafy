@@ -20,6 +20,7 @@ create: function () {
 
   // # Draw game objects
   // # Platforms
+  game.finalPlatform = false;
   game.platforms = game.add.group();
   addPlatform(1);
   game.platforms.children[0].x = 100;
@@ -35,6 +36,8 @@ create: function () {
 
   drawBG('80AFBE', '261B28');
   //drawBG('61C13C', '2D541A');
+  genClouds();
+
   drawWaves(game);
   drawMoon();
   genTrees(game.trees, true);
@@ -78,8 +81,10 @@ update: function () {
   // # Leafy movement and Respawn
   game.leafy.body.velocity.x = 0;
   if (!game.leafy.alive && !game.rewpawning) {
+
     game.rewpawning = true;
     game.leafy.kill();
+
   } else {
 
     // # Collisions
@@ -95,35 +100,32 @@ update: function () {
       if (checkOverlap(game.leafy, game.owl)) { passOwl(); }
     }
 
-    playerMove(game.leafy);
+    if (vars.score > vars.winScore && !game.finalPlatform) {
+      game.finalPlatform = true;
+      addFinalPlatform();
+    }
 
+    playerMove(game.leafy);
   }
 
   // standing ...
   game.leafy.wasStanding = game.leafy.standing;
 
-
   // # world fallout
   if (game.leafy.y > (game.height * 2) ) {
     this.state.start('GameOver');
   }
-
 },
 
-
 quitGame: function (pointer) {
-
   // Destroy no longer need music+sprites
   this.state.start('MainMenu');
-
 },
 
 render: function () {
-
   //console.log('render');
   //game.debug.pointer( game.input.activePointer );
   //game.debug.body( game.leafy );
-
 }
 
 };

@@ -16,9 +16,7 @@ Tree.prototype = Object.create(Phaser.Sprite.prototype);
 Tree.prototype.constructor = Tree;
 Tree.prototype.update = function() {
   if ( offCamera(this) ) {
-    resetMove(
-      this,
-      Math.floor(Math.random() * (game.width * 1.5) + (game.width * 2.5)));
+    this.x = Math.floor(Math.random() * (game.width * 1.5) + (game.width * 2.5));
   }
 };
 
@@ -41,3 +39,21 @@ function genStump() {
   game.stump.y = game.height - (game.stump.height + vars.platformHeight);
   game.stump.enableBody = true;
 }
+
+
+// End tree doorway
+DoorwayTree = function (game, x, y) {
+  console.log('+ doorway tree');
+  Phaser.Sprite.call(this, game, x, y, 'tree10');
+  this.anchor.setTo(0.5,1);
+  this.scale.setTo(0.5);
+  game.physics.arcade.enable(this);
+  this.body.velocity.x = vars.gameSpeed;
+};
+DoorwayTree.prototype = Object.create(Phaser.Sprite.prototype);
+DoorwayTree.prototype.constructor = DoorwayTree;
+DoorwayTree.prototype.update = function() {
+  if (this.x - this.width/2.8 < game.leafy.body.x) {
+    game.state.start('Win');
+  }
+};

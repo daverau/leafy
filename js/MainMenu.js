@@ -22,6 +22,7 @@ BasicGame.MainMenu.prototype = {
     // # Background images
     //drawBG('D3F4FF', '31BCF3');
     drawBG('80AFBE', '261B28');
+    genClouds();
 
     // base platform
     game.platforms = game.add.group();

@@ -8,9 +8,11 @@ var vars = {
   ratio: window.devicePixelRatio || 1,
   worldSize: window.innerWidth,
   treeCount:             6, // total trees to generate/display
+  cloudCount:             4, // clouds
 
   // levels
   levelEveryX:        1000, // make platforms harder every X score
+  winScore:           6000, // score to win the game
 
   // leafy/player
   leafyXposition:      240, // x left start position
