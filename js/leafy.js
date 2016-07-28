@@ -1,6 +1,6 @@
 // Leafy setup
 function genLeafy() {
-  var leafy = game.add.sprite( vars.leafyXposition , -100, 'leafy-red');
+  var leafy = game.add.sprite( vars.leafyXposition , -100, 'leafy');
   leafy.anchor.setTo(0.5, .35); //flip at middle point
   leafy.alive = true;
   leafy.jumping = false;

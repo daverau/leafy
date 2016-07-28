@@ -25,6 +25,7 @@ BasicGame.Preloader.prototype = {
     this.load.image('gameoverText', 'img/text-gameover.png');
     this.load.image('gameover', 'img/gameover.png');
 
+    this.load.spritesheet('leafy', 'img/v3-blue.png', 128, 128);
     this.load.spritesheet('leafy-red', 'img/v3-red.png', 128, 128);
     this.load.spritesheet('leafy-green', 'img/v3-green.png', 128, 128);
     this.load.spritesheet('leafy-yellow', 'img/v3-yellow.png', 128, 128);

@@ -62,7 +62,7 @@ BasicGame.GameOver.prototype = {
     this.gameoverScores.add(this.playButton);
 
     // running leafy
-    this.leafy = game.add.sprite( this.playButton.x - (this.playButton.width/2), (this.playButton.y/2)-(game.leafy.height*1.3), 'leafy-red'); // [todo] fix sloppy positioning
+    this.leafy = game.add.sprite( this.playButton.x - (this.playButton.width/2), (this.playButton.y/2)-(game.leafy.height*1.3), 'leafy'); // [todo] fix sloppy positioning
     this.leafy.anchor.setTo(0.5, 1); //flip at middle point
     this.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
     this.leafy.animations.play('walk');
