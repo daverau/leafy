@@ -41,6 +41,8 @@ BasicGame.Win.prototype = {
       alpha: 1
     }, 600, Phaser.Easing.Cubic.Out);
 
+    this.rainbow.inputEnabled = true;
+    this.rainbow.events.onInputDown.add(this.startGame, this);
 
     this.winTween.start();
   },
