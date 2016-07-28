@@ -167,6 +167,7 @@ function platformTouch(leafy, platform) {
 function addFinalPlatform() {
   console.log('+ final platform');
   game.platforms.children[1].x = game.width;
+  game.platforms.children[1].y = game.height-vars.platformHeight;
   game.platforms.children[1].width = game.width;
 
   game.doorwaytree = new DoorwayTree(game, game.platforms.children[1].x + 300, game.height-vars.platformHeight);
