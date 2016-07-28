@@ -1,18 +1,17 @@
 // # Global variables
 var vars = {
   // meta
-  version:         '1.7.3', // Leafy game version
+  version:         '1.8.0', // Leafy game version
   autoStart:         false, // testing/auto start
 
   // world setup
   ratio: window.devicePixelRatio || 1,
   worldSize: window.innerWidth,
   treeCount:             6, // total trees to generate/display
-  cloudCount:             4, // clouds
+  cloudCount:            4, // clouds
 
   // levels
   levelEveryX:        1000, // make platforms harder every X score
-  winScore:           6000, // score to win the game
 
   // leafy/player
   leafyXposition:      240, // x left start position
@@ -46,14 +45,14 @@ var vars = {
 vars.platformHeights = [
   90,
   250,
-  400
+  400,
 ];
 vars.platformGaps = [
   100,
   150,
   200,
   250,
-  300
+  300,
 ];
 vars.platformWidths = [
   360,
@@ -68,29 +67,37 @@ vars.platformLevels = {
   1: {
     widths: [1, 2, 3],
     heights: [1],
-    gaps: [1, 1, 2]
+    gaps: [1, 1, 2],
   },
   2: {
     widths: [2, 3, 4],
     heights: [1, 2],
-    gaps: [1, 2, 2, 3]
+    gaps: [1, 2, 2, 3],
   },
   3: {
     widths: [3, 3, 3, 4, 4, 5],
     heights: [1, 1, 2, 3, 3],
-    gaps: [1, 2, 2, 3, 3, 3, 4, 4, 4, 5]
+    gaps: [1, 2, 2, 3, 3, 3, 4, 4, 4, 5],
   },
   4: {
     widths: [3, 4, 4, 5, 5],
     heights: [1, 2, 3, 3, 3],
-    gaps: [1, 2, 3, 3, 3, 4, 4, 4, 5, 5]
+    gaps: [1, 2, 3, 3, 3, 4, 4, 4, 5, 5],
   },
   5: {
     widths: [2, 4, 4, 5, 5],
     heights: [1, 3, 3],
-    gaps: [4, 5, 5]
-  }
+    gaps: [4, 5, 5],
+  },
+  6: {
+    widths: [1, 2, 4, 4, 4, 5, 5],
+    heights: [1, 2, 3, 3],
+    gaps: [1, 4, 5, 5],
+  },
 };
+
+vars.winScore = vars.levelEveryX * Object.keys(vars.platformLevels).length; // score to win the game
+console.log('Win at: ' + vars.winScore);
 
 // # Phaser global
 BasicGame = {

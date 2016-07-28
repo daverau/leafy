@@ -11,7 +11,7 @@ function touchPlatformScore(leafy, score) {
   //   game.leafy.score = Number(platform.score) + Number(game.leafy.score);
   // }
 
-  leafy.leafyText.alpha = 1;
+  leafy.leafyText.alpha = 1;
   leafy.leafyText.x = ((game.leafy.x/2) * vars.ratio);
   leafy.leafyText.y = (game.leafy.y/2 - 80) * vars.ratio;
   leafy.leafyText.tween.delay(140).start();

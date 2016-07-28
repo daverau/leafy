@@ -2,7 +2,7 @@
 
 Tree = function (game, x, y) {
   var treeimg = 'tree' + Math.floor(Math.random() * 9 + 1);
-  console.log('+ tree');
+  //console.log('+ tree');
   Phaser.Sprite.call(this, game, x, y, treeimg);
   this.anchor.setTo(0.5,1);
   this.scale.setTo(0.5);
@@ -12,16 +12,36 @@ Tree = function (game, x, y) {
   }
 };
 
+function remapTree(tree) {
+
+  if ( isLevel() <= 3 ) {
+    treeimg = 'tree' + Math.floor(Math.random()*8+1);
+  }
+  // middle full range
+  if ( isLevel() > 3 ) {
+    treeimg = 'tree' + Math.floor(Math.random()*10+1);
+  }
+  // ends just large trees
+  if ( isLevel() > 4 ) {
+    treeimg = 'tree' + Math.floor(Math.random()*1+9);
+  }
+
+  tree.loadTexture(treeimg);
+
+}
+
 Tree.prototype = Object.create(Phaser.Sprite.prototype);
 Tree.prototype.constructor = Tree;
 Tree.prototype.update = function() {
   if ( offCamera(this) ) {
-    this.x = Math.floor(Math.random() * (game.width * 1.5) + (game.width * 2.5));
+    // get new size based on level
+    remapTree(this);
+    this.x = Math.floor(Math.random() * (game.width * 1) + (game.width * 2));
   }
 };
 
 function genTrees() {
-  console.log('trees: ' + vars.treeCount);
+  //console.log('trees: ' + vars.treeCount);
   game.trees = game.add.group();
   game.trees.enableBody = true;
   for (var i=0; i<vars.treeCount; i++) {

@@ -18,7 +18,7 @@ function resetCloud(cloud) {
 }
 
 Cloud = function (game, x, y) {
-  console.log('+ cloud');
+  //console.log('+ cloud');
   Phaser.Sprite.call(this, game, x, y, 'cloud');
   this.anchor.setTo(0.5,1);
   game.physics.arcade.enable(this);
@@ -34,7 +34,7 @@ Cloud.prototype.update = function() {
 };
 
 function genClouds() {
-  console.log('clouds: ' + vars.cloudCount);
+  //console.log('clouds: ' + vars.cloudCount);
   game.clouds = game.add.group();
   game.clouds.enableBody = true;
   for (var i=0; i<vars.cloudCount; i++) {
