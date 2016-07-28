@@ -18,10 +18,12 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/gameplay.gif">
 
 ## Todo
-- [polish] scale trees as you go higher in levels
 - [polish] background layer & day/night shift
+- [polish] world & leafy changes
 - [polish] music
 - [polish] instructions overlay
+- [optimize] compress all images
+- [optimize] remove unused code
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
 
 ## Changelog
@@ -33,6 +35,7 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 - [optimize] reduce garbage collection
 - [optimize] refactor platform repositioning
 - [polish] clouds
+- [polish] scale trees as you go higher in levels
 
 ### v1.7
 - platform gaps scale with jump boost for difficulty

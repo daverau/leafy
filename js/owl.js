@@ -1,6 +1,8 @@
 // # Owl
 function genOwl() {
-  game.owl = game.add.sprite( game.stump.x - 55, game.stump.y - 90, 'owl');
+  var x = game.stump.x - 55 || game.width / 2;
+  var y = game.stump.y - 90 || game.height / 2;
+  game.owl = game.add.sprite( x, y, 'owl');
   game.owl.scale.setTo(0.5, 0.5);
   game.sfxhoot = game.add.audio('hoot');
   // animations

@@ -13,10 +13,6 @@ BasicGame.Win.prototype = {
 
     document.getElementById('ui').classList.add('hide');
 
-
-    // giant leafy
-    game.leafy.animations.play('happy');
-
     // # gameoverScores group
     this.gameoverScores = this.add.group();
 
@@ -28,10 +24,9 @@ BasicGame.Win.prototype = {
 
   create: function () {
 
-    //drawBG('AEE0F9', '6fb0d1');
     drawBG('AEE0F9', 'AEE0F9');
-    //drawBG('61C13C', '2D541A');
 
+    // rainbow
     this.rainbow = this.add.sprite(game.width/2, game.height/2, 'rainbow');
     this.rainbow.scale.setTo(0.5);
     this.rainbow.anchor.setTo(0.5);
@@ -40,11 +35,29 @@ BasicGame.Win.prototype = {
     this.winTween = this.add.tween(this.rainbow).to({
       alpha: 1
     }, 600, Phaser.Easing.Cubic.Out);
-
     this.rainbow.inputEnabled = true;
     this.rainbow.events.onInputDown.add(this.startGame, this);
-
     this.winTween.start();
+
+    // clouds
+    game.clouds = game.add.group();
+    game.clouds.enableBody = true;
+    for (var i=0; i<9; i++) {
+      var cloud = new Cloud(game, game.rnd.between(0, game.width), game.rnd.between(0, game.height));
+      game.clouds.add(cloud);
+    }
+
+    // owl
+    genOwl();   // move
+    game.owl.x = game.width - (game.width / 3);
+
+    // floating leafy
+    game.leafy = genLeafy();
+    game.leafy.animations.play('happy');
+    game.leafy.body.gravity = 0;
+    game.leafy.x = game.width / 2;
+    game.leafy.y = game.height / 2;
+
   },
 
   // button menu
@@ -54,8 +67,8 @@ BasicGame.Win.prototype = {
   },
 
   update: function () {
-    if ( game.cursors.up.isDown) {
-      this.state.start('MainMenu');
-    }
+    // if ( game.cursors.up.isDown) {
+    //   this.state.start('MainMenu');
+    // }
   }
 };
