@@ -152,6 +152,7 @@ function platformTouch(leafy, platform) {
   game.leafy.position.x = vars.leafyXposition;
   if (!platform.touched) {
     platform.touched = true;
+    setLevelText();
 
     // random color platform on jump
     // cool effect, saving this for later...

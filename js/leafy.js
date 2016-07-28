@@ -63,6 +63,7 @@ function genLeafy() {
   leafy.animations.add('jump', [3], 0, true);
   leafy.animations.add('sad', [8], 0, true);
   leafy.animations.add('surprised', [9], 0, true);
+  leafy.animations.add('happy', [10], 0, true);
   game.sfxfall = game.add.audio('fall');
   leafy.sfxboing = game.add.audio('boing');
   leafy.sfxboing.allowMultiple = true;

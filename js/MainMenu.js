@@ -22,12 +22,18 @@ BasicGame.MainMenu.prototype = {
     // # Background images
     //drawBG('D3F4FF', '31BCF3');
     drawBG('80AFBE', '261B28');
-    this.ground = this.add.tileSprite(0 , game.height-90, game.width, 90, 'tree');
+
+    // base platform
+    game.platforms = game.add.group();
+    addPlatform(1);
+    game.platforms.children[0].x = 0;
+    game.platforms.children[0].body.velocity = 0;
+    game.platforms.children[0].width = game.width;
 
     drawMoon();
-    //genTrees();
+    genTrees();
     game.moon.alpha=0.3;
-    //genLeafy();
+    //game.leafy = genLeafy();
 
     // this.bg = game.add.sprite(game.width/2, game.height/2, 'title');
     // this.bg.anchor.setTo(.5);
@@ -48,6 +54,10 @@ BasicGame.MainMenu.prototype = {
     genStump(); // move
     genOwl();   // move
 
+    // playful menu
+    game.owl.inputEnabled = true;
+    game.owl.events.onInputDown.add(owlFlyaway, this);
+
     this.playButton = this.add.button(game.width/2, game.height*0.6, 'playButton', this.startGame, this, 1, 0, 2);
     this.playButton.anchor.setTo(0.5,0);
     game.sfxbutton = game.add.audio('button');
@@ -64,6 +74,8 @@ BasicGame.MainMenu.prototype = {
 
     //console.log( this.input.activePointer.isDown );
     //this.physics.arcade.collide(game.leafy, this.ground, null, null, this);
+
+    game.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
 
     if ( game.cursors.up.isDown) {
       this.startGame();

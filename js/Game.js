@@ -10,7 +10,7 @@ create: function () {
 
   // # World gen
   console.log('world gen: ' + vars.worldSize + 'px');
-  this.world.setBounds(0, 0, vars.worldSize, game.height);
+  //this.world.setBounds(0, 0, vars.worldSize, game.height);
 
   // # Sound
   game.sfxbgnoise = game.add.audio('bgnoise');
@@ -19,8 +19,6 @@ create: function () {
   game.sfxding.allowMultiple = true;
 
   // # Draw game objects
-  drawBG('80AFBE', '261B28');
-  //drawBG('61C13C', '2D541A');
   // # Platforms
   game.platforms = game.add.group();
   addPlatform(1);
@@ -35,6 +33,8 @@ create: function () {
   addPlatform(8);
   addPlatform(9);
 
+  drawBG('80AFBE', '261B28');
+  //drawBG('61C13C', '2D541A');
   drawWaves(game);
   drawMoon();
   genTrees(game.trees, true);
@@ -52,7 +52,6 @@ create: function () {
 
   // # UI
   genUI();
-
 },
 
 
@@ -62,8 +61,10 @@ update: function () {
   game.flowersText.setText(game.leafy.flowers);
   game.blueLeafText.setText(game.leafy.blueLeafCount);
   game.fps.setText(game.time.fps + "fps");
-  vars.score += 1;
-  game.scoreText.setText(vars.score);
+  if (game.leafy.alive) {
+    vars.score += 1;
+    game.scoreText.setText(vars.score);
+  }
 
   // World fallout
   if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {

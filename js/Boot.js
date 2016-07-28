@@ -160,5 +160,7 @@ function resetMove(item, x, y) {
 // check current level based on vars setting
 function isLevel() {
   //console.log('level check');
-  return Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );
+  var num = Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );
+  //console.log(num);
+  return num;
 }
