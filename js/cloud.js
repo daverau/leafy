@@ -6,8 +6,7 @@ function resetCloud(cloud) {
   cloud.body.y = game.rnd.between(20, 200);
 
   // scale
-  var scale = game.rnd.between(15,45);
-  cloud.scale.setTo('.'+scale);
+  cloud.scale.setTo('.' + game.rnd.between(15,45));
 
   // alpha
   cloud.alpha = '.' + game.rnd.between(20,60);

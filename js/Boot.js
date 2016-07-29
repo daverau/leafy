@@ -1,43 +1,49 @@
 // # Global variables
 var vars = {
   // meta
-  version:         '1.8.0', // Leafy game version
-  autoStart:         false, // testing/auto start
+  version:                   '1.8.0', // Leafy game version
+  autoStart:                   false, // testing/auto start
+
+  // colors
+  colorYellow:           '#F5A623', // yellow for score, level text
+  colorPlatform:         '#63434B', // platform color
 
   // world setup
-  ratio: window.devicePixelRatio || 1,
-  worldSize: window.innerWidth,
-  treeCount:             6, // total trees to generate/display
-  cloudCount:            4, // clouds
+  ratio: window.devicePixelRatio||1,
+  worldSize:      window.innerWidth,
+  treeCount:                      6, // total trees to generate/display
+  cloudCount:                     4, // clouds
+  flowerCount:                    1, // yellow flowers, they protect you from bees
 
   // levels
-  levelEveryX:        1000, // make platforms harder every X score
+  levelEveryX:                 1000, // make platforms harder every X score
 
   // leafy/player
-  leafyXposition:      240, // x left start position
-  leafyJumps:            2, // could be upgradable
-  gameSpeed:          -270, // could be upgradable
-  leafyJumpVelocityY: -750, // pixels per second negative y is up
-  leafyJumpConstant:   210, // jump numbers are magic
-  leafyGravity:       3000,
-  leafyMaxVelocityX:   500,
-  leafyMaxVelocityY:  4000,
+  leafyXposition:               240, // x left start position
+  leafyJumps:                     2, // could be upgradable
+  gameSpeed:                   -270, // could be upgradable
+  leafyJumpVelocityY:          -750, // pixels per second negative y is up
+  leafyJumpConstant:            210, // jump numbers are magic
+  leafyGravity:                3000,
+  leafyMaxVelocityX:            500,
+  leafyMaxVelocityY:           4000,
 
   // platforms
-  platforms:             7, // based on a small width
-  platformHeight:       90,
+  platforms:                      7, // based on a small width
+  platformHeight:                90,
+  coinLuck:       [0,0,0,0,1,1,1,2], // frequency of coins: 0=none, 1=regular, 2=rings
 
   // coins
-  coinTotal:            15,
-  blueRingTotal:         4,
+  coinTotal:                     15,
+  blueRingTotal:                  4,
 
   // bees
-  startBees:             1, // 1
-  beeSpeed:            440,
+  startBees:                      1, // [todo] add enemy number to levels
+  beeSpeed:                     440,
 
   // track deaths
-  score:                 0, // overall distance score
-  triesScore:            0, // number of tries
+  score:                          1, // overall distance score
+  triesScore:                     0, // number of tries
 
 };
 
@@ -45,21 +51,21 @@ var vars = {
 vars.platformHeights = [
   90,
   250,
-  400,
+  400
 ];
 vars.platformGaps = [
   100,
   150,
   200,
   250,
-  300,
+  300
 ];
 vars.platformWidths = [
   360,
   240,
   180,
   90,
-  50,
+  50
 ];
 
 // game level settings
@@ -116,8 +122,7 @@ BasicGame.Boot.prototype = {
     this.stage.smoothed = false;
     this.time.advancedTiming = true;
     this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    this.input.maxPointers = 2; // for mobile touch
-    this.input.addPointer();
+    this.input.maxPointers = 1; // for mobile touch
     this.input.addPointer();
   },
 
@@ -145,7 +150,7 @@ BasicGame.Boot.prototype = {
 
 };
 
-// Utilities, to be moved once I have more here...
+// Utilities
 // # Basic overlap check without physics, useful for owl check, etc
 function checkOverlap(spriteA, spriteB) {
   //console.log('overlap check');
@@ -169,7 +174,5 @@ function resetMove(item, x, y) {
 // check current level based on vars setting
 function isLevel() {
   //console.log('level check');
-  var num = Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );
-  //console.log(num);
-  return num;
+  return Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );
 }

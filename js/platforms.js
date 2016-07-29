@@ -17,25 +17,23 @@ function addPlatform(id) {
 
   platform.update = function () {
     if ( (this.position.x + this.width) < -10) {
-
       //console.log('--platform ' + this.id + '--');
       var level = isLevel();
 
+      // reset touch
       this.touched = false;
 
       // random width
       this.width = vars.platformWidths[vars.platformLevels[level].widths[Math.floor(Math.random()*vars.platformLevels[level].widths.length)] -1];
 
+      // random height
       this.y = game.height -  (vars.platformHeights[vars.platformLevels[level].heights[Math.floor(Math.random()*vars.platformLevels[level].heights.length)] -1]);
 
       // set new X position based on last X
-      this.position.x = getLastPlatformX() + vars.platformGaps[vars.platformLevels[level].gaps[Math.floor(Math.random()*vars.platformLevels[level].gaps.length)] -1];
+      this.x = getLastPlatformX() + vars.platformGaps[vars.platformLevels[level].gaps[Math.floor(Math.random()*vars.platformLevels[level].gaps.length)] -1];
 
       // coins?
-      var items = [0,0,0,0,1,1,1,2];
-      var yesCoins = items[Math.floor(Math.random()*items.length)];
-      //console.log(yesCoins);
-      // coins
+      var yesCoins = vars.coinLuck[Math.floor(Math.random()*vars.coinLuck.length)];
       if (yesCoins === 1) {
         //console.log(platform.width);
         if (platform.width > 50) {
@@ -55,50 +53,6 @@ function getLastPlatformX() {
     maxPlatformX = Math.max(platform.x+platform.width,maxPlatformX);
   });
   return maxPlatformX;
-}
-
-function setupPlatforms() {
-  game.platforms.forEach(function(platform) {
-
-    // far platform.x
-    var maxPlatformX = getLastPlatformX();
-
-    // platform settings per level
-    var widths = vars.platformLevels[isLevel(maxPlatformX)].widths;
-    var w = vars.platformWidths[widths[Math.floor(Math.random()*widths.length)] -1];
-
-    var heights = vars.platformLevels[isLevel(maxPlatformX)].heights;
-    var h = vars.platformHeights[heights[Math.floor(Math.random()*heights.length)] -1];
-
-    var gapws = vars.platformLevels[isLevel(maxPlatformX)].gaps;
-    var gapw = vars.platformGaps[gapws[Math.floor(Math.random()*gapws.length)] -1];
-
-    // set nextX coordinate for platform
-    var nextX = maxPlatformX + gapw ;
-
-    // apply platform
-    platform.score = gapw;
-    platform.touched = false;
-    platform.reset(nextX, game.height - h);
-    platform.width = w;
-    platform.nextX = nextX;
-    platform.height = vars.platformHeight;
-
-    // coins?
-    var items = [1,1,2,3];
-    var yesCoins = items[Math.floor(Math.random()*items.length)];
-    // 1 === do nothing
-    // coins
-    if (yesCoins === 2) {
-      if (w > 50) {
-        placeCoins(platform);
-      }
-    // coin rings
-    } else if (yesCoins === 3) {
-      placeBluering(platform);
-    }
-
-  });
 }
 
 // coin platforms

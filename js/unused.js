@@ -400,3 +400,53 @@ function resetTree(item) {
     console.log('moved tree: ' + item.position.x);
   }
 }
+
+// for multi-touch
+this.input.maxPointers = 2; // for mobile touch
+this.input.addPointer();
+this.input.addPointer();
+
+// old platform setup
+function setupPlatforms() {
+  game.platforms.forEach(function(platform) {
+
+    // far platform.x
+    var maxPlatformX = getLastPlatformX();
+
+    // platform settings per level
+    var widths = vars.platformLevels[isLevel(maxPlatformX)].widths;
+    var w = vars.platformWidths[widths[Math.floor(Math.random()*widths.length)] -1];
+
+    var heights = vars.platformLevels[isLevel(maxPlatformX)].heights;
+    var h = vars.platformHeights[heights[Math.floor(Math.random()*heights.length)] -1];
+
+    var gapws = vars.platformLevels[isLevel(maxPlatformX)].gaps;
+    var gapw = vars.platformGaps[gapws[Math.floor(Math.random()*gapws.length)] -1];
+
+    // set nextX coordinate for platform
+    var nextX = maxPlatformX + gapw ;
+
+    // apply platform
+    platform.score = gapw;
+    platform.touched = false;
+    platform.reset(nextX, game.height - h);
+    platform.width = w;
+    platform.nextX = nextX;
+    platform.height = vars.platformHeight;
+
+    // coins?
+    var items = [1,1,2,3];
+    var yesCoins = items[Math.floor(Math.random()*items.length)];
+    // 1 === do nothing
+    // coins
+    if (yesCoins === 2) {
+      if (w > 50) {
+        placeCoins(platform);
+      }
+    // coin rings
+    } else if (yesCoins === 3) {
+      placeBluering(platform);
+    }
+
+  });
+}

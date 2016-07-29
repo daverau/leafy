@@ -19,25 +19,9 @@ create: function () {
   game.sfxding.allowMultiple = true;
 
   // # Draw game objects
-  // # Platforms
-  game.finalPlatform = false;
-  game.platforms = game.add.group();
-  addPlatform(1);
-  game.platforms.children[0].x = 100;
-  game.platforms.children[0].width = 600;
-  addPlatform(2);
-  addPlatform(3);
-  addPlatform(4);
-  addPlatform(5);
-  addPlatform(6);
-  addPlatform(7);
-  addPlatform(8);
-  addPlatform(9);
-
   drawBG('80AFBE', '261B28');
-  //drawBG('61C13C', '2D541A');
+  // # Platforms
   genClouds();
-
   drawWaves(game);
   drawMoon();
   genTrees(game.trees, true);
@@ -46,27 +30,46 @@ create: function () {
   genCoins();
   //genBlueRings();
   genFlowers();
-  game.world.bringToTop(game.platforms);
+  //game.world.bringToTop(game.platforms);
+
+  game.finalPlatform = false;
+  game.platforms = game.add.group();
+  addPlatform(1);
+  addPlatform(2);
+  addPlatform(3);
+  addPlatform(4);
+  addPlatform(5);
+  addPlatform(6);
+  addPlatform(7);
+  addPlatform(8);
+  addPlatform(9);
+  game.platforms.children[0].x = 100;
+  game.platforms.children[0].width = 600;
+
   genBees(vars.startBees);
 
   // # Rain
-  // commented until i figure out FPS/perf issues
-  //genRain();
+  // genRain();
 
   // # UI
   genUI();
+
+  // update score and UI counts
+  game.scoreText.setText(vars.score);
+  game.flowersText.setText(game.leafy.flowers);
+  game.blueLeafText.setText(game.leafy.blueLeafCount);
+
+  // score timer
+  game.time.events.loop(60, updateScore, this);
+
 },
 
 
 update: function () {
 
   // # UI
-  game.flowersText.setText(game.leafy.flowers);
-  game.blueLeafText.setText(game.leafy.blueLeafCount);
-  game.fps.setText(game.time.fps + "fps");
   if (game.leafy.alive) {
     vars.score += 1;
-    game.scoreText.setText(vars.score);
   }
 
   // World fallout

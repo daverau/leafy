@@ -1,11 +1,11 @@
 // # Trees
 
 Tree = function (game, x, y) {
-  var treeimg = 'tree' + Math.floor(Math.random() * 9 + 1);
   //console.log('+ tree');
-  Phaser.Sprite.call(this, game, x, y, treeimg);
+  Phaser.Sprite.call(this, game, x, y, 'tree1');
   this.anchor.setTo(0.5,1);
   this.scale.setTo(0.5);
+  remapTree(this);
   if (game.state.current === 'Game') {
     game.physics.arcade.enable(this);
     this.body.velocity.x = vars.gameSpeed;
@@ -14,16 +14,18 @@ Tree = function (game, x, y) {
 
 function remapTree(tree) {
 
-  if ( isLevel() <= 3 ) {
-    treeimg = 'tree' + Math.floor(Math.random()*8+1);
+  // smallest trees
+  if (isLevel() < 3) {
+    treeimg = 'tree' + Math.floor(Math.random()*6+1);
   }
-  // middle full range
-  if ( isLevel() > 3 ) {
-    treeimg = 'tree' + Math.floor(Math.random()*10+1);
+
+  // middle trees
+  if (isLevel() > 2) {
+    treeimg = 'tree' + Math.floor(Math.random()*7+1);
   }
   // ends just large trees
-  if ( isLevel() > 4 ) {
-    treeimg = 'tree' + Math.floor(Math.random()*1+9);
+  if (isLevel() > 4) {
+    treeimg = 'tree' + Math.floor(Math.random()*7+2);
   }
 
   tree.loadTexture(treeimg);

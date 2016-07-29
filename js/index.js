@@ -25,12 +25,17 @@ var app = {
 
   },
   // # deviceready Event Handler
-  // The scope of 'this' is the event. In order to call the 'receivedEvent'
-  // function, we must explicitly call 'app.receivedEvent(...);'
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
 
     // # GA Event tracking
+    // [todo] build this out more
+    // total play time
+    // high score
+    // continues
+    // acorns earned
+    // acorns spent
+    // ...
     if (window.analytics) {
       window.analytics.startTrackerWithId('UA-5536882-24');
       window.analytics.trackView('playing');
@@ -50,19 +55,9 @@ var app = {
     game.state.add('GameOver', BasicGame.GameOver);
     game.state.add('Win', BasicGame.Win);
 
+    // start
     game.state.start('Boot'); // start it up, yo
-
   },
-  // # Update DOM on a Received Event
   receivedEvent: function(id) {
-
-    // var parentElement = document.getElementById(id);
-    // var listeningElement = parentElement.querySelector('.listening');
-    // var receivedElement = parentElement.querySelector('.received');
-
-    // listeningElement.setAttribute('style', 'display:none;');
-    // receivedElement.setAttribute('style', 'display:block;');
-
-    // console.log('Received Event: ' + id);
   }
 };

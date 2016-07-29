@@ -77,6 +77,7 @@ function passBlueleaf(leafy, leaf) {
     leaf.pickedup = true;
     leafy.blueLeafCount = Number(leafy.blueLeafCount) + 1;
     game.sfxding.play();
+    game.blueLeafText.setText(game.leafy.blueLeafCount);
 
     // [todo] upgrade/timer boost based on pickups
     // if (leafy.body.gravity.y > 300) {
@@ -98,9 +99,8 @@ function resetLeaf(item) {
 function genFlowers() {
   game.flowers = game.add.group();
   game.flowers.enableBody = true;
-  var fcount = 1;
-  console.log('flowers: '+fcount);
-  for (x=0; x<fcount; x++) {
+  //console.log('flowers: '+fcount);
+  for (x=0; x<vars.flowerCount; x++) {
     var worldx = Math.floor(Math.random() * (game.width * 4) + (game.width * 2.5));
     var flower = new Flower(game, worldx, game.height-vars.platformHeight);
     game.flowers.add(flower);
@@ -146,5 +146,6 @@ function passFlower(leafy, flower) {
     game.sfxding.play();
     game.sfxding._sound.playbackRate.value = 0.3;
     flower.tween.start();
+    game.flowersText.setText(game.leafy.flowers); // update UI
   }
 }

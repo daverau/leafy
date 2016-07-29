@@ -51,8 +51,6 @@ function genLevelText() {
     level = 1;
   }
   game.levelText = game.add.text( game.width - 500, game.height - (vars.platformHeight + 144), 'Level ' + level, { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
-  // #F5A623 yellow color
-  // #63434B platform color
   game.levelText.alpha = 0.3;
 
   game.physics.arcade.enable(game.levelText);
@@ -78,4 +76,18 @@ function genPause() {
       game.paused = false;
     }
   }
+}
+
+function updateUI() {
+  game.flowersText.setText(game.leafy.flowers);
+  game.blueLeafText.setText(game.leafy.blueLeafCount);
+  game.fps.setText(game.time.fps + "fps");
+  if (game.leafy.alive) {
+    vars.score += 1;
+    game.scoreText.setText(vars.score);
+  }
+}
+
+function updateScore() {
+  game.scoreText.setText(vars.score);
 }

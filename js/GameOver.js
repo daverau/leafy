@@ -105,14 +105,13 @@ BasicGame.GameOver.prototype = {
   retryGame: function() {
     game.sfxbutton.play();
     this.state.start('Game');
-    vars.score = 0;
+    vars.score = 1;
   },
 
   // continue button
   continueGame: function() {
-    var continueLevel = isLevel();
-    var howMuch = continueLevel * 10;
-    vars.score = continueLevel * vars.levelEveryX;
+    var howMuch = isLevel() * 10; // 10 acorns per level
+    vars.score = isLevel() * vars.levelEveryX; // reset to start of the "purchased" level
 
     // subtract for continue cost
     localStorage.setItem("leafyblueLeafCount", game.leafy.blueLeafCount - howMuch);

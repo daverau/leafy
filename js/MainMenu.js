@@ -36,15 +36,6 @@ BasicGame.MainMenu.prototype = {
     game.moon.alpha=0.3;
     //game.leafy = genLeafy();
 
-    // this.bg = game.add.sprite(game.width/2, game.height/2, 'title');
-    // this.bg.anchor.setTo(.5);
-    // this.bg.width = game.width;
-    // this.bg.height = game.height;
-
-    // this.bigleafy = this.add.sprite(50, game.height/2, 'bigleafy');
-    // this.bigleafy.scale.setTo(.5);
-    // this.bigleafy.anchor.setTo(0,.5);
-
     //layering order
     this.titleText = game.add.text( game.width/2, game.height*0.4, 'Leafy’s Trip', { font: "170px AvenirNext-Heavy", fill: '#fff' });
     this.titleText.anchor.setTo(0.5);

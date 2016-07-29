@@ -20,6 +20,9 @@ BasicGame.Win.prototype = {
     this.gameoverText = this.add.sprite( game.width*0.24, 160-game.height, 'gameoverText');
     this.gameoverScores.add(this.gameoverText);
 
+    // reset scores
+    vars.score = 1;
+
   },
 
   create: function () {

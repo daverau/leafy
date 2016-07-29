@@ -10,8 +10,6 @@ BasicGame.Preloader.prototype = {
 
   preload: function () {
 
-    this.load.image('title', 'img/title.png');
-
     // load everything else...
     //this.load.image('retryButton', 'img/retrybutton.png');
     this.load.image('platform', 'img/platform.png');
