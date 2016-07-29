@@ -11,7 +11,7 @@ var vars = {
   // world setup
   ratio: window.devicePixelRatio||1,
   worldSize:      window.innerWidth,
-  treeCount:                      6, // total trees to generate/display
+  treeCount:                      9, // total trees to generate/display
   cloudCount:                     4, // clouds
   flowerCount:                    1, // yellow flowers, they protect you from bees
 

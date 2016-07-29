@@ -22,13 +22,15 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 - [polish] world & leafy changes
 - [polish] music
 - [polish] instructions overlay
-- [optimize] compress all images
-- [optimize] remove unused code
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
 
 ## Changelog
 
 ### unreleased
+
+### v1.8.1
+- [optimize] compress all images
+- [optimize] remove unused code
 
 ### v1.8
 - [feature] endgame with doorway
