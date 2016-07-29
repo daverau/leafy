@@ -60,9 +60,11 @@ function genLevelText() {
 
 // show upcoming level marker
 function setLevelText() {
-  if (offCamera(game.levelText)) {
-    game.levelText.x = (isLevel() * vars.levelEveryX) + (game.levelText.width);
+  //console.log('setLevelText()');
+  if (offCamera(game.levelText) && vars.score > (isLevel() * vars.levelEveryX) - (game.width / (2 * vars.ratio))) {
+    game.levelText.x = game.width;
     game.levelText.text = 'Level ' + (isLevel() + 1);
+    //console.log('move level ' + (isLevel() + 1) + ' text to: ' + game.levelText.x);
   }
 }
 

@@ -43,6 +43,9 @@ function addPlatform(id) {
       } else if (yesCoins === 2) {
           //placeBluering(platform);
       }
+
+      // set level text if ready
+      setLevelText();
     }
   }
 }
@@ -106,7 +109,6 @@ function platformTouch(leafy, platform) {
   game.leafy.position.x = vars.leafyXposition;
   if (!platform.touched) {
     platform.touched = true;
-    setLevelText();
 
     // random color platform on jump
     // cool effect, saving this for later...
