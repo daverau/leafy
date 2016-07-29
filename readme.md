@@ -28,7 +28,8 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 
 ### unreleased
 
-### v1.8.1
+### v1.8.2
+- [xcode] bump version for `ITSAppUsesNonExemptEncryption=false` entry in config.xml and plist
 - [optimize] compress all images
 - [optimize] remove unused code
 

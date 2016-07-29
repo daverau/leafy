@@ -1,7 +1,7 @@
 // # Global variables
 var vars = {
   // meta
-  version:                   '1.8.0', // Leafy game version
+  version:                   '1.8.2', // Leafy game version
   autoStart:                   false, // testing/auto start
 
   // colors

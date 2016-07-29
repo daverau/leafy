@@ -18,7 +18,6 @@ function remapTree(tree) {
   if (isLevel() < 3) {
     treeimg = 'tree' + Math.floor(Math.random()*6+1);
   }
-
   // middle trees
   if (isLevel() > 2) {
     treeimg = 'tree' + Math.floor(Math.random()*7+1);
