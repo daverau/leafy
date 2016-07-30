@@ -55,7 +55,6 @@ function genLevelText() {
 
   game.physics.arcade.enable(game.levelText);
   game.levelText.body.velocity.x = vars.gameSpeed;
-
 }
 
 // show upcoming level marker

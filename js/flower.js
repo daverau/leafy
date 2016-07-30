@@ -12,15 +12,14 @@ function genCoins() {
 Blueleaf = function (game, x, y) {
   Phaser.Sprite.call(this, game, x, y, "blueleaf");
   this.anchor.setTo(0.5,1);
-  //this.scale.setTo(0.5);
   this.pickedup = false;
-  this.pos = {'x': x, 'y': y};
   this.enableBody = true;
+  game.physics.arcade.enable(this);
+  this.body.velocity.x = vars.gameSpeed;
 
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
-    //y: (this.y - 400),
     x: (game.width - 100),
     y: (100),
   }, 1000, Phaser.Easing.Cubic.Out);
@@ -64,10 +63,9 @@ function genBlueRings() {
     bluering.add(leaf);
 
     bluering.y = game.height - 280;
-    bluering.x = game.width;
+    bluering.x = -500;
 
     game.bluerings.add(bluering);
-
   }
 }
 
@@ -92,7 +90,6 @@ function resetLeaf(item) {
   //console.log('resetMove() ' + item.key);
   item.alpha = 1;
   item.pickedup = false;
-  item.y = item.pos.y;
 }
 
 // # Flowers
@@ -119,13 +116,9 @@ Flower = function (game, x, y) {
   // animations
   this.tween = game.add.tween(this).to({
     alpha: 0,
-    //y: (this.y - 400),
     x: (game.width - 200),
     y: (100),
   }, 1000, Phaser.Easing.Cubic.Out);
-  // this.tween.onComplete.add(function() {
-  //   this.kill();
-  // });
 };
 
 Flower.prototype = Object.create(Phaser.Sprite.prototype);

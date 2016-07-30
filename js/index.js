@@ -32,12 +32,12 @@ var app = {
     // [todo] build this out more
     // total play time
     // high score
-    // continues
+    // x continues
     // acorns earned
     // acorns spent
     // ...
-    console.log('--ga--');
     if (window.ga) {
+      console.log('--ga--');
       window.ga.startTrackerWithId('UA-5536882-24');
       window.ga.trackView('Boot');
     }

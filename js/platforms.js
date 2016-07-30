@@ -20,7 +20,7 @@ function addPlatform(id) {
       //console.log('--move platform ' + this.id + '--');
       //var level = isLevel();
       //console.log(level);
-      var level = isLevelX( getLastPlatformX() );
+      var level = isLevelX( vars.score + vars.worldSize );
       //console.log(level);
 
       // console.log(this.position.x);
@@ -43,13 +43,12 @@ function addPlatform(id) {
       // coins?
       var yesCoins = vars.coinLuck[Math.floor(Math.random()*vars.coinLuck.length)];
       if (yesCoins === 1) {
-        //console.log(platform.width);
         if (platform.width > 50) {
           placeCoins(platform);
         }
       // coin rings
       } else if (yesCoins === 2) {
-          //placeBluering(platform);
+        //placeBluering(platform);
       }
 
       // set level text if ready
@@ -76,7 +75,7 @@ function placeCoins(platform) {
     var coin = game.coinstoRecycle[i];
     //console.log(coin);
     if (coin) {
-      coin.pos.y = platform.y - 60;
+      //coin.pos.y = platform.y - 60;
       resetLeaf(coin);
       coin.reset( platform.x + 60 + (i * 60), platform.y - 60 );
       coin.body.velocity.x = vars.gameSpeed;
@@ -96,6 +95,7 @@ function placeBluering(platform) {
     ring.y = platform.y - 190;
     console.log('place ring: ' + ring.x);
     ring.children.forEach(function(blueleaf) {
+      console.log('reset leaf');
       resetLeaf(blueleaf);
     });
 
@@ -130,10 +130,13 @@ function platformTouch(leafy, platform) {
 // final platform with doorway
 function addFinalPlatform() {
   console.log('+ final platform');
-  game.platforms.children[1].x = game.width;
-  game.platforms.children[1].y = game.height-vars.platformHeight;
-  game.platforms.children[1].width = game.width;
 
-  game.doorwaytree = new DoorwayTree(game, game.platforms.children[1].x + 300, game.height-vars.platformHeight);
+  // get an offcamera platform from left or right (both)
+  var platforms = game.platforms.children.filter( offCameraBoth );
+  platforms[0].x = game.width;
+  platforms[0].y = game.height-vars.platformHeight;
+  platforms[0].width = game.width;
+
+  game.doorwaytree = new DoorwayTree(game, platforms[0].x + 300, game.height-vars.platformHeight);
   game.trees.add(game.doorwaytree);
 }

@@ -45,6 +45,7 @@ BasicGame.MainMenu.prototype = {
 
     genStump(); // move
     genOwl();   // move
+    //genRain();
 
     // playful menu
     game.owl.inputEnabled = true;
@@ -84,17 +85,14 @@ BasicGame.MainMenu.prototype = {
 
   startGame: function (pointer) {
 
-    //  Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
+    // stop menu music
     //this.music.stop();
 
-    //  And start the actual game
     game.sfxbutton.play();
     this.state.start('Game');
 
     if (window.ga) {
-      window.ga.trackView('Game');
+      window.ga.trackView('playing');
     }
-
   }
-
 };

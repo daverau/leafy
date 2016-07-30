@@ -31,7 +31,7 @@ var vars = {
   // platforms
   platforms:                      7, // based on a small width
   platformHeight:                90,
-  coinLuck:       [0,0,0,0,1,1,1,2], // frequency of coins: 0=none, 1=regular, 2=rings
+  coinLuck:         [0,0,0,1,1,1,2], // frequency of coins: 0=none, 1=regular, 2=rings
 
   // coins
   coinTotal:                     15,
@@ -162,6 +162,10 @@ function checkOverlap(spriteA, spriteB) {
 function offCamera(item) {
   //console.log('off camera check');
   return (item.x + item.width) < 0;
+}
+function offCameraBoth(item) {
+  //console.log('off camera check');
+  return (item.x + item.width) < 0 || item.x > game.width;
 }
 
 function resetMove(item, x, y) {

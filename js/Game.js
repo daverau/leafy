@@ -23,10 +23,9 @@ create: function () {
   drawWaves(game);
   drawMoon();
   genTrees(game.trees, true);
-  genLevelText();
   game.leafy = genLeafy();
   genCoins();
-  //genBlueRings();
+  genBlueRings();
   genFlowers();
 
   // # Platforms
@@ -44,7 +43,9 @@ create: function () {
   game.platforms.children[0].x = 0;
   game.platforms.children[0].width = game.width;
   game.platforms.children[1].x = game.width + 100;
-  game.platforms.children[1].width = 600;
+  game.platforms.children[1].width = 360;
+  placeCoins(game.platforms.children[1]);
+  genLevelText();
 
   genBees(vars.startBees);
 
@@ -72,15 +73,14 @@ update: function () {
 
     // World fallout
     if (game.leafy.body.y > (game.height - game.leafy.height)) {
-      game.leafy.kill();
-      game.leafy.jumps = 0;
+      //game.leafy.kill();
+      //game.leafy.jumps = 0;
+      game.leafy.body.position.y = -100; // never die
 
       if (window.ga) {
         window.ga.trackEvent('Player', 'Death', 'Fallout', vars.score);
       }
 
-      // never die!!!
-      //game.leafy.body.position.y = -100;
     }
 
   }
@@ -97,7 +97,7 @@ update: function () {
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
 
-    //this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
+    this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
