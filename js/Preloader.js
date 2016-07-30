@@ -16,7 +16,6 @@ BasicGame.Preloader.prototype = {
     this.load.image('waves', 'img/waves.png');
     this.load.spritesheet('playButton', 'img/playbutton.png', 161*2, 50*2);
     this.load.spritesheet('menuButton', 'img/menubutton.png', 161*2, 50*2);
-    this.load.image('bggameover', 'img/bg-gameover.png');
     this.load.image('rainbow', 'img/rainbow.png');
     this.load.image('cloud', 'img/cloud.png');
 

@@ -40,13 +40,21 @@ create: function () {
   addPlatform(7);
   addPlatform(8);
   addPlatform(9);
-  game.platforms.children[0].x = 0;
-  game.platforms.children[0].width = game.width;
-  game.platforms.children[1].x = game.width + 100;
-  game.platforms.children[1].width = 360;
-  placeCoins(game.platforms.children[1]);
-  genLevelText();
 
+  // nice continue platform for other levels
+  game.platforms.children[0].x = 100;
+  game.platforms.children[0].width = game.width / 2;
+
+  // nice starter platforms for level 1
+  if (isLevel() === 1) {
+    game.platforms.children[0].x = 0;
+    game.platforms.children[0].width = game.width;
+    game.platforms.children[1].x = game.width + 100;
+    game.platforms.children[1].width = 360;
+    placeCoins(game.platforms.children[1]);
+  }
+
+  genLevelText();
   genBees(vars.startBees);
 
   // # Rain
@@ -54,7 +62,6 @@ create: function () {
 
   // # UI
   genUI();
-
   // update score and UI counts
   game.scoreText.setText(vars.score);
   game.flowersText.setText(game.leafy.flowers);
