@@ -73,16 +73,14 @@ update: function () {
 
     // World fallout
     if (game.leafy.body.y > (game.height - game.leafy.height)) {
-      //game.leafy.kill();
-      //game.leafy.jumps = 0;
-      game.leafy.body.position.y = -100; // never die
+      game.leafy.kill();
+      game.leafy.jumps = 0;
+      //game.leafy.body.position.y = -100; // never die
 
       if (window.ga) {
         window.ga.trackEvent('Player', 'Death', 'Fallout', vars.score);
       }
-
     }
-
   }
 
   // # Leafy movement and Respawn
