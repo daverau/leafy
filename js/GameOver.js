@@ -12,9 +12,7 @@ BasicGame.GameOver.prototype = {
     //this.music.play();
 
     document.getElementById('ui').classList.add('hide');
-
-    // # Background images
-    this.bggameover = this.add.sprite(0,0, 'bggameover');
+    drawBG('312534', '1f1a21');
 
     // giant leafy
     this.gameoverLeafy = this.add.sprite(-game.width, 160+game.height, 'gameover');
