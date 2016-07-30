@@ -24,11 +24,10 @@ function remapTree(tree) {
   }
   // ends just large trees
   if (isLevel() > 4) {
-    treeimg = 'tree' + Math.floor(Math.random()*7+2);
+    treeimg = 'tree' + Math.floor(Math.random()*8+1);
   }
 
   tree.loadTexture(treeimg);
-
 }
 
 Tree.prototype = Object.create(Phaser.Sprite.prototype);

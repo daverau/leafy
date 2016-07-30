@@ -1,7 +1,7 @@
 // # Global variables
 var vars = {
   // meta
-  version:                   '1.8.3', // Leafy game version
+  version:                   '1.8.4', // Leafy game version
   autoStart:                   false, // testing/auto start
 
   // colors
@@ -31,7 +31,8 @@ var vars = {
   // platforms
   platforms:                      7, // based on a small width
   platformHeight:                90,
-  coinLuck:         [0,0,0,1,1,1,2], // frequency of coins: 0=none, 1=regular, 2=rings
+  //coinLuck:         [0,0,0,1,1,1,2], // frequency of coins: 0=none, 1=regular, 2=rings
+  coinLuck:         [0,0,0,1,1,1], // until i fix bluerings()
 
   // coins
   coinTotal:                     15,
