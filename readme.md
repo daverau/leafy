@@ -18,17 +18,19 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/gameplay.gif">
 
 ## Todo
+- [polish] story
 - [polish] background layer & day/night shift
 - [polish] world & leafy changes
-- [polish] music
 - [polish] instructions overlay
+- [polish] music
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
 
 ## Changelog
 
 ### unreleased
 
-### v1.8.2
+### v1.8.3
+- [polish] level gen text is properly placed now `if (offCamera(game.levelText) && vars.score > (isLevel() * vars.levelEveryX) - (game.width / (2 * vars.ratio)))`
 - [xcode] bump version for `ITSAppUsesNonExemptEncryption=false` entry in config.xml and plist
 - [optimize] compress all images
 - [optimize] remove unused code

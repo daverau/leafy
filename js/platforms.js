@@ -17,8 +17,16 @@ function addPlatform(id) {
 
   platform.update = function () {
     if ( (this.position.x + this.width) < -10) {
-      //console.log('--platform ' + this.id + '--');
-      var level = isLevel();
+      //console.log('--move platform ' + this.id + '--');
+      //var level = isLevel();
+      //console.log(level);
+      var level = isLevelX( getLastPlatformX() );
+      //console.log(level);
+
+      // console.log(this.position.x);
+      // console.log('last x:' + getLastPlatformX() );
+      // console.log('level:' + isLevel() );
+      // console.log('level:' + isLevelX( getLastPlatformX() ) );
 
       // reset touch
       this.touched = false;
@@ -53,7 +61,7 @@ function addPlatform(id) {
 function getLastPlatformX() {
   var maxPlatformX = 0;
   game.platforms.forEach(function(platform) {
-    maxPlatformX = Math.max(platform.x+platform.width,maxPlatformX);
+    maxPlatformX = Math.max(platform.x + platform.width,maxPlatformX);
   });
   return maxPlatformX;
 }

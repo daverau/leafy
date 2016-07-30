@@ -1,7 +1,7 @@
 // # Global variables
 var vars = {
   // meta
-  version:                   '1.8.2', // Leafy game version
+  version:                   '1.8.3', // Leafy game version
   autoStart:                   false, // testing/auto start
 
   // colors
@@ -175,4 +175,10 @@ function resetMove(item, x, y) {
 function isLevel() {
   //console.log('level check');
   return Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );
+}
+
+// get level for X coordinate
+function isLevelX(x) {
+  //console.log('level check');
+  return Math.min( Math.ceil(x/vars.levelEveryX), 5 );
 }

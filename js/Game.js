@@ -10,7 +10,6 @@ create: function () {
 
   // # World gen
   console.log('world gen: ' + vars.worldSize + 'px');
-  //this.world.setBounds(0, 0, vars.worldSize, game.height);
 
   // # Sound
   game.sfxbgnoise = game.add.audio('bgnoise');
@@ -20,7 +19,6 @@ create: function () {
 
   // # Draw game objects
   drawBG('80AFBE', '261B28');
-  // # Platforms
   genClouds();
   drawWaves(game);
   drawMoon();
@@ -30,8 +28,8 @@ create: function () {
   genCoins();
   //genBlueRings();
   genFlowers();
-  //game.world.bringToTop(game.platforms);
 
+  // # Platforms
   game.finalPlatform = false;
   game.platforms = game.add.group();
   addPlatform(1);
@@ -61,12 +59,10 @@ create: function () {
 
   // score timer
   game.time.events.loop(60, updateScore, this);
-
 },
 
 
 update: function () {
-
   // # UI
   if (game.leafy.alive) {
     vars.score += 1;
@@ -74,11 +70,11 @@ update: function () {
 
   // World fallout
   if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
-    game.leafy.kill();
-    game.leafy.jumps = 0;
+    //game.leafy.kill();
+    //game.leafy.jumps = 0;
 
     // never die!!!
-    //game.leafy.body.position.y = -100;
+    game.leafy.body.position.y = -100;
   }
 
   // # Leafy movement and Respawn
