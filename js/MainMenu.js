@@ -91,6 +91,10 @@ BasicGame.MainMenu.prototype = {
     game.sfxbutton.play();
     this.state.start('Game');
 
+    if (window.ga) {
+      window.ga.trackView('Game');
+    }
+
   }
 
 };

@@ -44,6 +44,7 @@ var vars = {
   // track deaths
   score:                          1, // overall distance score
   triesScore:                     0, // number of tries
+  continues:                      0, // number of acorn continues
 
 };
 

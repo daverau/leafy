@@ -112,6 +112,11 @@ function passBee(leafy, bee) {
       if (leafy.flowers < 1 && !bee.pickedup) {
         game.sfxbuzz.play();
         leafy.kill();
+
+        if (window.ga) {
+          window.ga.trackEvent('Player', 'Death', 'Bee', vars.score);
+        }
+
       } else {
         if (!bee.pickedup) {
           bee.pickedup = true;

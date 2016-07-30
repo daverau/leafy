@@ -41,8 +41,10 @@ create: function () {
   addPlatform(7);
   addPlatform(8);
   addPlatform(9);
-  game.platforms.children[0].x = 100;
-  game.platforms.children[0].width = 600;
+  game.platforms.children[0].x = 0;
+  game.platforms.children[0].width = game.width;
+  game.platforms.children[1].x = game.width + 100;
+  game.platforms.children[1].width = 600;
 
   genBees(vars.startBees);
 
@@ -63,18 +65,24 @@ create: function () {
 
 
 update: function () {
-  // # UI
   if (game.leafy.alive) {
+
+    // # UI
     vars.score += 1;
-  }
 
-  // World fallout
-  if (game.leafy.body.y > (game.height - game.leafy.height) && game.leafy.alive) {
-    //game.leafy.kill();
-    //game.leafy.jumps = 0;
+    // World fallout
+    if (game.leafy.body.y > (game.height - game.leafy.height)) {
+      game.leafy.kill();
+      game.leafy.jumps = 0;
 
-    // never die!!!
-    game.leafy.body.position.y = -100;
+      if (window.ga) {
+        window.ga.trackEvent('Player', 'Death', 'Fallout', vars.score);
+      }
+
+      // never die!!!
+      //game.leafy.body.position.y = -100;
+    }
+
   }
 
   // # Leafy movement and Respawn

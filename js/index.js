@@ -37,10 +37,9 @@ var app = {
     // acorns spent
     // ...
     console.log('--ga--');
-    console.log(window.analytics);
-    if (window.analytics) {
-      window.analytics.startTrackerWithId('UA-5536882-24');
-      window.analytics.trackView('boot');
+    if (window.ga) {
+      window.ga.startTrackerWithId('UA-5536882-24');
+      window.ga.trackView('Boot');
     }
 
     // # Create Phaser game

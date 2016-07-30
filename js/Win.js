@@ -61,6 +61,11 @@ BasicGame.Win.prototype = {
     game.leafy.x = game.width / 2;
     game.leafy.y = game.height / 2;
 
+    if (window.ga) {
+      window.ga.trackView('Win');
+      window.ga.trackEvent('Player', 'Win', 'Continues', vars.continues);
+    }
+
   },
 
   // button menu
