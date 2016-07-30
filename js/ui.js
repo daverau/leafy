@@ -14,15 +14,13 @@ function genUI() {
   game.ui.add(game.flowersText);
 
   // score
-  // { font: (72*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' }
   game.scoreText = game.add.text( game.width/2, 45, '0', { font: (15*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });
   game.ui.add(game.scoreText);
 
   // fps
-  game.fps = game.add.text( game.width-90, game.height-50, '-', { font: (11*vars.ratio)+"px AvenirNext-Medium", fill: '#000' });
-  game.fps.alpha = 0.2;
-  game.fps.alpha = 0.2;
-  game.ui.add(game.fps);
+  // game.fps = game.add.text( game.width-90, game.height-50, '-', { font: (11*vars.ratio)+"px AvenirNext-Medium", fill: '#000' });
+  // game.fps.alpha = 0.2;
+  // game.ui.add(game.fps);
 
   game.ui.deathTween = game.add.tween(game.ui).to({
     alpha: 0,
@@ -77,7 +75,7 @@ function genPause() {
 function updateUI() {
   game.flowersText.setText(game.leafy.flowers);
   game.blueLeafText.setText(game.leafy.blueLeafCount);
-  game.fps.setText(game.time.fps + "fps");
+  //game.fps.setText(game.time.fps + "fps");
   if (game.leafy.alive) {
     vars.score += 1;
     game.scoreText.setText(vars.score);

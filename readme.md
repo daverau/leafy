@@ -30,7 +30,7 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 
 ### unreleased
 
-### v1.8.4
+### v1.8.5
 - [polish] fixing blue rings
 - [polish] final platform grabbed from offscreen, so you're not left hanging!
 - [polish] platform gen `vars.score + vars.worldSize` is more accurate for levels
