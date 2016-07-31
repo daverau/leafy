@@ -24,8 +24,10 @@ create: function () {
   drawMoon();
   genTrees(game.trees, true);
   game.leafy = genLeafy();
+  game.leafy.loadTexture(vars.leafyColor);
+
   genCoins();
-  genBlueRings();
+  //genBlueRings();
   genFlowers();
 
   // # Platforms
@@ -69,6 +71,11 @@ create: function () {
 
   // score timer
   game.time.events.loop(60, updateScore, this);
+
+  // music
+  game.music = game.add.audio('bgmusic');
+  game.music.loop = true;
+  game.music.play();
 },
 
 
@@ -102,7 +109,7 @@ update: function () {
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
 
-    this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
+    //this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
@@ -127,6 +134,7 @@ update: function () {
   if (game.leafy.y > (game.height * 2) ) {
     this.state.start('GameOver');
   }
+
 },
 
 quitGame: function (pointer) {

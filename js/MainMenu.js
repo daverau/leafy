@@ -46,10 +46,14 @@ BasicGame.MainMenu.prototype = {
     genStump(); // move
     genOwl();   // move
     //genRain();
+    game.leafy = genLeafy();
 
     // playful menu
     game.owl.inputEnabled = true;
     game.owl.events.onInputDown.add(owlFlyaway, this);
+
+    game.leafy.inputEnabled = true;
+    game.leafy.events.onInputDown.add(leafyColor, this);
 
     this.playButton = this.add.button(game.width/2, game.height*0.6, 'playButton', this.startGame, this, 1, 0, 2);
     this.playButton.anchor.setTo(0.5,0);

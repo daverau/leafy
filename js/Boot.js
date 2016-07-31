@@ -1,12 +1,13 @@
 // # Global variables
 var vars = {
   // meta
-  version:                   '1.8.4', // Leafy game version
+  version:                   '1.8.6', // Leafy game version
   autoStart:                   false, // testing/auto start
 
   // colors
   colorYellow:           '#F5A623', // yellow for score, level text
   colorPlatform:         '#63434B', // platform color
+  leafyColor:              'leafy',
 
   // world setup
   ratio: window.devicePixelRatio||1,
@@ -31,12 +32,10 @@ var vars = {
   // platforms
   platforms:                      7, // based on a small width
   platformHeight:                90,
-  //coinLuck:         [0,0,0,1,1,1,2], // frequency of coins: 0=none, 1=regular, 2=rings
-  coinLuck:         [0,0,0,1,1,1], // until i fix bluerings()
+  coinLuck:        [0,0,0,1,1,1,2], // frequency: 0=none, 1=coins, 2=rings
 
   // coins
-  coinTotal:                     15,
-  blueRingTotal:                  4,
+  coinTotal:                     30,
 
   // bees
   startBees:                      1, // [todo] add enemy number to levels
@@ -104,8 +103,9 @@ vars.platformLevels = {
   },
 };
 
+// win score
 vars.winScore = vars.levelEveryX * Object.keys(vars.platformLevels).length; // score to win the game
-console.log('Win at: ' + vars.winScore);
+//console.log('Win at: ' + vars.winScore);
 
 // # Phaser global
 BasicGame = {

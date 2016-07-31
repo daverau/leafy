@@ -32,6 +32,8 @@ BasicGame.Preloader.prototype = {
     this.load.image('bigleafy', 'img/bigleafy.png');
     this.load.audio('boing', 'audio/boing.wav');
 
+    this.load.audio('bgmusic', 'audio/bg-loop.mp3');
+
     // just using the color for now...
     this.load.image('tree', 'img/tree.png');
 

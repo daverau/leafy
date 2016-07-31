@@ -1,6 +1,6 @@
 // Leafy setup
 function genLeafy() {
-  var leafy = game.add.sprite( vars.leafyXposition , -100, 'leafy');
+  var leafy = game.add.sprite( vars.leafyXposition , -100, vars.leafyColor);
   leafy.anchor.setTo(0.5, .35); //flip at middle point
   leafy.alive = true;
   leafy.jumping = false;
@@ -155,6 +155,21 @@ function upInputReleased() {
     released |= game.input.activePointer.justReleased();
     return released;
     released = null;
+}
+
+function leafyColor(leafy) {
+  if (vars.leafyColor === 'leafy') {
+    vars.leafyColor = 'leafy-green';
+  } else if (vars.leafyColor === 'leafy-green') {
+    vars.leafyColor = 'leafy-yellow';
+  } else if (vars.leafyColor === 'leafy-yellow') {
+    vars.leafyColor = 'leafy-red';
+  } else if (vars.leafyColor === 'leafy-red') {
+    vars.leafyColor = 'leafy';
+  }
+  if (game.state.current === 'MainMenu') {
+    game.leafy.loadTexture(vars.leafyColor);
+  }
 }
 
 function respawn(leafy) {

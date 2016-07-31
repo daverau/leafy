@@ -18,20 +18,22 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/gameplay.gif">
 
 ## Todo
-- [bug] acorn rings need refactoring
-- [polish] level 6 text bug
-- [polish] story
+- [bug] level 6 text bug
+- [polish] story intro animation
+- [polish] story ending animation
 - [polish] background layer & day/night shift
-- [polish] world & leafy changes
-- [polish] music
+- [polish] world changes
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
+- [polish] music
 
 ## Changelog
-
 ### unreleased
 
+### v1.8.6
+- [polish] refactor acorn rings
+- [polish] change leafy color from menu
+
 ### v1.8.5
-- [polish] fixing blue rings
 - [polish] final platform grabbed from offscreen, so you're not left hanging!
 - [polish] platform gen `vars.score + vars.worldSize` is more accurate for levels
 - [analytics] phonegap google analytics plugin fixed and data coming thru again
@@ -124,3 +126,10 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 ## Sketch
 My original concept sketch was inspired by a gamejam theme about "growing"
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/night.png">
+
+## Ideas for v2
+- secret underground level
+- breakable objects
+- shop UI
+- stairs
+- power-ups like double jump

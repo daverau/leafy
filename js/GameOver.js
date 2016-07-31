@@ -60,11 +60,12 @@ BasicGame.GameOver.prototype = {
     this.gameoverScores.add(this.playButton);
 
     // running leafy
-    this.leafy = game.add.sprite( this.playButton.x - (this.playButton.width/2), (this.playButton.y/2)-(game.leafy.height*1.3), 'leafy'); // [todo] fix sloppy positioning
+    this.leafy = game.add.sprite( this.playButton.x - (this.playButton.width/2), (this.playButton.y/2)-(game.leafy.height*1.3), vars.leafyColor); // [todo] fix sloppy positioning
     this.leafy.anchor.setTo(0.5, 1); //flip at middle point
     this.leafy.animations.add('walk', [0, 1, 2, 3, 4, 5, 6], 10, true);
     this.leafy.animations.play('walk');
     this.gameoverScores.add(this.leafy);
+
 
     // continue button
     if ( (isLevel() > 1) && (isLevel() * 10 <= game.leafy.blueLeafCount) ) {
@@ -88,6 +89,8 @@ BasicGame.GameOver.prototype = {
 
 
   create: function () {
+    game.music.fadeOut(1000);
+
     this.gameoverLeafytween.start();
     this.gameoverTween.start();
 
@@ -102,10 +105,11 @@ BasicGame.GameOver.prototype = {
   // button play
   retryGame: function() {
     game.sfxbutton.play();
+    game.music.stop();
     this.state.start('Game');
     vars.score = 1;
     vars.continues = 0;
-  },
+},
 
   // continue button
   continueGame: function() {
@@ -117,12 +121,14 @@ BasicGame.GameOver.prototype = {
     localStorage.setItem("leafyblueLeafCount", game.leafy.blueLeafCount - howMuch);
 
     game.sfxbutton.play();
+    game.music.stop();
     this.state.start('Game');
   },
 
   // button menu
   startGame: function() {
     game.sfxbutton.play();
+    game.music.stop();
     this.state.start('MainMenu');
   },
 
