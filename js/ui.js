@@ -53,7 +53,7 @@ function genLevelText() {
 // show upcoming level marker
 function setLevelText() {
   //console.log('setLevelText()');
-  if (offCamera(game.levelText) && vars.score > (isLevel() * vars.levelEveryX) - (game.width / (2 * vars.ratio))) {
+  if (offCamera(game.levelText) && vars.score > (isLevel() * vars.levelEveryX) - (game.width / (2 * vars.ratio)) && isLevel() < getTotalLevels() ) {
     game.levelText.x = game.width;
     game.levelText.text = 'Level ' + (isLevel() + 1);
     //console.log('move level ' + (isLevel() + 1) + ' text to: ' + game.levelText.x);
@@ -61,9 +61,6 @@ function setLevelText() {
 }
 
 function genPause() {
-  // Create a label to use as a button
-
-
   function unpause(event){
     if (game.paused){
     } else {

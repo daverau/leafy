@@ -8,9 +8,6 @@ create: function () {
   document.getElementById('refresh').classList.add('hide');
   document.getElementById('ui').classList.remove('hide');
 
-  // # World gen
-  console.log('world gen: ' + vars.worldSize + 'px');
-
   // # Sound
   game.sfxbgnoise = game.add.audio('bgnoise');
   game.sfxbuzz = game.add.audio('buzz');
@@ -24,10 +21,7 @@ create: function () {
   drawMoon();
   genTrees(game.trees, true);
   game.leafy = genLeafy();
-  game.leafy.loadTexture(vars.leafyColor);
-
   genCoins();
-  //genBlueRings();
   genFlowers();
 
   // # Platforms
@@ -87,9 +81,9 @@ update: function () {
 
     // World fallout
     if (game.leafy.body.y > (game.height - game.leafy.height)) {
-      game.leafy.kill();
-      game.leafy.jumps = 0;
-      //game.leafy.body.position.y = -100; // never die
+      //game.leafy.kill();
+      //game.leafy.jumps = 0;
+      game.leafy.body.position.y = -100; // never die
 
       if (window.ga) {
         window.ga.trackEvent('Player', 'Death', 'Fallout', vars.score);
@@ -108,8 +102,6 @@ update: function () {
 
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
-
-    //this.physics.arcade.overlap(game.leafy, game.bluerings.children, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
     this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
@@ -134,7 +126,6 @@ update: function () {
   if (game.leafy.y > (game.height * 2) ) {
     this.state.start('GameOver');
   }
-
 },
 
 quitGame: function (pointer) {

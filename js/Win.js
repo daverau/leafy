@@ -71,6 +71,7 @@ BasicGame.Win.prototype = {
   // button menu
   startGame: function() {
     game.sfxbutton.play();
+    game.music.stop();
     this.state.start('MainMenu');
   },
 

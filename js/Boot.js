@@ -32,10 +32,10 @@ var vars = {
   // platforms
   platforms:                      7, // based on a small width
   platformHeight:                90,
-  coinLuck:        [0,0,0,1,1,1,2], // frequency: 0=none, 1=coins, 2=rings
+  coinLuck:       [0,0,0,1,1,1,2,3], // frequency: 0=none, 1=coins, 2=rings
 
   // coins
-  coinTotal:                     30,
+  coinTotal:                     40,
 
   // bees
   startBees:                      1, // [todo] add enemy number to levels
@@ -104,7 +104,7 @@ vars.platformLevels = {
 };
 
 // win score
-vars.winScore = vars.levelEveryX * Object.keys(vars.platformLevels).length; // score to win the game
+vars.winScore = vars.levelEveryX * getTotalLevels(); // score to win the game
 //console.log('Win at: ' + vars.winScore);
 
 // # Phaser global
@@ -177,14 +177,18 @@ function resetMove(item, x, y) {
   item.x = x || game.leafy.x + Math.floor(Math.random()*(game.width * 3)+(game.width * 1.5));
 }
 
+function getTotalLevels() {
+  return Object.keys(vars.platformLevels).length;
+}
+
 // check current level based on vars setting
 function isLevel() {
-  //console.log('level check');
-  return Math.min( Math.ceil(vars.score/vars.levelEveryX), 5 );
+  //console.log('level check: ' + Math.ceil(vars.score/vars.levelEveryX));
+  return Math.min( Math.ceil(vars.score/vars.levelEveryX), getTotalLevels() );
 }
 
 // get level for X coordinate
 function isLevelX(x) {
-  //console.log('level check');
-  return Math.min( Math.ceil(x/vars.levelEveryX), 5 );
+  //console.log('level X check: ' + Math.ceil(x/vars.levelEveryX));
+  return Math.min( Math.ceil(x/vars.levelEveryX), getTotalLevels() );
 }

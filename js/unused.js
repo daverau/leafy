@@ -1,3 +1,16 @@
+// platform helper to get last platform object
+function getLastPlatform() {
+  var maxPlatformX = 0;
+  var plat = {};
+  game.platforms.forEach(function(platform) {
+    maxPlatformX = Math.max(platform.x + platform.width, maxPlatformX);
+    if (platform.x + platform.width >= maxPlatformX) {
+      plat = platform;
+    }
+  });
+  return plat;
+}
+
 function touchPlatformScore(leafy, score) {
   // set jump score so it follows Leafy around
   leafy.leafyText.tween.stop();
