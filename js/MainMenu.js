@@ -14,8 +14,9 @@ BasicGame.MainMenu.prototype = {
 
     // # Title/start screen
     // [todo] put some design time into this to make it nice with music and a button
-    //this.music = this.add.audio('titleMusic');
-    //this.music.play();
+    game.music = this.add.audio('bg-title');
+    game.music.loop = true;
+    game.music.play();
 
     game.cursors = this.input.keyboard.createCursorKeys();
 
@@ -62,7 +63,7 @@ BasicGame.MainMenu.prototype = {
     genBees(1);
 
     if (vars.autoStart) {
-        this.state.start('Game');
+      this.state.start('Game');
     }
 
   },
@@ -74,9 +75,11 @@ BasicGame.MainMenu.prototype = {
 
     game.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
 
-    if ( game.cursors.up.isDown) {
-      this.startGame();
-    }
+    // if ( game.cursors.up.isDown) {
+    //   this.startGame();
+    // }
+
+    //playerMove(game.leafy);
 
   },
 
@@ -90,7 +93,8 @@ BasicGame.MainMenu.prototype = {
   startGame: function (pointer) {
 
     // stop menu music
-    //this.music.stop();
+    //this.music.fadeOut(2000);
+    game.music.stop();
 
     game.sfxbutton.play();
     this.state.start('Game');

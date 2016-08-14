@@ -74,6 +74,8 @@ DoorwayTree.prototype = Object.create(Phaser.Sprite.prototype);
 DoorwayTree.prototype.constructor = DoorwayTree;
 DoorwayTree.prototype.update = function() {
   if (this.x - this.width/2.8 < game.leafy.body.x) {
+    //game.music.fadeOut(2000);
+    game.music.stop();
     game.state.start('Win');
   }
 };

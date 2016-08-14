@@ -75,11 +75,14 @@ function genLeafy() {
     this.jumps = 0;
     this.alive = false;
     this.body.velocity.setTo(0,0);
-    //this.enableBody = false;
 
     this.animations.stop();
     this.animations.play('sad');
     vars.triesScore++;
+    game.music.fadeOut(100);
+
+    game.music = game.add.audio('bg-gameover');
+    game.music.play();
 
     // fall
     game.sfxfall.play();

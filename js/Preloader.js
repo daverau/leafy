@@ -33,6 +33,9 @@ BasicGame.Preloader.prototype = {
     this.load.audio('boing', 'audio/boing.wav');
 
     this.load.audio('bgmusic', 'audio/bg-loop.mp3');
+    this.load.audio('bg-title', 'audio/bg-title.mp3');
+    this.load.audio('bg-gameover', 'audio/bg-gameover.mp3');
+    this.load.audio('bg-win', 'audio/bg-win.mp3');
 
     // just using the color for now...
     this.load.image('tree', 'img/tree.png');

@@ -66,7 +66,6 @@ BasicGame.GameOver.prototype = {
     this.leafy.animations.play('walk');
     this.gameoverScores.add(this.leafy);
 
-
     // continue button
     if ( (isLevel() > 1) && (isLevel() * 10 <= game.leafy.blueLeafCount) ) {
       this.continueGameText = this.add.text( this.playButton.x-50, this.playButton.y+80, 'Continue Level:  ' + isLevel() * 10, { font: (16*vars.ratio)+"px AvenirNext-Medium", fill: '#B1F1D9' });
@@ -89,8 +88,6 @@ BasicGame.GameOver.prototype = {
 
 
   create: function () {
-    game.music.fadeOut(1000);
-
     this.gameoverLeafytween.start();
     this.gameoverTween.start();
 

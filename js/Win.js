@@ -8,8 +8,12 @@ BasicGame.Win.prototype = {
 
   preload: function () {
     // # Music
-    //this.music = this.add.audio('titleMusic');
-    //this.music.play();
+    if (game.music) {
+      game.music.stop();
+    }
+    this.music = this.add.audio('bg-win');
+    this.music.loop = true;
+    this.music.play();
 
     document.getElementById('ui').classList.add('hide');
 
