@@ -9,7 +9,6 @@ create: function () {
   document.getElementById('ui').classList.remove('hide');
 
   // # Sound
-  game.sfxbgnoise = game.add.audio('bgnoise');
   game.sfxbuzz = game.add.audio('buzz');
   game.sfxding = game.add.audio('ding');
   game.sfxding.allowMultiple = true;

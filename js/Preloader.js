@@ -26,7 +26,6 @@ BasicGame.Preloader.prototype = {
     this.load.spritesheet('leafy-red', 'img/v3-red.png', 128, 128);
     this.load.spritesheet('leafy-green', 'img/v3-green.png', 128, 128);
     this.load.spritesheet('leafy-yellow', 'img/v3-yellow.png', 128, 128);
-    this.load.audio('bgnoise', 'audio/bgnoise.wav');
     this.load.audio('button', 'audio/woosh.wav');
     this.load.audio('fall', 'audio/fall.wav');
     this.load.image('bigleafy', 'img/bigleafy.png');
@@ -81,7 +80,8 @@ BasicGame.Preloader.prototype = {
 
     // If you don't have any music in your game then put the game.state.start line into the create function and delete
     // the update function completely.
-    if (this.cache.isSoundDecoded('bgnoise') && this.ready === false) {
+    // this.cache.isSoundDecoded('bgnoise') &&
+    if (this.ready === false) {
       this.ready = true;
       this.state.start('MainMenu');
     }
