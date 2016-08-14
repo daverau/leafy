@@ -1,5 +1,5 @@
 ## Inspiration
-- Mr. Speaker's Indie game development talk
+- Mr. Speaker's Indie game [development talk](https://www.youtube.com/watch?v=H6roNQE8t-c)
 - Games list
 - Learning JavaScript/Phaser
 - Asking myself why I play games and parallels to work
@@ -8,10 +8,16 @@
 - Connection of player and juicy jumps, smb jumping
 - Super Mario Bros breakdown level design patterns
 
-# Mr. Speaker's Indie game development talk
+## Mr. Speaker's Indie game development talk
 - Gamedev is like indie filmmaking
 - inbetween art and entertainment
 - there's no Citizen Cane for websites/apps, fun
+
+## List of Games for Inspiration
+- Megaman 2 (NES)
+- Super Mario 2 (NES)
+- Monument Valley (iOS)
+- Doodle Jump
 
 ## Design
 - goals: sam, trees/nature/grow, JS
