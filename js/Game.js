@@ -14,6 +14,15 @@ create: function () {
   game.sfxding = game.add.audio('ding');
   game.sfxding.allowMultiple = true;
 
+  // setup leafy jumps
+  if (vars.leafyColor === 'leafy-red') {
+    vars.leafyJumpVelocityY =          -450; // pixels per second negative y is up
+    vars.leafyJumpConstant =            210; // jump numbers are magic
+    vars.leafyGravity =                1000;
+    vars.leafyMaxVelocityX =            500;
+    vars.leafyMaxVelocityY =           1000;
+  }
+
   // # Draw game objects
   drawBG('80AFBE', '261B28');
   genClouds();
