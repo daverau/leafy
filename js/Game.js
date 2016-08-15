@@ -59,7 +59,7 @@ create: function () {
   }
 
   genLevelText();
-  genBees(3);
+  genBees(vars.startBees);
 
   // # Rain
   // genRain();
