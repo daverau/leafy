@@ -17,15 +17,18 @@ Leafy's Trip is a platform game about finding your sister. It's also my first ga
 ## Gameplay
 <img src="https://raw.githubusercontent.com/daverau/leafy/master/sketches/gameplay.gif">
 
-## Todo
+## Todo for release in app store
 - [feature] story intro animation
 - [polish] win screen with animation
 - [polish] background layer & day/night shift
 - [polish] world changes
-- [polish] music
 - [optimize] custom phaser build `grunt custom --exclude gamepad,retrofont,video,rope,net,ninja,creature,p2,tilemaps`
 
 ## Changelog
+
+### v1.8.7
+- [polish] music
+- removed flowers to simplify gameplay and UI
 
 ### v1.8.6
 - [bug] level 6 text bug
