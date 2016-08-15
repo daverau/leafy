@@ -99,32 +99,21 @@ function passBee(leafy, bee) {
   if (leafy.alive) {
 
     // jump squash
-    if ( bee.body.touching.up && !bee.pickedup) {
+    if ( bee.body.touching.up || bee.body.touching.none ) {
 
-      bee.pickedup = true;
-      bee.animations.play('flyhappy');
+      //bee.pickedup = true;
+      //bee.animations.play('flyhappy');
       game.sfxbuzz.play();
       bee.jumpsquash.start();
       leafyJump(leafy);
 
     } else {
 
-      if (leafy.flowers < 1 && !bee.pickedup) {
-        game.sfxbuzz.play();
-        leafy.kill();
+      game.sfxbuzz.play();
+      leafy.kill();
 
-        if (window.ga) {
-          window.ga.trackEvent('Player', 'Death', 'Bee', vars.score);
-        }
-
-      } else {
-        if (!bee.pickedup) {
-          bee.pickedup = true;
-          bee.animations.play('flyhappy');
-          game.sfxbuzz.play();
-          bee.hittween.start();
-          leafy.flowers -= 1;
-        }
+      if (window.ga) {
+        window.ga.trackEvent('Player', 'Death', 'Bee', vars.score);
       }
 
     } // end jump squash

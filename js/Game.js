@@ -30,7 +30,7 @@ create: function () {
   genTrees(game.trees, true);
   game.leafy = genLeafy();
   genCoins();
-  genFlowers();
+  //genFlowers();
 
   // # Platforms
   game.finalPlatform = false;
@@ -68,7 +68,7 @@ create: function () {
   genUI();
   // update score and UI counts
   game.scoreText.setText(vars.score);
-  game.flowersText.setText(game.leafy.flowers);
+  //game.flowersText.setText(game.leafy.flowers);
   game.blueLeafText.setText(game.leafy.blueLeafCount);
 
   // score timer
@@ -112,7 +112,7 @@ update: function () {
     // # Collisions
     this.physics.arcade.collide(game.leafy, game.platforms, platformTouch, null, this);
     this.physics.arcade.overlap(game.leafy, game.coins, passBlueleaf, null, this);
-    this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
+    //this.physics.arcade.overlap(game.leafy, game.flowers, passFlower, null, this);
     this.physics.arcade.overlap(game.leafy, game.bees, passBee, null, this);
 
     // owl

@@ -1,6 +1,6 @@
 BasicGame.Win = function (game) {
 
-  this.music = null;
+  game.music = null;
   this.playButton = null;
 
 };
@@ -11,9 +11,9 @@ BasicGame.Win.prototype = {
     if (game.music) {
       game.music.stop();
     }
-    this.music = this.add.audio('bg-win');
-    this.music.loop = true;
-    this.music.play();
+    game.music = this.add.audio('bg-win');
+    game.music.loop = true;
+    game.music.play();
 
     document.getElementById('ui').classList.add('hide');
 
@@ -75,7 +75,7 @@ BasicGame.Win.prototype = {
   // button menu
   startGame: function() {
     game.sfxbutton.play();
-    this.music.stop();
+    game.music.stop();
     this.state.start('MainMenu');
   },
 

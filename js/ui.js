@@ -8,10 +8,10 @@ function genUI() {
   game.ui.add(game.blueLeafText);
 
   // flowers
-  game.flowersIcon = game.ui.create(game.width-210, 30, 'flower');
-  game.flowersIcon.scale.setTo(0.35);
-  game.flowersText = game.add.text( game.width-175, 50, '-', { font: (11*vars.ratio)+"px AvenirNext-Medium", fill: '#F7E53B' });
-  game.ui.add(game.flowersText);
+  //game.flowersIcon = game.ui.create(game.width-210, 30, 'flower');
+  //game.flowersIcon.scale.setTo(0.35);
+  //game.flowersText = game.add.text( game.width-175, 50, '-', { font: (11*vars.ratio)+"px AvenirNext-Medium", fill: '#F7E53B' });
+  //game.ui.add(game.flowersText);
 
   // score
   game.scoreText = game.add.text( game.width/2, 45, '0', { font: (15*vars.ratio)+"px AvenirNext-Heavy", fill: '#F5A623' });

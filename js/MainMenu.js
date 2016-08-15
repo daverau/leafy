@@ -1,6 +1,6 @@
 BasicGame.MainMenu = function (game) {
 
-  this.music = null;
+  game.music = null;
   this.playButton = null;
 
 };
@@ -93,7 +93,7 @@ BasicGame.MainMenu.prototype = {
   startGame: function (pointer) {
 
     // stop menu music
-    //this.music.fadeOut(2000);
+    //game.music.fadeOut(2000);
     game.music.stop();
 
     game.sfxbutton.play();

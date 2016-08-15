@@ -1,16 +1,12 @@
 BasicGame.GameOver = function (game) {
 
-  this.music = null;
+  game.music = null;
   this.playButton = null;
 
 };
 BasicGame.GameOver.prototype = {
 
   preload: function () {
-    // # Music
-    //this.music = this.add.audio('titleMusic');
-    //this.music.play();
-
     document.getElementById('ui').classList.add('hide');
     drawBG('312534', '1f1a21');
 
