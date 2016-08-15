@@ -72,7 +72,9 @@ function genLeafy() {
 
   // death
   leafy.kill = function() {
+    this.enableBody = false;
     this.jumps = 0;
+    this.maxJumps = 0;
     this.alive = false;
     this.body.velocity.setTo(0,0);
 
@@ -182,5 +184,7 @@ function respawn(leafy) {
   leafy.body.position.y = -100;
   leafy.body.velocity.x = 0;
   leafy.body.velocity.y = 0;
+  leafy.maxJumps = vars.leafyJumps;
+  leafy.enableBody = true;
   leafy.revive();
 }

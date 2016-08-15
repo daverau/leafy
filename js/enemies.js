@@ -111,6 +111,7 @@ function passBee(leafy, bee) {
 
       game.sfxbuzz.play();
       leafy.kill();
+      leafy.jumps = 0;
 
       if (window.ga) {
         window.ga.trackEvent('Player', 'Death', 'Bee', vars.score);
