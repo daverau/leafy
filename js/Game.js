@@ -20,6 +20,14 @@ create: function () {
     vars.leafyGravity =                1000;
     vars.leafyMaxVelocityX =            500;
     vars.leafyMaxVelocityY =           1000;
+  } else {
+    // default
+    // [todo] clean this up with better organization and reset functions
+    vars.leafyJumpVelocityY =          -750; // pixels per second negative y is up
+    vars.leafyJumpConstant =            210; // jump numbers are magic
+    vars.leafyGravity =                3000;
+    vars.leafyMaxVelocityX =            500;
+    vars.leafyMaxVelocityY =           4000;
   }
 
   // # Draw game objects
