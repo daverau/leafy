@@ -4,12 +4,14 @@ function resetCloud(cloud) {
   // position
   cloud.body.x = game.width + cloud.width;
   cloud.body.y = game.rnd.between(20, 200);
-
-  // scale
   cloud.scale.setTo('.' + game.rnd.between(15,45));
-
-  // alpha
   cloud.alpha = '.' + game.rnd.between(20,60);
+
+  if (game.state.current === 'Win') {
+    cloud.body.y = game.rnd.between(20, game.height);
+    cloud.scale.setTo('.' + game.rnd.between(15,55));
+    cloud.alpha = '.' + game.rnd.between(20,60);
+  }
 
   // speed
   cloud.body.velocity.x = game.rnd.between(Math.ceil(vars.gameSpeed / 9), Math.ceil(vars.gameSpeed / 4));

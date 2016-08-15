@@ -49,8 +49,8 @@ BasicGame.Win.prototype = {
     // clouds
     game.clouds = game.add.group();
     game.clouds.enableBody = true;
-    for (var i=0; i<9; i++) {
-      var cloud = new Cloud(game, game.rnd.between(0, game.width), game.rnd.between(0, game.height));
+    for (var i=0; i<35; i++) {
+      var cloud = new Cloud(game, game.rnd.between(0, game.width), game.rnd.between(0, game.height + 130));
       game.clouds.add(cloud);
     }
 
